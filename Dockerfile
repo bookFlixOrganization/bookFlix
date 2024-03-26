@@ -1,11 +1,9 @@
-FROM python:3.11-buster
+FROM python:latest
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
-
-RUN apt-get update && \
-    apt install -y python3-dev \
 
 RUN pip install --upgrade pip
 RUN pip install poetry

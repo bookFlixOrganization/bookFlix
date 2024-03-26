@@ -7,4 +7,5 @@ def create_app():
         docs_url='/api/docs',
         title='Test'
     )
+
     return app
