@@ -8,6 +8,7 @@ FLAKE8_OPTS =
 PYLINT_OPTS = --disable=all --enable=F,E,W,R --disable=import-error --output-format=colorized
 AUTOFLAKE_OPTS = --in-place --remove-all-unused-imports --remove-unused-variables --expand-star-imports
 APP_FILE = docker_compose/app.yaml
+DB = docker_compose/storage.yaml
 
 #Цели
 all-linters: autoflake mypy flake8 pylint
@@ -28,24 +29,28 @@ clean:
 	find . -name "*.pyc" -exec rm -f {} \;
 	rm -rf pycache
 
-sort-toml:
-	for file in $(TOML_SRC);
-	do toml-sort $$file > $$file.tmp;
-	mv $$file.tmp $$file;
-	done
+toml-sort:
+	toml-sort pyproject.toml
 
 all:
-	docker-compose -f ${APP_FILE} up --build -d
+	docker-compose -f ${APP_FILE} -f ${DB} up --build -d
 
 app-start:
 	docker-compose -f $(APP_FILE) up -d
 
-app-drop:
+app-down:
 	docker-compose -f $(APP_FILE) down
 
 app-logs:
 	docker-compose -f ${APP_FILE} logs -f
 
+db-up:
+	docker-compose -f ${DB} up -d
 
+db-down:
+	docker-compose -f ${DB} down
 
-.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs
+all-down:
+	docker-compose -f ${APP_FILE} -f ${DB} down
+
+.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down
