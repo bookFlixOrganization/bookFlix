@@ -39,7 +39,7 @@ app-start:
 	docker-compose -f $(APP_FILE) up -d
 
 app-down:
-	docker-compose -f $(APP_FILE) down
+	docker-compose -f $(APP_FILE) down && docker network prune --force
 
 app-logs:
 	docker-compose -f ${APP_FILE} logs -f
@@ -48,9 +48,9 @@ db-up:
 	docker-compose -f ${DB} up -d
 
 db-down:
-	docker-compose -f ${DB} down
+	docker-compose -f ${DB} down && docker network prune --force
 
 all-down:
-	docker-compose -f ${APP_FILE} -f ${DB} down
+	docker-compose -f ${APP_FILE} -f ${DB} down && docker network prune --force
 
 .PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down
