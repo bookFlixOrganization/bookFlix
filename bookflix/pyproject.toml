@@ -2,7 +2,11 @@
 name = "bookflix"
 version = "0.1.0"
 description = ""
+<<<<<<< HEAD
 authors = ["zmskv <zmskvxd@gmail.com>, khnychenkoav <khnartem@gmail.com>, malmax5 <malmax5@mail.ru>, milkyway <mihateren2003@gmail.com>, aazaretskaya <nastya.zaretskaya.1995@gmail.com>"]
+=======
+authors = ["zmskv <zmskvxd@gmail.com>"]
+>>>>>>> origin/backend_Pavel
 readme = "README.md"
 
 [tool.poetry.dependencies]
