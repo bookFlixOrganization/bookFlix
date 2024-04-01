@@ -10,7 +10,7 @@ package-mode = false
 python = "^3.11"
 fastapi = "^0.110.0"
 uvicorn = "^0.29.0"
-sqlalchemy = "^2.0.29"
+sqlalchemy = "2.0.29"
 docker = "^7.0.0"
 pydantic = "^2.6.4"
 envparse = "^0.2.0"
@@ -18,6 +18,7 @@ psycopg = "^3.1.18"
 psycopg-binary = "^3.1.18"
 pydantic-settings = "^2.2.1"
 alembic = "^1.13.1"
+asyncpg = "^0.29.0"
 
 [tool.poetry.scripts]
 app_start = "api.app:run_server"

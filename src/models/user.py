@@ -7,9 +7,8 @@ from sqlalchemy.dialects.postgresql import UUID
 Base = declarative_base()
 
 
-def User(Base):
-    pass
-
+class User(Base):
+    __tablename__ = 'users'
     user_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False)
     surname = Column(String, nullable=False)
