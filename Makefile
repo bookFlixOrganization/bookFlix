@@ -53,7 +53,7 @@ db-down:
 all-down:
 	docker-compose -f ${APP_FILE} -f ${DB} down && docker network prune --force
 
-app-start-no-docker:
+app:
 	python main.py
 
-.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app-start-no-docker
+.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app

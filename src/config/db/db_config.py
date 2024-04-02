@@ -1,9 +1,5 @@
-from envparse import Env
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
-env = Env()
-
-DATABASE_URL = env.str(
-    "DATABASE_URL",
-    default="postgresql://postgres:postgres@localhost:5432/testdb"
-)
+DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/testdb"

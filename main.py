@@ -1,7 +1,10 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, APIRouter
 from src.api.app import create_app
 import uvicorn
-from src.config.db.session import global_init, create_session, Base
+
+from src.api.handlers import user_router
+# from src.api.handlers import login
+# from src.config.db.session import global_init, create_session, Base
 from src.models.users import User
 
 
@@ -15,15 +18,10 @@ def test_app():
 
 app = create_app()
 
-User_1 = User()
-User_1.name = "User1"
-User_1.email = "<EMAIL>"
-User_1.surname = "Nasme"
+main_app_router = APIRouter()
+main_app_router.include_router(user_router, prefix="/user", tags=["user"])
+app.include_router(user_router)
+
 
 if __name__ == '__main__':
-    global_init()
-    db_sess = create_session()
-    db_sess.add(User_1)
-    db_sess.commit()
-    print(db_sess.query(User).first().name)
-    db_sess.close()
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
