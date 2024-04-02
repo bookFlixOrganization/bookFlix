@@ -15,7 +15,6 @@ def global_init():
         return
 
     engine = create_engine('postgresql://postgres:postgres@localhost:5432/testdb', echo=True)
-    Base.metadata.drop_all(engine)
 
     __factory = sessionmaker(bind=engine)
 
