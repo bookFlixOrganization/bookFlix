@@ -1,6 +1,29 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.asyncio import create_async_engine
-from db_config import DATABASE_URL
+from sqlalchemy.orm import Session
+from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_async_engine("postgresql+asyncpg://postgres:postgres@localhost:5432/postgres", echo=True, future=True)
+
+Base = declarative_base()
+
+__factory = None
+
+def global_init():
+    global __factory
+
+    if __factory:
+        return
+
+    engine = create_engine('postgresql://postgres:postgres@localhost:5432/testdb', echo=True)
+    Base.metadata.drop_all(engine)
+
+    __factory = sessionmaker(bind=engine)
+
+
+    from src.models import __all_models
+
+    Base.metadata.create_all(engine)
+
+def create_session() -> Session:
+    global __factory
+    return __factory()

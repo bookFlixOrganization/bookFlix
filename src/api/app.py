@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 
 
+
+
 def create_app():
     app = FastAPI(
         debug=True,
@@ -9,3 +11,4 @@ def create_app():
     )
 
     return app
+
