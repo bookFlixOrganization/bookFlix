@@ -1,44 +1,26 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from typing import AsyncGenerator
+
+from sqlalchemy import create_engine, MetaData
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker, DeclarativeMeta
 from sqlalchemy.orm import Session
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
+
+from src.config.db.db_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
+
 #from src.config.db.db_config import DATABASE_URL
 
-Base = declarative_base()
+metadata = MetaData()
 
-# __factory = None
+DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+Base: DeclarativeMeta = declarative_base()
 
-
-# def global_init():
-#     global __factory
-#
-#     if __factory:
-#         return
-#
-#     engine = create_engine(DATABASE_URL, echo=True)
-#
-#     __factory = sessionmaker(bind=engine)
-#
-#
-#     from src.models import __all_models
-#
-#     Base.metadata.create_all(engine)
-#
-#
-# def create_session() -> Session:
-#     global __factory
-#     return __factory()
-#
-#
-#engine = create_engine(DATABASE_URL, echo=True)
-#SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_async_engine(DATABASE_URL)
+async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
-#def get_db():
-#    db = SessionLocal()
-#    Base.metadata.create_all(engine)
-#    try:
-#        yield db
-#    finally:
-#        db.close()
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+    async with async_session_maker() as session:
+        yield session
+
 
