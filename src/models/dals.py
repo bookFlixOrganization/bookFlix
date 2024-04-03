@@ -29,7 +29,7 @@
 #        self.db.delet#e(user)
 #        self.db.commit()
 #        return {"message": "User deleted successfully"}#
-
+import uuid
 #    def get_user(sel#f, user_id: uuid.UUID):
 #        user = self.db.query(User).filter(User.user_id == user_id).first()
 #        if not user:
@@ -50,14 +50,13 @@
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas
+from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas, UUIDIDMixin
 
 from src.config.db.auth_session import User, get_user_db
+from src.config.project_config import SECRET
 
-SECRET = "SECRET"
 
-
-class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
+class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET
     verification_token_secret = SECRET
 
