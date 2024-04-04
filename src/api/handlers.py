@@ -9,11 +9,13 @@ from src.api.auth import auth_backend
 from imdb import Cinemagoer, IMDbError
 from src.schemas.auth_schemas import UserRead, UserCreate
 
-from tmdbv3api import TMDb, Movie
+from tmdbv3api import TMDb, Movie, Search, Discover
 
 tmdb = TMDb()
 tmdb.api_key = '104110ddcdafacee0b700e98f3a01bb3'
 movie = Movie()
+search = Search()
+discover = Discover()
 
 user_router = APIRouter()
 
@@ -36,6 +38,66 @@ user_router.include_router(
 
 current_user = fastapi_users.current_user()
 ia = Cinemagoer()
+
+
+# Discover with imdb id
+# recommendations
+# reviews
+# now playing
+# top-rated
+
+@user_router.get("/tmdb/most_popular")
+async def get_popular():
+    popular = discover.discover_movies({
+        'sort_by': 'popularity.desc'
+    })
+
+    movie_list = {}
+    try:
+        for p in popular:
+            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+    except IMDbError as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": movie_list}
+
+
+@user_router.get("/tmdb/similar")
+async def get_similar(id_movie: int):
+    similar = movie.similar(id_movie)
+    movie_list = {}
+    try:
+        for p in similar:
+            movie_list[f"{p.title}"] = {"overview": p.overview}
+    except IMDbError as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": movie_list}
+
+
+@user_router.get("/search/tmdb/movie")
+async def search_movie_tmdb(query: str):
+    try:
+        tmdb_films = search.movies(query)
+        movie_list = {}
+
+        for p in tmdb_films:
+            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
+                                     "vote_average": p.vote_average}
+    except IMDbError as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": movie_list}
+
+
+@user_router.get("/get/tmdb/movie")
+async def get_movie_tmdb(query: int):
+    try:
+        movie_tmdb = movie.details(query)
+    except IMDbError as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": movie_tmdb}
 
 
 @user_router.get("/get/top")
