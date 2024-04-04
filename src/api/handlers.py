@@ -9,9 +9,11 @@ from src.api.auth import auth_backend
 from imdb import Cinemagoer, IMDbError
 from src.schemas.auth_schemas import UserRead, UserCreate
 
-from kinopoisk.movie import Movie
+from tmdbv3api import TMDb, Movie
 
-
+tmdb = TMDb()
+tmdb.api_key = '104110ddcdafacee0b700e98f3a01bb3'
+movie = Movie()
 
 user_router = APIRouter()
 
@@ -35,11 +37,14 @@ user_router.include_router(
 current_user = fastapi_users.current_user()
 ia = Cinemagoer()
 
-@user_router.get("/get/top/kinopoisk")
-async def get_keyword(query: str):
-    try:
-        movie_list = Movie.objects.search('Redacted')
 
+@user_router.get("/get/top")
+async def get_top():
+    try:
+        movie_list = {}
+        popular = movie.popular()
+        for p in popular:
+            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
     except Exception as e:
         return {"status": "error", "message": e}
     else:
