@@ -1,9 +1,14 @@
 import uuid
 
 from fastapi import APIRouter, Depends
-
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+import requests
+from fastapi import HTTPException
 from src.config.db.auth_session import User
 from fastapi_users import fastapi_users, FastAPIUsers
+
+from src.config.project_config import GOOGLE_API_KEY
 
 from src.config.project_config import TMDB_TOKEN
 from src.models.dals import get_user_manager
@@ -187,3 +192,26 @@ async def get_keyword(query: str):
         return {"status": "error", "message": e}
     else:
         return {"status": "ok", "result": keyword}
+
+
+@user_router.get("/search/book")
+async def get_book(query: str):
+    try:
+        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+        request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
+        response = request.execute()
+        return response
+    except HttpError as e:
+        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
+
+
+@user_router.get("/get/book")
+async def get_book(query: str):
+    try:
+        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+        request = service.volumes().get(volumeId=query)
+        response = request.execute()
+
+        return response
+    except HttpError as e:
+        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
