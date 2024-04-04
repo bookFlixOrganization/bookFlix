@@ -13,7 +13,7 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
     is_superuser: bool = False
     is_verified: bool = False
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
