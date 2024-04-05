@@ -4,6 +4,8 @@ from fastapi import APIRouter, Depends
 
 from src.config.db.auth_session import User
 from fastapi_users import fastapi_users, FastAPIUsers
+
+from src.config.project_config import TMDB_TOKEN
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
 from imdb import Cinemagoer, IMDbError
@@ -12,7 +14,7 @@ from src.schemas.auth_schemas import UserRead, UserCreate
 from tmdbv3api import TMDb, Movie, Search, Discover
 
 tmdb = TMDb()
-tmdb.api_key = '104110ddcdafacee0b700e98f3a01bb3'
+tmdb.api_key = TMDB_TOKEN
 movie = Movie()
 search = Search()
 discover = Discover()
@@ -56,7 +58,7 @@ async def get_popular():
     try:
         for p in popular:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
-    except IMDbError as e:
+    except Exception as e:
         return {"status": "error", "message": e}
     else:
         return {"status": "ok", "result": movie_list}
@@ -69,7 +71,7 @@ async def get_similar(id_movie: int):
     try:
         for p in similar:
             movie_list[f"{p.title}"] = {"overview": p.overview}
-    except IMDbError as e:
+    except Exception as e:
         return {"status": "error", "message": e}
     else:
         return {"status": "ok", "result": movie_list}
@@ -84,7 +86,7 @@ async def search_movie_tmdb(query: str):
         for p in tmdb_films:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
                                      "vote_average": p.vote_average}
-    except IMDbError as e:
+    except Exception as e:
         return {"status": "error", "message": e}
     else:
         return {"status": "ok", "result": movie_list}
@@ -94,7 +96,7 @@ async def search_movie_tmdb(query: str):
 async def get_movie_tmdb(query: int):
     try:
         movie_tmdb = movie.details(query)
-    except IMDbError as e:
+    except Exception as e:
         return {"status": "error", "message": e}
     else:
         return {"status": "ok", "result": movie_tmdb}
