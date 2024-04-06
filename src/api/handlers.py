@@ -216,7 +216,7 @@ async def sort_by(sort_criterion: str):
 
 
 @user_router.get("/search/book")
-async def get_book(query: str):
+async def search_book(query: str):
     try:
         service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
         request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
@@ -236,25 +236,3 @@ async def get_book(query: str):
     except HttpError as e:
         raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
 
-
-@user_router.get("/search/book")
-async def get_book(query: str):
-    try:
-        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
-        request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
-        response = request.execute()
-        return response
-    except HttpError as e:
-        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
-
-
-@user_router.get("/get/book")
-async def get_book(query: str):
-    try:
-        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
-        request = service.volumes().get(volumeId=query)
-        response = request.execute()
-
-        return response
-    except HttpError as e:
-        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)

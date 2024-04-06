@@ -29,12 +29,12 @@ pytest-asyncio = "^0.23.6"
 httpx = "^0.27.0"
 cinemagoer = "2023.5.1"
 imdbpy = "^2022.7.9"
-kinopoiskpy = "^0.9.0"
 google-api-python-client = "^2.125.0"
 tmdbv3api = "^1.9.0"
 
 greenlet = "^3.0.3"
 gigachain = "^0.1.13.2"
+gigachat = "^0.1.22"
 
 [tool.poetry.scripts]
 app_start = "api.app:run_server"
