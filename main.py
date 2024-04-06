@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from src.api.app import create_app
+from src.api.gigachat import gigachat_router
 from src.api.handlers import user_router
 
 
@@ -15,6 +16,7 @@ def test_app():
 app = create_app()
 
 app.include_router(user_router)
+app.include_router(gigachat_router)
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
