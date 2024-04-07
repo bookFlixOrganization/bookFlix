@@ -56,7 +56,6 @@ current_user = fastapi_users.current_user()
 ia = Cinemagoer()
 
 
-
 @user_router.get("/tmdb/similar")
 async def get_similar(movie_id: int):
     similar = movie.similar(movie_id)
@@ -235,4 +234,3 @@ async def get_book(query: str):
         return response
     except HttpError as e:
         raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
-

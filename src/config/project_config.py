@@ -4,7 +4,7 @@ import os
 load_dotenv()
 
 SECRET = os.environ.get("SECRET")
-
+SECRET_VER = os.environ.get("SECRET_VER")
 DB_HOST_TEST = os.environ.get("DB_HOST_TEST")
 DB_PORT_TEST = os.environ.get("DB_PORT_TEST")
 DB_NAME_TEST = os.environ.get("DB_NAME_TEST")

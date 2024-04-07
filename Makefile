@@ -56,4 +56,7 @@ all-down:
 app:
 	python main.py
 
-.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app
+pytest:
+	pytest -vv -s tests/
+
+.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app pytest

@@ -6,12 +6,12 @@ from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, s
 
 from src.config.db.auth_session import User, get_user_db
 
-from src.config.project_config import SECRET
+from src.config.project_config import SECRET, SECRET_VER
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET
-    verification_token_secret = SECRET
+    verification_token_secret = SECRET_VER
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")
