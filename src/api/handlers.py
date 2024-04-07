@@ -13,10 +13,12 @@ from src.config.project_config import GOOGLE_API_KEY
 from src.config.project_config import GOOGLE_API_KEY
 
 from src.config.project_config import TMDB_TOKEN
+
+from src.config.project_config import GOOGLE_API_KEY
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
 from imdb import Cinemagoer, IMDbError
-from src.schemas.auth_schemas import UserRead, UserCreate
+from src.schemas.auth_schemas import UserRead, UserCreate, UserUpdate
 
 from tmdbv3api import TMDb, Movie, Search, Discover
 
@@ -52,8 +54,50 @@ user_router.include_router(
     tags=["auth"],
 )
 
+user_router.include_router(
+    fastapi_users.get_verify_router(UserRead),
+    prefix="/auth",
+    tags=["auth"],
+)
+
+user_router.include_router(
+    fastapi_users.get_users_router(UserRead, UserUpdate),
+    prefix="/users",
+    tags=["users"],
+)
+
 current_user = fastapi_users.current_user()
 ia = Cinemagoer()
+
+
+@user_router.get("/tmdb/top_rated")
+async def get_top_rated():
+    movie_list = movie.top_rated()
+    try:
+        top_rated = {}
+        for p in movie_list:
+            top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+    except Exception as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": top_rated}
+
+
+@user_router.get("/tmdb/sorted",
+                 tags=["sort_by"],
+                 description="Available values: id, title, popularity, release_date, vote_average, vote_count")
+async def sort_by(sort_criterion: str):
+    sorted_list = discover.discover_movies({
+        'sort_by': f"{sort_criterion}.desc"
+    })
+    movie_list = {}
+    try:
+        for q in sorted_list:
+            movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": q.poster_path}
+    except Exception as e:
+        return {"status": "error", "message": e}
+    else:
+        return {"status": "ok", "result": movie_list}
 
 
 @user_router.get("/tmdb/similar")
@@ -70,9 +114,9 @@ async def get_similar(movie_id: int):
 
 
 @user_router.get("/search/tmdb/movie")
-async def search_movie_tmdb(query: str):
+async def search_movie_tmdb(title_eng: str):
     try:
-        tmdb_films = search.movies(query)
+        tmdb_films = search.movies(title_eng)
         movie_list = {}
 
         for p in tmdb_films:
