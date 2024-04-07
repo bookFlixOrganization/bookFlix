@@ -1,12 +1,16 @@
 import uuid
-from typing import Optional
+from typing import Optional, Union
 
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, IntegerIDMixin, exceptions, models, schemas, UUIDIDMixin
+from fastapi_users import BaseUserManager, exceptions, models, schemas, UUIDIDMixin
+from fastapi_users.jwt import decode_jwt, generate_jwt
+from jwt import PyJWTError
+from fastapi_users import InvalidPasswordException
 
 from src.config.db.auth_session import User, get_user_db
 
 from src.config.project_config import SECRET
+from src.schemas.auth_schemas import UserCreate, UserRead
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
@@ -42,6 +46,30 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
         await self.on_after_register(created_user, request)
 
         return created_user
+
+    async def on_after_forgot_password(
+            self, user: User, token: str, request: Optional[Request] = None
+    ):
+        print(f"User {user.id} has forgot their password. Reset token: {token}")
+
+    async def on_after_request_verify(
+            self, user: User, token: str, request: Optional[Request] = None
+    ):
+        print(f"Verification requested for user {user.id}. Verification token: {token}")
+
+    async def validate_password(
+            self,
+            password: str,
+            user: Union[UserCreate, UserRead],
+    ) -> None:
+        if len(password) < 8:
+            raise InvalidPasswordException(
+                reason="Password should be at least 8 characters"
+            )
+        if user.email in password:
+            raise InvalidPasswordException(
+                reason="Password should not contain e-mail"
+            )
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
