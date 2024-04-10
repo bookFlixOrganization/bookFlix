@@ -1,16 +1,12 @@
 import uuid
 from datetime import datetime
-from typing import AsyncGenerator
 
 from fastapi import Depends
 from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
 from sqlalchemy import Column, String, Boolean, Integer, TIMESTAMP, ForeignKey, UUID
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.config.db.db_config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
-from src.config.db.session import async_session_maker, Base, get_async_session
+from src.config.db.session import Base, get_async_session
 from src.models.users import role
 
 

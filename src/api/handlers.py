@@ -3,8 +3,6 @@ import uuid
 from fastapi import APIRouter, Depends
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-import requests
-from fastapi import HTTPException
 from src.config.db.auth_session import User
 from fastapi_users import fastapi_users, FastAPIUsers
 

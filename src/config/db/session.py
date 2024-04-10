@@ -1,10 +1,8 @@
 from typing import AsyncGenerator
 
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker, DeclarativeMeta, DeclarativeBase
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 from src.config.db.db_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
 

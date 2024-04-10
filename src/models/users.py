@@ -1,10 +1,9 @@
 import uuid
 from datetime import datetime
 
-import sqlalchemy
 
-from src.config.db.session import Base, metadata
-from sqlalchemy import Column, String, MetaData, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean
+from src.config.db.session import metadata
+from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 
 

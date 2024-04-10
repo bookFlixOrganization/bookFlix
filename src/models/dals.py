@@ -3,8 +3,6 @@ from typing import Optional, Union
 
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, exceptions, models, schemas, UUIDIDMixin
-from fastapi_users.jwt import decode_jwt, generate_jwt
-from jwt import PyJWTError
 from fastapi_users import InvalidPasswordException
 
 from src.config.db.auth_session import User, get_user_db

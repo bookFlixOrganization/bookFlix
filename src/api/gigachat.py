@@ -1,8 +1,7 @@
 from fastapi import APIRouter
 from langchain_core.prompts import load_prompt
 
-from src.api.handlers import user_router
-from langchain.schema import HumanMessage, SystemMessage
+from langchain.schema import HumanMessage
 from langchain.chat_models.gigachat import GigaChat
 
 from src.config.project_config import GIGACHAT_API_KEY
