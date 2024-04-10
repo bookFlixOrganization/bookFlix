@@ -228,36 +228,6 @@ async def get_keyword(query: str):
         return {"status": "ok", "result": keyword}
 
 
-@user_router.get("/tmdb/top_rated")
-async def get_top_rated():
-    movie_list = movie.top_rated()
-    try:
-        top_rated = {}
-        for p in movie_list:
-            top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
-    except Exception as e:
-        return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": top_rated}
-
-
-@user_router.get("/tmdb/sorted",
-                 tags=["sort_by"],
-                 description="Available values: id, title, popularity, release_date, vote_average, vote_count")
-async def sort_by(sort_criterion: str):
-    sorted_list = discover.discover_movies({
-        'sort_by': f"{sort_criterion}.desc"
-    })
-    movie_list = {}
-    try:
-        for q in sorted_list:
-            movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": q.poster_path}
-    except Exception as e:
-        return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_list}
-
-
 @user_router.get("/search/book")
 async def search_book(query: str):
     try:
