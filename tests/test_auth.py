@@ -1,3 +1,5 @@
+import pytest
+from httpx import AsyncClient
 from sqlalchemy import insert, select
 
 from src.models.users import role
@@ -6,13 +8,13 @@ from tests.conftest import client, async_session_maker
 
 async def test_add_role():
     async with async_session_maker() as session:
-        statement = insert(role).values(id=1, name="user", permissions=None)
+        statement = insert(role).values(id=1, name="admin", permissions=None)
         await session.execute(statement)
         await session.commit()
 
         query = select(role)
         result = await session.execute(query)
-        assert result.all() == [(1, 'user', None)], "Role not found"
+        assert result.all() == [(1, 'admin', None)], "Role not found"
 
 
 def test_register():
@@ -20,7 +22,7 @@ def test_register():
         "email": "string@mail.com",
         "password": "string123",
         "is_active": True,
-        "is_superuser": False,
+        "is_superuser": True,
         "is_verified": True,
         "username": "string",
         "role_id": 1
@@ -35,19 +37,21 @@ def test_get_verify_token():
     assert response.status_code == 202
 
 
-# @pytest.mark.asyncio
-# async def test_jwt_login():
-#     async with AsyncClient(app=app, base_url="http://test") as ac:
-#         # Form data for the request
-#         form_data = {
-#             "username": "string@mail.com",
-#             "password": "string123"
-#         }
-#
-#         # Send the request
-#         response = await ac.post("/auth/jwt/login", data=form_data)
-#
-#         # Check the response
-#         assert response.status_code == 200
-#
-#
+async def test_jwt_login(ac: AsyncClient):
+    form_data = {
+        "username": "string@mail.com",
+        "password": "string123"
+    }
+    response1 = await ac.post("/auth/jwt/login", data=form_data)
+    assert response1.status_code == 204
+    # response2 = await ac.get("/users/me")
+    # ans = {
+    #     "email": "string@mail.com",
+    #     "password": "string123",
+    #     "is_active": True,
+    #     "is_superuser": True,
+    #     "is_verified": True,
+    #     "username": "string",
+    #     "role_id": 1
+    # }
+    # assert response2 == 200

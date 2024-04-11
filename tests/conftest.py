@@ -47,10 +47,9 @@ def event_loop(request):
 
 
 client = TestClient(app)
-transport = WSGITransport(app=app)
 
 
 @pytest.fixture(scope="session")
 async def ac() -> AsyncGenerator[AsyncClient, None]:
-    async with AsyncClient(transport=transport, base_url="http://test") as ac:
+    async with AsyncClient(app=app, base_url="http://test") as ac:
         yield ac
