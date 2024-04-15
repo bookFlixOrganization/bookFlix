@@ -1,3 +1,4 @@
+# pylint: disable=wrong-import-position,no-member,redefined-outer-name,unused-import
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config

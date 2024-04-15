@@ -1,9 +1,7 @@
-import pytest
 from httpx import AsyncClient
 from sqlalchemy import insert, select
-
+from conftest import client, async_session_maker
 from src.models.users import role
-from tests.conftest import client, async_session_maker
 
 
 async def test_add_role():

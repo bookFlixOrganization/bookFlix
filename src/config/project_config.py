@@ -1,5 +1,6 @@
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -13,4 +14,3 @@ DB_PASS_TEST = os.environ.get("DB_PASS_TEST")
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 TMDB_TOKEN = os.environ.get("TMDB_TOKEN")
 GIGACHAT_API_KEY = os.environ.get("GIGACHAT_API_KEY")
-

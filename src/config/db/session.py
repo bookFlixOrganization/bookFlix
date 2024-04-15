@@ -6,7 +6,6 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 from src.config.db.db_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_NAME
 
-# from src.config.db.db_config import DATABASE_URL
 
 metadata = MetaData()
 

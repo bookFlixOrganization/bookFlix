@@ -3,7 +3,7 @@ from typing import AsyncGenerator
 
 import pytest
 from fastapi.testclient import TestClient
-from httpx import AsyncClient, WSGITransport
+from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool

@@ -22,6 +22,5 @@ class User(SQLAlchemyBaseUserTableUUID, Base):
     is_verified: bool = Column(Boolean, default=False, nullable=False)
 
 
-
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
     yield SQLAlchemyUserDatabase(session, User)

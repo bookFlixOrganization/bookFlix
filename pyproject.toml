@@ -1,51 +1,49 @@
-[tool.poetry]
-name = "bookflix"
-version = "0.1.0"
-description = ""
-authors = ["zmskv <zmskvxd@gmail.com>"]
-readme = "README.md"
-package-mode = false
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
 
+[tool.poetry]
+authors = ["zmskv <zmskvxd@gmail.com>"]
+description = ""
+name = "bookflix"
+package-mode = false
+readme = "README.md"
+version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.110.0"
-uvicorn = "^0.29.0"
-sqlalchemy = "2.0.29"
-docker = "^7.0.0"
-pydantic = "^2.6.4"
-envparse = "^0.2.0"
-psycopg = "^3.1.18"
-psycopg-binary = "^3.1.18"
-pydantic-settings = "^2.2.1"
 alembic = "^1.13.1"
 asyncpg = "^0.29.0"
-psycopg2 = "^2.9.9"
-fastapi-users = {extras = ["sqlalchemy"], version = "^13.0.0"}
-python-dotenv = "^1.0.1"
-datetime = "^5.5"
-pytest = "^8.1.1"
-pytest-asyncio = "^0.23.6"
-httpx = "^0.27.0"
 cinemagoer = "2023.5.1"
-imdbpy = "^2022.7.9"
-google-api-python-client = "^2.125.0"
-tmdbv3api = "^1.9.0"
-
-greenlet = "^3.0.3"
+datetime = "^5.5"
+docker = "^7.0.0"
+envparse = "^0.2.0"
+fastapi = "^0.110.0"
+fastapi-users = {extras = ["sqlalchemy"], version = "^13.0.0"}
 gigachain = "^0.1.13.2"
 gigachat = "^0.1.22"
+google-api-python-client = {extras = ["googleapiclient"], version = "^2.125.0"}
+greenlet = "^3.0.3"
+httpx = "^0.27.0"
+imdbpy = "^2022.7.9"
+psycopg = "^3.1.18"
+psycopg-binary = "^3.1.18"
+psycopg2 = "^2.9.9"
+pydantic = "^2.6.4"
+pydantic-settings = "^2.2.1"
+pytest = "^8.1.1"
+pytest-asyncio = "^0.23.6"
+python = "^3.11"
+python-dotenv = "^1.0.1"
+sqlalchemy = "2.0.29"
+tmdbv3api = "^1.9.0"
+uvicorn = "^0.29.0"
 
 [tool.poetry.scripts]
 app_start = "api.app:run_server"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-
 [tool.pytest.ini_options]
+asyncio_mode = "auto"
 pythonpath = [
-    ".", "src"
+  ".",
+  "src"
 ]
-asyncio_mode="auto"

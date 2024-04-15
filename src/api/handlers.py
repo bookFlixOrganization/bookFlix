@@ -1,24 +1,17 @@
 import uuid
-
+from imdb import Cinemagoer, IMDbError
 from fastapi import APIRouter, Depends
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from tmdbv3api import TMDb, Movie, Search, Discover
+from fastapi_users import FastAPIUsers
 from src.config.db.auth_session import User
-from fastapi_users import fastapi_users, FastAPIUsers
-
-from src.config.project_config import GOOGLE_API_KEY
-
-from src.config.project_config import GOOGLE_API_KEY
-
 from src.config.project_config import TMDB_TOKEN
-
 from src.config.project_config import GOOGLE_API_KEY
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
-from imdb import Cinemagoer, IMDbError
 from src.schemas.auth_schemas import UserRead, UserCreate, UserUpdate
 
-from tmdbv3api import TMDb, Movie, Search, Discover
 
 tmdb = TMDb()
 tmdb.api_key = TMDB_TOKEN
@@ -75,10 +68,9 @@ async def get_top_rated():
         top_rated = {}
         for p in movie_list:
             top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+        return {"status": "ok", "result": top_rated}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": top_rated}
 
 
 @user_router.get("/tmdb/sorted",
@@ -92,10 +84,9 @@ async def sort_by(sort_criterion: str):
     try:
         for q in sorted_list:
             movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": q.poster_path}
+        return {"status": "ok", "result": movie_list}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_list}
 
 
 @user_router.get("/tmdb/similar")
@@ -105,10 +96,9 @@ async def get_similar(movie_id: int):
     try:
         for p in similar:
             movie_list[f"{p.title}"] = {"overview": p.overview}
+        return {"status": "ok", "result": movie_list}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_list}
 
 
 @user_router.get("/search/tmdb/movie")
@@ -120,20 +110,18 @@ async def search_movie_tmdb(title_eng: str):
         for p in tmdb_films:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
                                      "vote_average": p.vote_average}
+        return {"status": "ok", "result": movie_list}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_list}
 
 
 @user_router.get("/get/tmdb/movie")
 async def get_movie_tmdb(movie_id: int):
     try:
         movie_tmdb = movie.details(movie_id)
+        return {"status": "ok", "result": movie_tmdb}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_tmdb}
 
 
 @user_router.get("/get/top")
@@ -143,10 +131,9 @@ async def get_top():
         popular = movie.popular()
         for p in popular:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+        return {"status": "ok", "result": movie_list}
     except Exception as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie_list}
 
 
 @user_router.get("/protected-route")
@@ -156,7 +143,7 @@ def protected_route(user: User = Depends(current_user)):
 
 @user_router.get("/unprotected-route")
 def unprotected_route():
-    return f"Hello, anonym"
+    return "Hello, anonym"
 
 
 @user_router.get("/search/movie")
@@ -165,10 +152,9 @@ async def search_movie(query: str):
         movies = ia.search_movie(query)
         for i in range(len(movies)):
             movies[i]['movieID'] = movies[i].movieID
+        return {"status": "ok", "result": movies}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movies}
 
 
 @user_router.get("/search/person")
@@ -177,30 +163,27 @@ async def search_person(query: str):
         peoples = ia.search_person(query)
         for i in range(len(peoples)):
             peoples[i]['personID'] = peoples[i].personID
+        return {"status": "ok", "result": peoples}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": peoples}
 
 
 @user_router.get("/get/movie")
 async def get_movie(movie_id: str):
     try:
         movie = ia.get_movie(movie_id)
+        return {"status": "ok", "result": movie}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": movie}
 
 
 @user_router.get("/get/person")
 async def get_person(person_id: str):
     try:
         person = ia.get_person(person_id)
+        return {"status": "ok", "result": person}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": person}
 
 
 @user_router.get("/search/keyword")
@@ -210,20 +193,18 @@ async def search_keyword(query: str):
         keywords = []
         for p in func_result:
             keywords.append(p) if len(p.split(' ')) == 1 else None
+        return {"status": "ok", "result": keywords}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": keywords}
 
 
 @user_router.get("/get/keyword")
 async def get_keyword(query: str):
     try:
         keyword = ia.get_keyword(query)
+        return {"status": "ok", "result": keyword}
     except IMDbError as e:
         return {"status": "error", "message": e}
-    else:
-        return {"status": "ok", "result": keyword}
 
 
 @user_router.get("/search/book")
@@ -234,7 +215,7 @@ async def search_book(query: str):
         response = request.execute()
         return response
     except HttpError as e:
-        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
 @user_router.get("/get/book")
@@ -245,4 +226,4 @@ async def get_book(query: str):
         response = request.execute()
         return response
     except HttpError as e:
-        raise 'Error response status code : {0}, reason : {1}'.format(e.status_code, e.error_details)
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'

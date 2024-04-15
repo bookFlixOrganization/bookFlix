@@ -19,4 +19,3 @@ async def gigachat_request(query: str):
         return chat([HumanMessage(content=text)])
     except Exception as e:
         raise e
-

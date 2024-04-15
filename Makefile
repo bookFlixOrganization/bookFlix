@@ -1,36 +1,30 @@
-#Makefile для проекта на Python
-
-#Переменные
-PYTHON_SRC = $(shell find . -name "*.py")
-TOML_SRC = $(shell find . -name "*.toml")
+POETRY_EXEC=poetry
+PYTHON_EXEC = $(POETRY_EXEC) run python
+TOML_FILES=poetry.lock pyproject.toml
 MYPY_OPTS = --ignore-missing-imports
-FLAKE8_OPTS =
-PYLINT_OPTS = --disable=all --enable=F,E,W,R --disable=import-error --output-format=colorized
-AUTOFLAKE_OPTS = --in-place --remove-all-unused-imports --remove-unused-variables --expand-star-imports
+LINTER_DIRS=src main.py migrations tests
+FORMAT_DIRS=src main.py migrations tests
+AUTOFLAKE_OPTS = -i -r --verbose --ignore-init-module-imports --remove-all-unused-imports --expand-star-imports
 APP_FILE = docker_compose/app.yaml
 DB = docker_compose/storage.yaml
 
-#Цели
-all-linters: autoflake mypy flake8 pylint
+
+all-linters: autoflake flake8 pylint mypy
 
 autoflake:
-	autoflake $(AUTOFLAKE_OPTS) $(PYTHON_SRC)
+	$(PYTHON_EXEC) -m autoflake $(AUTOFLAKE_OPTS) $(FORMAT_DIRS)
 
 mypy:
-	mypy $(MYPY_OPTS) $(PYTHON_SRC)
+	$(POETRY_EXEC) run mypy --show-error-codes --python-version=3.11 $(LINTER_DIRS)
 
 flake8:
-	flake8 $(FLAKE8_OPTS) $(PYTHON_SRC)
+	$(POETRY_EXEC) run flake8 --jobs 4 --statistics --show-source $(LINTER_DIRS)
 
 pylint:
-	pylint $(PYLINT_OPTS) $(PYTHON_SRC)
-
-clean:
-	find . -name "*.pyc" -exec rm -f {} \;
-	rm -rf pycache
+	$(POETRY_EXEC) run pylint --jobs 4 --rcfile=setup.cfg --extension-pkg-whitelist='pydantic' $(LINTER_DIRS)
 
 toml-sort:
-	toml-sort pyproject.toml
+	$(POETRY_EXEC) run toml-sort $(TOML_FILES) -i -a
 
 all:
 	docker-compose -f ${APP_FILE} -f ${DB} up --build -d

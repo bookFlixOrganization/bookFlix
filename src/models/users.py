@@ -1,10 +1,8 @@
 import uuid
 from datetime import datetime
-
-
-from src.config.db.session import metadata
-from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean
+from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, ARRAY
 from sqlalchemy.dialects.postgresql import UUID
+from src.config.db.session import metadata
 
 
 role = Table(
@@ -27,4 +25,25 @@ user = Table(
     Column("is_active", Boolean, default=True, nullable=False),
     Column("is_superuser", Boolean, default=False, nullable=False),
     Column("is_verified", Boolean, default=False, nullable=False),
+)
+
+
+user_view = Table(
+    "user_views",
+    metadata,
+    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
+    Column("liked_books", ARRAY(String)),
+    Column("liked_films", ARRAY(String)),
+    Column("disliked_books", ARRAY(String)),
+    Column("disliked_films", ARRAY(String)),
+    Column("favorite_genre_books", String, nullable=False),
+    Column("favorite_genre_films", String, nullable=False)
+)
+
+user_history = Table(
+    "user_history",
+    metadata,
+    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
+    Column("liked_books", JSON),
+    Column("liked_films", JSON)
 )

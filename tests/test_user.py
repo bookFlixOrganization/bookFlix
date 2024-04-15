@@ -1,4 +1,3 @@
-from tests.conftest import client
 
 
 # def test_user():
@@ -14,4 +13,3 @@ from tests.conftest import client
 #     response = client.get("users/me")
 #     assert response.json == ans
 #     assert response.status_code == 200
-
