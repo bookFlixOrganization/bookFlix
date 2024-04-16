@@ -1,8 +1,11 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, ARRAY
+from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, ARRAY, MetaData
 from sqlalchemy.dialects.postgresql import UUID
-from src.config.db.session import metadata
+# from src.config.db.session import metadata
+
+
+metadata = MetaData()
 
 
 role = Table(

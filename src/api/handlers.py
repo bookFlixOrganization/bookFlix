@@ -1,10 +1,12 @@
+# pylint: disable=no-member
 import uuid
 from imdb import Cinemagoer, IMDbError
 from fastapi import APIRouter, Depends
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from tmdbv3api import TMDb, Movie, Search, Discover
+from tmdbv3api import TMDb, Movie, Search, Discover, exceptions
 from fastapi_users import FastAPIUsers
+
 from src.config.db.auth_session import User
 from src.config.project_config import TMDB_TOKEN
 from src.config.project_config import GOOGLE_API_KEY
@@ -69,7 +71,7 @@ async def get_top_rated():
         for p in movie_list:
             top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
         return {"status": "ok", "result": top_rated}
-    except Exception as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
@@ -85,7 +87,7 @@ async def sort_by(sort_criterion: str):
         for q in sorted_list:
             movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": q.poster_path}
         return {"status": "ok", "result": movie_list}
-    except Exception as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
@@ -97,7 +99,7 @@ async def get_similar(movie_id: int):
         for p in similar:
             movie_list[f"{p.title}"] = {"overview": p.overview}
         return {"status": "ok", "result": movie_list}
-    except Exception as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
@@ -111,7 +113,7 @@ async def search_movie_tmdb(title_eng: str):
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
                                      "vote_average": p.vote_average}
         return {"status": "ok", "result": movie_list}
-    except Exception as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
@@ -120,7 +122,7 @@ async def get_movie_tmdb(movie_id: int):
     try:
         movie_tmdb = movie.details(movie_id)
         return {"status": "ok", "result": movie_tmdb}
-    except Exception as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
@@ -132,7 +134,7 @@ async def get_top():
         for p in popular:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
         return {"status": "ok", "result": movie_list}
-    except Exception as e:
+    except IMDbError as e:
         return {"status": "error", "message": e}
 
 
@@ -192,7 +194,10 @@ async def search_keyword(query: str):
         func_result = ia.search_keyword(query)
         keywords = []
         for p in func_result:
-            keywords.append(p) if len(p.split(' ')) == 1 else None
+            if len(p.split(' ')) == 1:
+                keywords.append(p)
+            else:
+                pass
         return {"status": "ok", "result": keywords}
     except IMDbError as e:
         return {"status": "error", "message": e}

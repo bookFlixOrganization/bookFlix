@@ -1,4 +1,3 @@
-import asyncio
 from typing import AsyncGenerator
 
 import pytest
@@ -9,8 +8,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import NullPool
 
 from main import app
-from src.config.db.session import metadata, get_async_session
+from src.config.db.session import get_async_session
 from src.config.project_config import DB_USER_TEST, DB_HOST_TEST, DB_PORT_TEST, DB_NAME_TEST, DB_PASS_TEST
+from src.models.users import metadata
 
 # DATABASE
 DATABASE_URL_TEST = f"postgresql+asyncpg://{DB_USER_TEST}:{DB_PASS_TEST}@{DB_HOST_TEST}:{DB_PORT_TEST}/{DB_NAME_TEST}"
@@ -38,12 +38,12 @@ async def prepare_database():
 
 
 # SETUP
-@pytest.fixture(scope="session")
-def event_loop(request):
-    """Create an instance of the default event loop for each test case."""
-    loop = asyncio.get_event_loop_policy().new_event_loop()
-    yield loop
-    loop.close()
+# @pytest.fixture(scope="session")
+# def event_loop(request):
+#     """Create an instance of the default event loop for each test case."""
+#     loop = asyncio.get_event_loop_policy().new_event_loop()
+#     yield loop
+#     loop.close()
 
 
 client = TestClient(app)
