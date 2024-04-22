@@ -62,14 +62,28 @@ user_router.include_router(
 current_user = fastapi_users.current_user()
 ia = Cinemagoer()
 
+@user_router.get("/tmdb/tmdb_to_imdb", tags=["api_film"])
+async def get_imdb_details(movie_id: int):
+    try:
+        imdb_id = movie.details(movie_id).get(key="imdb_id")[2:]
+        imdb_details = ia.get_movie(imdb_id)
+        return {"status": "ok", "result": imdb_details}
+
+    except exceptions.TMDbException as e:
+        return {"status": "error", "message": e}
+    except IMDbError as e:
+        return {"status": "error", "message": e}
+
+
 
 @user_router.get("/tmdb/top_rated", tags=["api_film"])
 async def get_top_rated():
     movie_list = movie.top_rated()
     try:
         top_rated = {}
+
         for p in movie_list:
-            top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+            top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}", "imdb_id": p.imdb_id[2:]}
         return {"status": "ok", "result": top_rated}
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
@@ -85,7 +99,7 @@ async def sort_by(sort_criterion: str):
     movie_list = {}
     try:
         for q in sorted_list:
-            movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": q.poster_path}
+            movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{q.poster_path}"}
         return {"status": "ok", "result": movie_list}
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
@@ -96,8 +110,8 @@ async def get_similar(movie_id: int):
     similar = movie.similar(movie_id)
     movie_list = {}
     try:
-        for p in similar:
-            movie_list[f"{p.title}"] = {"overview": p.overview}
+        for q in similar:
+            movie_list[f"{q.id}"] = {"title:": q.title, "overview": q.overview, "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{q.poster_path}"}
         return {"status": "ok", "result": movie_list}
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
@@ -111,7 +125,7 @@ async def search_movie_tmdb(title_eng: str):
 
         for p in tmdb_films:
             movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
-                                     "vote_average": p.vote_average}
+                                     "vote_average": p.vote_average, "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}"}
         return {"status": "ok", "result": movie_list}
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
@@ -126,15 +140,15 @@ async def get_movie_tmdb(movie_id: int):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/top", tags=["api_film"])
+@user_router.get("/get/tmdb/top", tags=["api_film"])
 async def get_top():
     try:
         movie_list = {}
         popular = movie.popular()
         for p in popular:
-            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": p.poster_path}
+            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview, "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}"}
         return {"status": "ok", "result": movie_list}
-    except IMDbError as e:
+    except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
 
 
