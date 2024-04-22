@@ -14,9 +14,8 @@ def test_app():
 
 
 app = create_app()
-
 app.include_router(user_router)
-app.include_router(gigachat_router)
+app.include_router(gigachat_router, tags=["gigachat"])
 
 if __name__ == '__main__':
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="localhost", port=8000)

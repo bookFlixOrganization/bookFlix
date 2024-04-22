@@ -63,7 +63,7 @@ current_user = fastapi_users.current_user()
 ia = Cinemagoer()
 
 
-@user_router.get("/tmdb/top_rated")
+@user_router.get("/tmdb/top_rated", tags=["api_film"])
 async def get_top_rated():
     movie_list = movie.top_rated()
     try:
@@ -91,7 +91,7 @@ async def sort_by(sort_criterion: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/tmdb/similar")
+@user_router.get("/tmdb/similar", tags=["api_film"])
 async def get_similar(movie_id: int):
     similar = movie.similar(movie_id)
     movie_list = {}
@@ -103,7 +103,7 @@ async def get_similar(movie_id: int):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/tmdb/movie")
+@user_router.get("/search/tmdb/movie", tags=["api_film"])
 async def search_movie_tmdb(title_eng: str):
     try:
         tmdb_films = search.movies(title_eng)
@@ -117,7 +117,7 @@ async def search_movie_tmdb(title_eng: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/tmdb/movie")
+@user_router.get("/get/tmdb/movie", tags=["api_film"])
 async def get_movie_tmdb(movie_id: int):
     try:
         movie_tmdb = movie.details(movie_id)
@@ -126,7 +126,7 @@ async def get_movie_tmdb(movie_id: int):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/top")
+@user_router.get("/get/top", tags=["api_film"])
 async def get_top():
     try:
         movie_list = {}
@@ -138,17 +138,7 @@ async def get_top():
         return {"status": "error", "message": e}
 
 
-@user_router.get("/protected-route")
-def protected_route(user: User = Depends(current_user)):
-    return f"Hello, {user.username}"
-
-
-@user_router.get("/unprotected-route")
-def unprotected_route():
-    return "Hello, anonym"
-
-
-@user_router.get("/search/movie")
+@user_router.get("/search/movie", tags=["api_film"])
 async def search_movie(query: str):
     try:
         movies = ia.search_movie(query)
@@ -159,7 +149,7 @@ async def search_movie(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/person")
+@user_router.get("/search/person", tags=["api_film"])
 async def search_person(query: str):
     try:
         peoples = ia.search_person(query)
@@ -170,7 +160,7 @@ async def search_person(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/movie")
+@user_router.get("/get/movie", tags=["api_film"])
 async def get_movie(movie_id: str):
     try:
         movie = ia.get_movie(movie_id)
@@ -179,7 +169,7 @@ async def get_movie(movie_id: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/person")
+@user_router.get("/get/person", tags=["api_film"])
 async def get_person(person_id: str):
     try:
         person = ia.get_person(person_id)
@@ -188,7 +178,7 @@ async def get_person(person_id: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/keyword")
+@user_router.get("/search/keyword", tags=["api_film"])
 async def search_keyword(query: str):
     try:
         func_result = ia.search_keyword(query)
@@ -203,7 +193,7 @@ async def search_keyword(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/keyword")
+@user_router.get("/get/keyword", tags=["api_film"])
 async def get_keyword(query: str):
     try:
         keyword = ia.get_keyword(query)
@@ -212,7 +202,7 @@ async def get_keyword(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/book")
+@user_router.get("/search/book", tags=["api_book"])
 async def search_book(query: str):
     try:
         service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
@@ -223,7 +213,7 @@ async def search_book(query: str):
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/get/book")
+@user_router.get("/get/book", tags=["api_book"])
 async def get_book(query: str):
     try:
         service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
