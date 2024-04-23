@@ -1,7 +1,8 @@
+from typing import Optional, List
+
 from pydantic import BaseModel
 
 
-class UserBase(BaseModel):
-    name: str
-    surname: str
-    email: str
+class Preferences(BaseModel):
+    film_genre: Optional[List[str]] = None
+    book_genre: Optional[List[str]] = None

@@ -41,6 +41,13 @@ uvicorn = "^0.29.0"
 [tool.poetry.scripts]
 app_start = "api.app:run_server"
 
+[tool.poetry.group.dev.dependencies]
+autoflake = "^2.3.1"
+flake8 = "^7.0.0"
+pylint = "^3.1.0"
+mypy = "^1.9.0"
+toml-sort = "^0.23.1"
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 pythonpath = [

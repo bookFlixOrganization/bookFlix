@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, ARRAY, MetaData
+from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, MetaData
 from sqlalchemy.dialects.postgresql import UUID
 # from src.config.db.session import metadata
 
@@ -35,12 +35,7 @@ user_view = Table(
     "user_views",
     metadata,
     Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
-    Column("liked_books", ARRAY(String)),
-    Column("liked_films", ARRAY(String)),
-    Column("disliked_books", ARRAY(String)),
-    Column("disliked_films", ARRAY(String)),
-    Column("favorite_genre_books", String, nullable=False),
-    Column("favorite_genre_films", String, nullable=False)
+    Column("preferences", JSON),
 )
 
 user_history = Table(
