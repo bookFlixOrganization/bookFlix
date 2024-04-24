@@ -3,7 +3,7 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [tool.poetry]
-authors = ["zmskv <zmskvxd@gmail.com>"]
+authors = ["zmskv <zmskvxd@gmail.com>, khnychenkoav <khnartem@gmail.com>, malmax5 <malmax5@mail.ru>, milkyway <mihateren2003@gmail.com>, aazaretskaya <nastya.zaretskaya.1995@gmail.com>"]
 description = ""
 name = "bookflix"
 package-mode = false
@@ -37,9 +37,6 @@ python-dotenv = "^1.0.1"
 sqlalchemy = "2.0.29"
 tmdbv3api = "^1.9.0"
 uvicorn = "^0.29.0"
-
-[tool.poetry.scripts]
-app_start = "api.app:run_server"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.3.1"

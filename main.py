@@ -1,16 +1,7 @@
 import uvicorn
-from fastapi import FastAPI
 from src.api.app import create_app
 from src.api.gigachat import gigachat_router
 from src.api.handlers import user_router
-
-
-def test_app():
-    app_test = FastAPI(
-        debug=True,
-        title='Test'
-    )
-    return app_test
 
 
 app = create_app()
