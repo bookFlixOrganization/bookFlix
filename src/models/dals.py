@@ -8,12 +8,12 @@ from fastapi_users import InvalidPasswordException
 from src.config.db.auth_session import User, get_user_db
 
 from src.schemas.auth_schemas import UserCreate, UserRead
-from src.config.project_config import SECRET, SECRET_VER
+from src.config.project_config import settings
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
-    reset_password_token_secret = SECRET
-    verification_token_secret = SECRET_VER
+    reset_password_token_secret = settings.SECRET
+    verification_token_secret = settings.SECRET_VER
 
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")

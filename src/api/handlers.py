@@ -10,8 +10,7 @@ from fastapi_users import FastAPIUsers
 
 from src.config.db.auth_session import User
 from src.config.db.session import async_session_maker
-from src.config.project_config import TMDB_TOKEN
-from src.config.project_config import GOOGLE_API_KEY
+from src.config.project_config import settings
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
 from src.models.users import user_view, user_history
@@ -19,7 +18,7 @@ from src.schemas.auth_schemas import UserRead, UserCreate, UserUpdate
 from src.schemas.user import Preferences
 
 tmdb = TMDb()
-tmdb.api_key = TMDB_TOKEN
+tmdb.api_key = settings.TMDB_TOKEN
 movie = Movie()
 search = Search()
 discover = Discover()
@@ -245,7 +244,7 @@ async def get_keyword(query: str):
 @user_router.get("/search/book", tags=["api_book"])
 async def search_book(query: str):
     try:
-        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+        service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
         request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
         response = request.execute()
         return response
@@ -256,7 +255,7 @@ async def search_book(query: str):
 @user_router.get("/get/book", tags=["api_book"])
 async def get_book(query: str):
     try:
-        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+        service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
         request = service.volumes().get(volumeId=query)
         response = request.execute()
         return response
