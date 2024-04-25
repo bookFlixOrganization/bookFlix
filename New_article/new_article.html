@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookFlix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Anton&family=Bevan&family=Jockey+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/new_article.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="#" class="logo">
+                    <img src="images/new_logo.svg" alt="">
+                    <div class="header_logo">BookFlix</div>
+                </a>
+                <ul class="user-nav">
+
+                    <div class="search">
+                        <div class="icon"></div>
+                        <div class="input">
+                            <input type="text" placeholder="Поиск" id="mySearch">
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+
+                    <li class="user-nav__item">
+                        <a href="#" class="entrance"><i class='bx bxs-user'></i></a>
+
+                        <ul class="drop-down_menu">
+                            <li class="points"><a href="#">Watch later</a></li>
+                            <li class="points"><a href="#">Watched</a></li>
+                            <li class="points"><a href="#">Reviews</a></li>
+                            <li class="points"><a href="#">Log out</a></li>
+                        </ul>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="now_watching_text">
+        <div class="container">
+            <div class="section_header">
+                <div class="section_header_1">
+                    <p class="section_title">Напишите новую статью</p>
+                </div>
+                <p class="section_subtitle">Расскажите, что больше всего понравилось, а чего не хватило</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <form class="modal_box" action="#">
+    
+                <label class="label">Название статьи</label>
+                <input class="inp" type="text" maxlength="100" placeholder="Название статьи" />
+    
+                <label class="label">Ваша статья</label>
+                <textarea cols="100" rows="100" placeholder="Текст"></textarea>
+    
+                <button id="safe" class="estimate">Опубликовать</button>
+    
+            </form>
+        </div>
+    </section>
+
+
+
+    
+        
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/new_article.js"></script>
+</html>
