@@ -4,7 +4,7 @@ from imdb import Cinemagoer, IMDbError
 from fastapi import APIRouter, Depends
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from sqlalchemy import insert
+from sqlalchemy import insert, update, select
 from tmdbv3api import TMDb, Movie, Search, Discover, exceptions
 from fastapi_users import FastAPIUsers
 
@@ -80,6 +80,62 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
         await session.commit()
         st = insert(user_history).values(id=user.id, liked_films={}, liked_books={})
         await session.execute(st)
+        await session.commit()
+
+
+@user_router.post("/add_liked_films", tags=["likes"])
+async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
+    async with async_session_maker() as session:
+        stmt = select(user_view).where(user_view.c.id == user.id)
+        res = (await session.execute(stmt)).all()
+        needed_user_data = res[0][1]
+        needed_user_data["liked_films"].append(liked_movie)
+        statement = (update(user_view)
+                     .values({"preferences": needed_user_data})
+                     .where(user_view.c.id == user.id))
+        await session.execute(statement)
+        await session.commit()
+
+
+@user_router.post("/add_liked_books", tags=["likes"])
+async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
+    async with async_session_maker() as session:
+        stmt = select(user_view).where(user_view.c.id == user.id)
+        res = (await session.execute(stmt)).all()
+        needed_user_data = res[0][1]
+        needed_user_data["liked_books"].append(liked_book)
+        statement = (update(user_view)
+                     .values({"preferences": needed_user_data})
+                     .where(user_view.c.id == user.id))
+        await session.execute(statement)
+        await session.commit()
+
+
+@user_router.post("/add_disliked_films", tags=["likes"])
+async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user)):
+    async with async_session_maker() as session:
+        stmt = select(user_view).where(user_view.c.id == user.id)
+        res = (await session.execute(stmt)).all()
+        needed_user_data = res[0][1]
+        needed_user_data["disliked_films"].append(disliked_movie)
+        statement = (update(user_view)
+                     .values({"preferences": needed_user_data})
+                     .where(user_view.c.id == user.id))
+        await session.execute(statement)
+        await session.commit()
+
+
+@user_router.post("/add_disliked_books", tags=["likes"])
+async def add_disliked_book(disliked_book: str, user: User = Depends(current_user)):
+    async with async_session_maker() as session:
+        stmt = select(user_view).where(user_view.c.id == user.id)
+        res = (await session.execute(stmt)).all()
+        needed_user_data = res[0][1]
+        needed_user_data["disliked_books"].append(disliked_book)
+        statement = (update(user_view)
+                     .values({"preferences": needed_user_data})
+                     .where(user_view.c.id == user.id))
+        await session.execute(statement)
         await session.commit()
 
 
