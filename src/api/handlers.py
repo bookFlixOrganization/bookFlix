@@ -8,12 +8,11 @@ from sqlalchemy import insert
 from tmdbv3api import TMDb, Movie, Search, Discover, exceptions
 from fastapi_users import FastAPIUsers
 
-from src.config.db.auth_session import User
+from src.models.users import User, UserView, UserHistory
 from src.config.db.session import async_session_maker
 from src.config.project_config import settings
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
-from src.models.users import user_view, user_history
 from src.schemas.auth_schemas import UserRead, UserCreate, UserUpdate
 from src.schemas.user import Preferences
 
@@ -68,16 +67,16 @@ ia = Cinemagoer()
 @user_router.post("/preferences_after_register", tags=["preferences"])
 async def preferences_after_register(preferences: Preferences, user: User = Depends(current_user)):
     async with async_session_maker() as session:
-        statement = insert(user_view).values(id=user.id, preferences={"liked_films": [],
-                                                                      "liked_books": [],
-                                                                      "disliked_films": [],
-                                                                      "disliked_books": [],
-                                                                      "favorite_genre_books": preferences.book_genre,
-                                                                      "favorite_genre_films":
-                                                                          preferences.film_genre})
+        statement = insert(UserView.__table__).values(id=user.id, preferences={"liked_films": [],
+                                                                               "liked_books": [],
+                                                                               "disliked_films": [],
+                                                                               "disliked_books": [],
+                                                                               "favorite_genre_books": preferences.book_genre,
+                                                                               "favorite_genre_films":
+                                                                                   preferences.film_genre})
         await session.execute(statement)
         await session.commit()
-        st = insert(user_history).values(id=user.id, liked_films={}, liked_books={})
+        st = insert(UserHistory.__table__).values(id=user.id, liked_films={}, liked_books={})
         await session.execute(st)
         await session.commit()
 

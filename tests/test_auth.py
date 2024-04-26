@@ -1,16 +1,16 @@
 from httpx import AsyncClient
 from sqlalchemy import insert, select
 from conftest import client, async_session_maker
-from src.models.users import role
+from src.models.users import Role
 
 
 async def test_add_role():
     async with async_session_maker() as session:
-        statement = insert(role).values(id=1, name="admin", permissions=None)
+        statement = insert(Role.__table__).values(id=1, name="admin", permissions=None)
         await session.execute(statement)
         await session.commit()
 
-        query = select(role)
+        query = select(Role.__table__)
         result = await session.execute(query)
         assert result.all() == [(1, 'admin', None)], "Role not found"
 

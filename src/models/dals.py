@@ -5,7 +5,8 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, exceptions, models, schemas, UUIDIDMixin
 from fastapi_users import InvalidPasswordException
 
-from src.config.db.auth_session import User, get_user_db
+from src.config.db.auth_session import get_user_db
+from src.models.users import User
 
 from src.schemas.auth_schemas import UserCreate, UserRead
 from src.config.project_config import settings

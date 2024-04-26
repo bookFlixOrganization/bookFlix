@@ -1,47 +1,41 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, Table, Integer, ForeignKey, JSON, TIMESTAMP, Boolean, MetaData
+from sqlalchemy import Column, String, Integer, ForeignKey, JSON, TIMESTAMP, Boolean
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import UUID
-# from src.config.db.session import metadata
+from fastapi_users.db import SQLAlchemyBaseUserTableUUID
 
 
-metadata = MetaData()
+Base = declarative_base()
 
 
-role = Table(
-    "role",
-    metadata,
-    Column("id", Integer, primary_key=True),
-    Column("name", String, nullable=False),
-    Column("permissions", JSON),
-)
-
-user = Table(
-    "user",
-    metadata,
-    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
-    Column("email", String, nullable=False),
-    Column("username", String, nullable=False),
-    Column("registered_at", TIMESTAMP, default=datetime.utcnow),
-    Column("role_id", Integer, ForeignKey(role.c.id)),
-    Column("hashed_password", String, nullable=False),
-    Column("is_active", Boolean, default=True, nullable=False),
-    Column("is_superuser", Boolean, default=False, nullable=False),
-    Column("is_verified", Boolean, default=False, nullable=False),
-)
+class Role(Base):
+    __tablename__ = "role"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    permissions = Column(JSON)
 
 
-user_view = Table(
-    "user_views",
-    metadata,
-    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
-    Column("preferences", JSON),
-)
+class User(SQLAlchemyBaseUserTableUUID, Base):
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    email = Column(String, nullable=False)
+    username = Column(String, nullable=False)
+    registered_at = Column(TIMESTAMP, default=datetime.utcnow)
+    role_id = Column(Integer, ForeignKey("role.id"))
+    hashed_password: str = Column(String(length=1024))
+    is_active: bool = Column(Boolean, default=True, nullable=False)
+    is_superuser: bool = Column(Boolean, default=False, nullable=False)
+    is_verified: bool = Column(Boolean, default=False, nullable=False)
 
-user_history = Table(
-    "user_history",
-    metadata,
-    Column("id", UUID(as_uuid=True), primary_key=True, default=uuid.uuid4),
-    Column("liked_books", JSON),
-    Column("liked_films", JSON)
-)
+
+class UserView(Base):
+    __tablename__ = "user_views"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    preferences = Column(JSON)
+
+
+class UserHistory(Base):
+    __tablename__ = "user_history"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    liked_books = Column(JSON)
+    liked_films = Column(JSON)
