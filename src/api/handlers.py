@@ -7,10 +7,12 @@ from googleapiclient.errors import HttpError
 from sqlalchemy import insert, update, select
 from tmdbv3api import TMDb, Movie, Search, Discover, exceptions
 from fastapi_users import FastAPIUsers
+import requests
+import json
 
 from src.config.db.auth_session import User
 from src.config.db.session import async_session_maker
-from src.config.project_config import TMDB_TOKEN
+from src.config.project_config import TMDB_TOKEN, TNY_API_KEY
 from src.config.project_config import GOOGLE_API_KEY
 from src.models.dals import get_user_manager
 from src.api.auth import auth_backend
@@ -316,5 +318,29 @@ async def get_book(query: str):
         request = service.volumes().get(volumeId=query)
         response = request.execute()
         return response
+    except HttpError as e:
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
+
+
+@user_router.get("/get/books_from_author", tags=["api_book"])
+async def get_author_info(author_name):
+    try:
+        url = f"https://www.googleapis.com/books/v1/volumes?q=inauthor:{author_name}&key={GOOGLE_API_KEY}"
+
+        response = requests.get(url)
+        data = json.loads(response.text)
+        return {"status": "ok", "result": data}
+    except HttpError as e:
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
+
+
+@user_router.get("/get/most_popular_books", tags=["api_book"])
+async def get_nyt_bestsellers():
+    try:
+        url = f"https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key={TNY_API_KEY}"
+
+        response = requests.get(url)
+        data = json.loads(response.text)
+        return {"status": "ok", "result": (data["results"])["lists"][0]["books"]}
     except HttpError as e:
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
