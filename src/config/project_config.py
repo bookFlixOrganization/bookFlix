@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     DB_PASS_TEST: str
     GOOGLE_API_KEY: str
     GIGACHAT_API_KEY: str
+    TNY_API_KET: str
 
     class Config:
         env_file = '.env'
