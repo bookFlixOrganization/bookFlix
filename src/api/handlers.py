@@ -1,5 +1,7 @@
-# pylint: disable=no-member
+# pylint: disable=no-member, missing-timeout
 import uuid
+import json
+import requests
 from imdb import Cinemagoer, IMDbError
 from fastapi import APIRouter, Depends
 from googleapiclient.discovery import build
@@ -7,8 +9,7 @@ from googleapiclient.errors import HttpError
 from sqlalchemy import insert, update, select
 from tmdbv3api import TMDb, Movie, Search, Discover, exceptions
 from fastapi_users import FastAPIUsers
-import requests
-import json
+
 
 from src.models.users import User, UserView, UserHistory
 from src.config.db.session import async_session_maker
@@ -86,13 +87,13 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
 @user_router.post("/add_liked_films", tags=["likes"])
 async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
-        stmt = select(user_view).where(user_view.c.id == user.id)
+        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
         res = (await session.execute(stmt)).all()
         needed_user_data = res[0][1]
         needed_user_data["liked_films"].append(liked_movie)
-        statement = (update(user_view)
+        statement = (update(UserView.__table__)
                      .values({"preferences": needed_user_data})
-                     .where(user_view.c.id == user.id))
+                     .where(UserView.__table__.c.id == user.id))
         await session.execute(statement)
         await session.commit()
 
@@ -100,13 +101,13 @@ async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
 @user_router.post("/add_liked_books", tags=["likes"])
 async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
-        stmt = select(user_view).where(user_view.c.id == user.id)
+        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
         res = (await session.execute(stmt)).all()
         needed_user_data = res[0][1]
         needed_user_data["liked_books"].append(liked_book)
-        statement = (update(user_view)
+        statement = (update(UserView.__table__)
                      .values({"preferences": needed_user_data})
-                     .where(user_view.c.id == user.id))
+                     .where(UserView.__table__.c.id == user.id))
         await session.execute(statement)
         await session.commit()
 
@@ -114,13 +115,13 @@ async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
 @user_router.post("/add_disliked_films", tags=["likes"])
 async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
-        stmt = select(user_view).where(user_view.c.id == user.id)
+        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
         res = (await session.execute(stmt)).all()
         needed_user_data = res[0][1]
         needed_user_data["disliked_films"].append(disliked_movie)
-        statement = (update(user_view)
+        statement = (update(UserView.__table__)
                      .values({"preferences": needed_user_data})
-                     .where(user_view.c.id == user.id))
+                     .where(UserView.__table__.c.id == user.id))
         await session.execute(statement)
         await session.commit()
 
@@ -128,13 +129,13 @@ async def add_disliked_film(disliked_movie: str, user: User = Depends(current_us
 @user_router.post("/add_disliked_books", tags=["likes"])
 async def add_disliked_book(disliked_book: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
-        stmt = select(user_view).where(user_view.c.id == user.id)
+        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
         res = (await session.execute(stmt)).all()
         needed_user_data = res[0][1]
         needed_user_data["disliked_books"].append(disliked_book)
-        statement = (update(user_view)
+        statement = (update(UserView.__table__)
                      .values({"preferences": needed_user_data})
-                     .where(user_view.c.id == user.id))
+                     .where(UserView.__table__.c.id == user.id))
         await session.execute(statement)
         await session.commit()
 
@@ -323,7 +324,7 @@ async def get_book(query: str):
 @user_router.get("/get/books_from_author", tags=["api_book"])
 async def get_author_info(author_name):
     try:
-        url = f"https://www.googleapis.com/books/v1/volumes?q=inauthor:{author_name}&key={GOOGLE_API_KEY}"
+        url = f"https://www.googleapis.com/books/v1/volumes?q=inauthor:{author_name}&key={settings.GOOGLE_API_KEY}"
 
         response = requests.get(url)
         data = json.loads(response.text)
@@ -335,7 +336,7 @@ async def get_author_info(author_name):
 @user_router.get("/get/most_popular_books", tags=["api_book"])
 async def get_nyt_bestsellers():
     try:
-        url = f"https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key={TNY_API_KEY}"
+        url = f"https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key={settings.TNY_API_KEY}"
 
         response = requests.get(url)
         data = json.loads(response.text)

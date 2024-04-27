@@ -17,6 +17,7 @@ class Role(Base):
 
 
 class User(SQLAlchemyBaseUserTableUUID, Base):
+    __tablename__ = "user"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     email = Column(String, nullable=False)
     username = Column(String, nullable=False)
