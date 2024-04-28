@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookFlix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Anton&family=Bevan&family=Jockey+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/more_about_book_before.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="#" class="logo">
+                    <img src="images/new_logo.svg" alt="">
+                    <div class="header_logo">BookFlix</div>
+                </a>
+                <ul class="user-nav">
+                        <div class="search">
+                            <div class="icon"></div>
+                            <div class="input">
+                                <input type="text" placeholder="Поиск" id="mySearch">
+                            </div>
+                            <span class="clear"></span>
+                        </div>
+                    <li class="user-nav__item">
+                        <a href="#" class="entrance">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+
+    <div class="container_1">
+        <div class="wrapper">
+            <img class="film_book" src="images/Pik dama.jpg" alt="">
+
+            <div>
+                <h1 class="title">Пиковая Дама</h1>
+                <h6 class="subtitle">А. С. Пушкин</h6>
+                <p class="description">Александр Сергеевич Пушкин, безусловно, был великим поэтом и писателем. Но, кроме всего прочего, он слыл азартным игроком и заядлым картежником. Однажды генерал-губернатор Дмитрий Голицын рассказал Пушкину байку о своей матери – княгине Наталье Борисовне. Ходили слухи, будто «усатая княгиня» – Голицына, известная своей страстью к карточным играм, знает три заветные карты, которые принесут выигрыш любому, даже самому неудачливому игроку. Пушкин с присущим только ему умением и талантом превращать в предмет искусства все, что его окружает, незамедлительно сделал Голицыну прототипом графини в небезызвестной «Пиковой даме». Так на свет появилось произведение о Германе, старой графине и тайне трех карт, которые могут сделать человека несказанно богатым или в одночасье свести его с ума.</p>
+                
+                <div class="mb-41">
+                    <a href="#" class="btn">Читать</a>
+                    <div class="block_1">
+                        <input class="input_1" type="checkbox" id="one" />
+                        <label class="add" for="one"><i3 class='bx bx-add-to-queue'></i3></label>
+                    </div>
+                </div>
+                
+
+                <h2>О книге</h2>
+                <ul class="params">
+                    <li><span class="label">Дата публикации</span>August 8, 2019</li>
+                    <li><span class="label">Жанр</span><span><a href="#" class="genre">Драма</a>, <a href="#" class="genre"> комедия</a></span></li>
+                    <li><span class="label">Количество страниц</span>400</li>
+                    <li><span class="label">Язык</span>Русский</li>
+                </ul>
+
+                <h2 class="all_rathing">Рейтинг</h2>
+                <div class="all_media_rathing">
+                    <button  id="open-modal-btn" class="our_rathing">
+                        <div class="our_own_rathing">9.0</div>
+                        <div class="user_mark">Оценка пользователей BookFlix</div>
+                        <div class="your_mark">Ваша оценка</div>
+                    </button>
+                    <div class="not_our_rathing">
+                        <div class="imdb_rathing">9.3</div>
+                        <div class="user_mark">Google</div>
+                    </div>
+                </div>
+
+
+
+                <h2 id="prokrutka">Отзывы зрителей</h2>
+                <div class="container_2">
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    <div class="block">
+                        <div class="content">
+                            <div class="small_box">
+                                <div class="small_box_1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="padding-right: 10px; fill: #e54d4d;"><path d="M20.309 17.708C22.196 15.66 22.006 13.03 22 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292zm-11.007 0C11.19 15.66 10.999 13.03 10.993 13V5a1 1 0 0 0-1-1h-6c-1.103 0-2 .897-2 2v7a1 1 0 0 0 1 1h3.078a2.89 2.89 0 0 1-.429 1.396c-.508.801-1.465 1.348-2.846 1.624l-.803.16V20h1c2.783 0 4.906-.771 6.309-2.292z"></path></svg>
+                                    <h3>Ivan_Borisov123</h3>
+                                </div>
+                                <div class="rat">8.9</div>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea c</p>
+                            <div class="data">29 августа 2021 в 17:04</div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="show-more"><button id="show_more" class="show_more">Читать ещё</button></div>
+            </div>
+
+            <div>
+                <span class="rathing-main">9.0 </span>
+                <span class="rathing-counts">296 824 оценок</span>
+                <a href="#prokrutka" class="rathing-details">459 отзывов</a>
+                <div class="mb-40">
+                    <a href="#" class="btn" id="leave_a_review">Оставить отзыв</a>
+                </div>
+            </div>
+
+            
+        </div>
+        <!-- /.wrapper -->
+    </div>
+    <!-- /.container_1 -->
+
+
+
+    <div class="modal" id="my-modal">
+        <div class="modal__box">
+            <button class="button_1" id="close-my-modal-btn">X</button>
+            <h2 class="estim">Оцени книгу</h2>
+            <div class="subtitle">Пиковая Дама</div>
+            <div class="statistics">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="fill: #e54d4d;"><path d="M3 16h2v5H3zm4-3h2v8H7zm4-3h2v11h-2z"></path></svg>
+            </div>
+            <div class="numbers">
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/10.png" alt="">
+                    </div>
+                    <button class="number">10</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/9.png" alt="">
+                    </div>
+                    <button class="number">9</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/8.png" alt="">
+                    </div>
+                    <button class="number">8</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/7.png" alt="">
+                    </div>
+                    <button class="number">7</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/6.png" alt="">
+                    </div>
+                    <button class="number">6</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/5.png" alt="">
+                    </div>
+                    <button class="number">5</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/4.png" alt="">
+                    </div>
+                    <button class="number">4</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/3.png" alt="">
+                    </div>
+                    <button class="number">3</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/2.png" alt="">
+                    </div>
+                    <button class="number">2</button>
+                </div>
+
+                <div class="rathing_mark">
+                    <div class="emoji">
+                        <img src="images/1.png" alt="">
+                    </div>
+                    <button class="number">1</button>
+                </div>
+
+            </div>
+
+            <a href="#open-block-2" id="opener" class="link-open-block">
+                <button id="close-my-modal-btn-1" class="estimate">Поставить оценку</button>
+            </a>
+        </div>
+    </div>
+
+    <div id="open-block-2">
+        <div class="open-block-inner">
+            <div class="open-block-text">
+                <p>Спасибо за оценку!</p>
+                <a href="#" class="open-block-close" title="close">x</a>
+            </div>
+        </div>     
+    </div>
+
+
+
+
+    <div class="modal-1" id="my-modal-1">
+        <form class="modal__box-1" action="#">
+
+            <button class="button_2" id="close-my-modal-btn-2">X</button>
+
+            <h2 class="estim">Хотите поделиться мнением?</h2>
+            <div class="subtitle-1">Оставьте отзыв</div>
+
+            <div class="statistics">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="fill: #e43131; margin-bottom: -30px;"><path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path><path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path></svg>
+            </div>
+
+            <label class="label">Рейтинг</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" value="6" class="slider" id="myRange">
+                <p class="value">Ваша оценка: <span id="demo"></span></p>
+            </div>
+
+            <label class="label">Отзыв</label>
+            <textarea maxlength="255" rows="4" placeholder="Текст (до 255 символов)"></textarea>
+
+            <button id="safe" class="estimate">Сохранить</button>
+
+        </form>
+        
+    </div>
+
+    
+    
+
+
+    
+
+</body>
+
+
+<script src="js/more_about_book_before.js"></script>
+</html>

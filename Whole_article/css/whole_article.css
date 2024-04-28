@@ -328,7 +328,6 @@ label:hover {
 
 
 
-
 .drop-down_menu {
     min-width: 100px;
     position: absolute;
@@ -374,4 +373,57 @@ li:hover > .drop-down_menu {
 
 .drop-down_menu a:hover {
     transform: scale(1.04);
+}
+
+
+
+/* Кнопка 'Like' */
+i0 {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-button .heart-icon {
+    color: #888;
+    height: 100px;
+    width: 100px;
+    background-position: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .like-button .heart-icon.liked {
+    color: red;
+  }
+  
+  .like-button .heart-bg {
+    background: rgba(255, 192, 200, 0);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 100ms ease;
+  }
+  
+  .like-button .heart-bg:hover {
+    background: rgba(255, 192, 200, 0.7);
+  }
+  
+  .like-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .like-button .likes-amount {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #888;
+    font-weight: 900;
+    margin-left: 6px;
   }
