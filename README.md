@@ -1,66 +1,66 @@
-1. file:///D:/МАИ/BookFlix/Main_page_before/main_page_before.html#
+1. BookFlix/Main_page_before/main_page_before.html#
 Главная страница сайта, которая открывается до регистрации пользователя. На ней есть рубрики "Сейчас смотрят" и "Сейчас читают".
 
-2. file:///D:/МАИ/BookFlix/Main_page_after/main_page_after.html#
+2. BookFlix/Main_page_after/main_page_after.html#
 Главная страница сайта, которая открывается после регистрации пользователя. На ней есть рубрики "Сейчас смотрят" и "Сейчас читают", а также добавляюься рубрики
 "Фильмы и сериалы персонально для вас" и "Книги персонально для вас".
 
-3. file:///D:/МАИ/BookFlix/History/history.html#
+3. BookFlix/History/history.html#
 История промотренных фильмов и сериалов, а также прочтённых книг.
 
-4. file:///D:/МАИ/BookFlix/Favourites/favourites.html
+4. BookFlix/Favourites/favourites.html
 Избранные фильмы и книги
 
-5. file:///D:/МАИ/BookFlix/Registration/registration.html?#
+5. BookFlix/Registration/registration.html?#
 Форма регистрации пользователя и входа в личный кабинет
 
-6. file:///D:/МАИ/BookFlix/All_films_before/all_films_before.html#
+6. BookFlix/All_films_before/all_films_before.html#
 Страница, которая открывается при нажатии на кнопку "Смотреть ещё" Главной страницы (Сейчас смотрят)
 
-7. file:///D:/МАИ/BookFlix/All_films_after/all_films_after.html#
+7. BookFlix/All_films_after/all_films_after.html#
 Страница, которая открывается при нажатии на кнопку "Смотреть ещё" Главной страницы (Сейчас читают)
 
-8. file:///D:/МАИ/BookFlix/All_films_before/all_films_before.html#
+8. BookFlix/All_films_before/all_films_before.html#
 Страница, которая открывается при нажатии на кнопку "Смотреть ещё" Главной страницы (до регистрации)
 
-9. file:///D:/МАИ/BookFlix/All_films_after/all_films_after.html#
+9. BookFlix/All_films_after/all_films_after.html#
 Страница, которая открывается при нажатии на кнопку "Смотреть ещё" Главной страницы (после регистрации)
 
-10. file:///D:/МАИ/BookFlix/More_about_film_before/more_about_film_before.html?#
+10. BookFlix/More_about_film_before/more_about_film_before.html?#
 Страница с подробным описанием и отзывами зрителей, которая открывается при нажатии на карточку фильма (до регистрации).
 Содержит кнопки "Смотреть", "Добавить в Избранное", "Оставить отзыв" и "Ваша оценка".
 
-11. file:///D:/МАИ/BookFlix/More_about_film_after/more_about_film_after.html?#
+11. BookFlix/More_about_film_after/more_about_film_after.html?#
 Страница с подробным описанием и отзывами зрителей, которая открывается при нажатии на карточку фильма (после регистрации).
 Содержит кнопки "Смотреть", "Добавить в Избранное", "Оставить отзыв" и "Ваша оценка".
 
-12. file:///D:/МАИ/BookFlix/More_about_book_before/more_about_book_before.html?#
+12. BookFlix/More_about_book_before/more_about_book_before.html?#
 Страница с подробным описанием и отзывами зрителей, которая открывается при нажатии на карточку книги (до регистрации).
 Содержит кнопки "Читать", "Добавить в Избранное", "Оставить отзыв" и "Ваша оценка".
 
-13. file:///D:/МАИ/BookFlix/More_about_book_after/more_about_book_after.html#
+13. BookFlix/More_about_book_after/more_about_book_after.html#
 Страница с подробным описанием и отзывами зрителей, которая открывается при нажатии на карточку книги (после регистрации).
 Содержит кнопки "Читать", "Добавить в Избранное", "Оставить отзыв" и "Ваша оценка".
 
-14. file:///D:/МАИ/BookFlix/Reading_diary/reading__dairy.html#
+14. BookFlix/Reading_diary/reading__dairy.html#
 Страница, которая открывается при нажатии на кнопку "Дневник чтения" пользовательского меню. Содержит подборку наиболее популярных статей.
 
-15.file:///D:/МАИ/BookFlix/New_article/new_article.html?#
+15.BookFlix/New_article/new_article.html?#
 Страница, которая открывается при нажатии на кнопку "Новая статья" дневника чтения.
 
-16. file:///D:/МАИ/BookFlix/Whole_article/whole_article.html#
+16. BookFlix/Whole_article/whole_article.html#
 Страница, которая открывается при нажатии на кнопку "Читать статью полностью". Содержит кнопку "Подписаться на автора", ссылку на автора, а также кнопку "Лайк".
 
-17. file:///D:/МАИ/BookFlix/My_articles/my_articles.html#
+17. BookFlix/My_articles/my_articles.html#
 Страница, которая открывается при нажатии на кнопку "Мои статьи" дневника чтения. Содержит все статьи пользователя с возможностью их редактирования и удаления.
 
-18. file:///D:/МАИ/BookFlix/Edit_article/edit_article.html?#
+18. BookFlix/Edit_article/edit_article.html?#
 Страница, которая открывается при нажатии на кнопку "Редактировать" страницы "Мои статьи" дневника чтения.
 
-19. file:///D:/МАИ/BookFlix/My_subscribes/my_subscribes.html
+19. BookFlix/My_subscribes/my_subscribes.html
 Страница, которая открывается при нажатии на кнопку "Мои подписки" дневника чтения и содержит всех авторов, на которые подписан пользователь с возможностью их удаления из списка.
 
-20. file:///D:/МАИ/BookFlix/Author_with_button/author_with_button.html#
+20. BookFlix/Author_with_button/author_with_button.html#
 Страница, которая открывается при переходе по ссылке на автора статьи. Содержит кнопку "Подписаться на автора".
 
 
