@@ -12,7 +12,6 @@ from src.config.db.session import get_async_session
 from src.config.project_config import settings
 from src.models.users import Base
 
-# DATABASE
 DATABASE_URL_TEST = f"postgresql+asyncpg://{settings.DB_USER_TEST}:{settings.DB_PASS_TEST}@{settings.DB_HOST_TEST}:{settings.DB_PORT_TEST}/{settings.DB_NAME_TEST}"
 
 engine_test = create_async_engine(DATABASE_URL_TEST, poolclass=NullPool)
@@ -37,7 +36,6 @@ async def prepare_database():
         await conn.run_sync(Base.metadata.drop_all)
 
 
-# SETUP
 # @pytest.fixture(scope="session")
 # def event_loop(request):
 #     """Create an instance of the default event loop for each test case."""
