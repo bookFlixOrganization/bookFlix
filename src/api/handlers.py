@@ -26,6 +26,18 @@ search = Search()
 discover = Discover()
 
 user_router = APIRouter()
+book_router = APIRouter(
+    prefix="/book"
+)
+movie_router = APIRouter(
+    prefix="/film"
+)
+search_router = APIRouter(
+    prefix="/search"
+)
+list_router = APIRouter(
+    prefix="/list"
+)
 
 tags_metadata = [
     {
@@ -84,7 +96,7 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
         await session.commit()
 
 
-@user_router.post("/add_liked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/add_liked_films", tags=["likes"])
 async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
         stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
@@ -98,7 +110,7 @@ async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
         await session.commit()
 
 
-@user_router.post("/add_liked_books", tags=["likes"])
+@book_router.post("/{book_id}/add_liked_books", tags=["likes"])
 async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
         stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
@@ -112,7 +124,7 @@ async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
         await session.commit()
 
 
-@user_router.post("/add_disliked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/add_disliked_films", tags=["likes"])
 async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
         stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
@@ -126,7 +138,7 @@ async def add_disliked_film(disliked_movie: str, user: User = Depends(current_us
         await session.commit()
 
 
-@user_router.post("/add_disliked_books", tags=["likes"])
+@book_router.post("/{book_id}/add_disliked_books", tags=["likes"])
 async def add_disliked_book(disliked_book: str, user: User = Depends(current_user)):
     async with async_session_maker() as session:
         stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
@@ -140,21 +152,18 @@ async def add_disliked_book(disliked_book: str, user: User = Depends(current_use
         await session.commit()
 
 
-@user_router.get("/tmdb/tmdb_to_imdb", tags=["api_film"])
+@movie_router.get("/tmdb_to_imdb", tags=["api_film"])
 async def get_imdb_details(movie_id: int):
     try:
         imdb_id = movie.details(movie_id).get(key="imdb_id")[2:]
-        imdb_details = ia.get_movie(imdb_id)
-        return {"status": "ok", "result": imdb_details}
+        return imdb_id
 
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}
-    except IMDbError as e:
-        return {"status": "error", "message": e}
 
 
-@user_router.get("/tmdb/top_rated", tags=["api_film"])
-async def get_top_rated():
+@list_router.get("/top_rated_films", tags=["api_film"])
+async def top_rated_films_tmdb():
     movie_list = movie.top_rated()
     try:
         top_rated = {}
@@ -168,7 +177,7 @@ async def get_top_rated():
         return {"status": "error", "message": e}
 
 
-@user_router.get("/tmdb/sorted",
+@list_router.get("/sorted_films",
                  tags=["sort_by"],
                  description="Available values: id, title, popularity, release_date, vote_average, vote_count")
 async def sort_by(sort_criterion: str):
@@ -185,7 +194,7 @@ async def sort_by(sort_criterion: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/tmdb/similar", tags=["api_film"])
+@movie_router.get("/{movie_id}/similar_films", tags=["api_film"])
 async def get_similar(movie_id: int):
     similar = movie.similar(movie_id)
     movie_list = {}
@@ -198,45 +207,8 @@ async def get_similar(movie_id: int):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/tmdb/movie", tags=["api_film"])
-async def search_movie_tmdb(title_eng: str):
-    try:
-        tmdb_films = search.movies(title_eng)
-        movie_list = {}
-
-        for p in tmdb_films:
-            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
-                                     "vote_average": p.vote_average,
-                                     "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}"}
-        return {"status": "ok", "result": movie_list}
-    except exceptions.TMDbException as e:
-        return {"status": "error", "message": e}
-
-
-@user_router.get("/get/tmdb/movie", tags=["api_film"])
-async def get_movie_tmdb(movie_id: int):
-    try:
-        movie_tmdb = movie.details(movie_id)
-        return {"status": "ok", "result": movie_tmdb}
-    except exceptions.TMDbException as e:
-        return {"status": "error", "message": e}
-
-
-@user_router.get("/get/tmdb/top", tags=["api_film"])
-async def get_top():
-    try:
-        movie_list = {}
-        popular = movie.popular()
-        for p in popular:
-            movie_list[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
-                                     "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}"}
-        return {"status": "ok", "result": movie_list}
-    except exceptions.TMDbException as e:
-        return {"status": "error", "message": e}
-
-
-@user_router.get("/search/movie", tags=["api_film"])
-async def search_movie(query: str):
+@search_router.get("/movie", tags=["api_film"])
+async def search_movie_imdb(query: str):
     try:
         movies = ia.search_movie(query)
         for i in range(len(movies)):
@@ -246,7 +218,7 @@ async def search_movie(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/person", tags=["api_film"])
+@search_router.get("/person", tags=["api_film"])
 async def search_person(query: str):
     try:
         peoples = ia.search_person(query)
@@ -257,7 +229,7 @@ async def search_person(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/movie", tags=["api_film"])
+@movie_router.get("/{movie_id}", tags=["api_film"])
 async def get_movie(movie_id: str):
     try:
         movie = ia.get_movie(movie_id)
@@ -266,7 +238,7 @@ async def get_movie(movie_id: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/person", tags=["api_film"])
+@movie_router.get("/person/{person_id}", tags=["api_film"])
 async def get_person(person_id: str):
     try:
         person = ia.get_person(person_id)
@@ -275,7 +247,7 @@ async def get_person(person_id: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/keyword", tags=["api_film"])
+@search_router.get("/keyword", tags=["api_film"])
 async def search_keyword(query: str):
     try:
         func_result = ia.search_keyword(query)
@@ -290,7 +262,7 @@ async def search_keyword(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/get/keyword", tags=["api_film"])
+@search_router.get("/get_keyword", tags=["api_film"])
 async def get_keyword(query: str):
     try:
         keyword = ia.get_keyword(query)
@@ -299,7 +271,7 @@ async def get_keyword(query: str):
         return {"status": "error", "message": e}
 
 
-@user_router.get("/search/book", tags=["api_book"])
+@search_router.get("/book", tags=["api_book"])
 async def search_book(query: str):
     try:
         service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
@@ -310,18 +282,18 @@ async def search_book(query: str):
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/get/book", tags=["api_book"])
-async def get_book(query: str):
+@book_router.get("/{book_id}", tags=["api_book"])
+async def get_book(book_id: str):
     try:
         service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
-        request = service.volumes().get(volumeId=query)
+        request = service.volumes().get(volumeId=book_id)
         response = request.execute()
         return response
     except HttpError as e:
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/get/books_from_author", tags=["api_book"])
+@book_router.get("/books_from_author", tags=["api_book"])
 async def get_author_info(author_name):
     try:
         url = f"https://www.googleapis.com/books/v1/volumes?q=inauthor:{author_name}&key={settings.GOOGLE_API_KEY}"
@@ -333,7 +305,7 @@ async def get_author_info(author_name):
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/get/most_popular_books", tags=["api_book"])
+@list_router.get("/most_popular_books", tags=["api_book"])
 async def get_nyt_bestsellers():
     try:
         url = f"https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key={settings.TNY_API_KEY}"
