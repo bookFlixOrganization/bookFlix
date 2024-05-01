@@ -11,6 +11,8 @@ const headerReducer = (state = initialState, action) => {
                 ...state,
                 request: action.payload,
             };
+        default:
+            return state;
     }
 };
 

@@ -15,12 +15,21 @@ const Header = (props) => {
                         <div className={`${styles.search} ${props.isActive ? styles.active : ''}`}>
                             <button
                                 className={styles.icon}
-                                onClick={props.handleButtonClick}
+                                onClick={props.handleSearchClick}
                             ></button>
                             <div className={styles.input}>
-                                <input type="text" placeholder="Поиск" id="mySearch" />
+                                <input
+                                    type="text"
+                                    placeholder="Поиск"
+                                    id="mySearch"
+                                    onChange={props.handleTextChange}
+                                    value={props.requestText || ''}
+                                />
                             </div>
-                            <span className={styles.clear}></span>
+                            <button
+                                className={styles.clear}
+                                onClick={props.handleClearClick}
+                            ></button>
                         </div>
 
                         <li className={styles.user_nav__item}>
