@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthPage from './AuthPage.jsx';
 
 const AuthPageContainer = () => {
-    return <AuthPage />;
+    const [isActive, setActive] = useState(false);
+
+    const handleRegistrationClick = () => {
+        setActive(!isActive);
+    };
+
+    return <AuthPage isActive={isActive} handleRegistrationClick={handleRegistrationClick} />;
 };
 
 export default AuthPageContainer;

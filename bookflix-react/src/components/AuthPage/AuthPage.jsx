@@ -1,95 +1,137 @@
 import React from 'react';
+import styles from './AuthPage.module.css';
 
-const AuthPage = () => {
+const AuthPage = (props) => {
     return (
-        <div className="wrapper">
-            <span className="bg-animate"></span>
-            <span className="bg-animate2"></span>
+        <div className={`${styles.wrapper} ${props.isActive ? styles.active : ''} `}>
+            <span className={styles.bg_animate}></span>
+            <span className={styles.bg_animate2}></span>
 
-            <div className="form-box login">
-                <h2 className="animation" style="--i:0; --j:21;">
+            <div className={`${styles.form_box} ${styles.login}`}>
+                <h2 className={styles.animation} style={{ '--i': 0, '--j': 21 }}>
                     Login
                 </h2>
                 <form action="#">
-                    <div className="input-box animation" style="--i:1; --j:22;">
-                        <input id="in-username" type="text" required />
+                    <div
+                        className={`${styles.input_box} ${styles.animation}`}
+                        style={{ '--i': 1, '--j': 22 }}
+                    >
+                        <input id="in-username" type="text" />
                         <label htmlFor="in-username">Username</label>
-                        <i className="bx bxs-user"></i>
+                        <i className={`${styles.bx} ${styles.bxs_user}`}></i>
                     </div>
-                    <div className="input-box animation" style="--i:2; --j:23;">
-                        <input id="in-password" type="password" required />
+                    <div
+                        className={`${styles.input_box} ${styles.animation}`}
+                        style={{ '--i': 2, '--j': 23 }}
+                    >
+                        <input id="in-password" type="password" />
                         <label htmlFor="in-password">Password</label>
-                        <i className="bx bxs-lock-alt"></i>
+                        <i className={`${styles.bx} ${styles.bxs_lock_alt}`}></i>
                     </div>
-                    <div className="mailing-forgot animation" style="--i:3; --j:24;">
-                        <a href="/">Forgot password?</a>
+                    <div
+                        className={`${styles.mailing_forgot} ${styles.animation}`}
+                        style={{ '--i': 3, '--j': 24 }}
+                    >
+                        <span>Forgot password?</span>
                     </div>
-                    <button type="submit" className="btn animation" style="--i:3; --j:24;">
+                    <button
+                        type="submit"
+                        className={`${styles.btn} ${styles.animation}`}
+                        style={{ '--i': 3, '--j': 24 }}
+                    >
                         Login
                     </button>
-                    <div className="logreg-link animation" style="--i:4; --j:25;">
+                    <div
+                        className={`${styles.logreg_link} ${styles.animation}`}
+                        style={{ '--i': 4, '--j': 25 }}
+                    >
                         <p>
                             Don`&#39;`t have an account?{' '}
-                            <a href="/" className="register-link">
+                            <button
+                                className={styles.register_link}
+                                onClick={props.handleRegistrationClick}
+                            >
                                 Sign Up
-                            </a>
+                            </button>
                         </p>
                     </div>
                 </form>
             </div>
 
-            <div className="info-text login">
-                <h2 className="animation" style="--i:0; --j:20;">
+            <div className={`${styles.info_text} ${styles.login}`}>
+                <h2 className={styles.animation} style={{ '--i': 0, '--j': 20 }}>
                     Welcome to the BookFlix!
                 </h2>
-                <p className="animation" style="--i:1; --j:21;"></p>
+                <p className={styles.animation} style={{ '--i': 1, '--j': 21 }}></p>
             </div>
 
-            <div className="form-box register">
-                <h2 className="animation" style="--i:17; --j:0;">
+            <div className={`${styles.form_box} ${styles.register}`}>
+                <h2 className={styles.animation} style={{ '--i': 17, '--j': 0 }}>
                     Sign Up
                 </h2>
                 <form action="#">
-                    <div className="input-box animation" style="--i:18; --j:1;">
-                        <input id="up-username" type="text" required />
-                        <label htmlFor="up-username">Username</label>
-                        <i className="bx bxs-user"></i>
+                    <div
+                        className={`${styles.input_box} ${styles.animation}`}
+                        style={{ '--i': 18, '--j': 1 }}
+                    >
+                        <input id="up_username" type="text" />
+                        <label htmlFor="up_username">Username</label>
+                        <i className={`${styles.bx} ${styles.bxs_user}`}></i>
                     </div>
-                    <div className="input-box animation" style="--i:19; --j:2;">
-                        <input id="up-email" type="text" required />
-                        <label htmlFor="up-email">E-mail</label>
-                        <i className="bx bxs-envelope"></i>
+                    <div
+                        className={`${styles.input_box} ${styles.animation}`}
+                        style={{ '--i': 19, '--j': 2 }}
+                    >
+                        <input id="up_email" type="text" />
+                        <label htmlFor="up_email">E-mail</label>
+                        <i className={`${styles.bx} ${styles.bxs_envelope}`}></i>
                     </div>
-                    <div className="input-box animation" style="--i:20; --j:3;">
-                        <input id="up-password" type="password" required />
-                        <label htmlFor="up-password">Password</label>
-                        <i className="bx bxs-lock-alt"></i>
+                    <div
+                        className={`${styles.input_box} ${styles.animation}`}
+                        style={{ '--i': 20, '--j': 3 }}
+                    >
+                        <input id="up_password" type="password" />
+                        <label htmlFor="up_password">Password</label>
+                        <i className={`${styles.bx} ${styles.bxs_lock_alt}`}></i>
                     </div>
-                    <div className="mailing-forgot animation" style="--i:21; --j:4;">
+                    <div
+                        className={`${styles.mailing_forgot} ${styles.animation}`}
+                        style={{ '--i': 21, '--j': 4 }}
+                    >
                         <label htmlFor="notifications">
                             <input id="notifications" type="checkbox" />
                             Receive e-mail notifications
                         </label>
                     </div>
-                    <button type="submit" className="btn animation" style="--i:21; --j:4;">
+                    <button
+                        type="submit"
+                        className={`${styles.btn} ${styles.animation}`}
+                        style={{ '--i': 21, '--j': 4 }}
+                    >
                         Sign Up
                     </button>
-                    <div className="logreg-link animation" style="--i:22; --j:5;">
+                    <div
+                        className={`${styles.logreg_link} ${styles.animation}`}
+                        style={{ '--i': 22, '--j': 5 }}
+                    >
                         <p>
                             Already have an account?{' '}
-                            <a href="/" className="login-link">
+                            <button
+                                className={styles.login_link}
+                                onClick={props.handleRegistrationClick}
+                            >
                                 Login
-                            </a>
+                            </button>
                         </p>
                     </div>
                 </form>
             </div>
 
-            <div className="info-text register">
-                <h2 className="animation" style="--i:17; --j:0;">
+            <div className={`${styles.info_text} ${styles.register}`}>
+                <h2 className={styles.animation} style={{ '--i': 17, '--j': 0 }}>
                     Welcome to the BookFlix!
                 </h2>
-                <p className="animation" style="--i:18; --j:1;"></p>
+                <p className={styles.animation} style={{ '--i': 18, '--j': 1 }}></p>
             </div>
         </div>
     );
