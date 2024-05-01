@@ -1,19 +1,18 @@
 import React from 'react';
 
-const YourFilms = () => {
+const PopularFilms = () => {
     return (
-        <section className="now_watching_text">
+        <section className="now_watching_text_1">
             <div className="container">
                 <div className="section_header">
-                    <p className="section_title_1">Главная</p>
                     <div className="section_header_1">
-                        <p className="section_title">Фильмы и сериалы персонально для вас</p>
+                        <p className="section_title">Сейчас смотрят</p>
                         <a href="/" className="button_all">
                             Всё
                         </a>
                     </div>
                     <p className="section_subtitle">
-                        Индивидуальные рекомендации на основе ваших просмотров и оценок
+                        Самые популярные фильмы и сериалы за последний час
                     </p>
                 </div>
             </div>
@@ -21,4 +20,4 @@ const YourFilms = () => {
     );
 };
 
-export default YourFilms;
+export default PopularFilms;

@@ -1,13 +1,12 @@
 import React from 'react';
 
-const YourFilms = () => {
+const YourBooks = () => {
     return (
-        <section className="now_watching_text">
+        <section className="now_reading_text">
             <div className="container">
                 <div className="section_header">
-                    <p className="section_title_1">Главная</p>
                     <div className="section_header_1">
-                        <p className="section_title">Фильмы и сериалы персонально для вас</p>
+                        <p className="section_title">Книги персонально для вас</p>
                         <a href="/" className="button_all">
                             Всё
                         </a>
@@ -21,4 +20,4 @@ const YourFilms = () => {
     );
 };
 
-export default YourFilms;
+export default YourBooks;
