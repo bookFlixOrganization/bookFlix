@@ -17,7 +17,12 @@ const AuthPage = (props) => {
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 1, '--j': 22 }}
                     >
-                        <input id="in-username" type="text" />
+                        <input
+                            id="in-username"
+                            type="text"
+                            onChange={props.handleInUsernameChange}
+                            value={props.inUsername || ''}
+                        />
                         <label htmlFor="in-username">Username</label>
                         <i className={`${styles.bx} ${styles.bxs_user}`}></i>
                     </div>
@@ -25,7 +30,12 @@ const AuthPage = (props) => {
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 2, '--j': 23 }}
                     >
-                        <input id="in-password" type="password" />
+                        <input
+                            id="in-password"
+                            type="password"
+                            onChange={props.handleInPasswordChange}
+                            value={props.inPassword || ''}
+                        />
                         <label htmlFor="in-password">Password</label>
                         <i className={`${styles.bx} ${styles.bxs_lock_alt}`}></i>
                     </div>
@@ -75,7 +85,12 @@ const AuthPage = (props) => {
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 18, '--j': 1 }}
                     >
-                        <input id="up_username" type="text" />
+                        <input
+                            id="up_username"
+                            type="text"
+                            onChange={props.handleUpUsernameChange}
+                            value={props.upUsername || ''}
+                        />
                         <label htmlFor="up_username">Username</label>
                         <i className={`${styles.bx} ${styles.bxs_user}`}></i>
                     </div>
@@ -83,7 +98,12 @@ const AuthPage = (props) => {
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 19, '--j': 2 }}
                     >
-                        <input id="up_email" type="text" />
+                        <input
+                            id="up_email"
+                            type="text"
+                            onChange={props.handleUpEmailChange}
+                            value={props.upEmail || ''}
+                        />
                         <label htmlFor="up_email">E-mail</label>
                         <i className={`${styles.bx} ${styles.bxs_envelope}`}></i>
                     </div>
@@ -91,7 +111,12 @@ const AuthPage = (props) => {
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 20, '--j': 3 }}
                     >
-                        <input id="up_password" type="password" />
+                        <input
+                            id="up_password"
+                            type="password"
+                            onChange={props.handleUpPasswordChange}
+                            value={props.upPassword || ''}
+                        />
                         <label htmlFor="up_password">Password</label>
                         <i className={`${styles.bx} ${styles.bxs_lock_alt}`}></i>
                     </div>
@@ -100,7 +125,12 @@ const AuthPage = (props) => {
                         style={{ '--i': 21, '--j': 4 }}
                     >
                         <label htmlFor="notifications">
-                            <input id="notifications" type="checkbox" />
+                            <input
+                                id="notifications"
+                                type="checkbox"
+                                onChange={props.handleNotificationsChange}
+                                checked={props.notifications}
+                            />
                             Receive e-mail notifications
                         </label>
                     </div>

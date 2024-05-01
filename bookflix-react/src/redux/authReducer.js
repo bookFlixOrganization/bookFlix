@@ -4,6 +4,7 @@ const SET_UP_USERNAME = 'SET_UP_USERNAME';
 const SET_UP_EMAIL = 'SET_UP_EMAIL';
 const SET_UP_PASSWORD = 'SET_UP_PASSWORD';
 const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS';
+const CLEAR_FORM = 'CLEAR_FORM';
 
 const initialState = {
     in_username: '',
@@ -46,6 +47,8 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 notifications: action.payload,
             };
+        case CLEAR_FORM:
+            return initialState;
         default:
             return state;
     }
@@ -60,5 +63,6 @@ export const setNotifications = (notifications) => ({
     type: SET_NOTIFICATIONS,
     payload: notifications,
 });
+export const clearForm = () => ({ type: CLEAR_FORM });
 
 export default authReducer;
