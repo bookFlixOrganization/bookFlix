@@ -1,13 +1,15 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MainPageContainer from './components/MainPage/MainPageContainer.jsx';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
 import AuthPageContainer from './components/AuthPage/AuthPageContainer.jsx';
 import './App.css';
 
 function App() {
+    const location = useLocation();
+
     return (
         <div className="App">
-            <HeaderContainer />
+            {location.pathname !== '/auth' && <HeaderContainer />}
             <Routes>
                 <Route path="/" element={<MainPageContainer />} />
                 <Route path="auth" element={<AuthPageContainer />} />
