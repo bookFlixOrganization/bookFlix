@@ -83,6 +83,7 @@
     height: 60px;
     background: #222222;
     border-radius: 60px;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,6 +151,8 @@
     right: 15px;
     width: 15px;
     height: 15px;
+    border: none;
+    background: none;
     cursor: pointer;
     display: flex;
     align-items: center;
