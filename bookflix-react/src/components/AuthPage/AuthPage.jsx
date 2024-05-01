@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './AuthPage.module.css';
+import { NavLink } from 'react-router-dom';
 
 const AuthPage = (props) => {
     return (
@@ -32,7 +33,7 @@ const AuthPage = (props) => {
                         className={`${styles.mailing_forgot} ${styles.animation}`}
                         style={{ '--i': 3, '--j': 24 }}
                     >
-                        <span>Forgot password?</span>
+                        <NavLink to="#">Forgot password?</NavLink>
                     </div>
                     <button
                         type="submit"
