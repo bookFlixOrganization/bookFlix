@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Header.module.css';
 import logo from './images/new_logo.svg';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -12,8 +12,11 @@ const Header = () => {
                         <div className={styles.header_logo}>BookFlix</div>
                     </a>
                     <ul className={styles.user_nav}>
-                        <div className={styles.search}>
-                            <div className={styles.icon}></div>
+                        <div className={`${styles.search} ${props.isActive ? styles.active : ''}`}>
+                            <button
+                                className={styles.icon}
+                                onClick={props.handleButtonClick}
+                            ></button>
                             <div className={styles.input}>
                                 <input type="text" placeholder="Поиск" id="mySearch" />
                             </div>
