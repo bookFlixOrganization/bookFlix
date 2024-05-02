@@ -1,12 +1,13 @@
 import uuid
 from fastapi import APIRouter, Depends
 from sqlalchemy import select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 from tmdbv3api import TMDb, Movie, exceptions
 from fastapi_users import FastAPIUsers
 from imdb import Cinemagoer, IMDbError
 
 from src.api.auth import auth_backend
-from src.config.db.session import async_session_maker
+from src.config.db.session import get_async_session
 from src.config.project_config import settings
 from src.models.dals import get_user_manager
 from src.models.users import UserView, User
@@ -37,31 +38,31 @@ async def get_imdb_details(movie_id: int):
 
 
 @movie_router.post("/{movie_id}/add_liked_films", tags=["likes"])
-async def add_liked_film(liked_movie: str, user: User = Depends(current_user)):
-    async with async_session_maker() as session:
-        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
-        res = (await session.execute(stmt)).all()
-        needed_user_data = res[0][1]
-        needed_user_data["liked_films"].append(liked_movie)
-        statement = (update(UserView.__table__)
-                     .values({"preferences": needed_user_data})
-                     .where(UserView.__table__.c.id == user.id))
-        await session.execute(statement)
-        await session.commit()
+async def add_liked_film(liked_movie: str, user: User = Depends(current_user),
+                         session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["liked_films"].append(liked_movie)
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
 
 
 @movie_router.post("/{movie_id}/add_disliked_films", tags=["likes"])
-async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user)):
-    async with async_session_maker() as session:
-        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
-        res = (await session.execute(stmt)).all()
-        needed_user_data = res[0][1]
-        needed_user_data["disliked_films"].append(disliked_movie)
-        statement = (update(UserView.__table__)
-                     .values({"preferences": needed_user_data})
-                     .where(UserView.__table__.c.id == user.id))
-        await session.execute(statement)
-        await session.commit()
+async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user),
+                            session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["disliked_films"].append(disliked_movie)
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
 
 
 @movie_router.get("/{movie_id}/similar_films", tags=["api_film"])

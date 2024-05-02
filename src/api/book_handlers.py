@@ -5,11 +5,12 @@ import requests
 from fastapi import APIRouter, Depends
 from fastapi_users import FastAPIUsers
 from sqlalchemy import select, update
+from sqlalchemy.ext.asyncio import AsyncSession
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from src.api.auth import auth_backend
-from src.config.db.session import async_session_maker
+from src.config.db.session import get_async_session
 from src.config.project_config import settings
 from src.models.dals import get_user_manager
 from src.models.users import User, UserView
@@ -25,31 +26,31 @@ current_user = fastapi_users.current_user()
 
 
 @book_router.post("/{book_id}/add_liked_books", tags=["likes"])
-async def add_liked_book(liked_book: str, user: User = Depends(current_user)):
-    async with async_session_maker() as session:
-        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
-        res = (await session.execute(stmt)).all()
-        needed_user_data = res[0][1]
-        needed_user_data["liked_books"].append(liked_book)
-        statement = (update(UserView.__table__)
-                     .values({"preferences": needed_user_data})
-                     .where(UserView.__table__.c.id == user.id))
-        await session.execute(statement)
-        await session.commit()
+async def add_liked_book(liked_book: str, user: User = Depends(current_user),
+                         session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["liked_books"].append(liked_book)
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
 
 
 @book_router.post("/{book_id}/add_disliked_books", tags=["likes"])
-async def add_disliked_book(disliked_book: str, user: User = Depends(current_user)):
-    async with async_session_maker() as session:
-        stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
-        res = (await session.execute(stmt)).all()
-        needed_user_data = res[0][1]
-        needed_user_data["disliked_books"].append(disliked_book)
-        statement = (update(UserView.__table__)
-                     .values({"preferences": needed_user_data})
-                     .where(UserView.__table__.c.id == user.id))
-        await session.execute(statement)
-        await session.commit()
+async def add_disliked_book(disliked_book: str, user: User = Depends(current_user),
+                            session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["disliked_books"].append(disliked_book)
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
 
 
 @book_router.get("/{book_id}", tags=["api_book"])
