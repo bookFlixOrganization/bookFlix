@@ -3,8 +3,9 @@ import MainPageContainer from './components/MainPage/MainPageContainer.jsx';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
 import AuthPageContainer from './components/AuthPage/AuthPageContainer.jsx';
 import AllFilmsContainer from './components/AllFilms/AllFilmsContainer.jsx';
-import './App.css';
 import AllBooksContainer from './components/AllBooks/AllBooksContainer.jsx';
+import AuthorContainer from './components/Author/AuthorContainer.jsx';
+import './App.css';
 
 function App() {
     const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
                 <Route path="auth" element={<AuthPageContainer />} />
                 <Route path="all-films" element={<AllFilmsContainer />} />
                 <Route path="all-books" element={<AllBooksContainer />} />
+                <Route path="author" element={<AuthorContainer />} />
             </Routes>
         </div>
     );
