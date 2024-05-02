@@ -8,7 +8,7 @@ const YourBooks = () => {
                 <div className={styles.section_header}>
                     <div className={styles.section_header_1}>
                         <p className={styles.section_title}>Книги персонально для вас</p>
-                        <a href="/" className={styles.button_all}>
+                        <a href="/all-books" className={styles.button_all}>
                             Всё
                         </a>
                     </div>

@@ -9,7 +9,7 @@ const YourFilms = () => {
                     <p className={styles.section_title_1}>Главная</p>
                     <div className={styles.section_header_1}>
                         <p className={styles.section_title}>Фильмы и сериалы персонально для вас</p>
-                        <a href="/" className={styles.button_all}>
+                        <a href="/all-films" className={styles.button_all}>
                             Всё
                         </a>
                     </div>
