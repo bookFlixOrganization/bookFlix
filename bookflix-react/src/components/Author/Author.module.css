@@ -223,12 +223,7 @@ i2 {
     font-size: 30px;
 }
 
-.input_1 {
-    display: none;
-}
-
-label {
-    padding-top: 10px;
+.button_subc {
     display: inline-block;
     width: 250px;
     height: 50px;
@@ -237,32 +232,20 @@ label {
     border: none;
     cursor: pointer;
     text-align: center;
-}
-
-label:after {
-    text-align: center;
-    content: 'Подписаться на автора';
     color: #ffffff;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
-    position: relative;
-    top: -5px;
+    transition: background-color 0.3s;
 }
 
-label:hover {
+.button_subc:hover {
     background-color: #e43131;
 }
 
-.input_1:checked ~ label {
+.subscribed,
+.subscribed:hover {
     background-color: #ffffff;
-}
-
-.input_1:checked ~ label:after {
-    text-align: center;
-    content: 'Вы подписаны!';
     color: #e54d4d;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
 }
 
 .profileIcon {

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as ProfileIcon } from './images/profile.svg';
 import { ReactComponent as SvgIcon } from './images/icon.svg';
 import styles from './Author.module.css';
 
 const Author = () => {
+    const [isSubscribed, setIsSubscribed] = useState(false);
+
+    const handleSubscribe = () => {
+        setIsSubscribed(!isSubscribed);
+    };
     return (
         <div className={styles.author_container}>
             <section className={styles.now_watching_text}>
@@ -44,8 +49,12 @@ const Author = () => {
                             <div className={styles.subtitle}>5 статей</div>
                         </div>
                         <div className={styles.block}>
-                            <input className={styles.input_1} type="checkbox" id="one" />
-                            <label htmlFor="one">f</label>
+                            <button
+                                className={`${styles.button_subc} ${isSubscribed ? styles.subscribed : ''}`}
+                                onClick={handleSubscribe}
+                            >
+                                {isSubscribed ? 'Вы подписаны!' : 'Подписаться на автора'}
+                            </button>
                         </div>
                     </div>
                 </div>
