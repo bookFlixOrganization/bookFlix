@@ -20,14 +20,14 @@ def test_search_person():
 
 
 def test_get_movie_by_id():
-    response = client.get("/get/movie", params="movie_id=0109830")
+    response = client.get("film/0109830", params="movie_id=0109830")
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert len(response.json()["result"]) != 0
 
 
 def test_get_person():
-    response = client.get("/get/person", params="person_id=0614165")
+    response = client.get("film/person/0614165", params="person_id=0614165")
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert len(response.json()["result"]) != 0
