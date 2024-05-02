@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Section.module.css';
+import { NavLink } from 'react-router-dom';
 
 const PopularBooks = () => {
     return (
@@ -8,9 +9,9 @@ const PopularBooks = () => {
                 <div className={styles.section_header}>
                     <div className={styles.section_header_1}>
                         <p className={styles.section_title}>Сейчас читают</p>
-                        <a href="/" className={styles.button_all}>
+                        <NavLink to="/all-books" className={styles.button_all}>
                             Всё
-                        </a>
+                        </NavLink>
                     </div>
                     <p className={styles.section_subtitle}>
                         Самые популярные книги за последний час
