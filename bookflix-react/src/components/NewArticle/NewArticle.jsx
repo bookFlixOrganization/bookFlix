@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NewArticle.module.css';
 
-const NewArticle = () => {
+const NewArticle = (props) => {
     return (
         <div className={styles.new_article_container}>
             <section className={styles.now_watching_text}>
@@ -23,10 +23,12 @@ const NewArticle = () => {
                         </label>
                         <input
                             className={styles.inp}
+                            onChange={props.handleEditArticleName}
                             type="text"
                             name="article_name"
                             maxLength="100"
                             placeholder="Название статьи"
+                            value={props.articleName || ''}
                         />
 
                         <label className={styles.label} htmlFor="book_name">
@@ -34,10 +36,12 @@ const NewArticle = () => {
                         </label>
                         <input
                             className={styles.inp}
+                            onChange={props.handleEditBookName}
                             type="text"
                             name="book_name"
                             maxLength="100"
                             placeholder="Название книги"
+                            value={props.bookName || ''}
                         />
 
                         <label htmlFor="article_text" className={styles.label}>
@@ -45,10 +49,12 @@ const NewArticle = () => {
                         </label>
                         <textarea
                             className={styles.new_article_textarea}
+                            onChange={props.handleEditText}
                             name="article_text"
                             cols="100"
                             rows="100"
                             placeholder="Текст"
+                            value={props.text || ''}
                         ></textarea>
 
                         <button id="safe" className={styles.estimate}>
