@@ -8,9 +8,11 @@ const NewArticle = (props) => {
                 <div className={styles.container}>
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
-                            <p className={styles.section_title}>Отредактируйте статью</p>
+                            <p className={styles.section_title}>Напишите новую статью</p>
                         </div>
-                        <p className={styles.section_subtitle}></p>
+                        <p className={styles.section_subtitle}>
+                            Расскажите, что больше всего понравилось, а чего не хватило
+                        </p>
                     </div>
                 </div>
             </section>

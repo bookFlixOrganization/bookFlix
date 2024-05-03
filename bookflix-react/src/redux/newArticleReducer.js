@@ -8,7 +8,7 @@ const initialState = {
     text: '',
 };
 
-const authorReducer = (state = initialState, action) => {
+const newArticleReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_ARTICLE_NAME:
             return {
@@ -34,4 +34,4 @@ export const setArticleName = (articleName) => ({ type: SET_ARTICLE_NAME, payloa
 export const setBookName = (bookName) => ({ type: SET_BOOK_NAME, payload: bookName });
 export const setText = (text) => ({ type: SET_TEXT, payload: text });
 
-export default authorReducer;
+export default newArticleReducer;
