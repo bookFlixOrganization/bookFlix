@@ -27,6 +27,7 @@ const NewArticle = (props) => {
                             className={styles.inp}
                             onChange={props.handleEditArticleName}
                             type="text"
+                            id="article_name"
                             name="article_name"
                             maxLength="100"
                             placeholder="Название статьи"
@@ -40,6 +41,7 @@ const NewArticle = (props) => {
                             className={styles.inp}
                             onChange={props.handleEditBookName}
                             type="text"
+                            id="book_name"
                             name="book_name"
                             maxLength="100"
                             placeholder="Название книги"
@@ -52,6 +54,7 @@ const NewArticle = (props) => {
                         <textarea
                             className={styles.new_article_textarea}
                             onChange={props.handleEditText}
+                            id="article_text"
                             name="article_text"
                             cols="100"
                             rows="100"
