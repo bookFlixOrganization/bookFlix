@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setArticleName, setBookName, setText } from '../../redux/articleReducer.js';
-import NewArticle from './NewArticle.jsx';
+import EditArticle from './EditArticle.jsx';
 
-const NewArticleContainer = () => {
+const EditArticleContainer = () => {
     const dispatch = useDispatch();
 
     const articleName = useSelector((state) => state.articleReducer.articleName);
@@ -23,7 +23,7 @@ const NewArticleContainer = () => {
     };
 
     return (
-        <NewArticle
+        <EditArticle
             articleName={articleName}
             bookName={bookName}
             text={text}
@@ -34,4 +34,4 @@ const NewArticleContainer = () => {
     );
 };
 
-export default NewArticleContainer;
+export default EditArticleContainer;

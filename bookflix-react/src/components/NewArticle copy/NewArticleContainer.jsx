@@ -6,9 +6,9 @@ import NewArticle from './NewArticle.jsx';
 const NewArticleContainer = () => {
     const dispatch = useDispatch();
 
-    const articleName = useSelector((state) => state.articleReducer.articleName);
-    const bookName = useSelector((state) => state.articleReducer.bookName);
-    const text = useSelector((state) => state.articleReducer.text);
+    const articleName = useSelector((state) => state.NewArticleReducer.articleName);
+    const bookName = useSelector((state) => state.NewArticleReducer.bookName);
+    const text = useSelector((state) => state.NewArticleReducer.text);
 
     const handleEditArticleName = (event) => {
         dispatch(setArticleName(event.target.value));
