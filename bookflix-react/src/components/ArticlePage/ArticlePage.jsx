@@ -85,7 +85,10 @@ const ArticlePage = (props) => {
                         aperiam. Odit explicabo esse atque illo ipsum.
                     </p>
                     <div className={styles.like_container}>
-                        <LikeIcon className={styles.LikeIcon} />
+                        <LikeIcon
+                            className={`${styles.LikeIcon} ${props.isLiked ? styles.liked : ''}`}
+                            onClick={props.handleLikeClick}
+                        />
                         <div className={styles.likes_amount}>0</div>
                     </div>
                 </div>

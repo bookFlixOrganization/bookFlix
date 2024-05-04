@@ -119,3 +119,7 @@
     background: #ffffff;
     color: #e54d4d;
 }
+
+.liked path {
+    fill: #f44336;
+}
