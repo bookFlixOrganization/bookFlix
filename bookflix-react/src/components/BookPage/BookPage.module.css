@@ -612,6 +612,14 @@ h2 {
     fill: #ffffff;
 }
 
+.block_1.active {
+    background-color: #ffffff;
+}
+
+.favourite_icon.active path {
+    fill: #e54d4d;
+}
+
 .prokrutka {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;

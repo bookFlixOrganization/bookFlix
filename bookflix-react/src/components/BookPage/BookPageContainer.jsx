@@ -5,6 +5,12 @@ const BookPageContainer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
 
+    const [isFavourite, setIsFavourite] = useState(false);
+
+    const toggleFavourite = () => {
+        setIsFavourite(!isFavourite);
+    };
+
     // Function to open the modal
     const openModal = () => {
         setIsModalOpen(true);
@@ -48,6 +54,8 @@ const BookPageContainer = () => {
             submitFeedback={submitFeedback}
             isFeedbackSubmitted={isFeedbackSubmitted}
             setIsFeedbackSubmitted={setIsFeedbackSubmitted}
+            isFavourite={isFavourite}
+            toggleFavourite={toggleFavourite}
         />
     );
 };

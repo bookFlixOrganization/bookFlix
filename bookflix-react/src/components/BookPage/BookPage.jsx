@@ -41,8 +41,13 @@ const BookPage = (props) => {
                             <a href="/" className={styles.btn}>
                                 Читать
                             </a>
-                            <button className={styles.block_1}>
-                                <FavouriteIcon className={styles.favourite_icon} />
+                            <button
+                                className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
+                                onClick={props.toggleFavourite}
+                            >
+                                <FavouriteIcon
+                                    className={`${styles.favourite_icon} ${props.isFavourite ? styles.active : ''}`}
+                                />
                             </button>
                         </div>
 
