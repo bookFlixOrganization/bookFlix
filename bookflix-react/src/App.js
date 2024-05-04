@@ -13,6 +13,7 @@ import BookPageContainer from './components/BookPage/BookPageContainer.jsx';
 import FilmPageContainer from './components/FilmPage/FilmPageContainer.jsx';
 import ArticlesContainer from './components/Articles/ArticlesContainer.jsx';
 import SubscribesContainer from './components/Subscribes/SubscribesContainer.jsx';
+import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContainer.jsx';
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                 <Route path="film-page" element={<FilmPageContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
+                <Route path="reading-diary" element={<ReadingDiaryContainer />} />
             </Routes>
         </div>
     );
