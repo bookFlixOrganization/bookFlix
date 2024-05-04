@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ArticlePage.module.css';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 
-const ArticlePage = () => {
+const ArticlePage = (props) => {
     return (
         <div className={styles.articlepage_container}>
             <section className={styles.now_watching_text}>
@@ -31,8 +31,13 @@ const ArticlePage = () => {
                         <div className={styles.name_1}>29 августа 2021 в 17:04</div>
                     </div>
                     <div className={styles.block}>
-                        <input className={styles.input_1} type="checkbox" id="one" />
-                        <label htmlFor="one">f</label>
+                        <button
+                            className={`${styles.subs_btn} ${props.isSubscribed ? styles.subscribed : ''}`}
+                            onClick={props.handleSubsClick}
+                        >
+                            {!props.isSubscribed && 'Подписаться на автора'}
+                            {props.isSubscribed && 'Вы подписаны'}
+                        </button>
                     </div>
 
                     <p className={styles.article_text}>

@@ -69,44 +69,6 @@
     font-size: 30px;
 }
 
-.input_1 {
-    display: none;
-}
-
-label {
-    display: inline-block;
-    width: 250px;
-    border-radius: 100px;
-    background-color: #e54d4d;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-}
-
-label:after {
-    content: 'Подписаться на автора';
-    color: #ffffff;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-    position: relative;
-    top: -5px;
-}
-
-label:hover {
-    background-color: #e43131;
-}
-
-.input_1:checked ~ label {
-    background-color: #ffffff;
-}
-
-.input_1:checked ~ label:after {
-    content: 'Вы подписаны!';
-    color: #e54d4d;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-}
-
 .like-button .heart-icon {
     color: #888;
     height: 100px;
@@ -162,4 +124,27 @@ label:hover {
 
 .LikeIcon:hover path {
     fill: #f44336;
+}
+
+.subs_btn {
+    width: 250px;
+    height: 48px;
+    border-radius: 100px;
+    background-color: #e54d4d;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.subs_btn:hover {
+    background-color: #e43232;
+}
+
+.subscribed,
+.subscribed:hover {
+    background: #ffffff;
+    color: #e54d4d;
 }
