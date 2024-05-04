@@ -17,7 +17,6 @@ const AuthPage = (props) => {
                     onSubmit={(event) => {
                         event.preventDefault();
                         window.history.pushState({}, '', window.location.pathname);
-                        // Ваша логика отправки формы здесь
                     }}
                 >
                     <div
@@ -92,7 +91,6 @@ const AuthPage = (props) => {
                     onSubmit={(event) => {
                         event.preventDefault();
                         window.history.pushState({}, '', window.location.pathname);
-                        // Ваша логика отправки формы здесь
                     }}
                 >
                     <div
