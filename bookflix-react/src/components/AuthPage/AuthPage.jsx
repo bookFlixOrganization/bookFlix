@@ -12,7 +12,14 @@ const AuthPage = (props) => {
                 <h2 className={styles.animation} style={{ '--i': 0, '--j': 21 }}>
                     Login
                 </h2>
-                <form action="#">
+                <form
+                    action="#"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        window.history.pushState({}, '', window.location.pathname);
+                        // Ваша логика отправки формы здесь
+                    }}
+                >
                     <div
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 1, '--j': 22 }}
@@ -80,7 +87,14 @@ const AuthPage = (props) => {
                 <h2 className={styles.animation} style={{ '--i': 17, '--j': 0 }}>
                     Sign Up
                 </h2>
-                <form action="#">
+                <form
+                    action="#"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        window.history.pushState({}, '', window.location.pathname);
+                        // Ваша логика отправки формы здесь
+                    }}
+                >
                     <div
                         className={`${styles.input_box} ${styles.animation}`}
                         style={{ '--i': 18, '--j': 1 }}
