@@ -11,19 +11,15 @@ const BookPageContainer = () => {
         setIsFavourite(!isFavourite);
     };
 
-    // Function to open the modal
     const openModal = () => {
         setIsModalOpen(true);
     };
 
-    // Function to close the modal
     const closeModal = () => {
         setIsModalOpen(false);
     };
 
     const submitFeedback = () => {
-        // Здесь должна быть логика отправки отзыва на сервер
-        // После успешной отправки:
         closeModal();
         setIsFeedbackSubmitted(true);
         setTimeout(() => {
@@ -31,14 +27,12 @@ const BookPageContainer = () => {
         }, 5000);
     };
 
-    // Function to handle the Esc key press
     const handleEscKey = (event) => {
         if (event.key === 'Escape') {
             closeModal();
         }
     };
 
-    // Add event listener for Esc key press
     useEffect(() => {
         window.addEventListener('keydown', handleEscKey);
         return () => {

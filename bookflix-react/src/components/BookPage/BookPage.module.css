@@ -565,7 +565,7 @@ h2 {
 }
 
 .open_block_2 {
-    display: none; /* Блок скрыт изначально */
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -575,14 +575,14 @@ h2 {
     width: 200px;
     height: 50px;
     border-radius: 20px;
-    text-align: center; /* Выравнивание текста по центру */
-    color: #ffffff; /* Цвет текста */
+    text-align: center;
+    color: #ffffff;
     transition: all 0.5s ease;
     cursor: default;
 }
 
 .open_block_2.active {
-    display: flex; /* Показываем блок, когда класс 'active' добавлен */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
