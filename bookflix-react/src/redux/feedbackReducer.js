@@ -24,7 +24,7 @@ const bookPageReducer = (state = initialState, action) => {
     }
 };
 
-export const setName = (mark) => ({ type: SET_MARK, payload: mark });
+export const setMark = (mark) => ({ type: SET_MARK, payload: mark });
 export const setText = (text) => ({ type: SET_TEXT, payload: text });
 
 export default bookPageReducer;

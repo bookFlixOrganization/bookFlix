@@ -38,70 +38,120 @@ const FeedBack = (props) => {
                                 <div className={styles.emoji}>
                                     <img src={image1} alt="" />
                                 </div>
-                                <button className={styles.number}>1</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(1)}
+                                >
+                                    1
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image2} alt="" />
                                 </div>
-                                <button className={styles.number}>2</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(2)}
+                                >
+                                    2
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image3} alt="" />
                                 </div>
-                                <button className={styles.number}>3</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(2)}
+                                >
+                                    3
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image4} alt="" />
                                 </div>
-                                <button className={styles.number}>4</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(4)}
+                                >
+                                    4
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image5} alt="" />
                                 </div>
-                                <button className={styles.number}>5</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(5)}
+                                >
+                                    5
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image6} alt="" />
                                 </div>
-                                <button className={styles.number}>6</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(6)}
+                                >
+                                    6
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image7} alt="" />
                                 </div>
-                                <button className={styles.number}>7</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(7)}
+                                >
+                                    7
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image8} alt="" />
                                 </div>
-                                <button className={styles.number}>8</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(8)}
+                                >
+                                    8
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image9} alt="" />
                                 </div>
-                                <button className={styles.number}>9</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(9)}
+                                >
+                                    9
+                                </button>
                             </div>
 
                             <div className={styles.rathing_mark}>
                                 <div className={styles.emoji}>
                                     <img src={image10} alt="" />
                                 </div>
-                                <button className={styles.number}>10</button>
+                                <button
+                                    className={styles.number}
+                                    onClick={() => props.handleMarkClick(10)}
+                                >
+                                    10
+                                </button>
                             </div>
                         </div>
                         <div className={styles.modal_feedback_text}>
@@ -113,6 +163,8 @@ const FeedBack = (props) => {
                                 rows="4"
                                 placeholder="Текст (до 255 символов)"
                                 id="feedback_text"
+                                value={props.text || ''}
+                                onChange={props.handleTextChange}
                             ></textarea>
                         </div>
 
