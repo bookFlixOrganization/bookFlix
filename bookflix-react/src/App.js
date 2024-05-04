@@ -11,6 +11,7 @@ import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx
 import HistoryContainer from './components/History/HistoryContainer.jsx';
 import BookPageContainer from './components/BookPage/BookPageContainer.jsx';
 import FilmPageContainer from './components/FilmPage/FilmPageContainer.jsx';
+import ArticlesContainer from './components/Articles/ArticlesContainer.jsx';
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route path="history" element={<HistoryContainer />} />
                 <Route path="book-page" element={<BookPageContainer />} />
                 <Route path="film-page" element={<FilmPageContainer />} />
+                <Route path="articles" element={<ArticlesContainer />} />
             </Routes>
         </div>
     );
