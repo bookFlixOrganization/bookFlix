@@ -123,7 +123,7 @@ const BookPage = (props) => {
                         <a href="#prokrutka" className={styles.rathing_details}>
                             459 отзывов
                         </a>
-                        <div className={styles.mb - 40}>
+                        <div className={styles.mb_40}>
                             <button
                                 onClick={props.openModal}
                                 className={styles.btn}

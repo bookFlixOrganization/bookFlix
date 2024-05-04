@@ -180,11 +180,6 @@
     align-items: center;
 }
 
-.feedback_author {
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-}
-
 .modal_feedback_text {
     margin: 40px 0 10px 10px;
     display: flex;
