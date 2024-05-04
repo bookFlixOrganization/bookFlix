@@ -4,6 +4,7 @@ import authReducer from './authReducer';
 import authorReducer from './authorReducer';
 import articleReducer from './articleReducer';
 import bookBageReducer from './bookPageReducer';
+import feedbackReducer from './feedbackReducer';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         authorReducer: authorReducer,
         articleReducer: articleReducer,
         bookBageReducer: bookBageReducer,
+        feedbackReducer: feedbackReducer,
     },
 });
 
