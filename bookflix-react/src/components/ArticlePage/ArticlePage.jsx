@@ -84,10 +84,8 @@ const ArticlePage = (props) => {
                         deleniti soluta error magni porro cum iusto id alias similique ratione ab
                         aperiam. Odit explicabo esse atque illo ipsum.
                     </p>
-                    <div className={styles.like_button}>
-                        <div className={styles.heart_bg}>
-                            <LikeIcon className={styles.LikeIcon} />
-                        </div>
+                    <div className={styles.like_container}>
+                        <LikeIcon className={styles.LikeIcon} />
                         <div className={styles.likes_amount}>0</div>
                     </div>
                 </div>
