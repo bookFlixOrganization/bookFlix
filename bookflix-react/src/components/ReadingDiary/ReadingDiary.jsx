@@ -44,7 +44,7 @@ const Subscribes = () => {
                                             <h3 className={styles.article_author}>
                                                 Ivan_Borisov123
                                             </h3>
-                                            <a href="/" className={styles.mount}>
+                                            <a href="/" className={styles.amount}>
                                                 5 статей
                                             </a>
                                         </div>

@@ -133,7 +133,7 @@
     font-size: 14px;
     line-height: 1.2;
     transition: all 0.2s;
-    width: 50px;
+    width: 70px;
     display: flex;
     text-align: left;
 }
@@ -202,4 +202,18 @@
 .LikeIcon {
     width: 20px;
     height: 20px;
+    cursor: pointer;
+}
+
+.LikeIcon path {
+    fill: #888888;
+}
+
+.LikeIcon:hover path {
+    fill: #f44336;
+}
+
+.low {
+    display: flex;
+    justify-content: space-between;
 }
