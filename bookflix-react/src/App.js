@@ -10,6 +10,7 @@ import EditArticleContainer from './components/EditArticle/EditArticleContainer.
 import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx';
 import HistoryContainer from './components/History/HistoryContainer.jsx';
 import './App.css';
+import BookPageContainer from './components/BookPage/BookPageContainer.jsx';
 
 function App() {
     const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
+                <Route path="book-page" element={<BookPageContainer />} />
             </Routes>
         </div>
     );
