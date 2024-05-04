@@ -6,6 +6,7 @@ import articleReducer from './articleReducer';
 import bookBageReducer from './bookPageReducer';
 import filmPageReducer from './filmPageReducer';
 import feedbackReducer from './feedbackReducer';
+import articlePageReducer from './articlePageReducer';
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         bookBageReducer: bookBageReducer,
         filmPageReducer: filmPageReducer,
         feedbackReducer: feedbackReducer,
+        articlePageReducer: articlePageReducer,
     },
 });
 
