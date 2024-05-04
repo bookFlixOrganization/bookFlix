@@ -5,6 +5,7 @@ const SET_BOOK_NAME = 'SET_BOOK_NAME';
 const SET_GENRE = 'SET_GENRE';
 const SET_DATE = 'SET_DATE';
 const SET_LIKED = 'SET_LIKED';
+const SET_COUNT_LIKES = 'SET_COUNT_LIKES';
 
 const initialState = {
     articleName: '',
@@ -14,6 +15,7 @@ const initialState = {
     genre: '',
     date: '',
     liked: false,
+    countLikes: 0,
 };
 
 const ArticlePageReducer = (state = initialState, action) => {
@@ -53,6 +55,11 @@ const ArticlePageReducer = (state = initialState, action) => {
                 ...state,
                 liked: action.payload,
             };
+        case SET_COUNT_LIKES:
+            return {
+                ...state,
+                countLikes: action.payload,
+            };
         default:
             return state;
     }
@@ -68,5 +75,6 @@ export const setBookName = (bookName) => ({ type: SET_BOOK_NAME, payload: bookNa
 export const setGenre = (genre) => ({ type: SET_GENRE, payload: genre });
 export const setDate = (date) => ({ type: SET_DATE, payload: date });
 export const setLiked = (liked) => ({ type: SET_LIKED, payload: liked });
+export const setCountLikes = (likes) => ({ type: SET_COUNT_LIKES, payload: likes });
 
 export default ArticlePageReducer;
