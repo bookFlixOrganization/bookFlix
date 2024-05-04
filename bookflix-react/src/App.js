@@ -14,6 +14,7 @@ import FilmPageContainer from './components/FilmPage/FilmPageContainer.jsx';
 import ArticlesContainer from './components/Articles/ArticlesContainer.jsx';
 import SubscribesContainer from './components/Subscribes/SubscribesContainer.jsx';
 import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContainer.jsx';
+import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
 import './App.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />
+                <Route path="article-page" element={<ArticlePageContainer />} />
             </Routes>
         </div>
     );
