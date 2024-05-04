@@ -2,8 +2,18 @@ import React from 'react';
 import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
+import image1 from './images/1.png';
+import image2 from './images/2.png';
+import image3 from './images/3.png';
+import image4 from './images/4.png';
+import image5 from './images/5.png';
+import image6 from './images/6.png';
+import image7 from './images/7.png';
+import image8 from './images/8.png';
+import image9 from './images/9.png';
+import image10 from './images/10.png';
 
-const BookPage = () => {
+const BookPage = (props) => {
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
@@ -118,157 +128,139 @@ const BookPage = () => {
                             459 отзывов
                         </a>
                         <div className={styles.mb - 40}>
-                            <a href="/" className={styles.btn} id="leave_a_review">
+                            <button
+                                onClick={props.openModal}
+                                className={styles.btn}
+                                id="leave_a_review"
+                            >
                                 Оставить отзыв
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div className={styles.modal} id="my-modal">
-                    <div className={styles.modal__box}>
-                        <button className={styles.button_1} id="close-my-modal-btn">
-                            X
-                        </button>
-                        <h2 className={styles.estim}>Оцени книгу</h2>
-                        <div className={styles.subtitle}>Пиковая Дама</div>
-                        <div className={styles.statistics}>
-                            <QuotesIcon />
-                        </div>
-                        <div className={styles.numbers}>
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/10.png" alt="" />
+                {props.isModalOpen && (
+                    <div
+                        className={`${styles.modal} ${props.isModalOpen ? styles.open : ''}`}
+                        id="my-modal"
+                    >
+                        <div className={styles.modal__box}>
+                            <button
+                                onClick={props.closeModal}
+                                className={styles.button_1}
+                                id="close-my-modal-btn"
+                            >
+                                X
+                            </button>
+                            <h2 className={styles.estim}>Оцени книгу</h2>
+                            <div className={styles.subtitle}>Пиковая Дама</div>
+                            <div className={styles.statistics}>
+                                <QuotesIcon />
+                            </div>
+                            <div className={styles.numbers}>
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image1} alt="" />
+                                    </div>
+                                    <button className={styles.number}>1</button>
                                 </div>
-                                <button className={styles.number}>10</button>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image2} alt="" />
+                                    </div>
+                                    <button className={styles.number}>2</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image3} alt="" />
+                                    </div>
+                                    <button className={styles.number}>3</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image4} alt="" />
+                                    </div>
+                                    <button className={styles.number}>4</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image5} alt="" />
+                                    </div>
+                                    <button className={styles.number}>5</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image6} alt="" />
+                                    </div>
+                                    <button className={styles.number}>6</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image7} alt="" />
+                                    </div>
+                                    <button className={styles.number}>7</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image8} alt="" />
+                                    </div>
+                                    <button className={styles.number}>8</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image9} alt="" />
+                                    </div>
+                                    <button className={styles.number}>9</button>
+                                </div>
+
+                                <div className={styles.rathing_mark}>
+                                    <div className={styles.emoji}>
+                                        <img src={image10} alt="" />
+                                    </div>
+                                    <button className={styles.number}>10</button>
+                                </div>
+                            </div>
+                            <div className={styles.modal_feedback_text}>
+                                <label className={styles.label} htmlFor="feedback_text">
+                                    Отзыв
+                                </label>
+                                <textarea
+                                    maxLength="255"
+                                    rows="4"
+                                    placeholder="Текст (до 255 символов)"
+                                    id="feedback_text"
+                                ></textarea>
                             </div>
 
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/9.png" alt="" />
-                                </div>
-                                <button className={styles.number}>9</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/8.png" alt="" />
-                                </div>
-                                <button className={styles.number}>8</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/7.png" alt="" />
-                                </div>
-                                <button className={styles.number}>7</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/6.png" alt="" />
-                                </div>
-                                <button className={styles.number}>6</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/5.png" alt="" />
-                                </div>
-                                <button className={styles.number}>5</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/4.png" alt="" />
-                                </div>
-                                <button className={styles.number}>4</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/3.png" alt="" />
-                                </div>
-                                <button className={styles.number}>3</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/2.png" alt="" />
-                                </div>
-                                <button className={styles.number}>2</button>
-                            </div>
-
-                            <div className={styles.rathing_mark}>
-                                <div className={styles.emoji}>
-                                    <img src="images/1.png" alt="" />
-                                </div>
-                                <button className={styles.number}>1</button>
-                            </div>
-                        </div>
-
-                        <a href="#open-block-2" id="opener" className={styles.link_open_block}>
-                            <button id="close-my-modal-btn-1" className={styles.estimate}>
+                            <button
+                                id="close-my-modal-btn-1"
+                                className={styles.estimate}
+                                onClick={props.submitFeedback}
+                            >
                                 Поставить оценку
                             </button>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="open-block-2">
-                    <div className={styles.open_block_inner}>
-                        <div className={styles.open_block_text}>
-                            <p>Спасибо за оценку!</p>
-                            <a href="/" className={styles.open_block_close} title="close">
-                                x
-                            </a>
                         </div>
                     </div>
-                </div>
-                <div className={styles.modal_1} id="my-modal-1">
-                    <form className={styles.modal__box_1} action="#">
-                        <button className={styles.button_2} id="close-my-modal-btn-2">
-                            X
-                        </button>
+                )}
 
-                        <h2 className={styles.estim}>Хотите поделиться мнением?</h2>
-                        <div className={styles.subtitle - 1}>Оставьте отзыв</div>
-
-                        <div className={styles.statistics}>
-                            <QuotesIcon />
+                {props.isFeedbackSubmitted && (
+                    <div
+                        className={`${styles.open_block_2} ${props.isFeedbackSubmitted ? styles.active : ''}`}
+                    >
+                        <div className={styles.open_block_inner}>
+                            <div className={styles.open_block_text}>
+                                <p>Спасибо за оценку!</p>
+                            </div>
                         </div>
-
-                        <label className={styles.label} htmlFor="myRange">
-                            Рейтинг
-                        </label>
-                        <div className={styles.slidecontainer}>
-                            <input
-                                type="range"
-                                min="1"
-                                max="10"
-                                value="6"
-                                className={styles.slider}
-                                id="myRange"
-                            />
-                            <p className={styles.value}>
-                                Ваша оценка: <span id="demo"></span>
-                            </p>
-                        </div>
-
-                        <label className={styles.label} htmlFor="feedback_text">
-                            Отзыв
-                        </label>
-                        <textarea
-                            maxLength="255"
-                            rows="4"
-                            placeholder="Текст (до 255 символов)"
-                            id="feedback_text"
-                        ></textarea>
-
-                        <button id="safe" className={styles.estimate}>
-                            Сохранить
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                )}
             </div>
         </div>
     );
