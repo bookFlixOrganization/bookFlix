@@ -7,6 +7,7 @@ import AllBooksContainer from './components/AllBooks/AllBooksContainer.jsx';
 import AuthorContainer from './components/Author/AuthorContainer.jsx';
 import NewArticleContainer from './components/NewArticle/NewArticleContainer.jsx';
 import EditArticleContainer from './components/EditArticle/EditArticleContainer.jsx';
+import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
                 <Route path="author" element={<AuthorContainer />} />
                 <Route path="new-article" element={<NewArticleContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
+                <Route path="favourites" element={<FavouritesContainer />} />
             </Routes>
         </div>
     );
