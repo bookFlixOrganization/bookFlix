@@ -266,6 +266,22 @@ h2 {
     font-weight: 600;
 }
 
+.block_1 {
+    width: 50px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e54d4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.block_1:hover {
+    background-color: #e43232;
+}
+
 /* Actors */
 .actors {
     display: flex;
@@ -300,164 +316,6 @@ h2 {
 }
 
 /* Popup (modal) for rathing */
-.modal {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99998;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-    visibility: hidden;
-    opacity: 0;
-    transition:
-        opacity 0.4s,
-        visibility 0.4s;
-}
-
-.modal__box {
-    text-align: center;
-    position: relative;
-    max-width: 800px;
-    padding: 45px;
-    z-index: 1;
-    background-color: rgb(43, 43, 43);
-    margin: 30px 15px;
-    border-radius: 15px;
-    transform: scale(0);
-    transition: transform 0.8s;
-    box-shadow: 0 0 20px rgb(24, 24, 24);
-}
-
-.modal.open {
-    visibility: visible;
-    opacity: 1;
-}
-
-.modal.open .modal__box {
-    transform: scale(1);
-}
-
-.button_1 {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    border: none;
-    border-radius: 50%;
-    background-color: rgb(72, 72, 72);
-    padding: 5px;
-    color: rgb(255, 255, 255, 0.6);
-    transition: 0.3s;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.button_1:hover {
-    background-color: rgb(122, 122, 122);
-    color: #ffffff;
-}
-
-.statistics {
-    margin-top: -10px;
-    padding-bottom: 80px;
-}
-
-.numbers {
-    display: inline-flex;
-}
-
-.numbers .rathing_mark {
-    margin: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.numbers .rathing_mark .number {
-    position: relative;
-    font-size: 16px;
-    font-weight: 900;
-    width: 50px;
-    height: 50px;
-    display: block;
-    border: none;
-    border-radius: 15px;
-    background-color: rgb(72, 72, 72);
-    padding: 5px;
-    color: rgb(255, 255, 255, 0.6);
-    text-align: center;
-    transition: 0.3s;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.numbers .rathing_mark .emoji {
-    position: absolute;
-    top: -90px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s;
-}
-
-.numbers .rathing_mark:hover .emoji {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.numbers .rathing_mark .number:hover {
-    background-color: rgb(122, 122, 122);
-    color: #ffffff;
-}
-
-.numbers .rathing_mark .number:active {
-    background-color: rgb(122, 122, 122);
-    color: #ffffff;
-    transform: scale(1.03);
-}
-
-.numbers .rathing_mark .number:focus {
-    background-color: rgb(122, 122, 122);
-    color: #ffffff;
-    transform: scale(1.03);
-}
-
-.estimate {
-    border: none;
-    background-color: #e54d4d;
-    color: #ffffff;
-    padding: 10px 20px;
-    display: inline-block;
-    border-radius: 100px;
-    font-size: 18px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    line-height: 21px;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    margin-top: 30px;
-}
-
-.estimate:hover {
-    background-color: #e43131;
-}
-
-.estim {
-    margin-bottom: 10px;
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-}
 
 /* Отзывы зрителей */
 .container_2 {
@@ -562,45 +420,6 @@ h2 {
     color: #ffffff;
 }
 
-.open_block_2 {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    padding: 17px;
-    background-color: #e54d4d;
-    width: 200px;
-    height: 50px;
-    border-radius: 20px;
-    text-align: center;
-    color: #ffffff;
-    transition: all 0.5s ease;
-    cursor: default;
-}
-
-.open_block_2.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.block_1 {
-    width: 50px;
-    height: 40px;
-    border: none;
-    border-radius: 20px;
-    background-color: #e54d4d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.block_1:hover {
-    background-color: #e43232;
-}
-
 .favourite_icon {
     width: 22px;
     height: 22px;
@@ -621,36 +440,4 @@ h2 {
 .prokrutka {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
-}
-
-.feedback_author {
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-}
-
-.modal_feedback_text {
-    margin: 40px 0 10px 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.modal_feedback_text label {
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 900;
-    color: #ffffff;
-}
-
-.modal_feedback_text textarea {
-    padding: 10px;
-    font-size: 16px;
-    resize: none;
-    color: #ffffff;
-    background-color: rgb(72, 72, 72);
-    border: none;
-    border-radius: 20px;
-}
-
-.modal_feedback_text textarea:focus {
-    outline: none;
 }

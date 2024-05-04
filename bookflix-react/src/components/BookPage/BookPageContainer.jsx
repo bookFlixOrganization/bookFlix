@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import BookPage from './BookPage.jsx';
 
 const BookPageContainer = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
-
     const [isFavourite, setIsFavourite] = useState(false);
 
     const toggleFavourite = () => {
-        setIsFavourite(!isFavourite);
+        setIsFavourite((prevState) => !prevState);
     };
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -42,14 +41,13 @@ const BookPageContainer = () => {
 
     return (
         <BookPage
-            openModal={openModal}
-            closeModal={closeModal}
-            isModalOpen={isModalOpen}
-            submitFeedback={submitFeedback}
-            isFeedbackSubmitted={isFeedbackSubmitted}
-            setIsFeedbackSubmitted={setIsFeedbackSubmitted}
             isFavourite={isFavourite}
             toggleFavourite={toggleFavourite}
+            isModalOpen={isModalOpen}
+            isFeedbackSubmitted={isFeedbackSubmitted}
+            openModal={openModal}
+            closeModal={closeModal}
+            submitFeedback={submitFeedback}
         />
     );
 };
