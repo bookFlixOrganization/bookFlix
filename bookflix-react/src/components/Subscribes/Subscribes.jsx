@@ -2,8 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Subscribes.module.css';
 import { ReactComponent as TrashIcon } from './images/trash.svg';
+import { ReactComponent as ProfileIcon } from './images/profile.svg';
 
-const Articles = () => {
+const Subscribes = () => {
     return (
         <div className={styles.articles_container}>
             <section className={styles.now_watching_text}>
@@ -37,21 +38,18 @@ const Articles = () => {
                     <div className={styles.movies}>
                         <button className={styles.movie}>
                             <div className={styles.left_block}>
-                                <h4 className={styles.theme}>Theme</h4>
-                                <div className={styles.subtitle}>&quot;Пиковая Дама&quot;</div>
-                                <div className={styles.subtitle}>А. С. Пушкин</div>
+                                <ProfileIcon className={styles.subscribes_profile_icon} />
                             </div>
-                            <p className={`${styles.center_block} ${styles.article_desc}`}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
-                                tempore totam dolorem magnam sunt hic harum voluptatibus magni
-                                officiis velit nihil placeat nemo, pariatur doloribus?
-                            </p>
+                            <div className={styles.subscribes_item}>
+                                <div className={`${styles.center_block} ${styles.subscribes_desc}`}>
+                                    IvanBorisov123
+                                </div>
+                                <div className={styles.subscribes_subtitle}>6 статей</div>
+                            </div>
                             <div className={styles.tools}>
                                 <NavLink to="/" className={styles.tool}>
                                     <TrashIcon className={styles.article_trash_icon} />
                                 </NavLink>
-
-                                <div className={styles.subtitle}>29 августа 2021 в 17:04</div>
                             </div>
                         </button>
                     </div>
@@ -67,4 +65,4 @@ const Articles = () => {
     );
 };
 
-export default Articles;
+export default Subscribes;

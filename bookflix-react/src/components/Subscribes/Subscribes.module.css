@@ -123,10 +123,21 @@ h4.theme {
     font-family: 'Arial';
 }
 
-p {
+.subscribes_item {
     color: #ffffff;
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.subscribes_subtitle {
+    margin-top: 8px;
+    color: #ffffff;
+    opacity: 0.4;
+    font-size: 14px;
+    text-align: left;
 }
 
 .amount {
@@ -233,18 +244,18 @@ p {
 
 .left_block {
     text-align: left;
-    width: 150px;
 }
 
 .center_block {
     text-align: left;
-    width: 800px;
+    width: 1000px;
 }
 
-.article_desc {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+.subscribes_desc {
+    margin-top: 10px;
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
 }
 
 .article_edit_icon,
@@ -259,4 +270,14 @@ p {
     width: 23px;
     height: 23px;
     fill: #d23226;
+}
+
+.subscribes_profile_icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.subscribes_profile_icon path {
+    fill: #ffffff;
 }
