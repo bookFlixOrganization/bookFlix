@@ -197,7 +197,9 @@ h2 {
 
 /* Rathing */
 .all_rathing {
+    margin-bottom: 20px;
     padding-top: 40px;
+    font-size: 22px;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
 }
@@ -292,7 +294,11 @@ h2 {
 }
 
 .top_cast {
+    margin-bottom: 20px;
     padding-top: 40px;
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
 }
 
 .photo {
@@ -306,6 +312,8 @@ h2 {
 .name {
     max-width: 150px;
     font-size: 16px;
+    font-family: sans-serif;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 7px;
 }
@@ -313,6 +321,8 @@ h2 {
 .nickname {
     max-width: 150px;
     font-size: 14px;
+    font-family: sans-serif;
+    color: #ffffff;
     text-align: center;
     opacity: 0.4;
 }
@@ -440,6 +450,8 @@ h2 {
 }
 
 .prokrutka {
+    margin-bottom: 20px;
+    font-size: 22px;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
 }

@@ -3,6 +3,9 @@ import styles from './FilmPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
 import cover from './images/cover.jpg';
+import di_caprio from './images/di_caprio.jpg';
+import margo from './images/margo.jpg';
+import brad_pitt from './images/brad_pitt.jpg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const FilmPage = (props) => {
@@ -12,26 +15,17 @@ const FilmPage = (props) => {
                 <div className={styles.wrapper}>
                     <img className={styles.film_book} src={cover} alt="" />
                     <div>
-                        <h1 className={styles.title}>Пиковая Дама</h1>
-                        <h6 className={styles.subtitle}>А. С. Пушкин</h6>
+                        <h1 className={styles.title}>Однажды в Голливуде</h1>
+                        <h6 className={styles.subtitle}>Once Upon a Time in Hollywood 18+</h6>
                         <p className={styles.description}>
-                            Александр Сергеевич Пушкин, безусловно, был великим поэтом и писателем.
-                            Но, кроме всего прочего, он слыл азартным игроком и заядлым картежником.
-                            Однажды генерал-губернатор Дмитрий Голицын рассказал Пушкину байку о
-                            своей матери – княгине Наталье Борисовне. Ходили слухи, будто «усатая
-                            княгиня» – Голицына, известная своей страстью к карточным играм, знает
-                            три заветные карты, которые принесут выигрыш любому, даже самому
-                            неудачливому игроку. Пушкин с присущим только ему умением и талантом
-                            превращать в предмет искусства все, что его окружает, незамедлительно
-                            сделал Голицыну прототипом графини в небезызвестной «Пиковой даме». Так
-                            на свет появилось произведение о Германе, старой графине и тайне трех
-                            карт, которые могут сделать человека несказанно богатым или в одночасье
-                            свести его с ума.
+                            1969 год, золотой век Голливуда уже закончился. Известный актёр Рик
+                            Далтон и его дублер Клифф Бут пытаются найти свое место в стремительно
+                            меняющемся мире киноиндустрии.
                         </p>
 
                         <div className={styles.mb_41}>
                             <a href="/" className={styles.btn}>
-                                Читать
+                                Смотреть
                             </a>
                             <button
                                 className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
@@ -43,10 +37,31 @@ const FilmPage = (props) => {
                             </button>
                         </div>
 
-                        <h2 className={styles.about}>О книге</h2>
+                        <ul className={`${styles.params} ${styles.mb - 40}`}>
+                            <li>
+                                <span className={styles.label}>Аудиодорожки</span>Русский, Русский
+                                5.1, Английский, Английский 5.1
+                            </li>
+                            <li>
+                                <span className={styles.label}>Субтитры</span>Русские, Английские
+                            </li>
+                            <li>
+                                <span className={styles.label}>Качество видео</span>
+                                <span>
+                                    <span className={styles.tag}>Full HD</span>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <h2 className={styles.about}>О фильме</h2>
                         <ul className={styles.params}>
                             <li>
-                                <span className={styles.label}>Дата публикации</span>August 8, 2019
+                                <span className={styles.label}>Дата выхода</span>August 8, 2019
+                                (Russia)
+                            </li>
+                            <li>
+                                <span className={styles.label}>Страна</span>США, Великобритания,
+                                Китай
                             </li>
                             <li>
                                 <span className={styles.label}>Жанр</span>
@@ -62,10 +77,26 @@ const FilmPage = (props) => {
                                 </span>
                             </li>
                             <li>
-                                <span className={styles.label}>Количество страниц</span>400
+                                <span className={styles.label}>Слоган</span>
+                                <time className={styles.text_muted}>
+                                    «The 9th Film from Quentin Tarantino»
+                                </time>
                             </li>
                             <li>
-                                <span className={styles.label}>Язык</span>Русский
+                                <span className={styles.label}>Режиссёр</span>Квентин Тарантино
+                            </li>
+                            <li>
+                                <span className={styles.label}>Длительность</span>
+                                <time className={styles.text_muted}>161 мин. / 02:41</time>
+                            </li>
+                            <li>
+                                <span className={styles.label}>Бюджет</span>$90,000,000
+                            </li>
+                            <li>
+                                <span className={styles.label}>Возраст</span>
+                                <span>
+                                    <span className={styles.tag}>18+</span>
+                                </span>
                             </li>
                         </ul>
 
@@ -79,7 +110,28 @@ const FilmPage = (props) => {
                             </div>
                             <div className={styles.not_our_rathing}>
                                 <div className={styles.imdb_rathing}>9.3</div>
-                                <div className={styles.user_mark}>Google</div>
+                                <div className={styles.user_mark}>iMDb</div>
+                            </div>
+                        </div>
+
+                        <h2 className={styles.top_cast}>Топ актёры</h2>
+                        <div className={styles.actors}>
+                            <div className={styles.actor}>
+                                <img src={di_caprio} alt="" className={styles.photo} />
+                                <div className={styles.name}>Leonardo DiCaprio</div>
+                                <div className={styles.nickname}>Rick Dalton</div>
+                            </div>
+
+                            <div className={styles.actor}>
+                                <img src={brad_pitt} alt="" className={styles.photo} />
+                                <div className={styles.name}>Brad Pitt</div>
+                                <div className={styles.nickname}>Cliff Booth</div>
+                            </div>
+
+                            <div className={styles.actor}>
+                                <img src={margo} alt="" className={styles.photo} />
+                                <div className={styles.name}>Margot Robbie</div>
+                                <div className={styles.nickname}>Sharon Tate</div>
                             </div>
                         </div>
 
