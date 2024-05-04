@@ -9,8 +9,9 @@ import NewArticleContainer from './components/NewArticle/NewArticleContainer.jsx
 import EditArticleContainer from './components/EditArticle/EditArticleContainer.jsx';
 import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx';
 import HistoryContainer from './components/History/HistoryContainer.jsx';
-import './App.css';
 import BookPageContainer from './components/BookPage/BookPageContainer.jsx';
+import FilmPageContainer from './components/FilmPage/FilmPageContainer.jsx';
+import './App.css';
 
 function App() {
     const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
                 <Route path="book-page" element={<BookPageContainer />} />
+                <Route path="film-page" element={<FilmPageContainer />} />
             </Routes>
         </div>
     );

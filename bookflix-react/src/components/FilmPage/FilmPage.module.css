@@ -1,0 +1,448 @@
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+.container_1 {
+    width: 1220px;
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+.about {
+    font-family: sans-serif;
+    color: #ffffff;
+}
+
+.film_book {
+    width: 340px;
+    border-radius: 15px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 340px 630px 150px;
+    grid-gap: 40px;
+    padding-top: 180px;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    line-height: 42px;
+    color: #ffffff;
+}
+
+.subtitle {
+    margin-bottom: 10px;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.description {
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.btn {
+    background-color: #e54d4d;
+    margin-right: 10px;
+    color: #ffffff;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 100px;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: sans-serif;
+    line-height: 21px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #e43131;
+}
+
+.watch_later {
+    border: none;
+    background-color: #e54d4d;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.watch_later:hover {
+    background-color: #e43131;
+}
+
+.watch_later:active {
+    color: #e43131;
+    background-color: #ffffff;
+}
+
+.watch_later:focus {
+    color: #e43131;
+    background-color: #ffffff;
+}
+
+.mb_40 {
+    margin-bottom: 40px;
+}
+
+.mb_41 {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.params {
+    list-style-type: none;
+}
+
+.params li {
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    grid-gap: 30px;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+.params li .label {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.genre {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.genre:hover {
+    color: #e54d4d;
+}
+
+.tag {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 3px 5px;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    margin-top: -3px;
+}
+
+.text_muted {
+    opacity: 0.4;
+}
+
+.rathing_main {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 42px;
+    color: rgb(0, 255, 0);
+}
+
+.rathing_counts {
+    display: block;
+    margin-bottom: 10px;
+    line-height: 19px;
+    opacity: 0.4;
+    color: #ffffff;
+}
+
+.rathing_details {
+    display: inline-block;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.rathing_details:hover {
+    color: #e54d4d;
+}
+
+/* Rathing */
+.all_rathing {
+    padding-top: 40px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.all_media_rathing {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+}
+
+.our_rathing {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid rgb(43, 43, 43);
+    background-color: rgb(43, 43, 43);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    width: 280px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.our_own_rathing {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 42px;
+    color: rgb(0, 255, 0);
+    margin-bottom: 10px;
+}
+
+.user_mark {
+    color: #ffffff;
+    margin-bottom: 10px;
+    opacity: 0.4;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.your_mark {
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #e54d4d;
+}
+
+.not_our_rathing {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid rgb(43, 43, 43);
+    background-color: rgb(43, 43, 43);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 280px;
+    height: 122px;
+}
+
+.imdb_rathing {
+    padding-right: 5px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.block_1 {
+    width: 50px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e54d4d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.block_1:hover {
+    background-color: #e43232;
+}
+
+/* Actors */
+.actors {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 40px;
+}
+
+.top_cast {
+    padding-top: 40px;
+}
+
+.photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.name {
+    max-width: 150px;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 7px;
+}
+
+.nickname {
+    max-width: 150px;
+    font-size: 14px;
+    text-align: center;
+    opacity: 0.4;
+}
+
+/* Popup (modal) for rathing */
+
+/* Отзывы зрителей */
+.container_2 {
+    position: relative;
+    width: 630px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container_2 .block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(24, 24, 24);
+    margin-bottom: 30px;
+}
+
+.container_2 .block .content {
+    padding: 30px;
+    text-align: center;
+}
+
+.container_2 .block .content svg {
+    width: 50px;
+}
+
+.container_2 .block .content p {
+    color: #ffffff;
+    padding: 20px 0;
+    line-height: 1.5;
+}
+
+.data {
+    text-align: right;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.small_box_1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.small_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.rat {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.5;
+    color: rgb(0, 255, 0);
+}
+
+/* Show more */
+.block:nth-child(n + 5) {
+    display: none;
+}
+
+.block.is_visible {
+    display: block;
+}
+
+.show-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show_more {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show_more button {
+    border: none;
+    background-color: rgb(43, 43, 43);
+    color: rgb(255, 255, 255, 0.4);
+    width: 100px;
+    height: 30px;
+    font-family: 'Arial';
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.show_more button:hover {
+    background-color: rgb(122, 122, 122);
+    color: #ffffff;
+}
+
+.favourite_icon {
+    width: 22px;
+    height: 22px;
+}
+
+.favourite_icon path {
+    fill: #ffffff;
+}
+
+.block_1.active {
+    background-color: #ffffff;
+}
+
+.favourite_icon.active path {
+    fill: #e54d4d;
+}
+
+.prokrutka {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+.feedback_author {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
