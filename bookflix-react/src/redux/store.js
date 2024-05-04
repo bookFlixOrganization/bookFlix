@@ -3,6 +3,7 @@ import headerReducer from './headerReducer';
 import authReducer from './authReducer';
 import authorReducer from './authorReducer';
 import articleReducer from './articleReducer';
+import bookBageReducer from './bookPageReducer';
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         authReducer: authReducer,
         authorReducer: authorReducer,
         articleReducer: articleReducer,
+        bookBageReducer: bookBageReducer,
     },
 });
 
