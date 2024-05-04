@@ -79,13 +79,12 @@ const BookPage = (props) => {
 
                         <h2 className={styles.all_rathing}>Рейтинг</h2>
                         <div className={styles.all_media_rathing}>
-                            <button id="open-modal-btn" className={styles.our_rathing}>
+                            <div id="open-modal-btn" className={styles.our_rathing}>
                                 <div className={styles.our_own_rathing}>9.0</div>
                                 <div className={styles.user_mark}>
                                     Оценка пользователей BookFlix
                                 </div>
-                                <div className={styles.your_mark}>Ваша оценка</div>
-                            </button>
+                            </div>
                             <div className={styles.not_our_rathing}>
                                 <div className={styles.imdb_rathing}>9.3</div>
                                 <div className={styles.user_mark}>Google</div>
