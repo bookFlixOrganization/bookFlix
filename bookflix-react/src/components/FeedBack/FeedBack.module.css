@@ -191,7 +191,7 @@
     flex-direction: column;
 }
 
-.modal_feedback_text label {
+.modal_feedback_text .label {
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
     font-weight: 900;
@@ -210,4 +210,14 @@
 
 .modal_feedback_text textarea:focus {
     outline: none;
+}
+
+.subtitle {
+    margin-bottom: 10px;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    opacity: 0.4;
 }
