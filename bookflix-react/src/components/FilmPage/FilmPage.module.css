@@ -19,6 +19,8 @@ h2 {
 }
 
 .about {
+    margin-bottom: 20px;
+    font-size: 22px;
     font-family: sans-serif;
     color: #ffffff;
 }
