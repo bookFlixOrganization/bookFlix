@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
+import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
 
 const BookPage = () => {
     return (
@@ -30,15 +31,12 @@ const BookPage = () => {
                             <a href="/" className={styles.btn}>
                                 Читать
                             </a>
-                            <div className={styles.block_1}>
-                                <input className={styles.input_1} type="checkbox" id="one" />
-                                <label className={styles.add} htmlFor="one">
-                                    f
-                                </label>
-                            </div>
+                            <button className={styles.block_1}>
+                                <FavouriteIcon className={styles.favourite_icon} />
+                            </button>
                         </div>
 
-                        <h2>О книге</h2>
+                        <h2 className={styles.about}>О книге</h2>
                         <ul className={styles.params}>
                             <li>
                                 <span className={styles.label}>Дата публикации</span>August 8, 2019
@@ -79,134 +77,18 @@ const BookPage = () => {
                             </div>
                         </div>
 
-                        <h2 id="prokrutka">Отзывы зрителей</h2>
+                        <h2 id="prokrutka" className={styles.prokrutka}>
+                            Отзывы зрителей
+                        </h2>
                         <div className={styles.container_2}>
                             <div className={styles.block}>
                                 <div className={styles.content}>
                                     <div className={styles.small_box}>
                                         <div className={styles.small_box_1}>
                                             <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3>Ivan_Borisov123</h3>
+                                            <h3 className={styles.feedback_author}>
+                                                Ivan_Borisov123
+                                            </h3>
                                         </div>
                                         <div className={styles.rat}>8.9</div>
                                     </div>
