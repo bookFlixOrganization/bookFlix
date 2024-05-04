@@ -12,13 +12,14 @@ import image7 from './images/7.png';
 import image8 from './images/8.png';
 import image9 from './images/9.png';
 import image10 from './images/10.png';
+import cover from './images/cover.jpg';
 
 const BookPage = (props) => {
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
                 <div className={styles.wrapper}>
-                    <img className={styles.film_book} src="images/Pik dama.jpg" alt="" />
+                    <img className={styles.film_book} src={cover} alt="" />
                     <div>
                         <h1 className={styles.title}>Пиковая Дама</h1>
                         <h6 className={styles.subtitle}>А. С. Пушкин</h6>
