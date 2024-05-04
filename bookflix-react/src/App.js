@@ -8,6 +8,7 @@ import AuthorContainer from './components/Author/AuthorContainer.jsx';
 import NewArticleContainer from './components/NewArticle/NewArticleContainer.jsx';
 import EditArticleContainer from './components/EditArticle/EditArticleContainer.jsx';
 import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx';
+import HistoryContainer from './components/History/HistoryContainer.jsx';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="new-article" element={<NewArticleContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="favourites" element={<FavouritesContainer />} />
+                <Route path="history" element={<HistoryContainer />} />
             </Routes>
         </div>
     );
