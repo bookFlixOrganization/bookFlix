@@ -197,7 +197,9 @@ h2 {
 
 /* Rathing */
 .all_rathing {
+    margin-bottom: 20px;
     padding-top: 40px;
+    font-size: 22px;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
 }
@@ -440,6 +442,8 @@ h2 {
 }
 
 .prokrutka {
+    margin-bottom: 20px;
+    font-size: 22px;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
 }
