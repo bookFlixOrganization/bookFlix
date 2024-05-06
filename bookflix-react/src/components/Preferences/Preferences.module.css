@@ -1,0 +1,32 @@
+.preferences_page_container {
+    padding: 50px 0;
+    min-height: 100vh;
+}
+
+.preferences_title {
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.preferences_genres {
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+}
+
+.preferences_item {
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    background-color: #3b3b3b;
+    color: #ffffff;
+    cursor: pointer;
+}

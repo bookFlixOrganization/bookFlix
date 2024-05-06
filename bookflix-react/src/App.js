@@ -16,13 +16,16 @@ import SubscribesContainer from './components/Subscribes/SubscribesContainer.jsx
 import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContainer.jsx';
 import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
 import './App.css';
+import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
 
 function App() {
     const location = useLocation();
 
     return (
         <div className="App">
-            {location.pathname !== '/auth' && <HeaderContainer />}
+            {location.pathname !== '/auth' && location.pathname !== '/preferences' && (
+                <HeaderContainer />
+            )}
             <Routes>
                 <Route path="/" element={<MainPageContainer />} />
                 <Route path="auth" element={<AuthPageContainer />} />
@@ -39,6 +42,7 @@ function App() {
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />
                 <Route path="article-page" element={<ArticlePageContainer />} />
+                <Route path="preferences" element={<PreferencesContainer />} />
             </Routes>
         </div>
     );
