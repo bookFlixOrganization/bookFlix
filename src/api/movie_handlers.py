@@ -38,12 +38,12 @@ async def get_imdb_details(movie_id: int):
 
 
 @movie_router.post("/{movie_id}/add_liked_films", tags=["likes"])
-async def add_liked_film(liked_movie: str, user: User = Depends(current_user),
+async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User = Depends(current_user),
                          session: AsyncSession = Depends(get_async_session)):
     stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
-    needed_user_data["liked_films"].append(liked_movie)
+    needed_user_data["liked_films"].append([liked_movie_title, liked_movie_id])
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -52,12 +52,12 @@ async def add_liked_film(liked_movie: str, user: User = Depends(current_user),
 
 
 @movie_router.post("/{movie_id}/add_disliked_films", tags=["likes"])
-async def add_disliked_film(disliked_movie: str, user: User = Depends(current_user),
+async def add_disliked_film(disliked_movie_title: str, disliked_movie_id, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
-    needed_user_data["disliked_films"].append(disliked_movie)
+    needed_user_data["disliked_films"].append([disliked_movie_title, disliked_movie_id])
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))

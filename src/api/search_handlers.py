@@ -34,30 +34,6 @@ async def search_person(query: str):
         return {"status": "error", "message": e}
 
 
-@search_router.get("/keyword", tags=["api_film"])
-async def search_keyword(query: str):
-    try:
-        func_result = ia.search_keyword(query)
-        keywords = []
-        for p in func_result:
-            if len(p.split(' ')) == 1:
-                keywords.append(p)
-            else:
-                pass
-        return {"status": "ok", "result": keywords}
-    except IMDbError as e:
-        return {"status": "error", "message": e}
-
-
-@search_router.get("/get_keyword", tags=["api_film"])
-async def get_keyword(query: str):
-    try:
-        keyword = ia.get_keyword(query)
-        return {"status": "ok", "result": keyword}
-    except IMDbError as e:
-        return {"status": "error", "message": e}
-
-
 @search_router.get("/book", tags=["api_book"])
 async def search_book(query: str):
     try:

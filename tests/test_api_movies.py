@@ -31,17 +31,3 @@ def test_get_person():
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert len(response.json()["result"]) != 0
-
-
-def test_search_keyword():
-    response = client.get("/search/keyword", params="query=drive")
-    assert response.status_code == 200
-    assert response.json()["status"] == "ok"
-    assert len(response.json()["result"]) != 0
-
-
-def test_get_keyword():
-    response = client.get("/search/keyword", params="query=grinch")
-    assert response.status_code == 200
-    assert response.json()["status"] == "ok"
-    assert len(response.json()["result"]) != 0

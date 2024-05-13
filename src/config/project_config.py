@@ -18,6 +18,14 @@ class Settings(BaseSettings):
     GOOGLE_API_KEY: str
     GIGACHAT_API_KEY: str
     TNY_API_KEY: str
+    MAIL_HOST: str
+    MAIL_USERNAME: str
+    MAIL_PASS: str
+    MAIL_PORT: str
+    ARTICLE_TEXT_MAX_LENGTH: int
+    ARTICLE_TEXT_MIN_LENGTH: int
+    ARTICLE_NAME_MAX_LENGTH: int
+    ARTICLE_NAME_MIN_LENGTH: int
 
     class Config:
         env_file = '.env'

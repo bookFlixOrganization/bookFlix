@@ -31,8 +31,8 @@ async def get_top_rated():
 
         for p in movie_list:
             top_rated[f"{p.id}"] = {"title:": p.title, "overview": p.overview,
-                                    "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}",
-                                    "imdb_id": p.imdb_id[2:]}
+                                    "poster_path:": f"https://image.tmdb.org/t/p/w220_and_h330_face{p.poster_path}"
+                                    }
         return {"status": "ok", "result": top_rated}
     except exceptions.TMDbException as e:
         return {"status": "error", "message": e}

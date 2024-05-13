@@ -26,12 +26,12 @@ current_user = fastapi_users.current_user()
 
 
 @book_router.post("/{book_id}/add_liked_books", tags=["likes"])
-async def add_liked_book(liked_book: str, user: User = Depends(current_user),
+async def add_liked_book(liked_book_title: str, liked_book_id: str, user: User = Depends(current_user),
                          session: AsyncSession = Depends(get_async_session)):
     stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
-    needed_user_data["liked_books"].append(liked_book)
+    needed_user_data["liked_books"].append([liked_book_title, liked_book_id])
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -40,12 +40,12 @@ async def add_liked_book(liked_book: str, user: User = Depends(current_user),
 
 
 @book_router.post("/{book_id}/add_disliked_books", tags=["likes"])
-async def add_disliked_book(disliked_book: str, user: User = Depends(current_user),
+async def add_disliked_book(disliked_book_title: str, disliked_book_id: str,  user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
-    needed_user_data["disliked_books"].append(disliked_book)
+    needed_user_data["disliked_books"].append([disliked_book_title, disliked_book_id])
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
