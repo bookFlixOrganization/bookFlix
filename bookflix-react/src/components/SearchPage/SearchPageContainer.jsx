@@ -2,7 +2,7 @@ import React from 'react';
 import SearchPage from './SearchPage.jsx';
 import styles from './SearchPage.module.css';
 
-const SearchContainer = () => {
+const SearchPageContainer = () => {
     const rathingButtons = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -24,4 +24,4 @@ const SearchContainer = () => {
     return <SearchPage rathingButtons={rathingButtons} yearsButtons={yearsButtons} />;
 };
 
-export default SearchContainer;
+export default SearchPageContainer;

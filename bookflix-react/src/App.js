@@ -17,6 +17,7 @@ import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContain
 import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
 import './App.css';
 import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
+import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
 
 function App() {
     const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />
                 <Route path="article-page" element={<ArticlePageContainer />} />
                 <Route path="preferences" element={<PreferencesContainer />} />
+                <Route path="search" element={<SearchPageContainer />} />
             </Routes>
         </div>
     );
