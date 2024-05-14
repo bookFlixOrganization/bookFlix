@@ -52,7 +52,7 @@ async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User
 
 
 @movie_router.post("/{movie_id}/add_disliked_films", tags=["likes"])
-async def add_disliked_film(disliked_movie_title: str, disliked_movie_id, user: User = Depends(current_user),
+async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
     res = (await session.execute(stmt)).all()
