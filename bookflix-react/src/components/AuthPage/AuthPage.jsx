@@ -91,6 +91,7 @@ const AuthPage = (props) => {
                     onSubmit={(event) => {
                         event.preventDefault();
                         window.history.pushState({}, '', window.location.pathname);
+                        props.handleRegistrationSubmit(event);
                     }}
                 >
                     <div

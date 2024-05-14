@@ -7,7 +7,6 @@ import {
     setUpUsername,
     setUpEmail,
     setUpPassword,
-    setNotifications,
     clearForm,
 } from '../../redux/authReducer.js';
 import { server } from '../../serverconf.js';
@@ -48,18 +47,19 @@ const AuthPageContainer = () => {
         dispatch(setUpPassword(event.target.value));
     };
 
-    const handleNotificationsChange = (event) => {
-        dispatch(setNotifications(event.target.checked));
-    };
-
     const handleLoginSubmit = (event) => {
         event.preventDefault();
+        if (!inUsername || !inPassword) {
+            console.error('Логин и пароль должны быть заполнены');
+            return;
+        }
         axios
             .post(`${server}/auth/jwt/login`, {
                 username: inUsername,
                 password: inPassword,
             })
             .then((response) => {
+                // Обработка ответа от сервера
                 console.log(response.data);
             })
             .catch((error) => {
@@ -69,14 +69,21 @@ const AuthPageContainer = () => {
 
     const handleRegistrationSubmit = (event) => {
         event.preventDefault();
+        if (!upUsername || !upPassword || !upEmail) {
+            console.error('Логин, пароль и email должны быть заполнены');
+            return;
+        }
         axios
-            .post('/registration-endpoint', {
+            .post(`${server}/auth/register`, {
                 email: upEmail,
                 password: upPassword,
                 username: upUsername,
+                role_id: 1,
             })
             .then((response) => {
-                console.log(response.data);
+                // Обработка ответа от сервера
+                // console.log(response.data);
+                alert('ura', response.data);
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
@@ -97,7 +104,6 @@ const AuthPageContainer = () => {
             handleUpUsernameChange={handleUpUsernameChange}
             handleUpEmailChange={handleUpEmailChange}
             handleUpPasswordChange={handleUpPasswordChange}
-            handleNotificationsChange={handleNotificationsChange}
             handleLoginSubmit={handleLoginSubmit}
             handleRegistrationSubmit={handleRegistrationSubmit}
         />
