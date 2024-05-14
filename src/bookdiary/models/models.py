@@ -1,5 +1,5 @@
 from sqlalchemy import BigInteger, DateTime, Integer, JSON, String, Text
-from sqlalchemy import Column, Table
+from sqlalchemy import Column
 from sqlalchemy import text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base

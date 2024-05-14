@@ -12,6 +12,7 @@ class UserRead(schemas.BaseUser[uuid.UUID]):
     is_active: bool = True
     is_superuser: bool = False
     is_verified: bool = False
+    is_preferences: bool = False
 
     class ConfigDict:
         from_attributes = True
@@ -25,6 +26,7 @@ class UserCreate(schemas.BaseUserCreate):
     is_active: Optional[bool] = True
     is_superuser: Optional[bool] = False
     is_verified: Optional[bool] = False
+    is_preferences: Optional[bool] = False
 
 
 class UserUpdate(schemas.BaseUserUpdate):

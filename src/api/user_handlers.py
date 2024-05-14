@@ -63,6 +63,7 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
                                                                            "favorite_genre_books": preferences.book_genre,
                                                                            "favorite_genre_films":
                                                                                preferences.film_genre})
+    user.is_preferences = True
     await session.execute(statement)
     await session.commit()
     st = insert(UserHistory.__table__).values(id=user.id, liked_films={}, liked_books={})

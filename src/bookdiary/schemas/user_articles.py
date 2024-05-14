@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 from uuid import UUID
 
@@ -36,7 +36,6 @@ class Book_info_more(Book_info):
 
 class Create_Article_get(Book_info, User_id):
     user_name: str
-    pass
 
 
 class User_articles_resp(Create_Article_get, Publication_date):
@@ -76,4 +75,3 @@ class Author_Page_resp(BaseModel):
 class My_articles_resp(Edit_Article_get):
     book_authors: List[str]
     publication_date: datetime
-    pass
