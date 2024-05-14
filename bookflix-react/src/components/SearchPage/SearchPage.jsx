@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './SearchPage.module.css';
 
 const SearchPage = (props) => {
-    const toggleVisibility = () => {};
-
     return (
         <div className={styles.search_container}>
             <div className={styles.search_form}>
@@ -26,7 +24,11 @@ const SearchPage = (props) => {
             </div>
 
             <div className={styles.choice}>
-                <button id="films" className={styles.choice_button} onClick={toggleVisibility}>
+                <button
+                    id="films"
+                    className={styles.choice_button}
+                    onClick={props.toggleFilmsVisibility}
+                >
                     Фильмы
                 </button>
                 <button id="books" className={styles.choice_button}>
@@ -34,123 +36,125 @@ const SearchPage = (props) => {
                 </button>
             </div>
 
-            <div className={styles.all_filters} id="hiddenDiv" style={{ display: 'none' }}>
-                <div className={styles.filters}>
-                    <p className={styles.section_title}>Жанр</p>
-                    <div className={styles.filters_1}>
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>😱</p>
-                            <p className={styles.text_on_button}>Хоррор</p>
-                        </button>
+            {props.isFilmVisibility && (
+                <div className={styles.all_filters} id="hiddenDiv">
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Жанр</p>
+                        <div className={styles.filters_1}>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>😱</p>
+                                <p className={styles.text_on_button}>Хоррор</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🥺</p>
-                            <p className={styles.text_on_button}>Драма</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🥺</p>
+                                <p className={styles.text_on_button}>Драма</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>👻</p>
-                            <p className={styles.text_on_button}>Мистика</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>👻</p>
+                                <p className={styles.text_on_button}>Мистика</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🤖</p>
-                            <p className={styles.text_on_button}>Научно-фантастический</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🤖</p>
+                                <p className={styles.text_on_button}>Научно-фантастический</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🍷</p>
-                            <p className={styles.text_on_button}>Романтический</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🍷</p>
+                                <p className={styles.text_on_button}>Романтический</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🖤</p>
-                            <p className={styles.text_on_button}>Нуар</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🖤</p>
+                                <p className={styles.text_on_button}>Нуар</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🗡</p>
-                            <p className={styles.text_on_button}>Фентези</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🗡</p>
+                                <p className={styles.text_on_button}>Фентези</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🗿</p>
-                            <p className={styles.text_on_button}>Биография</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🗿</p>
+                                <p className={styles.text_on_button}>Биография</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>📄</p>
-                            <p className={styles.text_on_button}>Документальный</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>📄</p>
+                                <p className={styles.text_on_button}>Документальный</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🎤</p>
-                            <p className={styles.text_on_button}>Мюзикл</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🎤</p>
+                                <p className={styles.text_on_button}>Мюзикл</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🙀</p>
-                            <p className={styles.text_on_button}>Триллер</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🙀</p>
+                                <p className={styles.text_on_button}>Триллер</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🔫</p>
-                            <p className={styles.text_on_button}>Криминальный</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🔫</p>
+                                <p className={styles.text_on_button}>Криминальный</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>💥</p>
-                            <p className={styles.text_on_button}>Экшн</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>💥</p>
+                                <p className={styles.text_on_button}>Экшн</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>💂🏻</p>
-                            <p className={styles.text_on_button}>Военный</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>💂🏻</p>
+                                <p className={styles.text_on_button}>Военный</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🤠</p>
-                            <p className={styles.text_on_button}>Приключения</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🤠</p>
+                                <p className={styles.text_on_button}>Приключения</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>😂</p>
-                            <p className={styles.text_on_button}>Комедия</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>😂</p>
+                                <p className={styles.text_on_button}>Комедия</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🌵</p>
-                            <p className={styles.text_on_button}>Вестерн</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🌵</p>
+                                <p className={styles.text_on_button}>Вестерн</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>🏛</p>
-                            <p className={styles.text_on_button}>Исторический</p>
-                        </button>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>🏛</p>
+                                <p className={styles.text_on_button}>Исторический</p>
+                            </button>
 
-                        <button type="button" className={styles.input_1} id="#">
-                            <p className={styles.text_on_button}>👨‍👩‍👦</p>
-                            <p className={styles.text_on_button}>Семейный</p>
+                            <button type="button" className={styles.input_1} id="#">
+                                <p className={styles.text_on_button}>👨‍👩‍👦</p>
+                                <p className={styles.text_on_button}>Семейный</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Год выпуска</p>
+                        <div className={styles.filters_1}>{props.yearsButtons}</div>
+                    </div>
+
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Рейтинг</p>
+                        <div className={styles.filters_1}>{props.rathingButtons}</div>
+                    </div>
+
+                    <div className={styles.apply}>
+                        <button id="safe" className={styles.choice_button}>
+                            Применить фильтры
                         </button>
                     </div>
                 </div>
-
-                <div className={styles.filters}>
-                    <p className={styles.section_title}>Год выпуска</p>
-                    <div className={styles.filters_1}>{props.yearsButtons}</div>
-                </div>
-
-                <div className={styles.filters}>
-                    <p className={styles.section_title}>Рейтинг</p>
-                    <div className={styles.filters_1}>{props.rathingButtons}</div>
-                </div>
-
-                <div className={styles.apply}>
-                    <button id="safe" className={styles.choice_button}>
-                        Применить фильтры
-                    </button>
-                </div>
-            </div>
+            )}
 
             <div className={styles.movies}>
                 <a href="/" className={styles.movie}>

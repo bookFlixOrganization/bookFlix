@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchPage from './SearchPage.jsx';
 import styles from './SearchPage.module.css';
 
 const SearchPageContainer = () => {
-    const rathingButtons = [];
+    const [isFilmVisibility, setIsFilmVisibility] = useState(false);
+    const toggleFilmVisibility = () => {
+        setIsFilmVisibility(!isFilmVisibility);
+    };
 
+    const rathingButtons = [];
     for (let i = 1; i <= 10; i++) {
         rathingButtons.push(
             <button key={i} type="button" className={styles.input_1}>
@@ -21,7 +25,14 @@ const SearchPageContainer = () => {
             </button>,
         );
     }
-    return <SearchPage rathingButtons={rathingButtons} yearsButtons={yearsButtons} />;
+    return (
+        <SearchPage
+            rathingButtons={rathingButtons}
+            yearsButtons={yearsButtons}
+            isFilmVisibility={isFilmVisibility}
+            toggleFilmsVisibility={toggleFilmVisibility}
+        />
+    );
 };
 
 export default SearchPageContainer;
