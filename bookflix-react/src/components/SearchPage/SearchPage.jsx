@@ -42,97 +42,78 @@ const SearchPage = (props) => {
                         <p className={styles.section_title}>Жанр</p>
                         <div className={styles.filters_1}>
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>😱</p>
                                 <p className={styles.text_on_button}>Хоррор</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🥺</p>
                                 <p className={styles.text_on_button}>Драма</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>👻</p>
                                 <p className={styles.text_on_button}>Мистика</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🤖</p>
                                 <p className={styles.text_on_button}>Научно-фантастический</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🍷</p>
                                 <p className={styles.text_on_button}>Романтический</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🖤</p>
                                 <p className={styles.text_on_button}>Нуар</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🗡</p>
                                 <p className={styles.text_on_button}>Фентези</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🗿</p>
                                 <p className={styles.text_on_button}>Биография</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>📄</p>
                                 <p className={styles.text_on_button}>Документальный</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🎤</p>
                                 <p className={styles.text_on_button}>Мюзикл</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🙀</p>
                                 <p className={styles.text_on_button}>Триллер</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🔫</p>
                                 <p className={styles.text_on_button}>Криминальный</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>💥</p>
                                 <p className={styles.text_on_button}>Экшн</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>💂🏻</p>
                                 <p className={styles.text_on_button}>Военный</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🤠</p>
                                 <p className={styles.text_on_button}>Приключения</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>😂</p>
                                 <p className={styles.text_on_button}>Комедия</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🌵</p>
                                 <p className={styles.text_on_button}>Вестерн</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>🏛</p>
                                 <p className={styles.text_on_button}>Исторический</p>
                             </button>
 
                             <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>👨‍👩‍👦</p>
                                 <p className={styles.text_on_button}>Семейный</p>
                             </button>
                         </div>
@@ -156,18 +137,16 @@ const SearchPage = (props) => {
                 </div>
             )}
 
-            <div className={styles.movies}>
+            {/* <div className={styles.movies}>
                 <a href="/" className={styles.movie}>
-                    <div className={styles.movie__cover_inner}>
-                        {/* Здесь должна быть обертка для обложки фильма */}
-                    </div>
+                    <div className={styles.movie__cover_inner}></div>
                     <div className={styles.movie__info}>
                         <div className={styles.movie__title}>Однажды в Голливуде</div>
                         <div className={styles.movie__category}>2019, комедия</div>
                         <div className={styles.movie__average}>9.3</div>
                     </div>
                 </a>
-            </div>
+            </div> */}
         </div>
     );
 };
