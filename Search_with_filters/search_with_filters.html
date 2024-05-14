@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookFlix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Anton&family=Bevan&family=Jockey+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/search_with_filters.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="search_form">
+            <input class="search_form_text" type="text" placeholder="Введите название фильма или книги">
+            <button class="search_form_button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style="fill: white;"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg>
+            </button>
+        </div>
+
+        <div class="choice">
+            <button id="films" class="choice_button" onclick="toggleVisibility()">Фильмы</button>
+            <button id="books" class="choice_button">Книги</button>
+        </div>
+
+        <div class="all_filters" id="hiddenDiv" style="display:none">
+            <div class="filters">
+                <p class="section_title">Жанр</p>
+                <div class="filters_1">
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">😱</p>
+                        <p class="text_on_button">Хоррор</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🥺</p>
+                        <p class="text_on_button">Драма</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">👻</p>
+                        <p class="text_on_button">Мистика</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🤖</p>
+                        <p class="text_on_button">Научно-фантастический</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🍷</p>
+                        <p class="text_on_button">Романтический</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🖤</p>
+                        <p class="text_on_button">Нуар</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🗡</p>
+                        <p class="text_on_button">Фентези</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🗿</p>
+                        <p class="text_on_button">Биография</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">📄</p>
+                        <p class="text_on_button">Документальный</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🎤</p>
+                        <p class="text_on_button">Мюзикл</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🙀</p>
+                        <p class="text_on_button">Триллер</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🔫</p>
+                        <p class="text_on_button">Криминальный</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">💥</p>
+                        <p class="text_on_button">Экшн</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">💂🏻</p>
+                        <p class="text_on_button">Военный</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🤠</p>
+                        <p class="text_on_button">Приключения</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">😂</p>
+                        <p class="text_on_button">Комедия</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🌵</p>
+                        <p class="text_on_button">Вестерн</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">🏛</p>
+                        <p class="text_on_button">Исторический</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">👨‍👩‍👦</p>
+                        <p class="text_on_button">Семейный</p>
+                    </button>
+
+                    
+                </div>
+            </div>
+
+
+
+            <div class="filters">
+                <p class="section_title">Год выпуска</p>
+                <div class="filters_1">
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1940-1950</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1950-1960</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1960-1970</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1970-1980</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1980-1990</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">1990-2000</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">2000-2010</p>
+                    </button>
+
+                    <button type="button" class="input_1"id="#">
+                        <p class="text_on_button">2010-2020</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">2020-2030</p>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="filters">
+                <p class="section_title">Рейтинг</p>
+                <div class="filters_1">
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 1⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 2⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 3⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 4⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 5⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 6⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 7⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 8⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 9⭐</p>
+                    </button>
+
+                    <button type="button" class="input_1" id="#">
+                        <p class="text_on_button">Не менее 10⭐</p>
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="apply"><button id="safe" class="choice_button">Применить фильтры</button></div>
+
+        </div>
+
+        <div class="movies">
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+
+            <a href="#" class="movie">
+                <div class="movie__cover-inner">
+                    <img src="images/Once at H.jpg" alt="" class="movie__cover">
+                    <div class="movie__cover--darkened"></div>
+                </div>
+                <div class="movie__info">
+                    <div class="movie__title">Однажды в Голливуде</div>
+                    <div class="movie__category">2019, комедия</div>
+                    <div class="movie__average">9.3</div>
+                </div>
+            </a>
+        </div>
+
+        
+    </div>   
+    
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/search_with_filters.js"></script>
+</html>
