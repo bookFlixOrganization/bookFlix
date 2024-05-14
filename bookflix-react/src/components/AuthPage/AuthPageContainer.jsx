@@ -10,6 +10,8 @@ import {
     setNotifications,
     clearForm,
 } from '../../redux/authReducer.js';
+import { server } from '../../serverconf.js';
+import axios from 'axios';
 
 const AuthPageContainer = () => {
     const dispatch = useDispatch();
@@ -25,7 +27,6 @@ const AuthPageContainer = () => {
     const upUsername = useSelector((state) => state.authReducer.up_username);
     const upEmail = useSelector((state) => state.authReducer.up_email);
     const upPassword = useSelector((state) => state.authReducer.up_password);
-    const notifications = useSelector((state) => state.authReducer.notifications);
 
     const handleInUsernameChange = (event) => {
         dispatch(setInUsername(event.target.value));
@@ -50,6 +51,38 @@ const AuthPageContainer = () => {
     const handleNotificationsChange = (event) => {
         dispatch(setNotifications(event.target.checked));
     };
+
+    const handleLoginSubmit = (event) => {
+        event.preventDefault();
+        axios
+            .post(`${server}/auth/jwt/login`, {
+                username: inUsername,
+                password: inPassword,
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+            });
+    };
+
+    const handleRegistrationSubmit = (event) => {
+        event.preventDefault();
+        axios
+            .post('/registration-endpoint', {
+                email: upEmail,
+                password: upPassword,
+                username: upUsername,
+            })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+            });
+    };
+
     return (
         <AuthPage
             isActive={isActive}
@@ -59,13 +92,14 @@ const AuthPageContainer = () => {
             upUsername={upUsername}
             upEmail={upEmail}
             upPassword={upPassword}
-            notifications={notifications}
             handleInUsernameChange={handleInUsernameChange}
             handleInPasswordChange={handleInPasswordChange}
             handleUpUsernameChange={handleUpUsernameChange}
             handleUpEmailChange={handleUpEmailChange}
             handleUpPasswordChange={handleUpPasswordChange}
             handleNotificationsChange={handleNotificationsChange}
+            handleLoginSubmit={handleLoginSubmit}
+            handleRegistrationSubmit={handleRegistrationSubmit}
         />
     );
 };

@@ -3,7 +3,6 @@ const SET_IN_PASSWORD = 'SET_IN_PASSWORD';
 const SET_UP_USERNAME = 'SET_UP_USERNAME';
 const SET_UP_EMAIL = 'SET_UP_EMAIL';
 const SET_UP_PASSWORD = 'SET_UP_PASSWORD';
-const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS';
 const CLEAR_FORM = 'CLEAR_FORM';
 
 const initialState = {
@@ -12,7 +11,6 @@ const initialState = {
     up_username: '',
     up_email: '',
     up_password: '',
-    notifications: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -42,11 +40,6 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 up_password: action.payload,
             };
-        case SET_NOTIFICATIONS:
-            return {
-                ...state,
-                notifications: action.payload,
-            };
         case CLEAR_FORM:
             return initialState;
         default:
@@ -59,10 +52,6 @@ export const setInPassword = (in_password) => ({ type: SET_IN_PASSWORD, payload:
 export const setUpUsername = (up_username) => ({ type: SET_UP_USERNAME, payload: up_username });
 export const setUpEmail = (up_email) => ({ type: SET_UP_EMAIL, payload: up_email });
 export const setUpPassword = (up_password) => ({ type: SET_UP_PASSWORD, payload: up_password });
-export const setNotifications = (notifications) => ({
-    type: SET_NOTIFICATIONS,
-    payload: notifications,
-});
 export const clearForm = () => ({ type: CLEAR_FORM });
 
 export default authReducer;

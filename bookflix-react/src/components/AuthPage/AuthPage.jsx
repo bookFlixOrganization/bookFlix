@@ -132,20 +132,6 @@ const AuthPage = (props) => {
                         <label htmlFor="up_password">Password</label>
                         <i className={`${styles.bx} ${styles.bxs_lock_alt}`}></i>
                     </div>
-                    <div
-                        className={`${styles.mailing_forgot} ${styles.animation}`}
-                        style={{ '--i': 21, '--j': 4 }}
-                    >
-                        <label htmlFor="notifications">
-                            <input
-                                id="notifications"
-                                type="checkbox"
-                                onChange={props.handleNotificationsChange}
-                                checked={props.notifications}
-                            />
-                            Receive e-mail notifications
-                        </label>
-                    </div>
                     <button
                         type="submit"
                         className={`${styles.btn} ${styles.animation}`}
