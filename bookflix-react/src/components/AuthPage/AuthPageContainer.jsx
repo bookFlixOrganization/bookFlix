@@ -80,13 +80,17 @@ const AuthPageContainer = () => {
                 username: upUsername,
                 role_id: 1,
             })
-            .then((response) => {
-                // Обработка ответа от сервера
-                // console.log(response.data);
-                alert('ura', response.data);
+            .then(() => {
+                alert('Пользователь успешно зарегистрирован');
             })
             .catch((error) => {
-                console.error('Ошибка:', error);
+                if (error.response) {
+                    if (error.response.status === 400) {
+                        alert('Пользователь уже существует');
+                    } else if (error.response.status === 422) {
+                        alert('Введите корректные данные (возможно пароль слишком простой');
+                    }
+                }
             });
     };
 
