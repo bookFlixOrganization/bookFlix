@@ -110,6 +110,60 @@ const Preferences = () => {
                 </div>
             </div>
             <h2 className={styles.preferences_title}>Давайте выберем ваши предпочтения в книгах</h2>
+            <div className={styles.preferences_genres}>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📚</div>
+                    <div className={styles.preferences_item_name}>Фантастика</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📖</div>
+                    <div className={styles.preferences_item_name}>Детектив</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📔</div>
+                    <div className={styles.preferences_item_name}>Бизнес-литература</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📙</div>
+                    <div className={styles.preferences_item_name}>Детская литература</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📘</div>
+                    <div className={styles.preferences_item_name}>Роман</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📗</div>
+                    <div className={styles.preferences_item_name}>Ужасы</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📕</div>
+                    <div className={styles.preferences_item_name}>Научная фантастика</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📒</div>
+                    <div className={styles.preferences_item_name}>Психология</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📓</div>
+                    <div className={styles.preferences_item_name}>Компьютерная литература</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📔</div>
+                    <div className={styles.preferences_item_name}>Классическая литература</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📖</div>
+                    <div className={styles.preferences_item_name}>Приключения</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📔</div>
+                    <div className={styles.preferences_item_name}>Учебная литература</div>
+                </div>
+                <div className={styles.preferences_item}>
+                    <div className={styles.preferences_item_emoji}>📘</div>
+                    <div className={styles.preferences_item_name}>Фэнтези</div>
+                </div>
+            </div>
             <button className={styles.prefenres_button}>Готово</button>
         </div>
     );
