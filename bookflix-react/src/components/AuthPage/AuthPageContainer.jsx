@@ -18,6 +18,7 @@ import {
     setUsername,
     setRoleId,
     setPreferences,
+    setIsAuth,
 } from '../../redux/sessionReducer.js';
 
 import { server } from '../../serverconf.js';
@@ -89,7 +90,6 @@ const AuthPageContainer = () => {
                 alert('success');
                 const userResponse = await axios.get(`${server}/users/me`);
                 const userData = userResponse.data;
-                console.log(userData);
                 dispatch(setId(userData.id));
                 dispatch(setEmail(userData.email));
                 dispatch(setActive(userData.is_active));
@@ -98,6 +98,7 @@ const AuthPageContainer = () => {
                 dispatch(setUsername(userData.username));
                 dispatch(setRoleId(userData.role_id));
                 dispatch(setPreferences(userData.is_preferences));
+                dispatch(setIsAuth(true));
             }
         } catch (error) {
             if (error.response) {
@@ -149,15 +150,17 @@ const AuthPageContainer = () => {
             }
         }
     };
-
     const isPrefences = useSelector((state) => state.sessionReducer.is_preferences);
+    const isAuth = useSelector((state) => state.sessionReducer.is_auth);
     useEffect(() => {
-        if (!isPrefences) {
+        if (!isPrefences && isAuth === null) {
             navigate('/preferences');
+        } else if (isAuth === null) {
+            navigate('/auth');
         } else {
             navigate('/');
         }
-    }, [isPrefences]);
+    }, [isPrefences, isAuth]);
 
     return (
         <>

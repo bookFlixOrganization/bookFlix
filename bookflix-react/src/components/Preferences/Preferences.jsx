@@ -68,7 +68,9 @@ const Preferences = (props) => {
                     </button>
                 ))}
             </div>
-            <button className={styles.prefenres_button}>Готово</button>
+            <button className={styles.prefenres_button} onClick={props.sendPreferences}>
+                Готово
+            </button>
         </div>
     );
 };

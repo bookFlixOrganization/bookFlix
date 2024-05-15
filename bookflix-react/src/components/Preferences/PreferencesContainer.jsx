@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import Preferences from './Preferences.jsx';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setPreferences } from '../../redux/sessionReducer.js';
+import axios from 'axios';
+import { server } from '../../serverconf.js';
 
 const PreferencesContainer = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [bookGenres, setBookGenres] = useState([]);
     const [filmGenres, setFilmGenres] = useState([]);
 
@@ -29,7 +37,34 @@ const PreferencesContainer = () => {
         return type === 'book' ? bookGenres.includes(genre) : filmGenres.includes(genre);
     };
 
-    return <Preferences handleGenreClick={handleGenreClick} isGenreActive={isGenreActive} />;
+    const sendPreferences = async () => {
+        try {
+            const response = await axios.post(`${server}/preferences_after_register`, {
+                book_genre: bookGenres,
+                film_genre: filmGenres,
+            });
+            if (response.status === 200) {
+                dispatch(setPreferences(true));
+                navigate('/');
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.status === 422) {
+                    alert('Заполните хотя бы один жанр для фильмов и книг');
+                }
+            } else {
+                alert('Произошла ошибка при отправке данных');
+            }
+        }
+    };
+
+    return (
+        <Preferences
+            handleGenreClick={handleGenreClick}
+            isGenreActive={isGenreActive}
+            sendPreferences={sendPreferences}
+        />
+    );
 };
 
 export default PreferencesContainer;

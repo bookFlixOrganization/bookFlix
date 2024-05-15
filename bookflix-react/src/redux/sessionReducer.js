@@ -6,6 +6,7 @@ const SET_VERIFIED = 'SET_VERIFIED';
 const SET_USERNAME = 'SET_USERNAME';
 const SET_ROLE_ID = 'SET_ROLE_ID';
 const SET_PREFERENCES = 'SET_PREFERENCES';
+const SET_IS_AUTH = 'SET_IS_AUTH';
 const LOGOUT = 'LOGOUT';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
     username: '',
     role_id: '',
     is_preferences: null,
+    is_auth: null,
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -61,6 +63,11 @@ const sessionReducer = (state = initialState, action) => {
                 ...state,
                 is_preferences: action.payload,
             };
+        case SET_IS_AUTH:
+            return {
+                ...state,
+                is_auth: action.payload,
+            };
         case LOGOUT:
             return initialState;
         default:
@@ -79,6 +86,7 @@ export const setPreferences = (isPreferences) => ({
     type: SET_PREFERENCES,
     payload: isPreferences,
 });
+export const setIsAuth = (isAuth) => ({ type: SET_IS_AUTH, payload: isAuth });
 export const logout = () => ({ type: LOGOUT });
 
 export default sessionReducer;
