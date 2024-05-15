@@ -1,168 +1,72 @@
 import React from 'react';
 import styles from './Preferences.module.css';
 
-const Preferences = () => {
+const Preferences = (props) => {
+    const filmGenres = [
+        { genre: 'Horror', emoji: '😱', name: 'Хоррор' },
+        { genre: 'Drama', emoji: '🥺', name: 'Драма' },
+        { genre: 'Mystery', emoji: '👻', name: 'Мистика' },
+        { genre: 'Sci-fi', emoji: '🤖', name: 'Научно-фантастический' },
+        { genre: 'Romance', emoji: '🍷', name: 'Романтический' },
+        { genre: 'Film-noir', emoji: '🖤', name: 'Нуар' },
+        { genre: 'Fantasy', emoji: '🗡️', name: 'Фентези' },
+        { genre: 'Biography', emoji: '🗿', name: 'Биография' },
+        { genre: 'Documentary', emoji: '📄', name: 'Документальный' },
+        { genre: 'Music', emoji: '🪩', name: 'Мюзикл' },
+        { genre: 'Thriller', emoji: '🙀', name: 'Триллер' },
+        { genre: 'Crime', emoji: '🔫', name: 'Криминальный' },
+        { genre: 'Action', emoji: '💥', name: 'Экшн' },
+        { genre: 'War', emoji: '🪖', name: 'Военный' },
+        { genre: 'Adventure', emoji: '🤠', name: 'Приключения' },
+        { genre: 'Comedy', emoji: '😂', name: 'Комедия' },
+        { genre: 'Western', emoji: '🌵', name: 'Вестерн' },
+        { genre: 'History', emoji: '🏛️', name: 'Исторический' },
+        { genre: 'Family', emoji: '👨‍👩‍👦', name: 'Семейный' },
+    ];
+    const bookGenres = [
+        { genre: 'Fantastic', emoji: '📚', name: 'Фантастика' },
+        { genre: 'Detective', emoji: '📖', name: 'Детектив' },
+        { genre: 'Business literature', emoji: '📔', name: 'Бизнес-литература' },
+        { genre: "Children's literature", emoji: '📙', name: 'Детская литература' },
+        { genre: 'Novel', emoji: '📘', name: 'Роман' },
+        { genre: 'Horror', emoji: '📗', name: 'Ужасы' },
+        { genre: 'Science fiction', emoji: '📕', name: 'Научная фантастика' },
+        { genre: 'Psychology', emoji: '📒', name: 'Психология' },
+        { genre: 'Computer literature', emoji: '📓', name: 'Компьютерная литература' },
+        { genre: 'Classic literature', emoji: '📔', name: 'Классическая литература' },
+        { genre: 'Adventure', emoji: '📖', name: 'Приключения' },
+        { genre: 'Study literature', emoji: '📔', name: 'Учебная литература' },
+        { genre: 'Fantasy', emoji: '📘', name: 'Фэнтези' },
+    ];
     return (
         <div className={styles.preferences_page_container}>
             <h2 className={styles.preferences_title}>
                 Давайте выберем ваши предпочтения в фильмах
             </h2>
             <div className={styles.preferences_genres}>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>😱</div>
-                    <div className={styles.preferences_item_name}>Хоррор</div>
-                    {/* Horror */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🥺</div>
-                    <div className={styles.preferences_item_name}>Драма</div>
-                    {/* Drama */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>👻</div>
-                    <div className={styles.preferences_item_name}>Мистика</div>
-                    {/* Mystery */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🤖</div>
-                    <div className={styles.preferences_item_name}>Научно-фантастический</div>
-                    {/* Sci-fi */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🍷</div>
-                    <div className={styles.preferences_item_name}>Романтический</div>
-                    {/* Romance */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🖤</div>
-                    <div className={styles.preferences_item_name}>Нуар</div>
-                    {/* Film-noir */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🗡️</div>
-                    <div className={styles.preferences_item_name}>Фентези</div>
-                    {/* Fantasy */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🗿</div>
-                    <div className={styles.preferences_item_name}>Биография</div>
-                    {/* Biography */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🗿</div>
-                    <div className={styles.preferences_item_name}>Биография</div>
-                    {/* Biography */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📄</div>
-                    <div className={styles.preferences_item_name}>Документальный</div>
-                    {/* Documentary */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🪩</div>
-                    <div className={styles.preferences_item_name}>Мюзикл</div>
-                    {/* Music */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🙀</div>
-                    <div className={styles.preferences_item_name}>Триллер</div>
-                    {/* Thriller */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🔫</div>
-                    <div className={styles.preferences_item_name}>Криминальный</div>
-                    {/* Crime */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>💥</div>
-                    <div className={styles.preferences_item_name}>Экшн</div>
-                    {/* Action */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🪖</div>
-                    <div className={styles.preferences_item_name}>Военный</div>
-                    {/* War */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🤠</div>
-                    <div className={styles.preferences_item_name}>Приключения</div>
-                    {/* Adventure */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>😂</div>
-                    <div className={styles.preferences_item_name}>Комедия</div>
-                    {/* Comedy */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🌵</div>
-                    <div className={styles.preferences_item_name}>Вестерн</div>
-                    {/* Western */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>🏛️</div>
-                    <div className={styles.preferences_item_name}>Исторический</div>
-                    {/* History */}
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>👨‍👩‍👦</div>
-                    <div className={styles.preferences_item_name}>Семейный</div>
-                    {/* Семейный */}
-                </div>
+                {filmGenres.map(({ genre, emoji, name }) => (
+                    <button
+                        key={`film_${genre}`}
+                        className={`${styles.preferences_item} ${props.isGenreActive(genre, 'book') ? styles.active : ''}`}
+                        onClick={() => props.handleGenreClick(genre, 'book')}
+                    >
+                        <div className={styles.preferences_item_emoji}>{emoji}</div>
+                        <div className={styles.preferences_item_name}>{name}</div>
+                    </button>
+                ))}
             </div>
             <h2 className={styles.preferences_title}>Давайте выберем ваши предпочтения в книгах</h2>
             <div className={styles.preferences_genres}>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📚</div>
-                    <div className={styles.preferences_item_name}>Фантастика</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📖</div>
-                    <div className={styles.preferences_item_name}>Детектив</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📔</div>
-                    <div className={styles.preferences_item_name}>Бизнес-литература</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📙</div>
-                    <div className={styles.preferences_item_name}>Детская литература</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📘</div>
-                    <div className={styles.preferences_item_name}>Роман</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📗</div>
-                    <div className={styles.preferences_item_name}>Ужасы</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📕</div>
-                    <div className={styles.preferences_item_name}>Научная фантастика</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📒</div>
-                    <div className={styles.preferences_item_name}>Психология</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📓</div>
-                    <div className={styles.preferences_item_name}>Компьютерная литература</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📔</div>
-                    <div className={styles.preferences_item_name}>Классическая литература</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📖</div>
-                    <div className={styles.preferences_item_name}>Приключения</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📔</div>
-                    <div className={styles.preferences_item_name}>Учебная литература</div>
-                </div>
-                <div className={styles.preferences_item}>
-                    <div className={styles.preferences_item_emoji}>📘</div>
-                    <div className={styles.preferences_item_name}>Фэнтези</div>
-                </div>
+                {bookGenres.map(({ genre, emoji, name }) => (
+                    <button
+                        key={`book_${genre}`}
+                        className={`${styles.preferences_item} ${props.isGenreActive(genre, 'book') ? styles.active : ''}`}
+                        onClick={() => props.handleGenreClick(genre, 'book')}
+                    >
+                        <div className={styles.preferences_item_emoji}>{emoji}</div>
+                        <div className={styles.preferences_item_name}>{name}</div>
+                    </button>
+                ))}
             </div>
             <button className={styles.prefenres_button}>Готово</button>
         </div>

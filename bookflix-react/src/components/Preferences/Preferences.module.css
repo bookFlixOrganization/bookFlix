@@ -23,8 +23,11 @@
 }
 
 .preferences_item {
+    flex-grow: 1;
+    flex-basis: 0;
     padding: 20px;
     margin: 5px;
+    border: none;
     border-radius: 50px;
     display: flex;
     flex-direction: row;
@@ -33,6 +36,16 @@
     color: #ffffff;
     cursor: pointer;
     white-space: nowrap;
+    outline: none;
+}
+
+.preferences_item:hover {
+    background-color: #ffffff;
+    color: #3b3b3b;
+}
+
+.preferences_item.active {
+    background-color: green;
 }
 
 .preferences_item_emoji,
