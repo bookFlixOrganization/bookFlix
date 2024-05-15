@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import AuthPage from './AuthPage.jsx';
 import {
     setInUsername,
@@ -11,8 +12,10 @@ import {
 } from '../../redux/authReducer.js';
 import { server } from '../../serverconf.js';
 import axios from 'axios';
+import qs from 'qs';
 
 const AuthPageContainer = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isActive, setActive] = useState(false);
 
@@ -20,7 +23,6 @@ const AuthPageContainer = () => {
         setActive(!isActive);
         dispatch(clearForm());
     };
-
     const inUsername = useSelector((state) => state.authReducer.in_username);
     const inPassword = useSelector((state) => state.authReducer.in_password);
     const upUsername = useSelector((state) => state.authReducer.up_username);
@@ -47,51 +49,81 @@ const AuthPageContainer = () => {
         dispatch(setUpPassword(event.target.value));
     };
 
-    const handleLoginSubmit = (event) => {
+    const handleLoginSubmit = async (event) => {
         event.preventDefault();
         if (!inUsername || !inPassword) {
-            console.error('Логин и пароль должны быть заполнены');
+            alert('Логин и пароль должны быть заполнены');
             return;
         }
-        axios
-            .post(`${server}/auth/jwt/login`, {
-                username: inUsername,
-                password: inPassword,
-            })
-            .then((response) => {
-                // Обработка ответа от сервера
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-            });
+
+        const data = {
+            username: inUsername,
+            password: inPassword,
+        };
+
+        const options = {
+            method: 'POST',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: qs.stringify(data),
+            url: `${server}/auth/jwt/login`,
+        };
+
+        try {
+            const response = await axios(options);
+            console.log(response.status);
+            if (response.status === 204 || response.status === 200) {
+                navigate('/');
+                dispatch(clearForm());
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.status === 400 || error.response.status === 422) {
+                    alert('Ошибка входа: неверный логин или пароль');
+                } else {
+                    alert('Ошибка сервера');
+                }
+            }
+        }
     };
 
-    const handleRegistrationSubmit = (event) => {
+    const handleRegistrationSubmit = async (event) => {
         event.preventDefault();
-        if (!upUsername || !upPassword || !upEmail) {
-            console.error('Логин, пароль и email должны быть заполнены');
-            return;
-        }
-        axios
-            .post(`${server}/auth/register`, {
+
+        try {
+            if (!upUsername || !upPassword || !upEmail) {
+                alert('Логин, пароль и email должны быть заполнены');
+                return;
+            }
+            const registerResponse = await axios.post(`${server}/auth/register`, {
                 email: upEmail,
                 password: upPassword,
                 username: upUsername,
                 role_id: 1,
-            })
-            .then(() => {
-                alert('Пользователь успешно зарегистрирован');
-            })
-            .catch((error) => {
-                if (error.response) {
-                    if (error.response.status === 400) {
-                        alert('Пользователь уже существует');
-                    } else if (error.response.status === 422) {
-                        alert('Введите корректные данные (возможно пароль слишком простой');
-                    }
-                }
             });
+
+            if (registerResponse.status === 201) {
+                dispatch(clearForm());
+                handleRegistrationClick();
+                alert('Пользователь успешно зарегистрирован');
+            } else {
+                // Обработка ошибок сервера
+                alert('Произошла ошибка при регистрации');
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.status === 422) {
+                    alert('Введенные данные не валидны (либо пароль слишком простой)');
+                } else if (error.response.status === 400) {
+                    alert('Пользователь уже существует');
+                }
+            } else if (error.request) {
+                // Запрос был выполнен, но не получен ответ
+                alert('Произошла сетевая ошибка при регистрации');
+            } else {
+                // Возникла ошибка при настройке запроса
+                alert('Произошла ошибка при регистрации');
+            }
+        }
     };
 
     return (

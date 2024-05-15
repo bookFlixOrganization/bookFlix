@@ -15,8 +15,8 @@ const AuthPage = (props) => {
                 <form
                     action="#"
                     onSubmit={(event) => {
-                        event.preventDefault();
                         window.history.pushState({}, '', window.location.pathname);
+                        props.handleLoginSubmit(event);
                     }}
                 >
                     <div
@@ -29,7 +29,7 @@ const AuthPage = (props) => {
                             onChange={props.handleInUsernameChange}
                             value={props.inUsername || ''}
                         />
-                        <label htmlFor="in-username">Username</label>
+                        <label htmlFor="in-username">E-mail</label>
                         <i className={`${styles.bx} ${styles.bxs_user}`}></i>
                     </div>
                     <div
@@ -66,7 +66,10 @@ const AuthPage = (props) => {
                             Don`&#39;`t have an account?{' '}
                             <button
                                 className={styles.register_link}
-                                onClick={props.handleRegistrationClick}
+                                onClick={(event) => {
+                                    event.preventDefault();
+                                    props.handleRegistrationClick();
+                                }}
                             >
                                 Sign Up
                             </button>
@@ -89,7 +92,6 @@ const AuthPage = (props) => {
                 <form
                     action="#"
                     onSubmit={(event) => {
-                        event.preventDefault();
                         window.history.pushState({}, '', window.location.pathname);
                         props.handleRegistrationSubmit(event);
                     }}
@@ -140,23 +142,25 @@ const AuthPage = (props) => {
                     >
                         Sign Up
                     </button>
-                    <div
-                        className={`${styles.logreg_link} ${styles.animation}`}
-                        style={{ '--i': 22, '--j': 5 }}
-                    >
-                        <p>
-                            Already have an account?{' '}
-                            <button
-                                className={styles.login_link}
-                                onClick={props.handleRegistrationClick}
-                            >
-                                Login
-                            </button>
-                        </p>
-                    </div>
                 </form>
+                <div
+                    className={`${styles.logreg_link} ${styles.animation}`}
+                    style={{ '--i': 22, '--j': 5 }}
+                >
+                    <p>
+                        Already have an account?{' '}
+                        <button
+                            className={styles.register_link}
+                            onClick={(event) => {
+                                event.preventDefault();
+                                props.handleRegistrationClick();
+                            }}
+                        >
+                            Login
+                        </button>
+                    </p>
+                </div>
             </div>
-
             <div className={`${styles.info_text} ${styles.register}`}>
                 <h2 className={styles.animation} style={{ '--i': 17, '--j': 0 }}>
                     Welcome to the BookFlix!
