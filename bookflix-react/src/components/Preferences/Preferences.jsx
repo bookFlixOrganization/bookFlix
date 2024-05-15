@@ -47,8 +47,8 @@ const Preferences = (props) => {
                 {filmGenres.map(({ genre, emoji, name }) => (
                     <button
                         key={`film_${genre}`}
-                        className={`${styles.preferences_item} ${props.isGenreActive(genre, 'book') ? styles.active : ''}`}
-                        onClick={() => props.handleGenreClick(genre, 'book')}
+                        className={`${styles.preferences_item} ${props.isGenreActive(genre, 'film') ? styles.active : ''}`}
+                        onClick={() => props.handleGenreClick(genre, 'film')}
                     >
                         <div className={styles.preferences_item_emoji}>{emoji}</div>
                         <div className={styles.preferences_item_name}>{name}</div>
