@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BookPage from './BookPage.jsx';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const BookPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
@@ -40,15 +41,18 @@ const BookPageContainer = () => {
     }, []);
 
     return (
-        <BookPage
-            isFavourite={isFavourite}
-            toggleFavourite={toggleFavourite}
-            isModalOpen={isModalOpen}
-            isFeedbackSubmitted={isFeedbackSubmitted}
-            openModal={openModal}
-            closeModal={closeModal}
-            submitFeedback={submitFeedback}
-        />
+        <>
+            <PreferencesCheck />
+            <BookPage
+                isFavourite={isFavourite}
+                toggleFavourite={toggleFavourite}
+                isModalOpen={isModalOpen}
+                isFeedbackSubmitted={isFeedbackSubmitted}
+                openModal={openModal}
+                closeModal={closeModal}
+                submitFeedback={submitFeedback}
+            />
+        </>
     );
 };
 

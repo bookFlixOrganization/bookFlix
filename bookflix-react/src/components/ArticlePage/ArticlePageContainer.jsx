@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ArticlePage from './ArticlePage.jsx';
 import { setLiked } from '../../redux/articlePageReducer.js';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const ArticlePageContainer = () => {
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -20,12 +21,15 @@ const ArticlePageContainer = () => {
     console.log(isLiked);
 
     return (
-        <ArticlePage
-            isSubscribed={isSubscribed}
-            handleSubsClick={handleSubsClick}
-            isLiked={isLiked}
-            handleLikeClick={handleLikeClick}
-        />
+        <>
+            <PreferencesCheck />
+            <ArticlePage
+                isSubscribed={isSubscribed}
+                handleSubsClick={handleSubsClick}
+                isLiked={isLiked}
+                handleLikeClick={handleLikeClick}
+            />
+        </>
     );
 };
 

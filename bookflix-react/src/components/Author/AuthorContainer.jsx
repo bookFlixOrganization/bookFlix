@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSubscribed } from '../../redux/authorReducer.js';
 import Author from './Author.jsx';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const AuthorContainer = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,12 @@ const AuthorContainer = () => {
         dispatch(setSubscribed(!isSubscribed));
     };
 
-    return <Author isSubscribed={isSubscribed} handleSubscribe={handleSubscribe} />;
+    return (
+        <>
+            <PreferencesCheck />
+            <Author isSubscribed={isSubscribed} handleSubscribe={handleSubscribe} />;
+        </>
+    );
 };
 
 export default AuthorContainer;

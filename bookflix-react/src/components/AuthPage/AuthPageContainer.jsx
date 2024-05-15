@@ -23,6 +23,7 @@ import {
 import { server } from '../../serverconf.js';
 import axios from 'axios';
 import qs from 'qs';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const AuthPageContainer = () => {
     const navigate = useNavigate();
@@ -159,22 +160,25 @@ const AuthPageContainer = () => {
     }, [isPrefences]);
 
     return (
-        <AuthPage
-            isActive={isActive}
-            handleRegistrationClick={handleRegistrationClick}
-            inUsername={inUsername}
-            inPassword={inPassword}
-            upUsername={upUsername}
-            upEmail={upEmail}
-            upPassword={upPassword}
-            handleInUsernameChange={handleInUsernameChange}
-            handleInPasswordChange={handleInPasswordChange}
-            handleUpUsernameChange={handleUpUsernameChange}
-            handleUpEmailChange={handleUpEmailChange}
-            handleUpPasswordChange={handleUpPasswordChange}
-            handleLoginSubmit={handleLoginSubmit}
-            handleRegistrationSubmit={handleRegistrationSubmit}
-        />
+        <>
+            <PreferencesCheck />
+            <AuthPage
+                isActive={isActive}
+                handleRegistrationClick={handleRegistrationClick}
+                inUsername={inUsername}
+                inPassword={inPassword}
+                upUsername={upUsername}
+                upEmail={upEmail}
+                upPassword={upPassword}
+                handleInUsernameChange={handleInUsernameChange}
+                handleInPasswordChange={handleInPasswordChange}
+                handleUpUsernameChange={handleUpUsernameChange}
+                handleUpEmailChange={handleUpEmailChange}
+                handleUpPasswordChange={handleUpPasswordChange}
+                handleLoginSubmit={handleLoginSubmit}
+                handleRegistrationSubmit={handleRegistrationSubmit}
+            />
+        </>
     );
 };
 

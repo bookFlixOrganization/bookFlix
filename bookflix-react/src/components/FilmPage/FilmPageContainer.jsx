@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Filmpage from './FilmPage.jsx';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const FilmPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
@@ -40,15 +41,18 @@ const FilmPageContainer = () => {
     }, []);
 
     return (
-        <Filmpage
-            isFavourite={isFavourite}
-            toggleFavourite={toggleFavourite}
-            isModalOpen={isModalOpen}
-            isFeedbackSubmitted={isFeedbackSubmitted}
-            openModal={openModal}
-            closeModal={closeModal}
-            submitFeedback={submitFeedback}
-        />
+        <>
+            <PreferencesCheck />
+            <Filmpage
+                isFavourite={isFavourite}
+                toggleFavourite={toggleFavourite}
+                isModalOpen={isModalOpen}
+                isFeedbackSubmitted={isFeedbackSubmitted}
+                openModal={openModal}
+                closeModal={closeModal}
+                submitFeedback={submitFeedback}
+            />
+        </>
     );
 };
 

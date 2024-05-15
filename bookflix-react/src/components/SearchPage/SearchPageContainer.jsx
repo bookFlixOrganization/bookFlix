@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchPage from './SearchPage.jsx';
 import styles from './SearchPage.module.css';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const SearchPageContainer = () => {
     const [isFilmVisibility, setIsFilmVisibility] = useState(false);
@@ -26,12 +27,15 @@ const SearchPageContainer = () => {
         );
     }
     return (
-        <SearchPage
-            rathingButtons={rathingButtons}
-            yearsButtons={yearsButtons}
-            isFilmVisibility={isFilmVisibility}
-            toggleFilmsVisibility={toggleFilmVisibility}
-        />
+        <>
+            <PreferencesCheck />
+            <SearchPage
+                rathingButtons={rathingButtons}
+                yearsButtons={yearsButtons}
+                isFilmVisibility={isFilmVisibility}
+                toggleFilmsVisibility={toggleFilmVisibility}
+            />
+        </>
     );
 };
 

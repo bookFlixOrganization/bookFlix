@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setArticleName, setBookName, setText } from '../../redux/articleReducer.js';
 import EditArticle from './EditArticle.jsx';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const EditArticleContainer = () => {
     const dispatch = useDispatch();
@@ -23,14 +24,17 @@ const EditArticleContainer = () => {
     };
 
     return (
-        <EditArticle
-            articleName={articleName}
-            bookName={bookName}
-            text={text}
-            handleEditArticleName={handleEditArticleName}
-            handleEditBookName={handleEditBookName}
-            handleEditText={handleEditText}
-        />
+        <>
+            <PreferencesCheck />
+            <EditArticle
+                articleName={articleName}
+                bookName={bookName}
+                text={text}
+                handleEditArticleName={handleEditArticleName}
+                handleEditBookName={handleEditBookName}
+                handleEditText={handleEditText}
+            />
+        </>
     );
 };
 

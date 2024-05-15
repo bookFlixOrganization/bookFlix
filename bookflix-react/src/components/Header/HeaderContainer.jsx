@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRequest } from '../../redux/headerReducer.js';
 import Header from './Header.jsx';
+import PreferencesCheck from '../PreferencesCheck.jsx';
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
@@ -20,13 +21,16 @@ const HeaderContainer = () => {
     };
 
     return (
-        <Header
-            isActive={isActive}
-            handleSearchClick={handleSearchClick}
-            requestText={requestText}
-            handleTextChange={handleTextChange}
-            handleClearClick={handleClearClick}
-        />
+        <>
+            <PreferencesCheck />
+            <Header
+                isActive={isActive}
+                handleSearchClick={handleSearchClick}
+                requestText={requestText}
+                handleTextChange={handleTextChange}
+                handleClearClick={handleClearClick}
+            />
+        </>
     );
 };
 
