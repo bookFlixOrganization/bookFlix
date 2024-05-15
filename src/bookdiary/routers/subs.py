@@ -44,7 +44,7 @@ async def get_all_subs_id(
     return result.mappings().fetchall()
 
 
-@router.post("/bookdiary/subs/{sub_id}", status_code=status.HTTP_200_OK)
+@router.post("/bookdiary/subs/{sub_id}", status_code=status.HTTP_201_CREATED)
 async def user_subscribe(
     sub_id: uuid.UUID,
     user: User = Depends(current_user),
@@ -63,7 +63,7 @@ async def user_subscribe(
     return status.HTTP_200_OK
 
 
-@router.delete("/bookdiary/subs/{sub_id}", status_code=status.HTTP_200_OK)
+@router.delete("/bookdiary/subs/{sub_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def user_unsubscribe(
     sub_id: uuid.UUID,
     user: User = Depends(current_user),

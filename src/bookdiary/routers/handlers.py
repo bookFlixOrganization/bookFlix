@@ -65,7 +65,7 @@ async def valid_length_exception(this: int, maximum: int, minimum: int, detail: 
         )
 
 
-@router.post("/bookdiary/articles/my", status_code=status.HTTP_200_OK)
+@router.post("/bookdiary/articles/my", status_code=status.HTTP_201_CREATED)
 async def create_article(
     tasks: BackgroundTasks,
     user: User = Depends(current_user),
@@ -108,7 +108,7 @@ async def create_article(
     tasks.add_task(
         email_prepare_data_send, user_name=user.username, to=emails,
     )
-    return status.HTTP_200_OK
+    return status.HTTP_201_CREATED
 
 
 @router.get("/bookdiary/articles/my/{article_id}", response_model=Book_info)
@@ -127,7 +127,7 @@ async def get_article_info_for_edit(
     return result
 
 
-@router.put("/bookdiary/articles/my/{article_id}", status_code=status.HTTP_200_OK)
+@router.put("/bookdiary/articles/my/{article_id}", status_code=status.HTTP_202_ACCEPTED)
 async def edit_article_by_article_id(
     user: User = Depends(current_user),
     data: dict = Depends(Edit_Article_get),
@@ -166,7 +166,7 @@ async def edit_article_by_article_id(
     await session.execute(stmt_update)
     await session.commit()
 
-    return status.HTTP_200_OK
+    return status.HTTP_202_ACCEPTED
 
 
 @router.get("/bookdiary/articles/{article_id}", response_model=Article_Page_resp)
@@ -200,7 +200,7 @@ async def get_article_by_article_id(
     } | result
 
 
-@router.delete("/bookdiary/articles/my/{article_id}", status_code=status.HTTP_200_OK)
+@router.delete("/bookdiary/articles/my/{article_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_article_by_article_id(
     article_id: str,
     user: User = Depends(current_user),
@@ -220,7 +220,7 @@ async def delete_article_by_article_id(
     await session.execute(stmt2)
     await session.commit()
 
-    return status.HTTP_200_OK
+    return status.HTTP_204_NO_CONTENT
 
 
 @router.get("/bookdiary/users/{user_id}", response_model=Author_Page_resp)

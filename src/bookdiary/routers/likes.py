@@ -35,7 +35,7 @@ def get_current_user_id(user_id: int):
     return user_id
 
 
-@router.post("/bookdiary/likes/{article_id}", status_code=status.HTTP_200_OK)
+@router.post("/bookdiary/likes/{article_id}", status_code=status.HTTP_201_CREATED)
 async def user_like_article(
     article_id: str,
     user: User = Depends(current_user),
@@ -65,10 +65,10 @@ async def user_like_article(
     session.add(new_like)
     await session.commit()
 
-    return status.HTTP_200_OK
+    return status.HTTP_201_CREATED
 
 
-@router.delete("/bookdiary/likes/{article_id}", status_code=status.HTTP_200_OK)
+@router.delete("/bookdiary/likes/{article_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def user_unlike_article(
     article_id: str,
     user: User = Depends(current_user),
@@ -99,4 +99,4 @@ async def user_unlike_article(
     await session.execute(stmt4)
     await session.commit()
     
-    return status.HTTP_200_OK
+    return status.HTTP_204_NO_CONTENT
