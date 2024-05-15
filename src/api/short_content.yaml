@@ -1,0 +1,5 @@
+input_variables: [titles]
+output_parser: null
+template: 'Напиши краткое содержание о книге {titles}, без лишнего текста, напиши только краткое содержание'
+template_format: f-string
+_type: prompt

@@ -1,0 +1,17 @@
+services:
+  fastapi:
+    container_name: fastapi
+    build: ..
+    command:
+      python main.py
+    ports:
+      - "4000:4000"
+    volumes:
+      - ..:/code
+    networks:
+      - backend
+    restart: always
+
+networks:
+  backend:
+    driver: bridge
