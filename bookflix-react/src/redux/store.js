@@ -7,7 +7,7 @@ import bookBageReducer from './bookPageReducer';
 import filmPageReducer from './filmPageReducer';
 import feedbackReducer from './feedbackReducer';
 import articlePageReducer from './articlePageReducer';
-import sessionRecucer from './sessionReducer';
+import sessionReducer from './sessionReducer';
 
 const store = configureStore({
     reducer: {
@@ -19,7 +19,7 @@ const store = configureStore({
         filmPageReducer: filmPageReducer,
         feedbackReducer: feedbackReducer,
         articlePageReducer: articlePageReducer,
-        sessionRecucer: sessionRecucer,
+        sessionReducer: sessionReducer,
     },
 });
 

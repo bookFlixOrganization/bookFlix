@@ -1,4 +1,3 @@
-// Константы для действий
 const SET_ID = 'SET_ID';
 const SET_EMAIL = 'SET_EMAIL';
 const SET_ACTIVE = 'SET_ACTIVE';
@@ -17,10 +16,10 @@ const initialState = {
     is_verified: false,
     username: '',
     role_id: '',
-    is_preferences: false,
+    is_preferences: null,
 };
 
-const sessionRecucer = (state = initialState, action) => {
+const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_ID:
             return {
@@ -82,4 +81,4 @@ export const setPreferences = (isPreferences) => ({
 });
 export const logout = () => ({ type: LOGOUT });
 
-export default sessionRecucer;
+export default sessionReducer;

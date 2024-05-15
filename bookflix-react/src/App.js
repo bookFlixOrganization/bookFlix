@@ -18,8 +18,10 @@ import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.
 import './App.css';
 import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
+import axios from 'axios';
 
 function App() {
+    axios.defaults.withCredentials = true;
     const location = useLocation();
 
     return (

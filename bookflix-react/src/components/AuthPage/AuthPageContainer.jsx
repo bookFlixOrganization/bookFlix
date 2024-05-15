@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AuthPage from './AuthPage.jsx';
@@ -10,6 +10,16 @@ import {
     setUpPassword,
     clearForm,
 } from '../../redux/authReducer.js';
+import {
+    setId,
+    setEmail,
+    setSuperuser,
+    setVerified,
+    setUsername,
+    setRoleId,
+    setPreferences,
+} from '../../redux/sessionReducer.js';
+
 import { server } from '../../serverconf.js';
 import axios from 'axios';
 import qs from 'qs';
@@ -17,6 +27,7 @@ import qs from 'qs';
 const AuthPageContainer = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const [isActive, setActive] = useState(false);
 
     const handleRegistrationClick = () => {
@@ -63,17 +74,29 @@ const AuthPageContainer = () => {
 
         const options = {
             method: 'POST',
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+            },
             data: qs.stringify(data),
             url: `${server}/auth/jwt/login`,
         };
 
         try {
             const response = await axios(options);
-            console.log(response.status);
             if (response.status === 204 || response.status === 200) {
-                navigate('/');
                 dispatch(clearForm());
+                alert('success');
+                const userResponse = await axios.get(`${server}/users/me`);
+                const userData = userResponse.data;
+                console.log(userData);
+                dispatch(setId(userData.id));
+                dispatch(setEmail(userData.email));
+                dispatch(setActive(userData.is_active));
+                dispatch(setSuperuser(userData.is_superuser));
+                dispatch(setVerified(userData.is_verified));
+                dispatch(setUsername(userData.username));
+                dispatch(setRoleId(userData.role_id));
+                dispatch(setPreferences(userData.is_preferences));
             }
         } catch (error) {
             if (error.response) {
@@ -125,6 +148,15 @@ const AuthPageContainer = () => {
             }
         }
     };
+
+    const isPrefences = useSelector((state) => state.sessionReducer.is_preferences);
+    useEffect(() => {
+        if (!isPrefences) {
+            navigate('/preferences');
+        } else {
+            navigate('/');
+        }
+    }, [isPrefences]);
 
     return (
         <AuthPage
