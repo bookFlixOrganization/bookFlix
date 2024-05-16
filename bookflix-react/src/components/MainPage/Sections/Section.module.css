@@ -201,31 +201,24 @@
 }
 
 .swiper_slide {
-    width: 100%;
     padding-bottom: 50px;
 }
 
-.swiper_button_prev,
-.swiper_button_next {
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    font-size: 24px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    cursor: pointer;
+.swiper_button_prev:after,
+.swiper_button_next:after {
+    content: '';
 }
 
-.swiper_button_prev {
-    left: 0;
+.container_arrow {
+    position: relative;
+    top: -175px;
 }
 
-.swiper_button_next {
-    right: 0;
+.now_watching_section .swiper {
+    padding-bottom: 50px;
 }
 
-.hidden {
-    display: none;
+.container_arrow .swiper_button_next.swiper-button-disabled,
+.swiper_button_prev.swiper-button-disabled {
+    opacity: 0;
 }

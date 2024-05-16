@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Section.module.css';
 import { NavLink } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react'; // eslint-disable-line
+import 'swiper/css'; // eslint-disable-line
+import { ReactComponent as ArrowLeft } from './images/Arrow_left.svg';
+import { ReactComponent as ArrowRight } from './images/Arrow_right.svg';
 
 const PopularBooks = (props) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [slidesPerView, setSlidesPerView] = useState(5); // eslint-disable-line
-
-    const nextSlide = () => {
-        setCurrentSlide((currentSlide + 1) % props.popularBooks.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((currentSlide - 1 + props.popularBooks.length) % props.popularBooks.length);
-    };
-
-    const startIndex = currentSlide * slidesPerView;
-
     return (
         <section className={styles.now_reading_text}>
             <div className={styles.container}>
@@ -30,58 +21,46 @@ const PopularBooks = (props) => {
                         Самые популярные книги за последний час
                     </p>
                 </div>
-                <div className={styles.swiper_container}>
-                    <button onClick={prevSlide} className={styles.swiper_button_prev}>
-                        &#10094;
-                    </button>
-                    <div className={styles.swiper}>
-                        <div className={styles.swiper_wrapper}>
-                            {props.popularBooks &&
-                                props.popularBooks.map((book, index) => {
-                                    const isVisible =
-                                        index >= startIndex && index < startIndex + slidesPerView;
-                                    return (
-                                        <div
-                                            key={`popular_book_${index}`}
-                                            className={`${styles.swiper_slide} ${isVisible ? '' : styles.hidden}`}
-                                        >
-                                            <div className={styles.container}></div>
-                                            <div className={styles.movies}>
-                                                <a
-                                                    href={book.buy_links[0].url}
-                                                    className={styles.movie}
-                                                >
-                                                    <div className={styles.movie__cover_inner}>
-                                                        <img
-                                                            src={book.book_image}
-                                                            alt={book.title}
-                                                            className={styles.movie__cover}
-                                                        />
-                                                        <div
-                                                            className={styles.movie__cover_darkened}
-                                                        ></div>
-                                                    </div>
-                                                    <div className={styles.movie__info}>
-                                                        <div className={styles.movie__title}>
-                                                            {book.title}
-                                                        </div>
-                                                        <div className={styles.movie__category}>
-                                                            {book.author}
-                                                        </div>
-                                                        <div className={styles.movie__average}>
-                                                            {book.rank}
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                        </div>
-                    </div>
-                    <button onClick={nextSlide} className={styles.swiper_button_next}>
-                        &#10095;
-                    </button>
+                <Swiper
+                    slidesPerView={2}
+                    freeMode={true}
+                    navigation={{
+                        nextEl: `.${styles.swiper_button_next}`,
+                        prevEl: `.${styles.swiper_button_prev}`,
+                    }}
+                    className={styles.swiper}
+                >
+                    {props.popularBooks &&
+                        props.popularBooks.map((book, index) => (
+                            <SwiperSlide
+                                key={`popular_book_${index}`}
+                                className={styles.swiper_slide}
+                            >
+                                <a href={book.buy_links[0].url} className={styles.movie}>
+                                    <div className={styles.movie__cover_inner}>
+                                        <img
+                                            src={book.book_image}
+                                            alt={book.title}
+                                            className={styles.movie__cover}
+                                        />
+                                        <div className={styles.movie__cover_darkened}></div>
+                                    </div>
+                                    <div className={styles.movie__info}>
+                                        <div className={styles.movie__title}>{book.title}</div>
+                                        <div className={styles.movie__category}>{book.author}</div>
+                                        <div className={styles.movie__average}>{book.rank}</div>
+                                    </div>
+                                </a>
+                            </SwiperSlide>
+                        ))}
+                </Swiper>
+            </div>
+            <div className={`${styles.top} ${styles.container_arrow}`}>
+                <div className={`${styles.swiper_button_prev}`}>
+                    <ArrowLeft />
+                </div>
+                <div className={`${styles.swiper_button_next}`}>
+                    <ArrowRight />
                 </div>
             </div>
         </section>
