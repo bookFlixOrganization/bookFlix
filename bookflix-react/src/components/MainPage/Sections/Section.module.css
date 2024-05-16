@@ -41,6 +41,7 @@
 }
 
 .section_subtitle {
+    padding-bottom: 30px;
     color: #9f9f9f;
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
@@ -56,4 +57,146 @@
 .button_all:hover {
     color: #e43131;
     transform: scale(1.03);
+}
+
+.now_watching_section {
+    padding-left: 300px;
+}
+
+.movies {
+    display: flex;
+    justify-content: space-around;
+}
+
+.movie {
+    width: 200px;
+    height: 350px;
+    border-radius: 20px;
+    margin: 10px;
+    position: relative;
+    transition: 0.6s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.movie:hover {
+    transform: scale(1.05);
+}
+
+.movie__cover_inner {
+    position: relative;
+    height: 320px;
+}
+
+.movie__cover {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.movie__cover_darkened {
+    border-radius: 20px;
+    background-color: #222222;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.movie__cover_darkened:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.movie__info {
+    padding: 10px 0px;
+}
+
+.movie__title {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.movie__category {
+    font-size: 16px;
+    color: #e54d4d;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+}
+
+.movie__average {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 0px;
+    border-radius: 7px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e54d4d;
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Adamina', serif;
+}
+
+.movie_show_all {
+    width: 200px;
+    height: 320px;
+    /* max-height: 320px; */
+    border-radius: 20px;
+    margin: 10px;
+    position: relative;
+    transition: 0.6s;
+    background-color: rgb(43, 43, 43);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie_show_all:hover {
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.show_all {
+    color: #9f9f9f;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    content: '';
+}
+
+.container-arrow {
+    position: relative;
+    top: -175px;
+}
+
+.now_watching_section .swiper {
+    padding-bottom: 50px;
+}
+
+.container-arrow .swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+    opacity: 0;
+}
+
+.swiper_wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+    box-sizing: content-box;
 }

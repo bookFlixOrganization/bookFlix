@@ -4,13 +4,13 @@ import YourBooks from './Sections/YourBooks.jsx';
 import PopularFilms from './Sections/PopularFilms.jsx';
 import PopularBooks from './Sections/PopularBooks.jsx';
 
-const MainPage = () => {
+const MainPage = (props) => {
     return (
         <div>
             <YourFilms />
             <YourBooks />
             <PopularFilms />
-            <PopularBooks />
+            <PopularBooks popularBooks={props.popularBooks} />
         </div>
     );
 };
