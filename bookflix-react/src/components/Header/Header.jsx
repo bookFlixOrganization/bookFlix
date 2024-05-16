@@ -13,24 +13,13 @@ const Header = (props) => {
                         <div className={styles.header_logo}>BookFlix</div>
                     </NavLink>
                     <ul className={styles.user_nav}>
-                        <div className={`${styles.search} ${props.isActive ? styles.active : ''}`}>
-                            <button
-                                className={styles.icon}
-                                onClick={props.handleSearchClick}
-                            ></button>
-                            <div className={styles.input}>
-                                <input
-                                    type="text"
-                                    placeholder="Поиск"
-                                    id="mySearch"
-                                    onChange={props.handleTextChange}
-                                    value={props.requestText || ''}
-                                />
-                            </div>
-                            <button
-                                className={styles.clear}
-                                onClick={props.handleClearClick}
-                            ></button>
+                        <div className={`${styles.search}`}>
+                            <NavLink to="/search">
+                                <button
+                                    className={styles.icon}
+                                    onClick={props.handleSearchClick}
+                                ></button>
+                            </NavLink>
                         </div>
 
                         <li className={styles.user_nav__item}>
