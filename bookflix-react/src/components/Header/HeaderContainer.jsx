@@ -11,7 +11,6 @@ const HeaderContainer = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const session = useSelector((state) => state.sessionReducer);
-    console.log(session);
     const handleLogout = async (event) => {
         event.preventDefault();
         try {

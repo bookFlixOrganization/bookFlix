@@ -18,7 +18,6 @@ const ArticlePageContainer = () => {
     const handleLikeClick = () => {
         dispatch(setLiked(!isLiked));
     };
-    console.log(isLiked);
 
     return (
         <>
