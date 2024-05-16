@@ -69,6 +69,7 @@ const sessionReducer = (state = initialState, action) => {
                 is_auth: action.payload,
             };
         case LOGOUT:
+            document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             return initialState;
         default:
             return state;

@@ -15,9 +15,10 @@ import ArticlesContainer from './components/Articles/ArticlesContainer.jsx';
 import SubscribesContainer from './components/Subscribes/SubscribesContainer.jsx';
 import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContainer.jsx';
 import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
-import './App.css';
 import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
+import FeedBackContainer from './components/FeedBack/FeedBackContainer.jsx';
+import './App.css';
 import axios from 'axios';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                 <Route path="article-page" element={<ArticlePageContainer />} />
                 <Route path="preferences" element={<PreferencesContainer />} />
                 <Route path="search" element={<SearchPageContainer />} />
+                <Route path="feedback" element={<FeedBackContainer />} />
             </Routes>
         </div>
     );

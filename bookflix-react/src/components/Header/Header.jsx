@@ -2,8 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import logo from './images/new_logo.svg';
+import { ReactComponent as ProfileIcon } from './images/profile.svg';
 
-const Header = (props) => {
+const Header = ({ session, handleLogout }) => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -19,11 +20,46 @@ const Header = (props) => {
                             </NavLink>
                         </div>
 
-                        {props.session.is_active && (
+                        {!session.is_auth && (
                             <li className={styles.user_nav__item}>
                                 <NavLink to="/auth" className={styles.entrance}>
                                     Sign In
                                 </NavLink>
+                            </li>
+                        )}
+
+                        {session.is_auth && (
+                            <li className={styles.user_nav__item}>
+                                <div className={`${styles.entrance} ${styles.profile_entrance}`}>
+                                    <ProfileIcon className={styles.profile_icon} />
+                                </div>
+                                <ul className={styles.drop_down_menu}>
+                                    <li className={styles.points}>
+                                        <NavLink to="/">Главная</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
+                                        <NavLink to="/favourites">Избранное</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
+                                        <NavLink to="/history">История</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
+                                        <NavLink to="/articles">Мои отзывы</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
+                                        <NavLink to="/reading-diary">Дневник чтения</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
+                                        <div className={styles.logout_button_container}>
+                                            <button
+                                                className={styles.logout_button}
+                                                onClick={handleLogout}
+                                            >
+                                                Logout
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
                             </li>
                         )}
                     </ul>
