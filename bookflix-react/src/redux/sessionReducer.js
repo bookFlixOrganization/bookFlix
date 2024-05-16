@@ -12,13 +12,13 @@ const LOGOUT = 'LOGOUT';
 const initialState = {
     id: '',
     email: '',
-    is_active: true,
+    is_active: false,
     is_superuser: false,
     is_verified: false,
     username: '',
     role_id: '',
-    is_preferences: null,
-    is_auth: null,
+    is_preferences: false,
+    is_auth: false,
 };
 
 const sessionReducer = (state = initialState, action) => {

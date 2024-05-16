@@ -14,11 +14,12 @@ import {
     setId,
     setEmail,
     setSuperuser,
+    setIsAuth,
+    setRoleId,
+    setActive,
+    setPreferences,
     setVerified,
     setUsername,
-    setRoleId,
-    setPreferences,
-    setIsAuth,
 } from '../../redux/sessionReducer.js';
 
 import { server } from '../../serverconf.js';
@@ -30,10 +31,10 @@ const AuthPageContainer = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [isActive, setActive] = useState(false);
+    const [isActive, setButtonActive] = useState(false);
 
     const handleRegistrationClick = () => {
-        setActive(!isActive);
+        setButtonActive(!isActive);
         dispatch(clearForm());
     };
     const inUsername = useSelector((state) => state.authReducer.in_username);
@@ -90,6 +91,7 @@ const AuthPageContainer = () => {
                 alert('success');
                 const userResponse = await axios.get(`${server}/users/me`);
                 const userData = userResponse.data;
+                console.log(userData);
                 dispatch(setId(userData.id));
                 dispatch(setEmail(userData.email));
                 dispatch(setActive(userData.is_active));
@@ -153,15 +155,16 @@ const AuthPageContainer = () => {
     const isPrefences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
     useEffect(() => {
-        if (!isPrefences && isAuth === null) {
+        if (!isPrefences && isAuth) {
             navigate('/preferences');
-        } else if (isAuth === null) {
+        } else if (!isAuth) {
             navigate('/auth');
         } else {
             navigate('/');
         }
     }, [isPrefences, isAuth]);
-
+    const state = useSelector((state) => state.sessionReducer);
+    console.log(state);
     return (
         <>
             <PreferencesCheck />

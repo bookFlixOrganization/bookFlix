@@ -7,7 +7,7 @@ const PreferencesCheck = () => {
     const isPrefences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
     useEffect(() => {
-        if (isPrefences === null && isAuth) {
+        if (!isPrefences && isAuth) {
             navigate('/preferences');
         }
     }, []);
