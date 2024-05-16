@@ -1,4 +1,3 @@
-# pylint: disable=no-member, missing-timeout
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import insert, select
@@ -81,6 +80,6 @@ async def favourites(user: User = Depends(current_user),
         user_view = result.first()
         return user_view.preferences
     except AttributeError as e:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except SQLAlchemyError as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) from e

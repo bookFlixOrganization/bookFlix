@@ -1,7 +1,6 @@
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select, update
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from tmdbv3api import TMDb, Movie, exceptions
 from fastapi_users import FastAPIUsers
@@ -111,6 +110,6 @@ async def added_movie(user: User = Depends(current_user),
             added_movies_list[movie[1]] = ia.get_movie(movie[1])
         return added_movies_list
     except AttributeError as e:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except IMDbError as e:
-        raise {"status": "error", "message": e}
+        raise f'Error response, message: {e}'

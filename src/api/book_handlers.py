@@ -90,6 +90,6 @@ async def added_books(user: User = Depends(current_user),
             added_books_list[book[1]] = service.volumes().get(volumeId=book[1]).execute()
         return added_books_list
     except AttributeError as e:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except HttpError as e:
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'

@@ -40,7 +40,6 @@ async def prepare_database():
         await conn.run_sync(BookDiary_Base.metadata.drop_all)
 
 
-
 # @pytest.fixture(scope="session")
 # def event_loop(request):
 #     """Create an instance of the default event loop for each test case."""

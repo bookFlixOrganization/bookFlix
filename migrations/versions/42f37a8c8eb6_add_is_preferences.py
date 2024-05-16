@@ -1,10 +1,4 @@
-"""add is_preferences
-
-Revision ID: 42f37a8c8eb6
-Revises: f20f304b1379
-Create Date: 2024-05-14 21:30:43.536491
-
-"""
+# pylint: disable=no-member, invalid-name
 from typing import Sequence, Union
 
 from alembic import op

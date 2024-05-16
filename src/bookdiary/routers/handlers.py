@@ -103,7 +103,6 @@ async def create_article(
         new_article = Publics(**data)
         session.add(new_article)
         await session.commit()
-    
     # tasks.add_task(
         # email_prepare_data_send, user_id=user_id, user_name=user_name, result=subs_id,
     # )
