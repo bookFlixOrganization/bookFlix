@@ -1,12 +1,14 @@
 import uuid
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select, update
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from tmdbv3api import TMDb, Movie, exceptions
 from fastapi_users import FastAPIUsers
 from imdb import Cinemagoer, IMDbError
 
 from src.api.auth import auth_backend
+from src.api.user_handlers import user_router
 from src.config.db.session import get_async_session
 from src.config.project_config import settings
 from src.models.dals import get_user_manager
@@ -94,3 +96,21 @@ async def get_person(person_id: str):
         return {"status": "ok", "result": person}
     except IMDbError as e:
         return {"status": "error", "message": e}
+
+
+@user_router.get("/favourite/added_movie", tags=["preferences"])
+async def added_movie(user: User = Depends(current_user),
+                      session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_view = result.first()
+        added_movies = user_view.preferences['liked_films']
+        added_movies_list = {}
+        for movie in added_movies:
+            added_movies_list[movie[1]] = ia.get_movie(movie[1])
+        return added_movies_list
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except IMDbError as e:
+        raise {"status": "error", "message": e}

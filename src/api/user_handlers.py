@@ -1,7 +1,8 @@
 # pylint: disable=no-member, missing-timeout
 import uuid
-from fastapi import APIRouter, Depends
-from sqlalchemy import insert
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy import insert, select
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import FastAPIUsers
 
@@ -69,3 +70,17 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
     st = insert(UserHistory.__table__).values(id=user.id, liked_films={}, liked_books={})
     await session.execute(st)
     await session.commit()
+
+
+@user_router.get("/favourite", tags=["preferences"])
+async def favourites(user: User = Depends(current_user),
+                     session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_view = result.first()
+        return user_view.preferences
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
