@@ -38,6 +38,10 @@ const PreferencesContainer = () => {
     };
 
     const sendPreferences = async () => {
+        if (bookGenres.length == 0 || filmGenres.length == 0) {
+            alert('Нужно заполнить предпочтения книг и фильмов');
+            return;
+        }
         try {
             const response = await axios.post(`${server}/preferences_after_register`, {
                 book_genre: bookGenres,
