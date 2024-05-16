@@ -15,18 +15,17 @@ const Header = (props) => {
                     <ul className={styles.user_nav}>
                         <div className={`${styles.search}`}>
                             <NavLink to="/search">
-                                <button
-                                    className={styles.icon}
-                                    onClick={props.handleSearchClick}
-                                ></button>
+                                <div className={styles.icon}></div>
                             </NavLink>
                         </div>
 
-                        <li className={styles.user_nav__item}>
-                            <NavLink to="/auth" className={styles.entrance}>
-                                Sign In
-                            </NavLink>
-                        </li>
+                        {props.session.is_active && (
+                            <li className={styles.user_nav__item}>
+                                <NavLink to="/auth" className={styles.entrance}>
+                                    Sign In
+                                </NavLink>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
