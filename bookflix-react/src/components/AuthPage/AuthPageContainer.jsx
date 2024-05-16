@@ -91,7 +91,6 @@ const AuthPageContainer = () => {
                 alert('success');
                 const userResponse = await axios.get(`${server}/users/me`);
                 const userData = userResponse.data;
-                console.log(userData);
                 dispatch(setId(userData.id));
                 dispatch(setEmail(userData.email));
                 dispatch(setActive(userData.is_active));
@@ -163,8 +162,6 @@ const AuthPageContainer = () => {
             navigate('/');
         }
     }, [isPrefences, isAuth]);
-    const state = useSelector((state) => state.sessionReducer);
-    console.log(state);
     return (
         <>
             <PreferencesCheck />
