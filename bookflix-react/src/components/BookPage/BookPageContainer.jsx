@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BookPage from './BookPage.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const BookPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
@@ -42,7 +42,7 @@ const BookPageContainer = () => {
 
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <BookPage
                 isFavourite={isFavourite}
                 toggleFavourite={toggleFavourite}

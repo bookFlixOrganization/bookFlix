@@ -1,11 +1,11 @@
 import React from 'react';
 import AllBooks from './AllBooks.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const AllBooksContainer = () => {
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <AllBooks />;
         </>
     );

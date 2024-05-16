@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/sessionReducer.js';
 import axios from 'axios';
@@ -25,7 +25,7 @@ const HeaderContainer = () => {
 
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <Header session={session} handleLogout={handleLogout} />
         </>
     );

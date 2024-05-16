@@ -1,11 +1,11 @@
 import React from 'react';
 import MainPage from './MainPage.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const MainPageContainer = () => {
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <MainPage />
         </>
     );

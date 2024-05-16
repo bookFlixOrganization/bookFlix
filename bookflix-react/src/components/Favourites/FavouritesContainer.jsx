@@ -1,11 +1,11 @@
 import React from 'react';
 import Favourites from './Favourites.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const FavouritesContainer = () => {
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <Favourites />
         </>
     );

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMark, setText } from '../../redux/feedbackReducer.js';
 
 import FeedBack from './FeedBack.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const FeedBackContainer = (props) => {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const FeedBackContainer = (props) => {
 
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <FeedBack
                 mark={mark}
                 text={text}

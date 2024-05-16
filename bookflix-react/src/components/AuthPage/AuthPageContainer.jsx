@@ -25,7 +25,7 @@ import {
 import { server } from '../../serverconf.js';
 import axios from 'axios';
 import qs from 'qs';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const AuthPageContainer = () => {
     const navigate = useNavigate();
@@ -164,7 +164,7 @@ const AuthPageContainer = () => {
     }, [isPrefences, isAuth]);
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <AuthPage
                 isActive={isActive}
                 handleRegistrationClick={handleRegistrationClick}

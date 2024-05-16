@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Filmpage from './FilmPage.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const FilmPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
@@ -42,7 +42,7 @@ const FilmPageContainer = () => {
 
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <Filmpage
                 isFavourite={isFavourite}
                 toggleFavourite={toggleFavourite}

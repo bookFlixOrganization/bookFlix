@@ -1,11 +1,11 @@
 import React from 'react';
 import ReadingDiary from './ReadingDiary.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const ReadingDiaryContainer = () => {
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <ReadingDiary />;
         </>
     );

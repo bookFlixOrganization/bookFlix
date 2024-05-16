@@ -16,7 +16,7 @@ import {
 } from '../redux/sessionReducer.js';
 import { server } from '../serverconf.js';
 
-const PreferencesCheck = () => {
+const SessionChecker = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isPreferences = useSelector((state) => state.sessionReducer.is_preferences);
@@ -62,4 +62,4 @@ const PreferencesCheck = () => {
     return null;
 };
 
-export default PreferencesCheck;
+export default SessionChecker;

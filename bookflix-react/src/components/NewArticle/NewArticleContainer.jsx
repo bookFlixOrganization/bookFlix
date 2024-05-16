@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setArticleName, setBookName, setText } from '../../redux/articleReducer.js';
 import NewArticle from './NewArticle.jsx';
-import PreferencesCheck from '../PreferencesCheck.jsx';
+import SessionChecker from '../SessionChecker.jsx';
 
 const NewArticleContainer = () => {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const NewArticleContainer = () => {
 
     return (
         <>
-            <PreferencesCheck />
+            <SessionChecker />
             <NewArticle
                 articleName={articleName}
                 bookName={bookName}
