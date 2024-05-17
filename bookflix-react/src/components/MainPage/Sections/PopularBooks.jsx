@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react'; // eslint-disable-line
 import { Navigation } from 'swiper/modules'; // eslint-disable-line
 import 'swiper/css'; // eslint-disable-line
 import 'swiper/css/navigation'; //eslint-disable-line
 import styles from './Section.module.css';
-// import { ReactComponent as ArrowLeft } from './images/Arrow_left.svg';
-// import { ReactComponent as ArrowRight } from './images/Arrow_right.svg';
 
 const PopularBooks = (props) => {
+    const navigate = useNavigate();
     return (
         <>
             <section className={styles.now_watching_text_1}>
@@ -66,7 +66,10 @@ const PopularBooks = (props) => {
                                     </div>
                                 </SwiperSlide>
                             ))}
-                        <SwiperSlide className={styles.movie_show_all}>
+                        <SwiperSlide
+                            className={styles.movie_show_all}
+                            onClick={() => navigate('/all-books')}
+                        >
                             <p className={styles.show_all}>Смотреть все</p>
                         </SwiperSlide>
                     </div>
