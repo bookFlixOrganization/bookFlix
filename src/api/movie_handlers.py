@@ -66,6 +66,34 @@ async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, u
     await session.commit()
 
 
+@movie_router.post("/{movie_id}/delete_liked_films", tags=["likes"])
+async def delete_liked_film(liked_movie_title: str, liked_movie_id: str, user: User = Depends(current_user),
+                            session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["liked_films"].remove([liked_movie_title, liked_movie_id])
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
+
+
+@movie_router.post("/{movie_id}/delete_disliked_films", tags=["likes"])
+async def delete_disliked_film(disliked_movie_title: str, disliked_movie_id: str, user: User = Depends(current_user),
+                               session: AsyncSession = Depends(get_async_session)):
+    stmt = select(UserView.__table__).where(UserView.__table__.c.id == user.id)
+    res = (await session.execute(stmt)).all()
+    needed_user_data = res[0][1]
+    needed_user_data["disliked_films"].remove([disliked_movie_title, disliked_movie_id])
+    statement = (update(UserView.__table__)
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
+    await session.execute(statement)
+    await session.commit()
+
+
 @movie_router.get("/{movie_id}/similar_films", tags=["api_film"])
 async def get_similar(movie_id: int):
     similar = movie.similar(movie_id)
