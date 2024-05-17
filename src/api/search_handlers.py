@@ -10,6 +10,7 @@ search_router = APIRouter(
     prefix="/search"
 )
 ia = Cinemagoer()
+service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
 
 
 @search_router.get("/movie", tags=["api_film"])
@@ -37,7 +38,6 @@ async def search_person(query: str):
 @search_router.get("/book", tags=["api_book"])
 async def search_book(query: str):
     try:
-        service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
         request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
         response = request.execute()
         return response

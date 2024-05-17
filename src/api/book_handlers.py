@@ -4,12 +4,14 @@ import json
 import requests
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi_users import FastAPIUsers
+from langchain.schema import HumanMessage
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 from src.api.auth import auth_backend
+from src.api.gigachat import gigachat_router, prompt_for_recommendation_movies, chat
 from src.api.user_handlers import user_router
 from src.config.db.session import get_async_session
 from src.config.project_config import settings
@@ -117,6 +119,31 @@ async def added_books(user: User = Depends(current_user),
         for book in added_books:
             added_books_list[book[1]] = service.volumes().get(volumeId=book[1]).execute()
         return added_books_list
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
+    except HttpError as e:
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
+
+
+@gigachat_router.get("/recommendation_book")
+async def recommendation_book(user: User = Depends(current_user),
+                              session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_view = result.first()
+        added_books_names = [movie[0].lower() for movie in user_view.preferences['liked_books']]
+        if len(added_books_names) == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        text = prompt_for_recommendation_movies.format(titles=", ".join(added_books_names))
+        response = [movie for movie in chat([HumanMessage(content=text)]).content.strip().split(", ") if
+                    movie.lower() not in added_books_names]
+        book_list = {}
+        for title in response:
+            request = service.volumes().list(q=title, maxResults=15, printType="BOOKS", projection="LITE")
+            response = request.execute()["items"][0]
+            book_list[response["id"]] = response
+        return book_list
     except AttributeError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except HttpError as e:
