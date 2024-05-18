@@ -70,7 +70,6 @@ const BookPageContainer = () => {
 
                 const secondBookResponse = await axios.get(`${server}/book/${firstBook.id}`);
                 const secondBookData = secondBookResponse.data;
-                console.log(secondBookData);
                 dispatch(setName(secondBookData.volumeInfo.title));
                 dispatch(setAuthor(secondBookData.volumeInfo.authors));
                 dispatch(setDate(secondBookData.volumeInfo.publishedDate));
