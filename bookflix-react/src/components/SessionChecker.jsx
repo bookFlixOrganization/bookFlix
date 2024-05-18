@@ -21,7 +21,6 @@ const SessionChecker = () => {
     const navigate = useNavigate();
     const isPreferences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
-
     useEffect(() => {
         const fetchUserData = async () => {
             const cookies = document.cookie.split('; ');

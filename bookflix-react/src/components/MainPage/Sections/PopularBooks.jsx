@@ -30,6 +30,7 @@ const PopularBooks = (props) => {
                 <Swiper
                     modules={[Navigation]}
                     slidesPerView={5}
+                    slidesPerGroup={4}
                     freeMode={true}
                     navigation
                     className={styles.swiper}

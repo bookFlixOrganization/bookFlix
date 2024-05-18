@@ -9,7 +9,7 @@ const MainPage = (props) => {
         <div>
             <YourFilms />
             <YourBooks />
-            <PopularFilms />
+            <PopularFilms popularFilms={props.popularFilms} />
             <PopularBooks popularBooks={props.popularBooks} />
         </div>
     );
