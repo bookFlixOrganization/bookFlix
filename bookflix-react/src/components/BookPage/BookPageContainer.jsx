@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import BookPage from './BookPage.jsx';
 import SessionChecker from '../SessionChecker.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    setId,
+    setName,
+    setAuthor,
+    setDescription,
+    setDate,
+    setGenre,
+    setNumberOfPages,
+    setLanguage,
+    setRatingBookflix,
+    setRatingGoogle,
+    setCoverUrl,
+    setBuyUrl,
+} from '../../redux/bookPageReducer.js';
+import axios from 'axios';
+import { server } from '../../serverconf.js';
+import { useParams } from 'react-router-dom';
 
 const BookPageContainer = () => {
+    const { bookName } = useParams();
+    const dispatch = useDispatch();
     const [isFavourite, setIsFavourite] = useState(false);
 
     const toggleFavourite = () => {
@@ -40,6 +60,37 @@ const BookPageContainer = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const fetchBookData = async () => {
+            try {
+                const firstBookResponse = await axios.get(
+                    `${server}/search/book?query=${bookName}`,
+                );
+                const firstBook = firstBookResponse.data.items[0];
+
+                const secondBookResponse = await axios.get(`${server}/book/${firstBook.id}`);
+                const secondBookData = secondBookResponse.data;
+                console.log(secondBookData);
+                dispatch(setName(secondBookData.volumeInfo.title));
+                dispatch(setAuthor(secondBookData.volumeInfo.authors));
+                dispatch(setDate(secondBookData.volumeInfo.publishedDate));
+                dispatch(setDescription(secondBookData.volumeInfo.description));
+                dispatch(setGenre(secondBookData.volumeInfo.categories));
+                dispatch(setId(secondBookData.id));
+                dispatch(setNumberOfPages(secondBookData.volumeInfo.pageCount));
+                dispatch(setLanguage(secondBookData.volumeInfo.language));
+                dispatch(setRatingBookflix(0));
+                dispatch(setRatingGoogle(0));
+                dispatch(setCoverUrl(secondBookData.volumeInfo.imageLinks.medium));
+                dispatch(setBuyUrl(secondBookData.accessInfo.webReaderLink));
+            } catch (error) {
+                console.error('Ошибка при получении данных книги:', error);
+            }
+        };
+
+        fetchBookData();
+    }, [bookName]);
+    const bookState = useSelector((state) => state.bookPageReducer);
     return (
         <>
             <SessionChecker />
@@ -51,6 +102,7 @@ const BookPageContainer = () => {
                 openModal={openModal}
                 closeModal={closeModal}
                 submitFeedback={submitFeedback}
+                bookState={bookState}
             />
         </>
     );

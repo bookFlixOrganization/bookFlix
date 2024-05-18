@@ -1,3 +1,4 @@
+const SET_ID = 'SET_ID';
 const SET_NAME = 'SET_BOOK_NAME';
 const SET_AUTHOR = 'SET_AUTHOR';
 const SET_DESCRIPTION = 'SET_DESCRIPTION';
@@ -7,8 +8,11 @@ const SET_NUMBER_PAGES = 'SET_NUMBER_PAGES';
 const SET_LANGUAGE = 'SET_LANGUAGE';
 const SET_RATING_BOOKFLIX = 'SET_RATING';
 const SET_RATING_GOOGLE = 'SET_RATING_GOOGLE';
+const SET_COVER_URL = 'SET_COVER_URL';
+const SET_BUY_URL = 'SET_BUY_URL';
 
 const initialState = {
+    id: '',
     name: '',
     author: '',
     description: '',
@@ -18,10 +22,17 @@ const initialState = {
     language: '',
     rating_bookflix: 0.0,
     rating_google: 0.0,
+    cover_url: '',
+    buy_url: '',
 };
 
 const bookPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_ID:
+            return {
+                ...state,
+                id: action.payload,
+            };
         case SET_NAME:
             return {
                 ...state,
@@ -67,11 +78,22 @@ const bookPageReducer = (state = initialState, action) => {
                 ...state,
                 rating_google: action.payload,
             };
+        case SET_COVER_URL:
+            return {
+                ...state,
+                cover_url: action.payload,
+            };
+        case SET_BUY_URL:
+            return {
+                ...state,
+                buy_url: action.payload,
+            };
         default:
             return state;
     }
 };
 
+export const setId = (id) => ({ type: SET_ID, payload: id });
 export const setName = (name) => ({ type: SET_NAME, payload: name });
 export const setAuthor = (author) => ({ type: SET_AUTHOR, payload: author });
 export const setDescription = (description) => ({ type: SET_DESCRIPTION, payload: description });
@@ -84,5 +106,7 @@ export const setNumberOfPages = (numberOfPages) => ({
 export const setLanguage = (language) => ({ type: SET_LANGUAGE, payload: language });
 export const setRatingBookflix = (rating) => ({ type: SET_RATING_BOOKFLIX, payload: rating });
 export const setRatingGoogle = (rating) => ({ type: SET_RATING_GOOGLE, payload: rating });
+export const setCoverUrl = (coverUrl) => ({ type: SET_COVER_URL, payload: coverUrl });
+export const setBuyUrl = (buyUrl) => ({ type: SET_BUY_URL, payload: buyUrl });
 
 export default bookPageReducer;

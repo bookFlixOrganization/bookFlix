@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authReducer';
 import authorReducer from './authorReducer';
 import articleReducer from './articleReducer';
-import bookBageReducer from './bookPageReducer';
+import bookPageReducer from './bookPageReducer';
 import filmPageReducer from './filmPageReducer';
 import feedbackReducer from './feedbackReducer';
 import articlePageReducer from './articlePageReducer';
@@ -14,7 +14,7 @@ const store = configureStore({
         authReducer: authReducer,
         authorReducer: authorReducer,
         articleReducer: articleReducer,
-        bookBageReducer: bookBageReducer,
+        bookPageReducer: bookPageReducer,
         filmPageReducer: filmPageReducer,
         feedbackReducer: feedbackReducer,
         articlePageReducer: articlePageReducer,

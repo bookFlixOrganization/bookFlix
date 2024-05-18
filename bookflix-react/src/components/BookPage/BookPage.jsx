@@ -2,35 +2,32 @@ import React from 'react';
 import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
-import cover from './images/cover.jpg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const BookPage = (props) => {
+    const { bookState } = props;
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
                 <div className={styles.wrapper}>
-                    <img className={styles.film_book} src={cover} alt="" />
+                    <img className={styles.film_book} src={bookState.cover_url} alt="" />
                     <div>
-                        <h1 className={styles.title}>Пиковая Дама</h1>
-                        <h6 className={styles.subtitle}>А. С. Пушкин</h6>
-                        <p className={styles.description}>
-                            Александр Сергеевич Пушкин, безусловно, был великим поэтом и писателем.
-                            Но, кроме всего прочего, он слыл азартным игроком и заядлым картежником.
-                            Однажды генерал-губернатор Дмитрий Голицын рассказал Пушкину байку о
-                            своей матери – княгине Наталье Борисовне. Ходили слухи, будто «усатая
-                            княгиня» – Голицына, известная своей страстью к карточным играм, знает
-                            три заветные карты, которые принесут выигрыш любому, даже самому
-                            неудачливому игроку. Пушкин с присущим только ему умением и талантом
-                            превращать в предмет искусства все, что его окружает, незамедлительно
-                            сделал Голицыну прототипом графини в небезызвестной «Пиковой даме». Так
-                            на свет появилось произведение о Германе, старой графине и тайне трех
-                            карт, которые могут сделать человека несказанно богатым или в одночасье
-                            свести его с ума.
-                        </p>
+                        <h1 className={styles.title}>{bookState.name}</h1>
+                        <h6 className={styles.subtitle}>
+                            {bookState.author && bookState.author.join(', ')}
+                        </h6>
+                        <p
+                            className={styles.description}
+                            dangerouslySetInnerHTML={{ __html: bookState.description }}
+                        ></p>
 
                         <div className={styles.mb_41}>
-                            <a href="/" className={styles.btn}>
+                            <a
+                                href={bookState.buy_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles.btn}
+                            >
                                 Читать
                             </a>
                             <button
@@ -46,41 +43,38 @@ const BookPage = (props) => {
                         <h2 className={styles.about}>О книге</h2>
                         <ul className={styles.params}>
                             <li>
-                                <span className={styles.label}>Дата публикации</span>August 8, 2019
+                                <span className={styles.label}>Дата публикации</span>
+                                {bookState.date}
                             </li>
                             <li>
                                 <span className={styles.label}>Жанр</span>
-                                <span>
-                                    <a href="/" className={styles.genre}>
-                                        Драма
-                                    </a>
-                                    ,{' '}
-                                    <a href="/" className={styles.genre}>
-                                        {' '}
-                                        комедия
-                                    </a>
-                                </span>
+                                <span>{bookState.genre && bookState.genre.join(', ')}</span>
                             </li>
                             <li>
-                                <span className={styles.label}>Количество страниц</span>400
+                                <span className={styles.label}>Количество страниц</span>
+                                {bookState.numberOfPages}
                             </li>
                             <li>
-                                <span className={styles.label}>Язык</span>Русский
+                                <span className={styles.label}>Язык</span>
+                                {bookState.language}
                             </li>
                         </ul>
 
                         <h2 className={styles.all_rathing}>Рейтинг</h2>
                         <div className={styles.all_media_rathing}>
                             <div id="open-modal-btn" className={styles.our_rathing}>
-                                <div className={styles.our_own_rathing}>9.0</div>
+                                <div className={styles.our_own_rathing}>
+                                    {' '}
+                                    {bookState.rating_bookflix.toFixed(1)}
+                                </div>
                                 <div className={styles.user_mark}>
                                     Оценка пользователей BookFlix
                                 </div>
                             </div>
-                            <div className={styles.not_our_rathing}>
+                            {/* <div className={styles.not_our_rathing}>
                                 <div className={styles.imdb_rathing}>9.3</div>
                                 <div className={styles.user_mark}>Google</div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <h2 id="prokrutka" className={styles.prokrutka}>
@@ -118,7 +112,9 @@ const BookPage = (props) => {
                     </div>
 
                     <div>
-                        <span className={styles.rathing_main}>9.0 </span>
+                        <span className={styles.rathing_main}>
+                            {bookState.rating_bookflix.toFixed(1)}
+                        </span>
                         <span className={styles.rathing_counts}>296 824 оценок</span>
                         <a href="#prokrutka" className={styles.rathing_details}>
                             459 отзывов
