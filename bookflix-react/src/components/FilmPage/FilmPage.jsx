@@ -7,6 +7,7 @@ import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const FilmPage = (props) => {
     const { filmState } = props;
+    console.log(filmState);
     const formatRuntime = (runtimeInMinutes) => {
         const hours = Math.floor(runtimeInMinutes / 60);
         const minutes = runtimeInMinutes % 60;
@@ -25,7 +26,12 @@ const FilmPage = (props) => {
                         <p className={styles.description}>{filmState.description}</p>
 
                         <div className={styles.mb_41}>
-                            <a href="/" className={styles.btn}>
+                            <a
+                                href={filmState.video_url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles.btn}
+                            >
                                 Смотреть
                             </a>
                             <button
