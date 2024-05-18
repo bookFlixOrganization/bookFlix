@@ -63,7 +63,7 @@ const PopularBooks = (props) => {
                                                     {book.author}
                                                 </div>
                                                 <div className={styles.movie__average}>
-                                                    {book.rank}
+                                                    {book.rank.toFixed(1)}
                                                 </div>
                                             </div>
                                         </NavLink>
