@@ -6,6 +6,7 @@ import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const BookPage = (props) => {
     const { bookState } = props;
+    const { shortContent } = props;
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
@@ -38,7 +39,16 @@ const BookPage = (props) => {
                                     className={`${styles.favourite_icon} ${props.isFavourite ? styles.active : ''}`}
                                 />
                             </button>
+                            <button
+                                onClick={props.handleShortClick}
+                                className={`${styles.btn_short} ${styles.btn}`}
+                            >
+                                Краткое содержание
+                            </button>
                         </div>
+                        {shortContent && (
+                            <div className={styles.short_content}>{props.shortContent}</div>
+                        )}
 
                         <h2 className={styles.about}>О книге</h2>
                         <ul className={styles.params}>

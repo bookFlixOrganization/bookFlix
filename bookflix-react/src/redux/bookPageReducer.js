@@ -10,6 +10,8 @@ const SET_RATING_BOOKFLIX = 'SET_RATING';
 const SET_RATING_GOOGLE = 'SET_RATING_GOOGLE';
 const SET_COVER_URL = 'SET_COVER_URL';
 const SET_BUY_URL = 'SET_BUY_URL';
+const SET_SHORT_CONTENT = 'SET_SHORT_CONTENT';
+const CLEAR_CONTENT = 'CLEAR_CONTENT';
 
 const initialState = {
     id: '',
@@ -24,6 +26,7 @@ const initialState = {
     rating_google: 0.0,
     cover_url: '',
     buy_url: '',
+    shortContent: '',
 };
 
 const bookPageReducer = (state = initialState, action) => {
@@ -88,6 +91,13 @@ const bookPageReducer = (state = initialState, action) => {
                 ...state,
                 buy_url: action.payload,
             };
+        case SET_SHORT_CONTENT:
+            return {
+                ...state,
+                shortContent: action.payload,
+            };
+        case CLEAR_CONTENT:
+            return initialState;
         default:
             return state;
     }
@@ -108,5 +118,7 @@ export const setRatingBookflix = (rating) => ({ type: SET_RATING_BOOKFLIX, paylo
 export const setRatingGoogle = (rating) => ({ type: SET_RATING_GOOGLE, payload: rating });
 export const setCoverUrl = (coverUrl) => ({ type: SET_COVER_URL, payload: coverUrl });
 export const setBuyUrl = (buyUrl) => ({ type: SET_BUY_URL, payload: buyUrl });
+export const setShortContent = (text) => ({ type: SET_SHORT_CONTENT, payload: text });
+export const clearContent = () => ({ type: CLEAR_CONTENT });
 
 export default bookPageReducer;

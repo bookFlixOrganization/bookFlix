@@ -15,6 +15,8 @@ import {
     setRatingGoogle,
     setCoverUrl,
     setBuyUrl,
+    setShortContent,
+    clearContent,
 } from '../../redux/bookPageReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
@@ -50,6 +52,19 @@ const BookPageContainer = () => {
     const handleEscKey = (event) => {
         if (event.key === 'Escape') {
             closeModal();
+        }
+    };
+
+    const handleShortClick = async () => {
+        try {
+            const shortContentResponse = await axios.get(
+                `${server}/short_content/?query=${bookState.name}`,
+            );
+            console.log(shortContentResponse);
+            const shortContentData = shortContentResponse.data.content;
+            dispatch(setShortContent(shortContentData));
+        } catch (error) {
+            console.error('Ошибка при получении сокращенного контента:', error);
         }
     };
 
@@ -89,7 +104,12 @@ const BookPageContainer = () => {
 
         fetchBookData();
     }, [bookName]);
+
+    useEffect(() => {
+        dispatch(clearContent());
+    }, []);
     const bookState = useSelector((state) => state.bookPageReducer);
+    const shortContent = useSelector((state) => state.bookPageReducer.shortContent);
     return (
         <>
             <SessionChecker />
@@ -102,6 +122,8 @@ const BookPageContainer = () => {
                 closeModal={closeModal}
                 submitFeedback={submitFeedback}
                 bookState={bookState}
+                handleShortClick={handleShortClick}
+                shortContent={shortContent}
             />
         </>
     );
