@@ -1,34 +1,36 @@
 const SET_NAME = 'SET_NAME';
 const SET_ORIGINAL_NAME = 'SET_ORIGINAL_NAME';
+const SET_COVER_URL = 'SET_COVER_URL';
 const SET_DESCRIPTION = 'SET_DECRIPTION';
 const SET_TRACKS = 'SET_TRACKS';
-const SET_SUBTITLES = 'SET_SUBTITLES';
-const SET_QUALITY = 'SET_QUALITY';
 const SET_DATE = 'SET_DATE';
 const SET_COUNTRIES = 'SET_COUNTRIES';
 const SET_GENRE = 'SET_GENRE';
-const SET_SLOGAN = 'SET_SLOGAN';
 const SET_DIRECTOR = 'SET_DIRECTOR';
 const SET_BUDGET = 'SET_BUDGET';
 const SET_RATING_BOOKFLIX = 'SET_RATING';
-const SET_RATING_GOOGLE = 'SET_RATING_GOOGLE';
+const SET_RATING_IMDB = 'SET_RATING_IMDB';
+const SET_VIDEO_URL = 'SET_VIDEO_URL';
+const SET_RUNTIMES = 'SET_RUNTIMES';
+const SET_AGE = 'SET_AGE';
 
 const initialState = {
     name: '',
     original_name: '',
-    decription: '',
+    cover_url: '',
+    description: '',
     tracks: [],
-    subtitles: [],
-    quality: '',
     date: '',
     countries: [],
     genre: '',
-    slogan: '',
     director: '',
     duration: '',
     budget: '',
+    age: '',
     rating_bookflix: 0.0,
-    rating_google: 0.0,
+    rating_imdb: 0.0,
+    video_url: '',
+    runtimes: '',
 };
 
 const filmPageReducer = (state = initialState, action) => {
@@ -43,6 +45,11 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 original_name: action.payload,
             };
+        case SET_COVER_URL:
+            return {
+                ...state,
+                cover_url: action.payload,
+            };
         case SET_DESCRIPTION:
             return {
                 ...state,
@@ -52,16 +59,6 @@ const filmPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tracks: action.payload,
-            };
-        case SET_SUBTITLES:
-            return {
-                ...state,
-                subtitles: action.payload,
-            };
-        case SET_QUALITY:
-            return {
-                ...state,
-                quality: action.payload,
             };
         case SET_DATE:
             return {
@@ -78,11 +75,6 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 genre: action.payload,
             };
-        case SET_SLOGAN:
-            return {
-                ...state,
-                slogan: action.payload,
-            };
         case SET_DIRECTOR:
             return {
                 ...state,
@@ -98,10 +90,25 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 rating_bookflix: action.payload,
             };
-        case SET_RATING_GOOGLE:
+        case SET_RATING_IMDB:
             return {
                 ...state,
-                rating_google: action.payload,
+                rating_imdb: action.payload,
+            };
+        case SET_VIDEO_URL:
+            return {
+                ...state,
+                video_url: action.payload,
+            };
+        case SET_RUNTIMES:
+            return {
+                ...state,
+                runtimes: action.payload,
+            };
+        case SET_AGE:
+            return {
+                ...state,
+                age: action.payload,
             };
         default:
             return state;
@@ -113,17 +120,21 @@ export const setOriginalName = (originalName) => ({
     type: SET_ORIGINAL_NAME,
     payload: originalName,
 });
+export const setCoverUrl = (coverUrl) => ({
+    type: SET_COVER_URL,
+    payload: coverUrl,
+});
 export const setDescription = (description) => ({ type: SET_DESCRIPTION, payload: description });
 export const setTracks = (tracks) => ({ type: SET_TRACKS, payload: tracks });
-export const setSubtitles = (subtitles) => ({ type: SET_SUBTITLES, payload: subtitles });
-export const setQuality = (quality) => ({ type: SET_QUALITY, payload: quality });
 export const setDate = (date) => ({ type: SET_DATE, payload: date });
 export const setCountries = (countries) => ({ type: SET_COUNTRIES, payload: countries });
 export const setGenre = (genre) => ({ type: SET_GENRE, payload: genre });
-export const setSlogan = (slogan) => ({ type: SET_SLOGAN, payload: slogan });
 export const setDirector = (director) => ({ type: SET_DIRECTOR, payload: director });
 export const setBudget = (budget) => ({ type: SET_BUDGET, payload: budget });
 export const setRatingBookflix = (rating) => ({ type: SET_RATING_BOOKFLIX, payload: rating });
-export const setRatingGoogle = (rating) => ({ type: SET_RATING_GOOGLE, payload: rating });
+export const setRatingImdb = (rating) => ({ type: SET_RATING_IMDB, payload: rating });
+export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, payload: videoUrl });
+export const setRuntimes = (runtimes) => ({ type: SET_RUNTIMES, payload: runtimes });
+export const setAge = (age) => ({ type: SET_AGE, payload: age });
 
 export default filmPageReducer;

@@ -2,26 +2,29 @@ import React from 'react';
 import styles from './FilmPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
-import cover from './images/cover.jpg';
 import di_caprio from './images/di_caprio.jpg';
 import margo from './images/margo.jpg';
 import brad_pitt from './images/brad_pitt.jpg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const FilmPage = (props) => {
+    const { filmState } = props;
+    const formatRuntime = (runtimeInMinutes) => {
+        const hours = Math.floor(runtimeInMinutes / 60);
+        const minutes = runtimeInMinutes % 60;
+        return `${hours} ч. ${minutes} мин.`;
+    };
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
                 <div className={styles.wrapper}>
-                    <img className={styles.film_book} src={cover} alt="" />
+                    <img className={styles.film_book} src={filmState.cover_url} alt="" />
                     <div>
-                        <h1 className={styles.title}>Однажды в Голливуде</h1>
-                        <h6 className={styles.subtitle}>Once Upon a Time in Hollywood 18+</h6>
-                        <p className={styles.description}>
-                            1969 год, золотой век Голливуда уже закончился. Известный актёр Рик
-                            Далтон и его дублер Клифф Бут пытаются найти свое место в стремительно
-                            меняющемся мире киноиндустрии.
-                        </p>
+                        <h1 className={styles.title}>{filmState.name}</h1>
+                        <h6
+                            className={styles.subtitle}
+                        >{`${filmState.original_name} ${filmState.age}`}</h6>
+                        <p className={styles.description}>{filmState.description}</p>
 
                         <div className={styles.mb_41}>
                             <a href="/" className={styles.btn}>
@@ -39,63 +42,51 @@ const FilmPage = (props) => {
 
                         <ul className={`${styles.params} ${styles.mb - 40}`}>
                             <li>
-                                <span className={styles.label}>Аудиодорожки</span>Русский, Русский
-                                5.1, Английский, Английский 5.1
-                            </li>
-                            <li>
-                                <span className={styles.label}>Субтитры</span>Русские, Английские
-                            </li>
-                            <li>
-                                <span className={styles.label}>Качество видео</span>
-                                <span>
-                                    <span className={styles.tag}>Full HD</span>
-                                </span>
+                                <span className={styles.label}>Аудиодорожки</span>
+                                {filmState.tracks && filmState.tracks.join(', ')}
                             </li>
                         </ul>
 
                         <h2 className={styles.about}>О фильме</h2>
                         <ul className={styles.params}>
                             <li>
-                                <span className={styles.label}>Дата выхода</span>August 8, 2019
-                                (Russia)
+                                <span className={styles.label}>Дата выхода</span>
+                                {filmState.date}
                             </li>
                             <li>
-                                <span className={styles.label}>Страна</span>США, Великобритания,
-                                Китай
+                                <span className={styles.label}>Страна</span>{' '}
+                                {filmState.countries && filmState.countries.join(', ')}
                             </li>
                             <li>
                                 <span className={styles.label}>Жанр</span>
-                                <span>
-                                    <a href="/" className={styles.genre}>
-                                        Драма
-                                    </a>
-                                    ,{' '}
-                                    <a href="/" className={styles.genre}>
-                                        {' '}
-                                        комедия
-                                    </a>
-                                </span>
+                                <span>{filmState.genre && filmState.genre.join(', ')}</span>
                             </li>
-                            <li>
+                            {/* <li>
                                 <span className={styles.label}>Слоган</span>
                                 <time className={styles.text_muted}>
                                     «The 9th Film from Quentin Tarantino»
                                 </time>
-                            </li>
+                            </li> */}
                             <li>
-                                <span className={styles.label}>Режиссёр</span>Квентин Тарантино
+                                <span className={styles.label}>Режиссёр</span>
+                                {filmState.director}
                             </li>
                             <li>
                                 <span className={styles.label}>Длительность</span>
-                                <time className={styles.text_muted}>161 мин. / 02:41</time>
+                                <time className={styles.text_muted}>
+                                    {filmState.runtimes
+                                        ? `${filmState.runtimes} мин / ${formatRuntime(filmState.runtimes)}`
+                                        : 'Не указана'}
+                                </time>
                             </li>
                             <li>
-                                <span className={styles.label}>Бюджет</span>$90,000,000
+                                <span className={styles.label}>Бюджет</span>
+                                {filmState.budget}
                             </li>
                             <li>
                                 <span className={styles.label}>Возраст</span>
                                 <span>
-                                    <span className={styles.tag}>18+</span>
+                                    <span className={styles.tag}>{filmState.age}</span>
                                 </span>
                             </li>
                         </ul>
@@ -103,13 +94,19 @@ const FilmPage = (props) => {
                         <h2 className={styles.all_rathing}>Рейтинг</h2>
                         <div className={styles.all_media_rathing}>
                             <div id="open-modal-btn" className={styles.our_rathing}>
-                                <div className={styles.our_own_rathing}>9.0</div>
+                                <div className={styles.our_own_rathing}>
+                                    {filmState.rating_bookflix}
+                                </div>
                                 <div className={styles.user_mark}>
                                     Оценка пользователей BookFlix
                                 </div>
                             </div>
                             <div className={styles.not_our_rathing}>
-                                <div className={styles.imdb_rathing}>9.3</div>
+                                <div className={styles.imdb_rathing}>
+                                    {filmState.rating_imdb
+                                        ? filmState.rating_imdb.toFixed(1)
+                                        : 'Нет оценки'}
+                                </div>{' '}
                                 <div className={styles.user_mark}>iMDb</div>
                             </div>
                         </div>
@@ -170,7 +167,9 @@ const FilmPage = (props) => {
                     </div>
 
                     <div>
-                        <span className={styles.rathing_main}>9.0 </span>
+                        <span className={styles.rathing_main}>
+                            {filmState.rating_bookflix.toFixed(1)}
+                        </span>
                         <span className={styles.rathing_counts}>296 824 оценок</span>
                         <a href="#prokrutka" className={styles.rathing_details}>
                             459 отзывов

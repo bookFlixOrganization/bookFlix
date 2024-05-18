@@ -13,7 +13,6 @@ const PopularFilms = (props) => {
 
     if (props.popularFilms) {
         popularFilmsArray = Object.entries(props.popularFilms);
-        console.log(popularFilmsArray);
     }
 
     return (
