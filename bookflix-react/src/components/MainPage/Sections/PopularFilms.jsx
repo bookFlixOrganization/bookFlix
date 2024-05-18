@@ -12,7 +12,8 @@ const PopularFilms = (props) => {
     let popularFilmsArray = [];
 
     if (props.popularFilms) {
-        popularFilmsArray = Object.values(props.popularFilms);
+        popularFilmsArray = Object.entries(props.popularFilms);
+        console.log(popularFilmsArray);
     }
 
     return (
@@ -48,18 +49,18 @@ const PopularFilms = (props) => {
                                 className={styles.swiper_slide}
                             >
                                 <div className={styles.container}>
-                                    <NavLink to="/film-page" className={styles.movie}>
+                                    <NavLink to={`/film-page/${film[0]}`} className={styles.movie}>
                                         <div className={styles.movie__cover_inner}>
                                             <img
-                                                src={film['poster_path:']}
-                                                alt={film['title:']}
+                                                src={film[1]['poster_path:']}
+                                                alt={film[1]['title:']}
                                                 className={styles.movie__cover}
                                             />
                                             <div className={styles.movie__cover_darkened}></div>
                                         </div>
                                         <div className={styles.movie__info}>
                                             <div className={styles.movie__title}>
-                                                {film['title:']}
+                                                {film[1]['title:']}
                                             </div>
                                         </div>
                                     </NavLink>

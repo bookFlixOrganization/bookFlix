@@ -43,7 +43,10 @@ const PopularBooks = (props) => {
                                     className={styles.swiper_slide}
                                 >
                                     <div className={styles.container}>
-                                        <NavLink to="/book-page" className={styles.movie}>
+                                        <NavLink
+                                            to={`/book-page/${book.id}`}
+                                            className={styles.movie}
+                                        >
                                             <div className={styles.movie__cover_inner}>
                                                 <img
                                                     src={book.book_image}
