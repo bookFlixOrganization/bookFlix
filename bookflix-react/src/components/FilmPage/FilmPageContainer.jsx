@@ -22,6 +22,7 @@ import {
     setRuntimes,
     setAge,
     setActors,
+    clearContent,
 } from '../../redux/filmPageReducer.js';
 const FilmPageContainer = () => {
     const { id } = useParams();
@@ -123,6 +124,10 @@ const FilmPageContainer = () => {
             fetchActors();
         }
     }, [imdbActors]);
+
+    useEffect(() => {
+        dispatch(clearContent());
+    }, []);
 
     const filmState = useSelector((state) => state.filmPageReducer);
 

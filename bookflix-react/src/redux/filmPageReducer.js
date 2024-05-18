@@ -14,6 +14,7 @@ const SET_VIDEO_URL = 'SET_VIDEO_URL';
 const SET_RUNTIMES = 'SET_RUNTIMES';
 const SET_AGE = 'SET_AGE';
 const SET_ACTORS = 'SET_ACTORS';
+const CLEAR_CONTENT = 'CLEAR_CONTENT';
 
 const initialState = {
     name: '',
@@ -117,6 +118,8 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 actors: action.payload,
             };
+        case CLEAR_CONTENT:
+            return initialState;
         default:
             return state;
     }
@@ -144,5 +147,6 @@ export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, payload: videoU
 export const setRuntimes = (runtimes) => ({ type: SET_RUNTIMES, payload: runtimes });
 export const setAge = (age) => ({ type: SET_AGE, payload: age });
 export const setActors = (actors) => ({ type: SET_ACTORS, payload: actors });
+export const clearContent = () => ({ type: CLEAR_CONTENT });
 
 export default filmPageReducer;
