@@ -2,9 +2,7 @@ import React from 'react';
 import styles from './FilmPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
-import di_caprio from './images/di_caprio.jpg';
-import margo from './images/margo.jpg';
-import brad_pitt from './images/brad_pitt.jpg';
+import someone from './images/photo.jpg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const FilmPage = (props) => {
@@ -113,23 +111,27 @@ const FilmPage = (props) => {
 
                         <h2 className={styles.top_cast}>Топ актёры</h2>
                         <div className={styles.actors}>
-                            <div className={styles.actor}>
-                                <img src={di_caprio} alt="" className={styles.photo} />
-                                <div className={styles.name}>Leonardo DiCaprio</div>
-                                <div className={styles.nickname}>Rick Dalton</div>
-                            </div>
-
-                            <div className={styles.actor}>
-                                <img src={brad_pitt} alt="" className={styles.photo} />
-                                <div className={styles.name}>Brad Pitt</div>
-                                <div className={styles.nickname}>Cliff Booth</div>
-                            </div>
-
-                            <div className={styles.actor}>
-                                <img src={margo} alt="" className={styles.photo} />
-                                <div className={styles.name}>Margot Robbie</div>
-                                <div className={styles.nickname}>Sharon Tate</div>
-                            </div>
+                            {filmState.actors &&
+                                filmState.actors.map((actor, index) => (
+                                    <div key={index} className={styles.actor}>
+                                        {actor.fullSizeHeadshot && (
+                                            <img
+                                                src={actor.fullSizeHeadshot}
+                                                alt={actor.name}
+                                                className={styles.photo}
+                                            />
+                                        )}
+                                        {!actor.fullSizeHeadshot && (
+                                            <img
+                                                src={someone}
+                                                alt={actor.name}
+                                                className={styles.photo}
+                                            />
+                                        )}
+                                        <div className={styles.name}>{actor.name}</div>
+                                        <div className={styles.nickname}>{actor.canonicalName}</div>
+                                    </div>
+                                ))}
                         </div>
 
                         <h2 id="prokrutka" className={styles.prokrutka}>

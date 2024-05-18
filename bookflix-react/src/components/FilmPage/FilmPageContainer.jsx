@@ -21,6 +21,7 @@ import {
     setVideoUrl,
     setRuntimes,
     setAge,
+    setActors,
 } from '../../redux/filmPageReducer.js';
 const FilmPageContainer = () => {
     const { id } = useParams();
@@ -28,7 +29,7 @@ const FilmPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
-
+    const [imdbActors, setImdbActors] = useState([]);
     const toggleFavourite = () => {
         setIsFavourite((prevState) => !prevState);
     };
@@ -73,11 +74,11 @@ const FilmPageContainer = () => {
                 dispatch(setGenre(filmResponse.data.result.genres));
                 dispatch(setDirector(filmResponse.data.result.director[0].name));
                 dispatch(setBudget(filmResponse.data.result['box office'].Budget));
+                setImdbActors(filmResponse.data.result.cast.slice(0, 3));
                 const russianAgeCertificate = filmResponse.data.result.certificates.find((cert) =>
                     cert.startsWith('Russia:'),
                 );
                 if (russianAgeCertificate) {
-                    console.log(russianAgeCertificate);
                     const rating = russianAgeCertificate.split(':')[1];
                     dispatch(setAge(rating));
                 }
@@ -92,6 +93,33 @@ const FilmPageContainer = () => {
 
         fetchFilmData();
 
+        const fetchActors = async () => {
+            try {
+                const actorsWithData = [];
+                for (const actor of imdbActors) {
+                    const response = await axios.get(
+                        `${server}/search/person?query=${encodeURIComponent(actor.name)}`,
+                    );
+                    if (response.data.result && response.data.result.length > 0) {
+                        const firstResult = response.data.result[0];
+                        actorsWithData.push({
+                            name: firstResult.name,
+                            canonicalName: firstResult['canonical name'],
+                            fullSizeHeadshot:
+                                firstResult['full-size headshot'] || firstResult.headshot,
+                        });
+                    }
+                }
+                dispatch(setActors(actorsWithData));
+            } catch (error) {
+                console.error('Ошибка при выполнении запроса:', error);
+            }
+        };
+
+        if (imdbActors.length > 0) {
+            fetchActors();
+        }
+
         window.addEventListener('keydown', handleEscKey);
         return () => {
             window.removeEventListener('keydown', handleEscKey);
@@ -99,6 +127,7 @@ const FilmPageContainer = () => {
     }, [id]);
 
     const filmState = useSelector((state) => state.filmPageReducer);
+
     console.log(filmState);
     return (
         <>

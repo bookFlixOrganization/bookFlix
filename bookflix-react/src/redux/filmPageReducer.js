@@ -13,6 +13,7 @@ const SET_RATING_IMDB = 'SET_RATING_IMDB';
 const SET_VIDEO_URL = 'SET_VIDEO_URL';
 const SET_RUNTIMES = 'SET_RUNTIMES';
 const SET_AGE = 'SET_AGE';
+const SET_ACTORS = 'SET_ACTORS';
 
 const initialState = {
     name: '',
@@ -31,6 +32,7 @@ const initialState = {
     rating_imdb: 0.0,
     video_url: '',
     runtimes: '',
+    actors: null,
 };
 
 const filmPageReducer = (state = initialState, action) => {
@@ -110,6 +112,11 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 age: action.payload,
             };
+        case SET_ACTORS:
+            return {
+                ...state,
+                actors: action.payload,
+            };
         default:
             return state;
     }
@@ -136,5 +143,6 @@ export const setRatingImdb = (rating) => ({ type: SET_RATING_IMDB, payload: rati
 export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, payload: videoUrl });
 export const setRuntimes = (runtimes) => ({ type: SET_RUNTIMES, payload: runtimes });
 export const setAge = (age) => ({ type: SET_AGE, payload: age });
+export const setActors = (actors) => ({ type: SET_ACTORS, payload: actors });
 
 export default filmPageReducer;

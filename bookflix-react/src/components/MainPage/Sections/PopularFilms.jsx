@@ -42,7 +42,7 @@ const PopularFilms = (props) => {
                     className={styles.swiper}
                 >
                     <div className={styles.swiper_wrapper}>
-                        {popularFilmsArray.map((film, index) => (
+                        {popularFilmsArray.slice(0, 10).map((film, index) => (
                             <SwiperSlide
                                 key={`popular_film_${index}`}
                                 className={styles.swiper_slide}
