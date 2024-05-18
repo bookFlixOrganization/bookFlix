@@ -40,7 +40,7 @@ function App() {
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
-                <Route path="book-page" element={<BookPageContainer />} />
+                <Route path="book-page/:id" element={<BookPageContainer />} />
                 <Route path="film-page/:id" element={<FilmPageContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />

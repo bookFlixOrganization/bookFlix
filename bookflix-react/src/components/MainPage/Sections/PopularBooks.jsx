@@ -44,7 +44,7 @@ const PopularBooks = (props) => {
                                 >
                                     <div className={styles.container}>
                                         <NavLink
-                                            to={`/book-page/${book.id}`}
+                                            to={`/book-page/${book.title}`}
                                             className={styles.movie}
                                         >
                                             <div className={styles.movie__cover_inner}>

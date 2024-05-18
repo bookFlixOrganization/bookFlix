@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './AllBooks.module.css';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const AllBooks = (props) => {
-    const { popularBooks } = props;
+const AllBooks = () => {
+    const popularBooks = useSelector((state) => state.mainPageReducer.popular_books);
     return (
         <div className={styles.films_container}>
             <section className={styles.now_watching_text}>
@@ -23,7 +25,11 @@ const AllBooks = (props) => {
                     <div className={styles.movies}>
                         {popularBooks &&
                             popularBooks.map((book, index) => (
-                                <a key={index} href="/" className={styles.movie}>
+                                <NavLink
+                                    key={index}
+                                    to={`/book-page/${book.title}`}
+                                    className={styles.movie}
+                                >
                                     <div className={styles.movie__cover_inner}>
                                         <img
                                             src={book.book_image}
@@ -39,7 +45,7 @@ const AllBooks = (props) => {
                                             {book.rank.toFixed(1)}
                                         </div>
                                     </div>
-                                </a>
+                                </NavLink>
                             ))}
                     </div>
                 </div>

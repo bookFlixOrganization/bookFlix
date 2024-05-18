@@ -19,8 +19,8 @@ const AllBooksContainer = () => {
 
         fetchPopularBooks();
     }, [dispatch]);
+
     const popularBooks = useSelector((state) => state.mainPageReducer.popular_books);
-    console.log(popularBooks);
     return <AllBooks popularBooks={popularBooks} />;
 };
 

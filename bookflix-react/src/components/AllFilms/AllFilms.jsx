@@ -7,7 +7,6 @@ const AllFilms = (props) => {
     if (films) {
         filmsArray = Object.entries(films);
     }
-    console.log(filmsArray);
     return (
         <div className={styles.films_container}>
             <section className={styles.now_watching_text}>
