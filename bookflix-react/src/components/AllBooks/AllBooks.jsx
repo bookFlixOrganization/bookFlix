@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './AllBooks.module.css';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-const AllBooks = () => {
-    const popularBooks = useSelector((state) => state.mainPageReducer.popular_books);
+const AllBooks = (props) => {
+    const { popularBooks } = props;
     return (
         <div className={styles.films_container}>
             <section className={styles.now_watching_text}>
