@@ -1,4 +1,4 @@
-# pylint: disable=missing-timeout
+# pylint: disable=no-member, missing-timeout
 import json
 import requests
 from fastapi import APIRouter

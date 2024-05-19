@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, DateTime, Integer, JSON, String, Text
+from sqlalchemy import Integer, JSON, String, Text
 from sqlalchemy import Column
 from sqlalchemy import text
 from sqlalchemy.dialects.postgresql import UUID
@@ -14,12 +14,11 @@ class Publics(BookDiary_Base):
         primary_key=True,
         server_default=text("uuid_generate_v4()"),
     )
-    user_id = Column(BigInteger(), nullable=False)
-    user_name = Column(String(), nullable=False)
+    user_id = Column(UUID(as_uuid=True), nullable=False)
     book_id = Column(String(), nullable=False)
     book_name = Column(String(), nullable=False)
     book_authors = Column(JSON(), nullable=False)
-    publication_date = Column(DateTime(), nullable=False)
+    publication_date = Column(String(50), nullable=False)
     article_name = Column(String(50), nullable=False)
     book_genre = Column(String(), nullable=False)
     text = Column(Text(), nullable=False)
@@ -28,12 +27,11 @@ class Publics(BookDiary_Base):
 
 class Likes(BookDiary_Base):
     __tablename__ = "user_likes"
-    user_id = Column(BigInteger(), nullable=False, primary_key=True)
+    user_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)
     article_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)
 
 
 class Subs(BookDiary_Base):
     __tablename__ = "user_subs"
-    user_id = Column(BigInteger, nullable=False, primary_key=True)
-    sub_id = Column(BigInteger, nullable=False, primary_key=True)
-    sub_name = Column(String, nullable=False)
+    user_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)
+    sub_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)

@@ -1,11 +1,11 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from uuid import UUID
 
 
 class User_id(BaseModel):
-    user_id: int
+    user_id: UUID
 
 
 class AuthorInfo(BaseModel):
@@ -20,7 +20,7 @@ class Article_id(BaseModel):
 
 class Publication_date(BaseModel):
     likes: int
-    publication_date: datetime
+    publication_date: str
 
 
 class Book_info(BaseModel):
@@ -34,8 +34,8 @@ class Book_info_more(Book_info):
     book_genre: str
 
 
-class Create_Article_get(Book_info, User_id):
-    user_name: str
+class Create_Article_get(Book_info):
+    pass
 
 
 class User_articles_resp(Create_Article_get, Publication_date):
@@ -50,11 +50,13 @@ class User_Article_info_get(User_id, Article_id):
     pass
 
 
-class Article_Page_info(User_id, Book_info_more, Publication_date):
-    user_name: str
+class Article_Page_info(Book_info_more, Publication_date):
+    pass
 
 
 class Article_Page_resp(Article_Page_info):
+    user_id: UUID
+    user_name: str
     is_sub: int
 
 
@@ -63,15 +65,17 @@ class Author_Page(Article_Page_info, Article_id):
 
 
 class Author_Page_2(User_id, Book_info, Article_id, Publication_date):
+    user_name: str
     book_authors: List[str]
     articles_count: int
 
 
 class Author_Page_resp(BaseModel):
     author_info: AuthorInfo
-    articles: List[Author_Page_2]
+    articles: List[Author_Page]
 
 
 class My_articles_resp(Edit_Article_get):
     book_authors: List[str]
-    publication_date: datetime
+    publication_date: str
+    pass

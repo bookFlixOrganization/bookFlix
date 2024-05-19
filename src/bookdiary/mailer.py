@@ -1,6 +1,5 @@
 from email.mime.text import MIMEText
 
-
 from ssl import create_default_context
 
 from smtplib import SMTP
@@ -18,16 +17,15 @@ class MailBody(BaseModel):
     body: str
 
 
-async def email_prepare_data_send(user_name: str, result):
-    to = [f"email{i}@mail.ru" for i in range(len(result))]
-
+async def email_prepare_data_send(user_name: str, to):
     if len(to) != 0:
         data = {
             "to": to,
             "subject": "New article on bookFlix!",
             "body": f"You can read a new article written by the {user_name}",
         }
-    await email_send(data)
+
+        await email_send(data)
 
 
 async def email_send(data: dict):
