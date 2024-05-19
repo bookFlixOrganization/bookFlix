@@ -99,7 +99,7 @@ async def all_user_subscribes(
 
     filter_cond2 = User.id.in_({i.sub_id for i in result})
     stmt3 = select(User.id, User.username).where(filter_cond2)
-    result3 = (await session.execute(stmt3)).mappings().fetchall() 
+    result3 = (await session.execute(stmt3)).mappings().fetchall()
 
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 

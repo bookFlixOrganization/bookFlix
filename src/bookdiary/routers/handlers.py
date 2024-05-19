@@ -192,7 +192,7 @@ async def get_article_by_article_id(
 
     stmt3 = select(User.username).where(User.id == result["user_id"])
     user_name = (await session.execute(stmt3)).scalar_one_or_none()
-    
+
     return {
         "is_sub": int(sub is not None)
         + 2 * (user.id == result["user_id"]),
@@ -244,7 +244,7 @@ async def get_all_user_article(
         User.id == user_id,
     )
     user_name = (await session.execute(stmt3)).scalar_one_or_none()
-    
+
     return {
         "author_info": {
             "is_sub": int(sub is not None) + 2 * (user.id == user_id),
@@ -273,7 +273,7 @@ async def get_all_this_user_article(
         raise (NotFoundException(detail="Articles not found"))
     if result[0].user_id != user.id:
         raise (ServerException(detail="Server error: not your user_id"))
-    
+
     return [
         dict(result[i]) | {"user_name": "name", "articles_count": len(result)}
         for i in range(len(result))
@@ -300,7 +300,7 @@ async def search_articles_by_book_name(
 
     filter_cond2 = User.id.in_({i[0] for i in result2})
     stmt3 = select(User.id, User.username).where(filter_cond2)
-    result3 = (await session.execute(stmt3)).mappings().fetchall() 
+    result3 = (await session.execute(stmt3)).mappings().fetchall()
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 
     return [
@@ -324,7 +324,7 @@ async def get_popular_articles(session: AsyncSession() = Depends(get_async_sessi
 
     filter_cond2 = User.id.in_({i[0] for i in result2})
     stmt3 = select(User.id, User.username).where(filter_cond2)
-    result3 = (await session.execute(stmt3)).mappings().fetchall() 
+    result3 = (await session.execute(stmt3)).mappings().fetchall()
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 
     return [

@@ -24,7 +24,8 @@ async def email_prepare_data_send(user_name: str, to):
             "subject": "New article on bookFlix!",
             "body": f"You can read a new article written by the {user_name}",
         }
-    await email_send(data)
+
+        await email_send(data)
 
 
 async def email_send(data: dict):

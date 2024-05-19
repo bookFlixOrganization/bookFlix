@@ -1,8 +1,8 @@
 """booksDiary_db
 
-Revision ID: c224ce80e736
+Revision ID: aacbaba6a1f9
 Revises: 5bb007a171ff
-Create Date: 2024-05-14 19:51:33.284060
+Create Date: 2024-05-18 15:16:23.978421
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c224ce80e736'
+revision: str = 'aacbaba6a1f9'
 down_revision: Union[str, None] = '5bb007a171ff'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -31,7 +31,7 @@ def upgrade() -> None:
     sa.Column('book_id', sa.String(), nullable=False),
     sa.Column('book_name', sa.String(), nullable=False),
     sa.Column('book_authors', sa.JSON(), nullable=False),
-    sa.Column('publication_date', sa.DateTime(), nullable=False),
+    sa.Column('publication_date', sa.String(length=50), nullable=False),
     sa.Column('article_name', sa.String(length=50), nullable=False),
     sa.Column('book_genre', sa.String(), nullable=False),
     sa.Column('text', sa.Text(), nullable=False),

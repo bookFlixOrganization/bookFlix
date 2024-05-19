@@ -10,6 +10,8 @@ from src.bookdiary.routers.handlers import router as articles_router
 from src.bookdiary.routers.likes import router as likes_router
 from src.bookdiary.routers.subs import router as subs_router
 
+from src.bookdiary.routers.search_handlers import router as search_router
+
 
 app = create_app()
 app.include_router(user_router)
@@ -21,6 +23,7 @@ app.include_router(search_router)
 app.include_router(articles_router)
 app.include_router(likes_router)
 app.include_router(subs_router)
+app.include_router(search_router)
 
 
 if __name__ == '__main__':

@@ -98,5 +98,5 @@ async def user_unlike_article(
     await session.execute(stmt3)
     await session.execute(stmt4)
     await session.commit()
-    
+
     return status.HTTP_204_NO_CONTENT

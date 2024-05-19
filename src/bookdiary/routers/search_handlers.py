@@ -1,4 +1,3 @@
-import os
 import requests
 
 from datetime import datetime
@@ -40,9 +39,12 @@ async def prepare_article_data(data: dict):
         else ["No authors"]
     )
     returned_data["book_id"] = books_data["id"]
-    returned_data["publication_date"] = datetime.now()
-    # returned_data["publication_date"] = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-    returned_data["book_genre"] = "-"
+    if "categories" in books_data["volumeInfo"].keys():
+        returned_data["book_genre"] = ",".join(books_data["volumeInfo"]["categories"])
+    else:
+        returned_data["book_genre"] = "-"
+    # returned_data["publication_date"] = datetime.now()
+    returned_data["publication_date"] = (datetime.now()).strftime("%d.%m.%Y в %H:%M")
 
     return returned_data
 
@@ -50,4 +52,4 @@ async def prepare_article_data(data: dict):
 @router.get("/")  # response_model=List[Search_Response]
 async def search_books_by_query(query: str):
     result = search_books(query)
-    return [row["volumeInfo"]["title"] for row in result["items"]]
+    return [row for row in result["items"]]

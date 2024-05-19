@@ -20,7 +20,7 @@ class Article_id(BaseModel):
 
 class Publication_date(BaseModel):
     likes: int
-    publication_date: datetime
+    publication_date: str
 
 
 class Book_info(BaseModel):
@@ -77,5 +77,5 @@ class Author_Page_resp(BaseModel):
 
 class My_articles_resp(Edit_Article_get):
     book_authors: List[str]
-    publication_date: datetime
+    publication_date: str
     pass

@@ -1,5 +1,5 @@
-from sqlalchemy import BigInteger, DateTime, Integer, JSON, String, Text
-from sqlalchemy import Column, Table
+from sqlalchemy import Integer, JSON, String, Text
+from sqlalchemy import Column
 from sqlalchemy import text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
@@ -18,7 +18,7 @@ class Publics(BookDiary_Base):
     book_id = Column(String(), nullable=False)
     book_name = Column(String(), nullable=False)
     book_authors = Column(JSON(), nullable=False)
-    publication_date = Column(DateTime(), nullable=False)
+    publication_date = Column(String(50), nullable=False)
     article_name = Column(String(50), nullable=False)
     book_genre = Column(String(), nullable=False)
     text = Column(Text(), nullable=False)
