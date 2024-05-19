@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
-from datetime import datetime
+from typing import List
 from uuid import UUID
 
 
@@ -78,4 +77,3 @@ class Author_Page_resp(BaseModel):
 class My_articles_resp(Edit_Article_get):
     book_authors: List[str]
     publication_date: str
-    pass
