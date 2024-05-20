@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
-import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
+import { ReactComponent as LikeIcon } from './images/like.svg';
+import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const BookPage = (props) => {
@@ -35,8 +36,16 @@ const BookPage = (props) => {
                                 className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
                                 onClick={props.toggleFavourite}
                             >
-                                <FavouriteIcon
-                                    className={`${styles.favourite_icon} ${props.isFavourite ? styles.active : ''}`}
+                                <LikeIcon
+                                    className={`${styles.btn_icon} ${props.isFavourite ? styles.active : ''}`}
+                                />
+                            </button>
+                            <button
+                                className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
+                                onClick={props.toggleFavourite}
+                            >
+                                <DislikeIcon
+                                    className={`${styles.btn_icon} ${props.isFavourite ? styles.active : ''}`}
                                 />
                             </button>
                             <button

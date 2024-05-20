@@ -12,6 +12,8 @@ const SET_COVER_URL = 'SET_COVER_URL';
 const SET_BUY_URL = 'SET_BUY_URL';
 const SET_SHORT_CONTENT = 'SET_SHORT_CONTENT';
 const CLEAR_CONTENT = 'CLEAR_CONTENT';
+const SET_LIKED = 'SET_LIKED';
+const SET_DISLIKED = 'SET_DISLIKED';
 
 const initialState = {
     id: '',
@@ -27,6 +29,8 @@ const initialState = {
     cover_url: '',
     buy_url: '',
     shortContent: '',
+    isLiked: false,
+    isDisliked: false,
 };
 
 const bookPageReducer = (state = initialState, action) => {
@@ -96,6 +100,16 @@ const bookPageReducer = (state = initialState, action) => {
                 ...state,
                 shortContent: action.payload,
             };
+        case SET_LIKED:
+            return {
+                ...state,
+                isLiked: action.payload,
+            };
+        case SET_DISLIKED:
+            return {
+                ...state,
+                isDisliked: action.payload,
+            };
         case CLEAR_CONTENT:
             return initialState;
         default:
@@ -119,6 +133,8 @@ export const setRatingGoogle = (rating) => ({ type: SET_RATING_GOOGLE, payload: 
 export const setCoverUrl = (coverUrl) => ({ type: SET_COVER_URL, payload: coverUrl });
 export const setBuyUrl = (buyUrl) => ({ type: SET_BUY_URL, payload: buyUrl });
 export const setShortContent = (text) => ({ type: SET_SHORT_CONTENT, payload: text });
+export const setLiked = (liked) => ({ type: SET_LIKED, payload: liked });
+export const setDisliked = (disliked) => ({ type: SET_DISLIKED, payload: disliked });
 export const clearContent = () => ({ type: CLEAR_CONTENT });
 
 export default bookPageReducer;
