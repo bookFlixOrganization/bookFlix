@@ -129,7 +129,6 @@ const BookPageContainer = () => {
 
     const isLiked = useSelector((state) => state.bookPageReducer.isLiked);
     const isDisliked = useSelector((state) => state.bookPageReducer.isDisliked);
-    console.log(isLiked, isDisliked);
     const handleLikeClick = async () => {
         try {
             if (isDisliked) {

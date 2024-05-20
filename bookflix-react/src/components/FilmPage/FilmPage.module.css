@@ -473,3 +473,7 @@ h2 {
 .btn_icon path {
     fill: #ffffff;
 }
+
+.btn_icon.active path {
+    fill: #e54d4d;
+}

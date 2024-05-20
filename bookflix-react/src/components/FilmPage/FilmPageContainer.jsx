@@ -6,6 +6,7 @@ import axios from 'axios';
 import { server } from '../../serverconf.js';
 import SessionChecker from '../SessionChecker.jsx';
 import {
+    setId,
     setName,
     setOriginalName,
     setCoverUrl,
@@ -23,6 +24,8 @@ import {
     setAge,
     setActors,
     clearContent,
+    setLiked,
+    setDisliked,
 } from '../../redux/filmPageReducer.js';
 const FilmPageContainer = () => {
     const { id } = useParams();
@@ -65,6 +68,19 @@ const FilmPageContainer = () => {
                 );
                 const imdbId = tmdbToImdbResponse.data;
                 const filmResponse = await axios.get(`${server}/film/${imdbId}`);
+                const favourites = await axios.get(`${server}/favourite`);
+                console.log(favourites);
+
+                // Проверка, есть ли книга в избранных
+                const isLiked = favourites.data['liked_films'].some((film) => film[1] === imdbId);
+                dispatch(setLiked(isLiked));
+
+                // Проверка, есть ли книга в нежелательных
+                const isDisliked = favourites.data['disliked_films'].some(
+                    (film) => film[1] === imdbId,
+                );
+                dispatch(setDisliked(isDisliked));
+                dispatch(setId(imdbId));
                 dispatch(setName(filmResponse.data.result['original title']));
                 dispatch(setOriginalName(filmResponse.data.result['localized title']));
                 dispatch(setCoverUrl(filmResponse.data.result['full-size cover url']));
@@ -130,6 +146,65 @@ const FilmPageContainer = () => {
     }, []);
 
     const filmState = useSelector((state) => state.filmPageReducer);
+    const isLiked = useSelector((state) => state.bookPageReducer.isLiked);
+    const isDisliked = useSelector((state) => state.bookPageReducer.isDisliked);
+    const handleLikeClick = async () => {
+        try {
+            if (isDisliked) {
+                const responseRmDislike = await axios.post(
+                    `${server}/film/${filmState.id}/delete_disliked_films?disliked_movie_title=${filmState.name}&disliked_movie_id=${filmState.id}`,
+                );
+                if (responseRmDislike.status === 200) {
+                    dispatch(setDisliked(false));
+                }
+            } else if (isLiked) {
+                const responseRmLike = await axios.post(
+                    `${server}/film/${filmState.id}/delete_liked_films?liked_movie_title=${filmState.name}&liked_movie_id=${filmState.id}`,
+                );
+                if (responseRmLike.status === 200) {
+                    dispatch(setLiked(false));
+                }
+            } else if (!isLiked) {
+                const responseAddLike = await axios.post(
+                    `${server}/film/${filmState.id}/add_liked_films?liked_movie_title=${filmState.name}&liked_movie_id=${filmState.id}`,
+                );
+                if (responseAddLike.status === 200) {
+                    dispatch(setLiked(true));
+                }
+            }
+        } catch (error) {
+            console.error('Ошибка при добавлении книги в список лайков:', error);
+        }
+    };
+
+    const handleDislikeClick = async () => {
+        try {
+            if (isLiked) {
+                const responseRmLike = await axios.post(
+                    `${server}/film/${filmState.id}/delete_liked_films?liked_movie_title=${filmState.name}&liked_movie_id=${filmState.id}`,
+                );
+                if (responseRmLike.status === 200) {
+                    dispatch(setLiked(false));
+                }
+            } else if (isDisliked) {
+                const responseRmDislike = await axios.post(
+                    `${server}/film/${filmState.id}/delete_disliked_films?disliked_movie_title=${filmState.name}&disliked_movie_id=${filmState.id}`,
+                );
+                if (responseRmDislike.status === 200) {
+                    dispatch(setDisliked(false));
+                }
+            } else if (!isDisliked) {
+                const responseAddDislike = await axios.post(
+                    `${server}/film/${filmState.id}/add_disliked_films?disliked_movie_title=${filmState.name}&disliked_movie_id=${filmState.id}`,
+                );
+                if (responseAddDislike.status === 200) {
+                    dispatch(setDisliked(true));
+                }
+            }
+        } catch (error) {
+            console.error('Ошибка при добавлении книги в список дизлайков:', error);
+        }
+    };
 
     return (
         <>
@@ -143,6 +218,10 @@ const FilmPageContainer = () => {
                 closeModal={closeModal}
                 submitFeedback={submitFeedback}
                 filmState={filmState}
+                handleLikeClick={handleLikeClick}
+                handleDislikeClick={handleDislikeClick}
+                isLiked={isLiked}
+                isDisliked={isDisliked}
             />
         </>
     );

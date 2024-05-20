@@ -1,3 +1,4 @@
+const SET_ID = 'SET_ID';
 const SET_NAME = 'SET_NAME';
 const SET_ORIGINAL_NAME = 'SET_ORIGINAL_NAME';
 const SET_COVER_URL = 'SET_COVER_URL';
@@ -19,6 +20,7 @@ const SET_LIKED = 'SET_LIKED';
 const SET_DISLIKED = 'SET_DISLIKED';
 
 const initialState = {
+    id: null,
     name: '',
     original_name: '',
     cover_url: '',
@@ -42,6 +44,11 @@ const initialState = {
 
 const filmPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_ID:
+            return {
+                ...state,
+                id: action.payload,
+            };
         case SET_NAME:
             return {
                 ...state,
@@ -139,6 +146,7 @@ const filmPageReducer = (state = initialState, action) => {
     }
 };
 
+export const setId = (id) => ({ type: SET_ID, payload: id });
 export const setName = (name) => ({ type: SET_NAME, payload: name });
 export const setOriginalName = (originalName) => ({
     type: SET_ORIGINAL_NAME,
