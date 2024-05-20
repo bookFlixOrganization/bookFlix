@@ -60,7 +60,6 @@ const BookPageContainer = () => {
             const shortContentResponse = await axios.get(
                 `${server}/short_content/?query=${bookState.name}`,
             );
-            console.log(shortContentResponse);
             const shortContentData = shortContentResponse.data.content;
             dispatch(setShortContent(shortContentData));
         } catch (error) {

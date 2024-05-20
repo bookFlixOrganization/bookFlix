@@ -7,7 +7,6 @@ import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const FilmPage = (props) => {
     const { filmState } = props;
-    console.log(filmState);
     const formatRuntime = (runtimeInMinutes) => {
         const hours = Math.floor(runtimeInMinutes / 60);
         const minutes = runtimeInMinutes % 60;
