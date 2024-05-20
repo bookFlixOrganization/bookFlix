@@ -33,19 +33,19 @@ const BookPage = (props) => {
                                 Читать
                             </a>
                             <button
-                                className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
-                                onClick={props.toggleFavourite}
+                                className={`${styles.block_1} ${props.isLiked ? styles.active : ''}`}
+                                onClick={props.handleLikeClick}
                             >
                                 <LikeIcon
-                                    className={`${styles.btn_icon} ${props.isFavourite ? styles.active : ''}`}
+                                    className={`${styles.btn_icon} ${props.isLiked ? styles.active : ''}`}
                                 />
                             </button>
                             <button
-                                className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
-                                onClick={props.toggleFavourite}
+                                className={`${styles.block_1} ${props.isDisliked ? styles.active : ''}`}
+                                onClick={props.handleDislikeClick}
                             >
                                 <DislikeIcon
-                                    className={`${styles.btn_icon} ${props.isFavourite ? styles.active : ''}`}
+                                    className={`${styles.btn_icon} ${props.isDisliked ? styles.active : ''}`}
                                 />
                             </button>
                             <button
