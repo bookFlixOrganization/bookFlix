@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './FilmPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
-import { ReactComponent as FavouriteIcon } from './images/favourite.svg';
 import someone from './images/photo.jpg';
 import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
+import { ReactComponent as LikeIcon } from './images/like.svg';
+import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 
 const FilmPage = (props) => {
     const { filmState } = props;
@@ -34,11 +35,19 @@ const FilmPage = (props) => {
                                 Смотреть
                             </a>
                             <button
-                                className={`${styles.block_1} ${props.isFavourite ? styles.active : ''}`}
-                                onClick={props.toggleFavourite}
+                                className={`${styles.block_1} ${props.isLiked ? styles.active : ''}`}
+                                onClick={props.handleLikeClick}
                             >
-                                <FavouriteIcon
-                                    className={`${styles.favourite_icon} ${props.isFavourite ? styles.active : ''}`}
+                                <LikeIcon
+                                    className={`${styles.btn_icon} ${props.isLiked ? styles.active : ''}`}
+                                />
+                            </button>
+                            <button
+                                className={`${styles.block_1} ${props.isDisliked ? styles.active : ''}`}
+                                onClick={props.handleDislikeClick}
+                            >
+                                <DislikeIcon
+                                    className={`${styles.btn_icon} ${props.isDisliked ? styles.active : ''}`}
                                 />
                             </button>
                         </div>
@@ -64,12 +73,6 @@ const FilmPage = (props) => {
                                 <span className={styles.label}>Жанр</span>
                                 <span>{filmState.genre && filmState.genre.join(', ')}</span>
                             </li>
-                            {/* <li>
-                                <span className={styles.label}>Слоган</span>
-                                <time className={styles.text_muted}>
-                                    «The 9th Film from Quentin Tarantino»
-                                </time>
-                            </li> */}
                             <li>
                                 <span className={styles.label}>Режиссёр</span>
                                 {filmState.director}

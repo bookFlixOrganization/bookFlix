@@ -15,6 +15,8 @@ const SET_RUNTIMES = 'SET_RUNTIMES';
 const SET_AGE = 'SET_AGE';
 const SET_ACTORS = 'SET_ACTORS';
 const CLEAR_CONTENT = 'CLEAR_CONTENT';
+const SET_LIKED = 'SET_LIKED';
+const SET_DISLIKED = 'SET_DISLIKED';
 
 const initialState = {
     name: '',
@@ -34,6 +36,8 @@ const initialState = {
     video_url: '',
     runtimes: '',
     actors: null,
+    isLiked: false,
+    isDislike: false,
 };
 
 const filmPageReducer = (state = initialState, action) => {
@@ -118,6 +122,16 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 actors: action.payload,
             };
+        case SET_LIKED:
+            return {
+                ...state,
+                isLiked: action.payload,
+            };
+        case SET_DISLIKED:
+            return {
+                ...state,
+                isDisliked: action.payload,
+            };
         case CLEAR_CONTENT:
             return initialState;
         default:
@@ -147,6 +161,8 @@ export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, payload: videoU
 export const setRuntimes = (runtimes) => ({ type: SET_RUNTIMES, payload: runtimes });
 export const setAge = (age) => ({ type: SET_AGE, payload: age });
 export const setActors = (actors) => ({ type: SET_ACTORS, payload: actors });
+export const setLiked = (liked) => ({ type: SET_LIKED, payload: liked });
+export const setDisliked = (disliked) => ({ type: SET_DISLIKED, payload: disliked });
 export const clearContent = () => ({ type: CLEAR_CONTENT });
 
 export default filmPageReducer;
