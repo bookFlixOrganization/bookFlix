@@ -62,15 +62,17 @@ const MainPageContainer = () => {
                         requests.push(axios.get(`${server}/recommendation_movie`));
                     }
 
-                    const responses = await Promise.all(requests);
+                    const responses = await Promise.allSettled(requests);
 
                     responses.forEach((response, index) => {
-                        if (response && response.data) {
+                        if (response.status === 'fulfilled' && response.value.data) {
                             if (index === 1) {
-                                dispatch(setPersonBooks(response.data));
+                                dispatch(setPersonBooks(response.value.data));
                             } else if (index === 2) {
-                                dispatch(setPersonFilms(response.data));
+                                dispatch(setPersonFilms(response.value.data));
                             }
+                        } else {
+                            console.error('Ошибка при выполнении запроса:', response.reason);
                         }
                     });
                 } catch (error) {
