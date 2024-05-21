@@ -27,12 +27,12 @@ const mainPageReducer = (state = initialState, action) => {
         case SET_PERSON_BOOKS:
             return {
                 ...state,
-                person_books: action.payload.result,
+                person_books: action.payload,
             };
         case SET_PERSON_FILMS:
             return {
                 ...state,
-                person_films: action.payload.result,
+                person_films: action.payload,
             };
         case SET_FAVOURITE:
             return {

@@ -5,6 +5,7 @@ import PopularFilms from './Sections/PopularFilms.jsx';
 import PopularBooks from './Sections/PopularBooks.jsx';
 
 const MainPage = (props) => {
+    console.log(props);
     return (
         <div>
             <YourFilms />

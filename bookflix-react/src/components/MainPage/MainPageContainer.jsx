@@ -47,37 +47,25 @@ const MainPageContainer = () => {
             try {
                 const responseFavourite = await axios.get(`${server}/favourite`);
                 dispatch(setFavourites(responseFavourite.data));
+
+                const requests = [];
+
                 if (responseFavourite.data.liked_books.length > 0) {
-                    try {
-                        const responseAddedBooks = await axios.get(
-                            `${server}/favourite/added_book`,
-                        );
-                        if (
-                            responseAddedBooks.data &&
-                            Object.keys(responseAddedBooks.data).length > 0
-                        ) {
-                            try {
-                                const responseRecommBooks = await axios.get(
-                                    `${server}/recommendation_book`,
-                                );
-                                dispatch(setPersonBooks(responseRecommBooks.data));
-                            } catch (error) {
-                                console.log('Error fetching recommendationBooks');
-                            }
-                        }
-                    } catch (error) {
-                        console.error('Error fetching added books');
-                    }
+                    requests.push(axios.get(`${server}/favourite/added_book`));
                 }
+
                 if (responseFavourite.data.liked_films.length > 0) {
-                    try {
-                        const responseRecommFilms = await axios.get(
-                            `${server}/recommendation_movie`,
-                        );
-                        dispatch(setPersonFilms(responseRecommFilms.data));
-                    } catch (error) {
-                        console.error('Error fetching recomm movie');
-                    }
+                    requests.push(axios.get(`${server}/recommendation_movie`));
+                }
+
+                const [addedBooksResponse, recommFilmsResponse] = await Promise.all(requests);
+
+                if (addedBooksResponse && addedBooksResponse.data) {
+                    dispatch(setPersonBooks(addedBooksResponse.data));
+                }
+
+                if (recommFilmsResponse && recommFilmsResponse.data) {
+                    dispatch(setPersonFilms(recommFilmsResponse.data));
                 }
             } catch (error) {
                 console.log('Error fetching person', error);
