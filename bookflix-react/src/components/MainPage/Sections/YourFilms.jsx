@@ -81,7 +81,7 @@ const YourFilms = (props) => {
                             })}
                         <SwiperSlide
                             className={styles.movie_show_all}
-                            onClick={() => navigate('/all-films')}
+                            onClick={() => navigate('/person-films')}
                         >
                             <p className={styles.show_all}>Смотреть все</p>
                         </SwiperSlide>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MainPage from './MainPage.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 import {
     setPopularBooks,
     setPopularFilms,
@@ -88,19 +87,13 @@ const MainPageContainer = () => {
         }
         fetchPerson();
     }, [dispatch, isCheckingAuth]);
-    if (isCheckingAuth) {
-        return <div>Проверка авторизации...</div>;
-    }
     return (
-        <>
-            <SessionChecker />
-            <MainPage
-                popularBooks={popularBooks}
-                popularFilms={popularFilms}
-                personBooks={personBooks}
-                personFilms={personFilms}
-            />
-        </>
+        <MainPage
+            popularBooks={popularBooks}
+            popularFilms={popularFilms}
+            personBooks={personBooks}
+            personFilms={personFilms}
+        />
     );
 };
 
