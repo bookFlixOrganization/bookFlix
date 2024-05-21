@@ -77,7 +77,6 @@ const BookPageContainer = () => {
                 const bookResponseData = bookResponse.data;
 
                 const favourites = await axios.get(`${server}/favourite`);
-                console.log(favourites);
 
                 // Проверка, есть ли книга в лайкнутых
                 const isLiked = favourites.data['liked_books'].some(

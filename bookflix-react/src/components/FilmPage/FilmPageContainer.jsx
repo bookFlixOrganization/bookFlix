@@ -69,7 +69,6 @@ const FilmPageContainer = () => {
                 const imdbId = tmdbToImdbResponse.data;
                 const filmResponse = await axios.get(`${server}/film/${imdbId}`);
                 const favourites = await axios.get(`${server}/favourite`);
-                console.log(favourites);
 
                 // Проверка, есть ли книга в избранных
                 const isLiked = favourites.data['liked_films'].some((film) => film[1] === imdbId);
