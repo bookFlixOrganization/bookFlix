@@ -26,7 +26,6 @@ import { useParams } from 'react-router-dom';
 
 const BookPageContainer = () => {
     const paramsId = useParams('id').id;
-    console.log(paramsId);
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -125,21 +124,21 @@ const BookPageContainer = () => {
         try {
             if (isDisliked) {
                 const responseRmDislike = await axios.post(
-                    `${server}/book/${bookState.id}/delete_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/delete_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${paramsId}`,
                 );
                 if (responseRmDislike.status === 200) {
                     dispatch(setDisliked(false));
                 }
             } else if (isLiked) {
                 const responseRmLike = await axios.post(
-                    `${server}/book/${bookState.id}/delete_liked_books?liked_book_title=${bookState.name}&liked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/delete_liked_books?liked_book_title=${bookState.name}&liked_book_id=${paramsId}`,
                 );
                 if (responseRmLike.status === 200) {
                     dispatch(setLiked(false));
                 }
             } else if (!isLiked) {
                 const responseAddLike = await axios.post(
-                    `${server}/book/${bookState.id}/add_liked_books?liked_book_title=${bookState.name}&liked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/add_liked_books?liked_book_title=${bookState.name}&liked_book_id=${paramsId}`,
                 );
                 if (responseAddLike.status === 200) {
                     dispatch(setLiked(true));
@@ -154,21 +153,21 @@ const BookPageContainer = () => {
         try {
             if (isLiked) {
                 const responseRmLike = await axios.post(
-                    `${server}/book/${bookState.id}/delete_liked_books?liked_book_title=${bookState.name}&liked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/delete_liked_books?liked_book_title=${bookState.name}&liked_book_id=${paramsId}`,
                 );
                 if (responseRmLike.status === 200) {
                     dispatch(setLiked(false));
                 }
             } else if (isDisliked) {
                 const responseRmDislike = await axios.post(
-                    `${server}/book/${bookState.id}/delete_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/delete_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${paramsId}`,
                 );
                 if (responseRmDislike.status === 200) {
                     dispatch(setDisliked(false));
                 }
             } else if (!isDisliked) {
                 const responseAddDislike = await axios.post(
-                    `${server}/book/${bookState.id}/add_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${bookState.id}`,
+                    `${server}/book/${paramsId}/add_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${paramsId}`,
                 );
                 if (responseAddDislike.status === 200) {
                     dispatch(setDisliked(true));
@@ -178,7 +177,6 @@ const BookPageContainer = () => {
             console.error('Ошибка при добавлении книги в список дизлайков:', error);
         }
     };
-    console.log(bookState);
 
     return (
         <>
