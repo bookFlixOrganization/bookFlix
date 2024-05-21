@@ -3,7 +3,7 @@ import BookPage from './BookPage.jsx';
 import SessionChecker from '../SessionChecker.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    setId,
+    setBookId,
     setName,
     setAuthor,
     setDescription,
@@ -25,7 +25,8 @@ import { server } from '../../serverconf.js';
 import { useParams } from 'react-router-dom';
 
 const BookPageContainer = () => {
-    const { id } = useParams();
+    const paramsId = useParams('id').id;
+    console.log(paramsId);
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,14 +75,13 @@ const BookPageContainer = () => {
     useEffect(() => {
         const fetchBookData = async () => {
             try {
-                const bookResponse = await axios.get(`${server}/book/${id}`);
+                const bookResponse = await axios.get(`${server}/book/${paramsId}`);
                 const bookResponseData = bookResponse.data;
 
                 const favourites = await axios.get(`${server}/favourite`);
                 console.log(favourites);
 
                 // Проверка, есть ли книга в лайкнутых
-                console.log(bookResponseData);
                 const isLiked = favourites.data['liked_books'].some(
                     (book) => book[1] === bookResponseData.id,
                 );
@@ -98,7 +98,7 @@ const BookPageContainer = () => {
                 dispatch(setDate(bookResponseData.volumeInfo.publishedDate));
                 dispatch(setDescription(bookResponseData.volumeInfo.description));
                 dispatch(setGenre(bookResponseData.volumeInfo.categories));
-                dispatch(setId(bookResponseData.id));
+                dispatch(setBookId(paramsId));
                 dispatch(setNumberOfPages(bookResponseData.volumeInfo.pageCount));
                 dispatch(setLanguage(bookResponseData.volumeInfo.language));
                 dispatch(setRatingBookflix(0));
@@ -111,7 +111,7 @@ const BookPageContainer = () => {
         };
 
         fetchBookData();
-    }, [id]);
+    }, [paramsId]);
 
     useEffect(() => {
         dispatch(clearContent());
@@ -178,6 +178,7 @@ const BookPageContainer = () => {
             console.error('Ошибка при добавлении книги в список дизлайков:', error);
         }
     };
+    console.log(bookState);
 
     return (
         <>

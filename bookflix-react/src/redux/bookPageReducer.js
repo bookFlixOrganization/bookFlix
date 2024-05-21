@@ -1,4 +1,4 @@
-const SET_ID = 'SET_ID';
+const SET_BOOK_ID = 'SET_BOOK_ID';
 const SET_NAME = 'SET_BOOK_NAME';
 const SET_AUTHOR = 'SET_AUTHOR';
 const SET_DESCRIPTION = 'SET_DESCRIPTION';
@@ -16,7 +16,7 @@ const SET_LIKED = 'SET_LIKED';
 const SET_DISLIKED = 'SET_DISLIKED';
 
 const initialState = {
-    id: '',
+    bookId: '',
     name: '',
     author: '',
     description: '',
@@ -35,10 +35,10 @@ const initialState = {
 
 const bookPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_ID:
+        case SET_BOOK_ID:
             return {
                 ...state,
-                id: action.payload,
+                bookId: action.payload,
             };
         case SET_NAME:
             return {
@@ -117,7 +117,7 @@ const bookPageReducer = (state = initialState, action) => {
     }
 };
 
-export const setId = (id) => ({ type: SET_ID, payload: id });
+export const setBookId = (id) => ({ type: SET_BOOK_ID, payload: id });
 export const setName = (name) => ({ type: SET_NAME, payload: name });
 export const setAuthor = (author) => ({ type: SET_AUTHOR, payload: author });
 export const setDescription = (description) => ({ type: SET_DESCRIPTION, payload: description });
