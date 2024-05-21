@@ -8,6 +8,7 @@ import 'swiper/css/navigation'; //eslint-disable-line
 import styles from './Section.module.css';
 
 const PopularBooks = (props) => {
+    console.log(props);
     const navigate = useNavigate();
     return (
         <>
@@ -44,26 +45,23 @@ const PopularBooks = (props) => {
                                 >
                                     <div className={styles.container}>
                                         <NavLink
-                                            to={`/book-page/${book.title}`}
+                                            to={`/book-page/${book.id}`}
                                             className={styles.movie}
                                         >
                                             <div className={styles.movie__cover_inner}>
                                                 <img
-                                                    src={book.book_image}
-                                                    alt={book.title}
+                                                    src={book.volumeInfo.imageLinks.thumbnail}
+                                                    alt={book.volumeInfo.title}
                                                     className={styles.movie__cover}
                                                 />
                                                 <div className={styles.movie__cover_darkened}></div>
                                             </div>
                                             <div className={styles.movie__info}>
                                                 <div className={styles.movie__title}>
-                                                    {book.title}
+                                                    {book.volumeInfo.title}
                                                 </div>
                                                 <div className={styles.movie__category}>
-                                                    {book.author}
-                                                </div>
-                                                <div className={styles.movie__average}>
-                                                    {book.rank.toFixed(1)}
+                                                    {book.volumeInfo.authors[0]}
                                                 </div>
                                             </div>
                                         </NavLink>
