@@ -2,12 +2,14 @@ const SET_POPULAR_BOOKS = 'SET_POPULAR_BOOKS';
 const SET_POPULAR_FILMS = 'SET_POPULAR_FILMS';
 const SET_PERSON_BOOKS = 'SET_PERSON_BOOKS';
 const SET_PERSON_FILMS = 'SET_PERSON_FILMS';
+const SET_FAVOURITE = 'SET_FAVOURITE';
 
 const initialState = {
     person_books: null,
     person_films: null,
     popular_books: null,
     popular_films: null,
+    favourite: null,
 };
 
 const mainPageReducer = (state = initialState, action) => {
@@ -32,6 +34,11 @@ const mainPageReducer = (state = initialState, action) => {
                 ...state,
                 person_films: action.payload.result,
             };
+        case SET_FAVOURITE:
+            return {
+                ...state,
+                favourite: action.payload,
+            };
         default:
             return state;
     }
@@ -55,6 +62,11 @@ export const setPersonBooks = (person_books) => ({
 export const setPersonFilms = (person_films) => ({
     type: SET_PERSON_FILMS,
     payload: person_films,
+});
+
+export const setFavourites = (favourites) => ({
+    type: SET_FAVOURITE,
+    payload: favourites,
 });
 
 export default mainPageReducer;
