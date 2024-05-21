@@ -1,0 +1,62 @@
+/* Account.module.css */
+.account_container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #222222;
+    border: 5px solid #fff;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account_container h1 {
+    text-align: center;
+}
+
+.account_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.account_form label {
+    margin-top: 15px;
+    color: #666;
+}
+
+.account_form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.password_input {
+    position: relative;
+}
+
+.password_input button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+}
+
+.account_form button[type='submit'] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e54d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.account_form button[type='submit']:hover {
+    background-color: #e43131;
+}

@@ -19,6 +19,7 @@ import PreferencesContainer from './components/Preferences/PreferencesContainer.
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
 import FeedBackContainer from './components/FeedBack/FeedBackContainer.jsx';
 import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx';
+import AccountContainer from './components/Account/AccountContainer.jsx';
 import './App.css';
 import axios from 'axios';
 
@@ -51,6 +52,7 @@ function App() {
                 <Route path="preferences" element={<PreferencesContainer />} />
                 <Route path="search" element={<SearchPageContainer />} />
                 <Route path="feedback" element={<FeedBackContainer />} />
+                <Route path="account" element={<AccountContainer />} />
             </Routes>
         </div>
     );

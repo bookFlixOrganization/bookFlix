@@ -50,6 +50,9 @@ const Header = ({ session, handleLogout }) => {
                                         <NavLink to="/reading-diary">Дневник чтения</NavLink>
                                     </li>
                                     <li className={styles.points}>
+                                        <NavLink to="/account">Личный кабинет</NavLink>
+                                    </li>
+                                    <li className={styles.points}>
                                         <div className={styles.logout_button_container}>
                                             <button
                                                 className={styles.logout_button}
