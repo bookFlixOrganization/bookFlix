@@ -87,6 +87,10 @@ const MainPageContainer = () => {
         }
         fetchPerson();
     }, [dispatch]);
+    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
+    if (isCheckingAuth) {
+        return <div>Проверка авторизации...</div>;
+    }
     return (
         <>
             <SessionChecker />

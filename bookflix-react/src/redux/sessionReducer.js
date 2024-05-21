@@ -8,6 +8,7 @@ const SET_ROLE_ID = 'SET_ROLE_ID';
 const SET_PREFERENCES = 'SET_PREFERENCES';
 const SET_IS_AUTH = 'SET_IS_AUTH';
 const LOGOUT = 'LOGOUT';
+const SET_IS_CHECKING_AUTH = 'SET_IS_CHECKING_AUTH';
 
 const initialState = {
     id: '',
@@ -19,6 +20,7 @@ const initialState = {
     role_id: '',
     is_preferences: false,
     is_auth: false,
+    is_checking_auth: true,
 };
 
 const sessionReducer = (state = initialState, action) => {
@@ -71,6 +73,11 @@ const sessionReducer = (state = initialState, action) => {
         case LOGOUT:
             document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             return initialState;
+        case SET_IS_CHECKING_AUTH:
+            return {
+                ...state,
+                is_checking_auth: action.payload,
+            };
         default:
             return state;
     }
@@ -88,6 +95,10 @@ export const setPreferences = (isPreferences) => ({
     payload: isPreferences,
 });
 export const setIsAuth = (isAuth) => ({ type: SET_IS_AUTH, payload: isAuth });
+export const setIsCheckingAuth = (isCheckingAuth) => ({
+    type: SET_IS_CHECKING_AUTH,
+    payload: isCheckingAuth,
+});
 export const logout = () => ({ type: LOGOUT });
 
 export default sessionReducer;

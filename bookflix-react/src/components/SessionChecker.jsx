@@ -12,6 +12,7 @@ import {
     setPreferences,
     setVerified,
     setUsername,
+    setIsCheckingAuth,
     logout, // Импортируем экшен для выхода из системы
 } from '../redux/sessionReducer.js';
 import { server } from '../serverconf.js';
@@ -40,6 +41,7 @@ const SessionChecker = () => {
                     dispatch(setRoleId(userData.role_id));
                     dispatch(setPreferences(userData.is_preferences));
                     dispatch(setIsAuth(true));
+                    dispatch(setIsCheckingAuth(false));
                 } catch (error) {
                     if (error.response && error.response.status === 401) {
                         dispatch(logout());
