@@ -8,7 +8,6 @@ import 'swiper/css/navigation'; //eslint-disable-line
 import styles from './Section.module.css';
 
 const PopularBooks = (props) => {
-    console.log(props);
     const navigate = useNavigate();
     return (
         <>

@@ -25,7 +25,7 @@ import { server } from '../../serverconf.js';
 import { useParams } from 'react-router-dom';
 
 const BookPageContainer = () => {
-    const { bookName } = useParams();
+    const { id } = useParams();
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,51 +74,44 @@ const BookPageContainer = () => {
     useEffect(() => {
         const fetchBookData = async () => {
             try {
-                const firstBookResponse = await axios.get(
-                    `${server}/search/book?query=${bookName}`,
-                );
-                const firstBook = firstBookResponse.data.items[0];
+                const bookResponse = await axios.get(`${server}/book/${id}`);
+                const bookResponseData = bookResponse.data;
 
-                const secondBookResponse = await axios.get(`${server}/book/${firstBook.id}`);
-                const secondBookData = secondBookResponse.data;
-
-                // Получение списков избранных и нежелательных книг
                 const favourites = await axios.get(`${server}/favourite`);
                 console.log(favourites);
 
-                // Проверка, есть ли книга в избранных
-                console.log(secondBookData.id);
+                // Проверка, есть ли книга в лайкнутых
+                console.log(bookResponseData);
                 const isLiked = favourites.data['liked_books'].some(
-                    (book) => book[1] === secondBookData.id,
+                    (book) => book[1] === bookResponseData.id,
                 );
                 dispatch(setLiked(isLiked));
 
-                // Проверка, есть ли книга в нежелательных
+                // Проверка, есть ли книга в дизлайкнутых
                 const isDisliked = favourites.data['disliked_books'].some(
-                    (book) => book[1] === secondBookData.id,
+                    (book) => book[1] === bookResponseData.id,
                 );
                 dispatch(setDisliked(isDisliked));
 
-                // Установка остальных свойств книги
-                dispatch(setName(secondBookData.volumeInfo.title));
-                dispatch(setAuthor(secondBookData.volumeInfo.authors));
-                dispatch(setDate(secondBookData.volumeInfo.publishedDate));
-                dispatch(setDescription(secondBookData.volumeInfo.description));
-                dispatch(setGenre(secondBookData.volumeInfo.categories));
-                dispatch(setId(secondBookData.id));
-                dispatch(setNumberOfPages(secondBookData.volumeInfo.pageCount));
-                dispatch(setLanguage(secondBookData.volumeInfo.language));
+                dispatch(setName(bookResponseData.volumeInfo.title));
+                dispatch(setAuthor(bookResponseData.volumeInfo.authors));
+                dispatch(setDate(bookResponseData.volumeInfo.publishedDate));
+                dispatch(setDescription(bookResponseData.volumeInfo.description));
+                dispatch(setGenre(bookResponseData.volumeInfo.categories));
+                dispatch(setId(bookResponseData.id));
+                dispatch(setNumberOfPages(bookResponseData.volumeInfo.pageCount));
+                dispatch(setLanguage(bookResponseData.volumeInfo.language));
                 dispatch(setRatingBookflix(0));
                 dispatch(setRatingGoogle(0));
-                dispatch(setCoverUrl(secondBookData.volumeInfo.imageLinks.medium));
-                dispatch(setBuyUrl(secondBookData.accessInfo.webReaderLink));
+                dispatch(setCoverUrl(bookResponseData.volumeInfo.imageLinks.thumbnail));
+                dispatch(setBuyUrl(bookResponseData.accessInfo.webReaderLink));
             } catch (error) {
                 console.error('Ошибка при получении данных книги:', error);
             }
         };
 
         fetchBookData();
-    }, [bookName]);
+    }, [id]);
 
     useEffect(() => {
         dispatch(clearContent());
@@ -126,7 +119,6 @@ const BookPageContainer = () => {
 
     const bookState = useSelector((state) => state.bookPageReducer);
     const shortContent = useSelector((state) => state.bookPageReducer.shortContent);
-
     const isLiked = useSelector((state) => state.bookPageReducer.isLiked);
     const isDisliked = useSelector((state) => state.bookPageReducer.isDisliked);
     const handleLikeClick = async () => {
