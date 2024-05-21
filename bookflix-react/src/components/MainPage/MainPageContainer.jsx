@@ -18,6 +18,8 @@ const MainPageContainer = () => {
     const popularBooks = useSelector((state) => state.mainPageReducer.popular_books);
     const personFilms = useSelector((state) => state.mainPageReducer.person_films);
     const personBooks = useSelector((state) => state.mainPageReducer.person_books);
+    const isAuth = useSelector((state) => state.sessionReducer.is_auth);
+
     useEffect(() => {
         const fetchPopularBooks = async () => {
             try {
@@ -44,34 +46,36 @@ const MainPageContainer = () => {
             }
         };
         const fetchPerson = async () => {
-            try {
-                const responseFavourite = await axios.get(`${server}/favourite`);
-                dispatch(setFavourites(responseFavourite.data));
+            if (isAuth) {
+                try {
+                    const responseFavourite = await axios.get(`${server}/favourite`);
+                    dispatch(setFavourites(responseFavourite.data));
 
-                const requests = [];
+                    const requests = [];
 
-                if (responseFavourite.data.liked_books.length > 0) {
-                    requests.push(axios.get(`${server}/favourite/added_book`));
-                    requests.push(axios.get(`${server}/recommendation_book`)); // Добавляем запрос на рекомендованные книги
-                }
-
-                if (responseFavourite.data.liked_films.length > 0) {
-                    requests.push(axios.get(`${server}/recommendation_movie`));
-                }
-
-                const responses = await Promise.all(requests);
-
-                responses.forEach((response, index) => {
-                    if (response && response.data) {
-                        if (index === 1) {
-                            dispatch(setPersonBooks(response.data));
-                        } else if (index === 2) {
-                            dispatch(setPersonFilms(response.data));
-                        }
+                    if (responseFavourite.data.liked_books.length > 0) {
+                        requests.push(axios.get(`${server}/favourite/added_book`));
+                        requests.push(axios.get(`${server}/recommendation_book`)); // Добавляем запрос на рекомендованные книги
                     }
-                });
-            } catch (error) {
-                console.error('Error fetching person', error);
+
+                    if (responseFavourite.data.liked_films.length > 0) {
+                        requests.push(axios.get(`${server}/recommendation_movie`));
+                    }
+
+                    const responses = await Promise.all(requests);
+
+                    responses.forEach((response, index) => {
+                        if (response && response.data) {
+                            if (index === 1) {
+                                dispatch(setPersonBooks(response.data));
+                            } else if (index === 2) {
+                                dispatch(setPersonFilms(response.data));
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error fetching person', error);
+                }
             }
         };
 

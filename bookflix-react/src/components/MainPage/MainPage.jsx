@@ -7,8 +7,8 @@ import PopularBooks from './Sections/PopularBooks.jsx';
 const MainPage = (props) => {
     return (
         <div>
-            <YourFilms personFilms={props.personFilms} />
-            <YourBooks personBooks={props.personBooks} />
+            {props.personFilms && <YourFilms personFilms={props.personFilms} />}
+            {props.personBooks && <YourBooks personBooks={props.personBooks} />}
             <PopularFilms popularFilms={props.popularFilms} />
             <PopularBooks popularBooks={props.popularBooks} />
         </div>
