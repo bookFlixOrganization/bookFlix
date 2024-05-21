@@ -27,7 +27,6 @@ import { useParams } from 'react-router-dom';
 const BookPageContainer = () => {
     const paramsId = useParams('id').id;
     const dispatch = useDispatch();
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
     const openModal = () => {
@@ -128,6 +127,12 @@ const BookPageContainer = () => {
                 );
                 if (responseRmDislike.status === 200) {
                     dispatch(setDisliked(false));
+                    const responseAddLike = await axios.post(
+                        `${server}/book/${paramsId}/add_liked_books?liked_book_title=${bookState.name}&liked_book_id=${paramsId}`,
+                    );
+                    if (responseAddLike.status === 200) {
+                        dispatch(setLiked(true));
+                    }
                 }
             } else if (isLiked) {
                 const responseRmLike = await axios.post(
@@ -157,6 +162,12 @@ const BookPageContainer = () => {
                 );
                 if (responseRmLike.status === 200) {
                     dispatch(setLiked(false));
+                    const responseAddDislike = await axios.post(
+                        `${server}/book/${paramsId}/add_disliked_books?disliked_book_title=${bookState.name}&disliked_book_id=${paramsId}`,
+                    );
+                    if (responseAddDislike.status === 200) {
+                        dispatch(setDisliked(true));
+                    }
                 }
             } else if (isDisliked) {
                 const responseRmDislike = await axios.post(
@@ -177,7 +188,6 @@ const BookPageContainer = () => {
             console.error('Ошибка при добавлении книги в список дизлайков:', error);
         }
     };
-
     return (
         <>
             <SessionChecker />
