@@ -19,6 +19,7 @@ const MainPageContainer = () => {
     const personFilms = useSelector((state) => state.mainPageReducer.person_films);
     const personBooks = useSelector((state) => state.mainPageReducer.person_books);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
+    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
 
     useEffect(() => {
         const fetchPopularBooks = async () => {
@@ -86,8 +87,7 @@ const MainPageContainer = () => {
             fetchPopularFilms();
         }
         fetchPerson();
-    }, [dispatch]);
-    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
+    }, [dispatch, isCheckingAuth]);
     if (isCheckingAuth) {
         return <div>Проверка авторизации...</div>;
     }
