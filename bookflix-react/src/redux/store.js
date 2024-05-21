@@ -8,6 +8,7 @@ import feedbackReducer from './feedbackReducer';
 import articlePageReducer from './articlePageReducer';
 import sessionReducer from './sessionReducer';
 import mainPageReducer from './mainPageReducer';
+import accountReducer from './accountReducer';
 
 const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
         articlePageReducer: articlePageReducer,
         sessionReducer: sessionReducer,
         mainPageReducer: mainPageReducer,
+        accountReducer: accountReducer,
     },
 });
 
