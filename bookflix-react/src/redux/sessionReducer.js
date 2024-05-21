@@ -1,5 +1,5 @@
-const SET_ID = 'SET_ID';
-const SET_EMAIL = 'SET_EMAIL';
+const SET_USER_ID = 'SET_USER_ID';
+const SET_USER_EMAIL = 'SET_USER_EMAIL';
 const SET_ACTIVE = 'SET_ACTIVE';
 const SET_SUPERUSER = 'SET_SUPERUSER';
 const SET_VERIFIED = 'SET_VERIFIED';
@@ -23,12 +23,12 @@ const initialState = {
 
 const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_ID:
+        case SET_USER_ID:
             return {
                 ...state,
                 id: action.payload,
             };
-        case SET_EMAIL:
+        case SET_USER_EMAIL:
             return {
                 ...state,
                 email: action.payload,
@@ -76,8 +76,8 @@ const sessionReducer = (state = initialState, action) => {
     }
 };
 
-export const setId = (id) => ({ type: SET_ID, payload: id });
-export const setEmail = (email) => ({ type: SET_EMAIL, payload: email });
+export const setId = (id) => ({ type: SET_USER_ID, payload: id });
+export const setEmail = (email) => ({ type: SET_USER_EMAIL, payload: email });
 export const setActive = (isActive) => ({ type: SET_ACTIVE, payload: isActive });
 export const setSuperuser = (isSuperuser) => ({ type: SET_SUPERUSER, payload: isSuperuser });
 export const setVerified = (isVerified) => ({ type: SET_VERIFIED, payload: isVerified });
