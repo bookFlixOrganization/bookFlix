@@ -40,9 +40,6 @@ const AllBooks = (props) => {
                                     <div className={styles.movie__info}>
                                         <div className={styles.movie__title}>{book.title}</div>
                                         <div className={styles.movie__category}>{book.author}</div>
-                                        <div className={styles.movie__average}>
-                                            {book.rank.toFixed(1)}
-                                        </div>
                                     </div>
                                 </NavLink>
                             ))}

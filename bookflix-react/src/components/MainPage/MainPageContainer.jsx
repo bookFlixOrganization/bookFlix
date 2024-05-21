@@ -52,23 +52,26 @@ const MainPageContainer = () => {
 
                 if (responseFavourite.data.liked_books.length > 0) {
                     requests.push(axios.get(`${server}/favourite/added_book`));
+                    requests.push(axios.get(`${server}/recommendation_book`)); // Добавляем запрос на рекомендованные книги
                 }
 
                 if (responseFavourite.data.liked_films.length > 0) {
                     requests.push(axios.get(`${server}/recommendation_movie`));
                 }
 
-                const [addedBooksResponse, recommFilmsResponse] = await Promise.all(requests);
+                const responses = await Promise.all(requests);
 
-                if (addedBooksResponse && addedBooksResponse.data) {
-                    dispatch(setPersonBooks(addedBooksResponse.data));
-                }
-
-                if (recommFilmsResponse && recommFilmsResponse.data) {
-                    dispatch(setPersonFilms(recommFilmsResponse.data));
-                }
+                responses.forEach((response, index) => {
+                    if (response && response.data) {
+                        if (index === 1) {
+                            dispatch(setPersonBooks(response.data));
+                        } else if (index === 2) {
+                            dispatch(setPersonFilms(response.data));
+                        }
+                    }
+                });
             } catch (error) {
-                console.log('Error fetching person', error);
+                console.error('Error fetching person', error);
             }
         };
 
