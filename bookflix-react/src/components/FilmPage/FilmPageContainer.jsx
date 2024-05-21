@@ -156,6 +156,12 @@ const FilmPageContainer = () => {
                 );
                 if (responseRmDislike.status === 200) {
                     dispatch(setDisliked(false));
+                    const responseAddLike = await axios.post(
+                        `${server}/film/${filmState.id}/add_liked_films?liked_movie_title=${filmState.name}&liked_movie_id=${filmState.id}`,
+                    );
+                    if (responseAddLike.status === 200) {
+                        dispatch(setLiked(true));
+                    }
                 }
             } else if (isLiked) {
                 const responseRmLike = await axios.post(
@@ -185,6 +191,12 @@ const FilmPageContainer = () => {
                 );
                 if (responseRmLike.status === 200) {
                     dispatch(setLiked(false));
+                    const responseAddDislike = await axios.post(
+                        `${server}/film/${filmState.id}/add_disliked_films?disliked_movie_title=${filmState.name}&disliked_movie_id=${filmState.id}`,
+                    );
+                    if (responseAddDislike.status === 200) {
+                        dispatch(setDisliked(true));
+                    }
                 }
             } else if (isDisliked) {
                 const responseRmDislike = await axios.post(
