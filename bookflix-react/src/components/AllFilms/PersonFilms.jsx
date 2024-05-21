@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './AllFilms.module.css';
+import { NavLink } from 'react-router-dom';
+import somebook from './images/somebook.jpg';
 
 const PersonFilms = (props) => {
     const { films } = props;
@@ -31,17 +33,29 @@ const PersonFilms = (props) => {
                             filmsArray.map((film, index) => {
                                 if (film[0]) {
                                     return (
-                                        <a
+                                        <NavLink
                                             key={index}
-                                            href={`/film-page/${film[0]}`}
+                                            to={`/film-page/${film[0]}`}
                                             className={styles.movie}
                                         >
                                             <div className={styles.movie__cover_inner}>
-                                                <img
-                                                    src={film[1]['full-size cover url']}
-                                                    alt={film[1]['title']}
-                                                    className={styles.movie__cover}
-                                                />
+                                                {film[1]['full-size cover url'] ||
+                                                film[1]['cover url'] ? (
+                                                    <img
+                                                        src={
+                                                            film[1]['full-size cover url'] ||
+                                                            film[1]['cover url']
+                                                        }
+                                                        alt={film[1]['title']}
+                                                        className={styles.movie__cover}
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src={somebook}
+                                                        alt={film[1]['title']}
+                                                        className={styles.movie__cover}
+                                                    />
+                                                )}
                                             </div>
                                             <div className={styles.movie__cover__darkened}></div>
                                             <div className={styles.movie__info}>
@@ -49,7 +63,7 @@ const PersonFilms = (props) => {
                                                     {film[1]['title']}
                                                 </div>
                                             </div>
-                                        </a>
+                                        </NavLink>
                                     );
                                 }
                             })}
