@@ -239,16 +239,6 @@ const SearchPage = (props) => {
                     </div>
                 </>
             )}
-            {/* <div className={styles.movies}>
-                <a href="/" className={styles.movie}>
-                    <div className={styles.movie__cover_inner}></div>
-                    <div className={styles.movie__info}>
-                        <div className={styles.movie__title}>Однажды в Голливуде</div>
-                        <div className={styles.movie__category}>2019, комедия</div>
-                        <div className={styles.movie__average}>9.3</div>
-                    </div>
-                </a>
-            </div> */}
         </div>
     );
 };
