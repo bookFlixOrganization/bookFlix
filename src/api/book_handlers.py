@@ -36,6 +36,11 @@ async def add_liked_book(liked_book_title: str, liked_book_id: str, user: User =
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["liked_books"].append([liked_book_title, liked_book_id])
+    history = needed_user_data["history_books"]
+    if [liked_book_title, liked_book_id] in history:
+        history.remove([liked_book_title, liked_book_id])
+    history.append([liked_book_title, liked_book_id])
+    needed_user_data["history_books"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -50,6 +55,11 @@ async def add_disliked_book(disliked_book_title: str, disliked_book_id: str, use
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["disliked_books"].append([disliked_book_title, disliked_book_id])
+    history = needed_user_data["history_books"]
+    if [disliked_book_title, disliked_book_id] in history:
+        history.remove([disliked_book_title, disliked_book_id])
+    history.append([disliked_book_title, disliked_book_id])
+    needed_user_data["history_books"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -64,6 +74,11 @@ async def delete_liked_book(liked_book_title: str, liked_book_id: str, user: Use
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["liked_books"].remove([liked_book_title, liked_book_id])
+    history = needed_user_data["history_books"]
+    if [liked_book_title, liked_book_id] in history:
+        history.remove([liked_book_title, liked_book_id])
+    history.append([liked_book_title, liked_book_id])
+    needed_user_data["history_books"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -78,6 +93,11 @@ async def delete_disliked_book(disliked_book_title: str, disliked_book_id: str, 
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["disliked_books"].remove([disliked_book_title, disliked_book_id])
+    history = needed_user_data["history_books"]
+    if [disliked_book_title, disliked_book_id] in history:
+        history.remove([disliked_book_title, disliked_book_id])
+    history.append([disliked_book_title, disliked_book_id])
+    needed_user_data["history_books"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -144,6 +164,24 @@ async def recommendation_book(user: User = Depends(current_user),
             response = request.execute()["items"][0]
             book_list[response["id"]] = response
         return book_list
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
+    except HttpError as e:
+        raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
+
+
+@user_router.get("/favourite/history_book", tags=["preferences"])
+async def added_books(user: User = Depends(current_user),
+                      session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_view = result.first()
+        added_books = user_view.preferences['history_books']
+        added_books_list = {}
+        for book in added_books:
+            added_books_list[book[1]] = service.volumes().get(volumeId=book[1]).execute()
+        return added_books_list
     except AttributeError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except HttpError as e:

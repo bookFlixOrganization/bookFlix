@@ -47,6 +47,11 @@ async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["liked_films"].append([liked_movie_title, liked_movie_id])
+    history = needed_user_data["history_movies"]
+    if [liked_movie_title, liked_movie_id] in history:
+        history.remove([liked_movie_title, liked_movie_id])
+    history.append([liked_movie_title, liked_movie_id])
+    needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -61,6 +66,11 @@ async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, u
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["disliked_films"].append([disliked_movie_title, disliked_movie_id])
+    history = needed_user_data["history_movies"]
+    if [disliked_movie_title, disliked_movie_id] in history:
+        history.remove([disliked_movie_title, disliked_movie_id])
+    history.append([disliked_movie_title, disliked_movie_id])
+    needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -75,6 +85,11 @@ async def delete_liked_film(liked_movie_title: str, liked_movie_id: str, user: U
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["liked_films"].remove([liked_movie_title, liked_movie_id])
+    history = needed_user_data["history_movies"]
+    if [liked_movie_title, liked_movie_id] in history:
+        history.remove([liked_movie_title, liked_movie_id])
+    history.append([liked_movie_title, liked_movie_id])
+    needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -89,6 +104,11 @@ async def delete_disliked_film(disliked_movie_title: str, disliked_movie_id: str
     res = (await session.execute(stmt)).all()
     needed_user_data = res[0][1]
     needed_user_data["disliked_films"].remove([disliked_movie_title, disliked_movie_id])
+    history = needed_user_data["history_movies"]
+    if [disliked_movie_title, disliked_movie_id] in history:
+        history.remove([disliked_movie_title, disliked_movie_id])
+    history.append([disliked_movie_title, disliked_movie_id])
+    needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
                  .values({"preferences": needed_user_data})
                  .where(UserView.__table__.c.id == user.id))
@@ -162,6 +182,24 @@ async def recommendation_movie(user: User = Depends(current_user),
         for title in response:
             movies_list[ia.search_movie(title)[0].movieID] = ia.search_movie(title)[0]
         return movies_list
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
+    except IMDbError as e:
+        raise f'Error response, message: {e}'
+
+
+@user_router.get("/favourite/history_movies", tags=["preferences"])
+async def history_movie(user: User = Depends(current_user),
+                        session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_view = result.first()
+        added_movies = user_view.preferences['history_movies']
+        added_movies_list = {}
+        for movie in added_movies:
+            added_movies_list[movie[1]] = ia.get_movie(movie[1])
+        return added_movies_list
     except AttributeError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except IMDbError as e:
