@@ -42,11 +42,13 @@ const SearchPage = (props) => {
         <div className={styles.search_container}>
             <div className={styles.search_form}>
                 <input
+                    value={props.userQuery}
+                    onChange={props.handleUserQueryChange}
                     className={styles.search_form_text}
                     type="text"
                     placeholder="Введите название фильма или книги"
                 />
-                <button className={styles.search_form_button}>
+                <button className={styles.search_form_button} onClick={props.handleSearch}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="28"

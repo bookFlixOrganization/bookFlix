@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import SearchPage from './SearchPage.jsx';
 import styles from './SearchPage.module.css';
 import SessionChecker from '../SessionChecker.jsx';
+import axios from 'axios';
+import { server } from '../../serverconf.js';
 
 const SearchPageContainer = () => {
     const [isFilmVisibility, setIsFilmVisibility] = useState(false);
@@ -19,12 +21,17 @@ const SearchPageContainer = () => {
         setIsBookVisibility(!isBookVisibility);
     };
 
+    const [userQuery, setUserQuery] = useState('');
     const [selectedBookGenres, setSelectedBookGenres] = useState([]);
     const [selectedFilmGenres, setSelectedFilmGenres] = useState([]);
     const [selectedFilmYears, setSelectedFilmYears] = useState([]);
     const [selectedBookYears, setSelectedBookYears] = useState([]);
     const [authorBook, setAuthorBook] = useState('');
     const [authorFilm, setAuthorFilm] = useState('');
+
+    const handleUserQueryChange = (event) => {
+        setUserQuery(event.target.value);
+    };
 
     const handleYearClick = (year, type) => {
         if (type === 'book') {
@@ -110,10 +117,41 @@ const SearchPageContainer = () => {
             </button>,
         );
     }
+
+    const [foundedBooks, setFoundedBooks] = useState([]);
+    const [foundedFilms, setFoundedFilms] = useState([]);
+
+    const handleSearch = async () => {
+        try {
+            const [booksResponse, filmsResponse] = await Promise.allSettled([
+                axios.get(`${server}/search/book?query=${userQuery}`),
+                axios.get(`${server}/search/movie?query=${userQuery}`),
+            ]);
+
+            if (booksResponse.status === 'fulfilled') {
+                setFoundedBooks(booksResponse.value.data);
+            } else {
+                console.error('Ошибка при загрузке книг:', booksResponse.reason);
+            }
+
+            if (filmsResponse.status === 'fulfilled') {
+                setFoundedFilms(filmsResponse.value.data);
+            } else {
+                console.error('Ошибка при загрузке фильмов:', filmsResponse.reason);
+            }
+        } catch (error) {
+            console.error('Произошла ошибка при выполнении запросов:', error);
+        }
+    };
+
+    console.log(foundedBooks, foundedFilms);
+
     return (
         <>
             <SessionChecker />
             <SearchPage
+                userQuery={userQuery}
+                handleUserQueryChange={handleUserQueryChange}
                 selectedBookGenres={selectedBookGenres}
                 selectedFilmGenres={selectedFilmGenres}
                 selectedFilmYears={selectedFilmYears}
@@ -131,6 +169,9 @@ const SearchPageContainer = () => {
                 handleAuthorBookChange={handleAuthorBookChange}
                 handleAuthorFilmChange={handleAuthorFilmChange}
                 handleClearFiltres={handleClearFiltres}
+                handleSearch={handleSearch}
+                foundedBooks={foundedBooks}
+                foundedFilms={foundedFilms}
             />
         </>
     );
