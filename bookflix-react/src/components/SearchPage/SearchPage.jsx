@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './SearchPage.module.css';
+import { NavLink } from 'react-router-dom';
+import somebook from './images/somebook.jpg';
 
 const SearchPage = (props) => {
     const filmGenres = [
@@ -160,6 +162,83 @@ const SearchPage = (props) => {
                 </div>
             )}
 
+            {props.foundedBooks.items && (
+                <>
+                    <p className={styles.founded_title}>Найденные книги:</p>
+                    <div className={styles.movies}>
+                        {props.foundedBooks.items.map((item, index) => (
+                            <NavLink
+                                key={index}
+                                to={`/book-page/${item.id}`}
+                                className={styles.movie}
+                            >
+                                <div className={styles.movie__cover_inner}>
+                                    {item.volumeInfo.imageLinks &&
+                                    item.volumeInfo.imageLinks.thumbnail ? (
+                                        <img
+                                            src={item.volumeInfo.imageLinks.thumbnail}
+                                            alt={item.volumeInfo.title}
+                                            className={styles.movie__cover}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={somebook}
+                                            alt={item.volumeInfo.title}
+                                            className={styles.movie__cover}
+                                        />
+                                    )}
+                                </div>
+                                <div className={styles.movie__info}>
+                                    <div className={styles.movie__title}>
+                                        {item.volumeInfo.title}
+                                    </div>
+                                    <div className={styles.movie__category}>
+                                        {item.volumeInfo.authors && item.volumeInfo.authors[0]}
+                                    </div>
+                                    <div className={styles.movie__category}>
+                                        {item.volumeInfo.publishedDate}
+                                    </div>
+                                </div>
+                            </NavLink>
+                        ))}
+                    </div>
+                </>
+            )}
+
+            {props.foundedFilms.result && (
+                <>
+                    <p className={styles.founded_title}>Найденные фильмы:</p>
+                    <div className={styles.movies}>
+                        {props.foundedFilms.result.map((item, index) => (
+                            <NavLink
+                                key={index}
+                                to={`/film-page/${item.movieID}`}
+                                className={styles.movie}
+                            >
+                                <div className={styles.movie__cover_inner}>
+                                    {item['full-size cover url'] ? (
+                                        <img
+                                            src={item['full-size cover url']}
+                                            alt={item.title}
+                                            className={styles.movie__cover}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={somebook}
+                                            alt={item.title}
+                                            className={styles.movie__cover}
+                                        />
+                                    )}
+                                </div>
+                                <div className={styles.movie__info}>
+                                    <div className={styles.movie__title}>{item.title}</div>
+                                    <div className={styles.movie__category}>{item.year}</div>
+                                </div>
+                            </NavLink>
+                        ))}
+                    </div>
+                </>
+            )}
             {/* <div className={styles.movies}>
                 <a href="/" className={styles.movie}>
                     <div className={styles.movie__cover_inner}></div>

@@ -122,6 +122,8 @@ const SearchPageContainer = () => {
     const [foundedFilms, setFoundedFilms] = useState([]);
 
     const handleSearch = async () => {
+        setFoundedBooks([]);
+        setFoundedFilms([]);
         try {
             const [booksResponse, filmsResponse] = await Promise.allSettled([
                 axios.get(`${server}/search/book?query=${userQuery}`),
