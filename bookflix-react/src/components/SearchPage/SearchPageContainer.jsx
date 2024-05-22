@@ -25,6 +25,7 @@ const SearchPageContainer = () => {
     const [selectedFilmYears, setSelectedFilmYears] = useState([]);
     const [selectedBookYears, setSelectedBookYears] = useState([]);
     const [authorBook, setAuthorBook] = useState('');
+    const [appliedFiltres, setAppliedFiltres] = useState(false);
 
     const handleUserQueryChange = (event) => {
         setUserQuery(event.target.value);
@@ -92,6 +93,8 @@ const SearchPageContainer = () => {
     const [foundedBooks, setFoundedBooks] = useState([]);
     const [foundedFilms, setFoundedFilms] = useState([]);
     const [originalFoundedFilms, setOriginalFoundedFilms] = useState([]);
+    const [originalFoundedBooks, setOriginalFoundedBooks] = useState([]);
+
     const handleSearch = async () => {
         setFoundedBooks([]);
         setFoundedFilms([]);
@@ -103,13 +106,14 @@ const SearchPageContainer = () => {
 
             if (booksResponse.status === 'fulfilled') {
                 setFoundedBooks(booksResponse.value.data);
+                setOriginalFoundedBooks(booksResponse.value.data);
             } else {
                 console.error('Ошибка при загрузке книг:', booksResponse.reason);
             }
 
             if (filmsResponse.status === 'fulfilled') {
                 setFoundedFilms(filmsResponse.value.data);
-                setOriginalFoundedFilms(filmsResponse.value.data); // Сохраняем исходный массив фильмов
+                setOriginalFoundedFilms(filmsResponse.value.data);
             } else {
                 console.error('Ошибка при загрузке фильмов:', filmsResponse.reason);
             }
@@ -130,15 +134,40 @@ const SearchPageContainer = () => {
         }
     };
 
+    const applyBookYearFilter = () => {
+        if (selectedBookYears.length > 0) {
+            const filteredBooks = foundedBooks.items.filter((book) => {
+                const bookYear = book.volumeInfo?.publishedDate?.split('-')[0];
+                return selectedBookYears.some((year) => {
+                    return bookYear >= year && bookYear <= year + 9;
+                });
+            });
+            setFoundedBooks({ status: 'ok', items: filteredBooks });
+        }
+    };
+
+    const applyAuthorFilter = () => {
+        if (authorBook !== '') {
+            const filteredBooks = foundedBooks.items.filter((book) => {
+                const bookAuthor = book.volumeInfo?.authors?.[0];
+                return bookAuthor?.toLowerCase().includes(authorBook.toLowerCase());
+            });
+            setFoundedBooks({ status: 'ok', items: filteredBooks });
+        }
+    };
+
     const handleApplyFilters = () => {
         applyFilmYearFilter();
-        // Добавьте здесь другие фильтры, если они есть
+        applyBookYearFilter();
+        applyAuthorFilter();
+        setAppliedFiltres(true);
     };
 
     const handleClearFilters = () => {
-        console.log('clear');
+        setFoundedBooks(originalFoundedBooks);
         setFoundedFilms(originalFoundedFilms);
         handleClearFiltres();
+        setAppliedFiltres(false);
     };
 
     console.log(foundedBooks, foundedFilms);
@@ -150,6 +179,7 @@ const SearchPageContainer = () => {
         <>
             <SessionChecker />
             <SearchPage
+                appliedFiltres={appliedFiltres}
                 isFiltres={isFiltres}
                 userQuery={userQuery}
                 handleUserQueryChange={handleUserQueryChange}

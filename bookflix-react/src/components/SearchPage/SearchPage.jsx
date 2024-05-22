@@ -28,21 +28,25 @@ const SearchPage = (props) => {
             </div>
             {(props.foundedBooks.items || props.foundedFilms.result) && (
                 <div className={styles.choice}>
-                    <button
-                        id="films"
-                        className={`${styles.choice_button} ${props.isFilmVisibility ? styles.chosen : ''}`}
-                        onClick={props.toggleFilmsVisibility}
-                    >
-                        Фильмы
-                    </button>
-                    <button
-                        id="books"
-                        className={`${styles.choice_button} ${props.isBookVisibility ? styles.chosen : ''}`}
-                        onClick={props.toggleBookVisibility}
-                    >
-                        Книги
-                    </button>
-                    {props.isFiltres && (
+                    {!props.appliedFiltres && (
+                        <button
+                            id="films"
+                            className={`${styles.choice_button} ${props.isFilmVisibility ? styles.chosen : ''}`}
+                            onClick={props.toggleFilmsVisibility}
+                        >
+                            Фильмы
+                        </button>
+                    )}
+                    {!props.appliedFiltres && (
+                        <button
+                            id="books"
+                            className={`${styles.choice_button} ${props.isBookVisibility ? styles.chosen : ''}`}
+                            onClick={props.toggleBookVisibility}
+                        >
+                            Книги
+                        </button>
+                    )}
+                    {props.isFiltres && !props.appliedFiltres && (
                         <button
                             id="safe"
                             className={`${styles.choice_button} ${styles.apply_filtres}`}
@@ -51,7 +55,7 @@ const SearchPage = (props) => {
                             Применить фильтры
                         </button>
                     )}
-                    {props.isFiltres && (
+                    {props.appliedFiltres && (
                         <button
                             id="clear"
                             className={`${styles.choice_button} ${styles.apply_filtres}`}
