@@ -17,10 +17,10 @@ const PersonFilms = (props) => {
                 <div className={styles.container}>
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
-                            <p className={styles.section_title}>Сейчас смотрят</p>
+                            <p className={styles.section_title}>Фильмы для вас</p>
                         </div>
                         <p className={styles.section_subtitle}>
-                            Самые популярные фильмы и сериалы за последний час
+                            Персональная подборка фильмов и сериалов для вас
                         </p>
                     </div>
                 </div>

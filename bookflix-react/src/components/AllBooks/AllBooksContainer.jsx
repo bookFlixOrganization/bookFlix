@@ -12,7 +12,15 @@ const AllBooksContainer = () => {
         const fetchPopularBooks = async () => {
             try {
                 const response = await axios.get(`${server}/list/most_popular_books`);
-                dispatch(setPopularBooks(response.data));
+                const popularBooks = response.data.result;
+                const bookPromises = popularBooks.map(async (book) => {
+                    const bookResponse = await axios.get(
+                        `${server}/search/book?query=${book.title}`,
+                    );
+                    return bookResponse.data.items[0];
+                });
+                const bookDataArray = await Promise.all(bookPromises);
+                dispatch(setPopularBooks(bookDataArray));
             } catch (error) {
                 console.error('Error fetching popular books: ', error);
             }

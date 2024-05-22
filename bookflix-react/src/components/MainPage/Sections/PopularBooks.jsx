@@ -60,7 +60,8 @@ const PopularBooks = (props) => {
                                                     {book.volumeInfo.title}
                                                 </div>
                                                 <div className={styles.movie__category}>
-                                                    {book.volumeInfo.authors[0]}
+                                                    {book.volumeInfo.authors[0] &&
+                                                        book.volumeInfo.authors[0]}
                                                 </div>
                                             </div>
                                         </NavLink>

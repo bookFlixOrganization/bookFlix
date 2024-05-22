@@ -135,7 +135,7 @@ const FilmPageContainer = () => {
             }
         };
 
-        if (imdbActors.length > 0) {
+        if (imdbActors && imdbActors.length > 0) {
             fetchActors();
         }
     }, [imdbActors]);

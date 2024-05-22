@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './AllBooks.module.css';
 import { NavLink } from 'react-router-dom';
+import somebook from './images/somebook.jpg';
 
 const AllBooks = (props) => {
     const { popularBooks } = props;
@@ -23,23 +24,39 @@ const AllBooks = (props) => {
                 <div className={styles.container}>
                     <div className={styles.movies}>
                         {popularBooks &&
+                            popularBooks.length > 0 &&
                             popularBooks.map((book, index) => (
                                 <NavLink
                                     key={index}
-                                    to={`/book-page/${book.title}`}
+                                    to={`/book-page/${book.id}`}
                                     className={styles.movie}
                                 >
                                     <div className={styles.movie__cover_inner}>
-                                        <img
-                                            src={book.book_image}
-                                            alt=""
-                                            className={styles.movie__cover}
-                                        />
+                                        {book.volumeInfo.imageLinks &&
+                                        book.volumeInfo.imageLinks.thumbnail ? (
+                                            <img
+                                                src={book.volumeInfo.imageLinks.thumbnail}
+                                                alt={book.volumeInfo.title}
+                                                className={styles.movie__cover}
+                                            />
+                                        ) : (
+                                            <img
+                                                src={somebook}
+                                                alt={book[1].volumeInfo.title}
+                                                className={styles.movie__cover}
+                                            />
+                                        )}
+
                                         <div className={styles.movie__cover__darkened}></div>
                                     </div>
                                     <div className={styles.movie__info}>
-                                        <div className={styles.movie__title}>{book.title}</div>
-                                        <div className={styles.movie__category}>{book.author}</div>
+                                        <div className={styles.movie__title}>
+                                            {book.volumeInfo.title}
+                                        </div>
+                                        <div className={styles.movie__category}>
+                                            {book.volumeInfo.authors[0] &&
+                                                book.volumeInfo.authors[0]}
+                                        </div>
                                     </div>
                                 </NavLink>
                             ))}
