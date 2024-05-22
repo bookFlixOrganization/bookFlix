@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PersonBooks from './PersonBooks.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavourites, setPersonBooks } from '../../redux/mainPageReducer.js';
+import { setPersonBooks } from '../../redux/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
 import SessionChecker from '../SessionChecker.jsx';
@@ -12,15 +12,12 @@ const PersonBooksContainer = () => {
     useEffect(() => {
         const fetchPopularBooks = async () => {
             try {
-                const responseFavourite = await axios.get(`${server}/favourite`);
-                dispatch(setFavourites(responseFavourite.data));
-                if (responseFavourite.data.liked_books.length > 0) {
-                    const responseRecommendation = await axios.get(`${server}/recommendation_book`);
-                    console.log(responseRecommendation);
-                    if (responseRecommendation.status === 200) {
-                        dispatch(setPersonBooks(responseRecommendation.data));
-                    }
-                }
+                // const responseFavourite = await axios.get(`${server}/favourite`);
+                // dispatch(setFavourites(responseFavourite.data));
+                // if (responseFavourite.data.liked_books.length > 0) {
+                const responseRecommendation = await axios.get(`${server}/recommendation_book`);
+                console.log(responseRecommendation);
+                dispatch(setPersonBooks(responseRecommendation.data));
             } catch (error) {
                 console.error('Error fetching popular films: ', error);
             }

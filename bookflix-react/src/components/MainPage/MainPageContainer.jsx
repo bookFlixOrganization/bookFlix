@@ -4,7 +4,7 @@ import MainPage from './MainPage.jsx';
 import {
     setPopularBooks,
     setPopularFilms,
-    setFavourites,
+    // setFavourites,
     setPersonBooks,
     setPersonFilms,
 } from '../../redux/mainPageReducer.js';
@@ -47,19 +47,26 @@ const MainPageContainer = () => {
         const fetchPerson = async () => {
             if (isAuth) {
                 try {
-                    const responseFavourite = await axios.get(`${server}/favourite`);
-                    dispatch(setFavourites(responseFavourite.data));
+                    // const responseFavourite = await axios.get(`${server}/favourite`);
+                    // dispatch(setFavourites(responseFavourite.data));
 
-                    if (responseFavourite.data.liked_books.length > 0) {
+                    // if (responseFavourite.data.liked_books.length > 0) {
+                    try {
                         const responseBooks = await axios.get(`${server}/recommendation_book`);
-                        console.log(responseBooks);
                         dispatch(setPersonBooks(responseBooks.data));
+                    } catch (error) {
+                        console.error('Ошибка при запросе книг:', error);
                     }
+                    // }
 
-                    if (responseFavourite.data.liked_films.length > 0) {
+                    // if (responseFavourite.data.liked_films.length > 0) {
+                    try {
                         const responseFilms = await axios.get(`${server}/recommendation_movie`);
                         dispatch(setPersonFilms(responseFilms.data));
+                    } catch (error) {
+                        console.error('Ошибка при запросе фильмов:', error);
                     }
+                    // }
                 } catch (error) {
                     console.error('Error fetching person', error);
                 }
