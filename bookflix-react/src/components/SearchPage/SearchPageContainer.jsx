@@ -23,11 +23,9 @@ const SearchPageContainer = () => {
 
     const [userQuery, setUserQuery] = useState('');
     const [selectedBookGenres, setSelectedBookGenres] = useState([]);
-    const [selectedFilmGenres, setSelectedFilmGenres] = useState([]);
     const [selectedFilmYears, setSelectedFilmYears] = useState([]);
     const [selectedBookYears, setSelectedBookYears] = useState([]);
     const [authorBook, setAuthorBook] = useState('');
-    const [authorFilm, setAuthorFilm] = useState('');
 
     const handleUserQueryChange = (event) => {
         setUserQuery(event.target.value);
@@ -62,31 +60,18 @@ const SearchPageContainer = () => {
                     return [...prevGenres, genre];
                 }
             });
-        } else if (type === 'film') {
-            setSelectedFilmGenres((prevGenres) => {
-                if (prevGenres.includes(genre)) {
-                    return prevGenres.filter((g) => g !== genre);
-                } else {
-                    return [...prevGenres, genre];
-                }
-            });
         }
     };
 
     const handleAuthorBookChange = (event) => {
         setAuthorBook(event.target.value);
     };
-    const handleAuthorFilmChange = (event) => {
-        setAuthorFilm(event.target.value);
-    };
 
     const handleClearFiltres = () => {
         setSelectedBookGenres([]);
-        setSelectedFilmGenres([]);
         setSelectedBookYears([]);
         setSelectedFilmYears([]);
         setAuthorBook('');
-        setAuthorFilm('');
         setIsFilmVisibility(false);
         setIsBookVisibility(false);
     };
@@ -120,7 +105,7 @@ const SearchPageContainer = () => {
 
     const [foundedBooks, setFoundedBooks] = useState([]);
     const [foundedFilms, setFoundedFilms] = useState([]);
-
+    const [originalFoundedFilms, setOriginalFoundedFilms] = useState([]);
     const handleSearch = async () => {
         setFoundedBooks([]);
         setFoundedFilms([]);
@@ -138,6 +123,7 @@ const SearchPageContainer = () => {
 
             if (filmsResponse.status === 'fulfilled') {
                 setFoundedFilms(filmsResponse.value.data);
+                setOriginalFoundedFilms(filmsResponse.value.data); // Сохраняем исходный массив фильмов
             } else {
                 console.error('Ошибка при загрузке фильмов:', filmsResponse.reason);
             }
@@ -146,16 +132,47 @@ const SearchPageContainer = () => {
         }
     };
 
-    console.log(foundedBooks, foundedFilms);
+    const applyFilmYearFilter = () => {
+        if (selectedFilmYears.length > 0) {
+            const filteredFilms = foundedFilms.result.filter((film) => {
+                const filmYear = parseInt(film.year);
+                return selectedFilmYears.some((year) => {
+                    return filmYear >= year && filmYear <= year + 9;
+                });
+            });
+            setFoundedFilms({ status: 'ok', result: filteredFilms });
+        }
+    };
 
+    const handleApplyFilters = () => {
+        applyFilmYearFilter();
+        // Добавьте здесь другие фильтры, если они есть
+    };
+
+    const handleClearFilters = () => {
+        console.log('clear');
+        setFoundedFilms(originalFoundedFilms);
+        handleClearFiltres();
+    };
+
+    console.log(foundedBooks, foundedFilms);
+    const isActiveFiltres = () => {
+        return (
+            selectedBookGenres.length > 0 ||
+            selectedFilmYears.length > 0 ||
+            selectedBookYears.length > 0 ||
+            authorBook !== ''
+        );
+    };
+    const isFiltres = isActiveFiltres();
     return (
         <>
             <SessionChecker />
             <SearchPage
+                isFiltres={isFiltres}
                 userQuery={userQuery}
                 handleUserQueryChange={handleUserQueryChange}
                 selectedBookGenres={selectedBookGenres}
-                selectedFilmGenres={selectedFilmGenres}
                 selectedFilmYears={selectedFilmYears}
                 selectedBookYears={selectedBookYears}
                 isBookVisibility={isBookVisibility}
@@ -167,10 +184,9 @@ const SearchPageContainer = () => {
                 filmYearsButtons={filmYearsButtons}
                 bookYearsButtons={bookYearsButtons}
                 authorBook={authorBook}
-                authorFilm={authorFilm}
                 handleAuthorBookChange={handleAuthorBookChange}
-                handleAuthorFilmChange={handleAuthorFilmChange}
-                handleClearFiltres={handleClearFiltres}
+                handleClearFilters={handleClearFilters}
+                handleApplyFilters={handleApplyFilters}
                 handleSearch={handleSearch}
                 foundedBooks={foundedBooks}
                 foundedFilms={foundedFilms}

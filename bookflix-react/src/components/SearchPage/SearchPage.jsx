@@ -4,27 +4,6 @@ import { NavLink } from 'react-router-dom';
 import somebook from './images/somebook.jpg';
 
 const SearchPage = (props) => {
-    const filmGenres = [
-        { genre: 'Horror', name: 'Хоррор' },
-        { genre: 'Drama', name: 'Драма' },
-        { genre: 'Mystery', name: 'Мистика' },
-        { genre: 'Sci-fi', name: 'Научно-фантастический' },
-        { genre: 'Romance', name: 'Романтический' },
-        { genre: 'Film-noir', name: 'Нуар' },
-        { genre: 'Fantasy', name: 'Фентези' },
-        { genre: 'Biography', name: 'Биография' },
-        { genre: 'Documentary', name: 'Документальный' },
-        { genre: 'Music', name: 'Мюзикл' },
-        { genre: 'Thriller', name: 'Триллер' },
-        { genre: 'Crime', name: 'Криминальный' },
-        { genre: 'Action', name: 'Экшн' },
-        { genre: 'War', name: 'Военный' },
-        { genre: 'Adventure', name: 'Приключения' },
-        { genre: 'Comedy', name: 'Комедия' },
-        { genre: 'Western', name: 'Вестерн' },
-        { genre: 'History', name: 'Исторический' },
-        { genre: 'Family', name: 'Семейный' },
-    ];
     const bookGenres = [
         { genre: 'Fantastic', name: 'Фантастика' },
         { genre: 'Detective', name: 'Детектив' },
@@ -62,66 +41,48 @@ const SearchPage = (props) => {
                     </svg>
                 </button>
             </div>
-
-            <div className={styles.choice}>
-                <button
-                    id="films"
-                    className={`${styles.choice_button} ${props.isFilmVisibility ? styles.chosen : ''}`}
-                    onClick={props.toggleFilmsVisibility}
-                >
-                    Фильмы
-                </button>
-                <button
-                    id="books"
-                    className={`${styles.choice_button} ${props.isBookVisibility ? styles.chosen : ''}`}
-                    onClick={props.toggleBookVisibility}
-                >
-                    Книги
-                </button>
-                <button id="safe" className={`${styles.choice_button} ${styles.apply_filtres}`}>
-                    Применить фильтры
-                </button>
-                <button
-                    id="clear"
-                    className={`${styles.choice_button} ${styles.apply_filtres}`}
-                    onClick={props.handleClearFiltres}
-                >
-                    Очистить фильтры
-                </button>
-            </div>
+            {(props.foundedBooks.items || props.foundedFilms.result) && (
+                <div className={styles.choice}>
+                    <button
+                        id="films"
+                        className={`${styles.choice_button} ${props.isFilmVisibility ? styles.chosen : ''}`}
+                        onClick={props.toggleFilmsVisibility}
+                    >
+                        Фильмы
+                    </button>
+                    <button
+                        id="books"
+                        className={`${styles.choice_button} ${props.isBookVisibility ? styles.chosen : ''}`}
+                        onClick={props.toggleBookVisibility}
+                    >
+                        Книги
+                    </button>
+                    {props.isFiltres && (
+                        <button
+                            id="safe"
+                            className={`${styles.choice_button} ${styles.apply_filtres}`}
+                            onClick={props.handleApplyFilters}
+                        >
+                            Применить фильтры
+                        </button>
+                    )}
+                    {props.isFiltres && (
+                        <button
+                            id="clear"
+                            className={`${styles.choice_button} ${styles.apply_filtres}`}
+                            onClick={props.handleClearFilters}
+                        >
+                            Очистить фильтры
+                        </button>
+                    )}
+                </div>
+            )}
 
             {props.isFilmVisibility && (
                 <div className={styles.all_filters} id="hiddenDiv">
                     <div className={styles.filters}>
-                        <p className={styles.section_title}>Жанр</p>
-                        <div className={styles.filters_1}>
-                            {filmGenres.map((genreItem, index) => (
-                                <button
-                                    key={index}
-                                    type="button"
-                                    className={`${styles.input_1} ${props.selectedFilmGenres.includes(genreItem.genre) ? styles.active : ''}`}
-                                    onClick={() => props.handleGenreClick(genreItem.genre, 'film')}
-                                >
-                                    <p className={styles.text_on_button}>{genreItem.name}</p>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className={styles.filters}>
                         <p className={styles.section_title}>Год выпуска</p>
                         <div className={styles.filters_1}>{props.filmYearsButtons}</div>
-                    </div>
-
-                    <div className={styles.filters}>
-                        <p className={styles.section_title}>Режиссер</p>
-                        <div className={styles.filters_1}>
-                            <input
-                                className={styles.filter_author}
-                                value={props.authorFilm}
-                                onChange={props.handleAuthorFilmChange}
-                            ></input>
-                        </div>
                     </div>
                 </div>
             )}
