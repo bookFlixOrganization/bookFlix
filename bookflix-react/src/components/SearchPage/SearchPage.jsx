@@ -4,21 +4,6 @@ import { NavLink } from 'react-router-dom';
 import somebook from './images/somebook.jpg';
 
 const SearchPage = (props) => {
-    const bookGenres = [
-        { genre: 'Fantastic', name: 'Фантастика' },
-        { genre: 'Detective', name: 'Детектив' },
-        { genre: 'Business literature', name: 'Бизнес-литература' },
-        { genre: "Children's literature", name: 'Детская литература' },
-        { genre: 'Novel', name: 'Роман' },
-        { genre: 'Horror', name: 'Ужасы' },
-        { genre: 'Science fiction', name: 'Научная фантастика' },
-        { genre: 'Psychology', name: 'Психология' },
-        { genre: 'Computer literature', name: 'Компьютерная литература' },
-        { genre: 'Classic literature', name: 'Классическая литература' },
-        { genre: 'Adventure', name: 'Приключения' },
-        { genre: 'Study literature', name: 'Учебная литература' },
-        { genre: 'Fantasy', name: 'Фэнтези' },
-    ];
     return (
         <div className={styles.search_container}>
             <div className={styles.search_form}>
@@ -89,22 +74,6 @@ const SearchPage = (props) => {
 
             {props.isBookVisibility && (
                 <div className={styles.all_filters} id="hiddenDiv">
-                    <div className={styles.filters}>
-                        <p className={styles.section_title}>Жанр</p>
-                        <div className={styles.filters_1}>
-                            {bookGenres.map((genreItem, index) => (
-                                <button
-                                    key={index}
-                                    type="button"
-                                    className={`${styles.input_1} ${props.selectedBookGenres.includes(genreItem.genre) ? styles.active : ''}`}
-                                    onClick={() => props.handleGenreClick(genreItem.genre, 'book')}
-                                >
-                                    <p className={styles.text_on_button}>{genreItem.name}</p>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
                     <div className={styles.filters}>
                         <p className={styles.section_title}>Год выпуска</p>
                         <div className={styles.filters_1}>{props.bookYearsButtons}</div>

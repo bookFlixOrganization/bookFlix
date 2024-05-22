@@ -22,7 +22,6 @@ const SearchPageContainer = () => {
     };
 
     const [userQuery, setUserQuery] = useState('');
-    const [selectedBookGenres, setSelectedBookGenres] = useState([]);
     const [selectedFilmYears, setSelectedFilmYears] = useState([]);
     const [selectedBookYears, setSelectedBookYears] = useState([]);
     const [authorBook, setAuthorBook] = useState('');
@@ -51,24 +50,11 @@ const SearchPageContainer = () => {
         }
     };
 
-    const handleGenreClick = (genre, type) => {
-        if (type === 'book') {
-            setSelectedBookGenres((prevGenres) => {
-                if (prevGenres.includes(genre)) {
-                    return prevGenres.filter((g) => g !== genre);
-                } else {
-                    return [...prevGenres, genre];
-                }
-            });
-        }
-    };
-
     const handleAuthorBookChange = (event) => {
         setAuthorBook(event.target.value);
     };
 
     const handleClearFiltres = () => {
-        setSelectedBookGenres([]);
         setSelectedBookYears([]);
         setSelectedFilmYears([]);
         setAuthorBook('');
@@ -157,12 +143,7 @@ const SearchPageContainer = () => {
 
     console.log(foundedBooks, foundedFilms);
     const isActiveFiltres = () => {
-        return (
-            selectedBookGenres.length > 0 ||
-            selectedFilmYears.length > 0 ||
-            selectedBookYears.length > 0 ||
-            authorBook !== ''
-        );
+        return selectedFilmYears.length > 0 || selectedBookYears.length > 0 || authorBook !== '';
     };
     const isFiltres = isActiveFiltres();
     return (
@@ -172,14 +153,12 @@ const SearchPageContainer = () => {
                 isFiltres={isFiltres}
                 userQuery={userQuery}
                 handleUserQueryChange={handleUserQueryChange}
-                selectedBookGenres={selectedBookGenres}
                 selectedFilmYears={selectedFilmYears}
                 selectedBookYears={selectedBookYears}
                 isBookVisibility={isBookVisibility}
                 isFilmVisibility={isFilmVisibility}
                 toggleFilmsVisibility={toggleFilmVisibility}
                 toggleBookVisibility={toggleBookVisibility}
-                handleGenreClick={handleGenreClick}
                 handleYearClick={handleYearClick}
                 filmYearsButtons={filmYearsButtons}
                 bookYearsButtons={bookYearsButtons}
