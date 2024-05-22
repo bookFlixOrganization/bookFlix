@@ -9,7 +9,6 @@ import SessionChecker from '../SessionChecker.jsx';
 const PersonBooksContainer = () => {
     const dispatch = useDispatch();
     const books = useSelector((state) => state.mainPageReducer.person_books);
-
     useEffect(() => {
         const fetchPopularBooks = async () => {
             try {
@@ -17,6 +16,7 @@ const PersonBooksContainer = () => {
                 dispatch(setFavourites(responseFavourite.data));
                 if (responseFavourite.data.liked_books.length > 0) {
                     const responseRecommendation = await axios.get(`${server}/recommendation_book`);
+                    console.log(responseRecommendation);
                     if (responseRecommendation.status === 200) {
                         dispatch(setPersonBooks(responseRecommendation.data));
                     }

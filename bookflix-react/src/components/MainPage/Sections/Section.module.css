@@ -5,14 +5,12 @@
 }
 
 .now_watching_text {
-    padding-top: 150px;
     padding-bottom: 20px;
     line-height: 1.6;
     margin-bottom: 0px;
 }
 
 .now_watching_text_1 {
-    padding-top: 100px;
     padding-bottom: 20px;
     line-height: 1.6;
     margin-bottom: 0px;
@@ -191,4 +189,8 @@
     display: flex;
     box-sizing: content-box;
     overflow: hidden;
+}
+
+.main_header {
+    margin-top: 150px;
 }

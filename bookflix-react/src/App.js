@@ -19,6 +19,7 @@ import PreferencesContainer from './components/Preferences/PreferencesContainer.
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
 import FeedBackContainer from './components/FeedBack/FeedBackContainer.jsx';
 import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx';
+import PersonBooksContainer from './components/AllBooks/PersonBooksContainer.jsx';
 import AccountContainer from './components/Account/AccountContainer.jsx';
 import './App.css';
 import axios from 'axios';
@@ -38,6 +39,7 @@ function App() {
                 <Route path="all-films" element={<AllFilmsContainer />} />
                 <Route path="person-films" element={<PersonFilmsContainer />} />
                 <Route path="all-books" element={<AllBooksContainer />} />
+                <Route path="person-books" element={<PersonBooksContainer />} />
                 <Route path="author" element={<AuthorContainer />} />
                 <Route path="new-article" element={<NewArticleContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />

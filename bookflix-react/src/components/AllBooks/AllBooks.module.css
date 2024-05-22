@@ -36,7 +36,7 @@
 .movies {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .movie {
@@ -46,6 +46,9 @@
     margin: 10px;
     position: relative;
     transition: 0.6s;
+    margin-bottom: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .movie:hover {
@@ -89,6 +92,10 @@
     font-size: 20px;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
 }
 
 .movie__category {

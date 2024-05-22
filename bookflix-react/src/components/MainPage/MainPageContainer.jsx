@@ -18,7 +18,6 @@ const MainPageContainer = () => {
     const personFilms = useSelector((state) => state.mainPageReducer.person_films);
     const personBooks = useSelector((state) => state.mainPageReducer.person_books);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
-    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
 
     useEffect(() => {
         const fetchPopularBooks = async () => {
@@ -51,30 +50,16 @@ const MainPageContainer = () => {
                     const responseFavourite = await axios.get(`${server}/favourite`);
                     dispatch(setFavourites(responseFavourite.data));
 
-                    const requests = [];
-
                     if (responseFavourite.data.liked_books.length > 0) {
-                        requests.push(axios.get(`${server}/favourite/added_book`));
-                        requests.push(axios.get(`${server}/recommendation_book`)); // Добавляем запрос на рекомендованные книги
+                        const responseBooks = await axios.get(`${server}/recommendation_book`);
+                        console.log(responseBooks);
+                        dispatch(setPersonBooks(responseBooks.data));
                     }
 
                     if (responseFavourite.data.liked_films.length > 0) {
-                        requests.push(axios.get(`${server}/recommendation_movie`));
+                        const responseFilms = await axios.get(`${server}/recommendation_movie`);
+                        dispatch(setPersonFilms(responseFilms.data));
                     }
-
-                    const responses = await Promise.allSettled(requests);
-
-                    responses.forEach((response, index) => {
-                        if (response.status === 'fulfilled' && response.value.data) {
-                            if (index === 1) {
-                                dispatch(setPersonBooks(response.value.data));
-                            } else if (index === 2) {
-                                dispatch(setPersonFilms(response.value.data));
-                            }
-                        } else {
-                            console.error('Ошибка при выполнении запроса:', response.reason);
-                        }
-                    });
                 } catch (error) {
                     console.error('Error fetching person', error);
                 }
@@ -85,7 +70,7 @@ const MainPageContainer = () => {
             fetchPopularFilms();
         }
         fetchPerson();
-    }, [dispatch, isCheckingAuth]);
+    }, [dispatch, isAuth]);
     return (
         <MainPage
             popularBooks={popularBooks}

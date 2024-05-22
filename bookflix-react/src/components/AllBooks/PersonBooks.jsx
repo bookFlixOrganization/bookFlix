@@ -5,6 +5,11 @@ import somebook from './images/somebook.jpg';
 
 const PersonBooks = (props) => {
     const { books } = props;
+    let booksArray;
+    if (books) {
+        booksArray = Object.entries(books);
+        console.log(booksArray);
+    }
     return (
         <div className={styles.films_container}>
             <section className={styles.now_watching_text}>
@@ -23,33 +28,39 @@ const PersonBooks = (props) => {
             <section className={styles.now_watching_section}>
                 <div className={styles.container}>
                     <div className={styles.movies}>
-                        {books &&
-                            books.length > 0 &&
-                            books.map((book, index) => (
+                        {booksArray &&
+                            booksArray.length > 0 &&
+                            booksArray.map((book, index) => (
                                 <NavLink
                                     key={index}
-                                    to={`/book-page/${book.id}`}
+                                    to={`/book-page/${book[0]}`}
                                     className={styles.movie}
                                 >
                                     <div className={styles.movie__cover_inner}>
-                                        {book.book_image ? (
+                                        {book[1].volumeInfo.imageLinks &&
+                                        book[1].volumeInfo.imageLinks.thumbnail ? (
                                             <img
-                                                src={book.book_image}
-                                                alt=""
+                                                src={book[1].volumeInfo.imageLinks.thumbnail}
+                                                alt={book[1].volumeInfo.title}
                                                 className={styles.movie__cover}
                                             />
                                         ) : (
                                             <img
                                                 src={somebook}
-                                                alt=""
+                                                alt={book[1].volumeInfo.title}
                                                 className={styles.movie__cover}
                                             />
                                         )}
                                         <div className={styles.movie__cover__darkened}></div>
                                     </div>
                                     <div className={styles.movie__info}>
-                                        <div className={styles.movie__title}>{book.title}</div>
-                                        <div className={styles.movie__category}>{book.author}</div>
+                                        <div className={styles.movie__title}>
+                                            {book[1].volumeInfo.title}
+                                        </div>
+                                        <div className={styles.movie__category}>
+                                            {book[1].volumeInfo.authors &&
+                                                book[1].volumeInfo.authors[0]}
+                                        </div>
                                     </div>
                                 </NavLink>
                             ))}

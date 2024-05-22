@@ -77,7 +77,8 @@ const YourBooks = (props) => {
                                                     {book[1].volumeInfo.title}
                                                 </div>
                                                 <div className={styles.movie__category}>
-                                                    {book[1].volumeInfo.authors[0]}
+                                                    {book[1].volumeInfo.authors &&
+                                                        book[1].volumeInfo.authors[0]}
                                                 </div>
                                             </div>
                                         </NavLink>
@@ -86,7 +87,7 @@ const YourBooks = (props) => {
                             ))}
                         <SwiperSlide
                             className={styles.movie_show_all}
-                            onClick={() => navigate('/all-books')}
+                            onClick={() => navigate('/person-books')}
                         >
                             <p className={styles.show_all}>Смотреть все</p>
                         </SwiperSlide>
