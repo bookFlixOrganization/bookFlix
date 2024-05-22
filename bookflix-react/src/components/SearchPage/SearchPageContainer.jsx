@@ -9,15 +9,6 @@ const SearchPageContainer = () => {
         setIsFilmVisibility(!isFilmVisibility);
     };
 
-    const rathingButtons = [];
-    for (let i = 1; i <= 10; i++) {
-        rathingButtons.push(
-            <button key={i} type="button" className={styles.input_1}>
-                <p className={styles.text_on_button}>Не менее {i}⭐</p>
-            </button>,
-        );
-    }
-
     const [selectedBookGenre, setSelectedBookGenre] = useState(null);
     const [selectedFilmGenre, setSelectedFilmGenre] = useState(null);
     const [selectedFilmYear, setSelectedFilmYear] = useState(null);
@@ -55,7 +46,6 @@ const SearchPageContainer = () => {
                 selectedBookGenre={selectedBookGenre}
                 selectedFilmGenre={selectedFilmGenre}
                 selectedFilmYear={selectedFilmYear}
-                rathingButtons={rathingButtons}
                 isFilmVisibility={isFilmVisibility}
                 toggleFilmsVisibility={toggleFilmVisibility}
                 handleGenreClick={handleGenreClick}
