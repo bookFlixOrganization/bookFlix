@@ -74,6 +74,9 @@ const SearchPage = (props) => {
                 >
                     Книги
                 </button>
+                <button id="safe" className={`${styles.choice_button} ${styles.apply_filtres}`}>
+                    Применить фильтры
+                </button>
             </div>
 
             {props.isFilmVisibility && (
@@ -99,10 +102,15 @@ const SearchPage = (props) => {
                         <div className={styles.filters_1}>{props.filmYearsButtons}</div>
                     </div>
 
-                    <div className={styles.apply}>
-                        <button id="safe" className={styles.choice_button}>
-                            Применить фильтры
-                        </button>
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Режиссер</p>
+                        <div className={styles.filters_1}>
+                            <input
+                                className={styles.filter_author}
+                                value={props.authorFilm}
+                                onChange={props.handleAuthorFilmChange}
+                            ></input>
+                        </div>
                     </div>
                 </div>
             )}
@@ -130,10 +138,15 @@ const SearchPage = (props) => {
                         <div className={styles.filters_1}>{props.bookYearsButtons}</div>
                     </div>
 
-                    <div className={styles.apply}>
-                        <button id="safe" className={styles.choice_button}>
-                            Применить фильтры
-                        </button>
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Автор</p>
+                        <div className={styles.filters_1}>
+                            <input
+                                className={styles.filter_author}
+                                value={props.authorBook}
+                                onChange={props.handleAuthorBookChange}
+                            ></input>
+                        </div>
                     </div>
                 </div>
             )}

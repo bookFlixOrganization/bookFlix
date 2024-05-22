@@ -58,6 +58,7 @@
     text-align: center;
     cursor: pointer;
     margin-top: 30px;
+    margin-right: 20px;
 }
 
 .choice_button:hover {
@@ -218,4 +219,22 @@
 
 .chosen {
     background-color: #ff2929;
+}
+
+.filter_author {
+    width: 60%;
+    height: 50px;
+    margin-left: 15px;
+    margin-top: 20px;
+    padding-left: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+    outline: none;
+    background-color: #2b2b2b;
+    color: #9f9f9f;
+}
+
+.apply_filtres {
+    width: 250px;
 }

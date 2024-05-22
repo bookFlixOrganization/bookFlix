@@ -23,6 +23,8 @@ const SearchPageContainer = () => {
     const [selectedFilmGenre, setSelectedFilmGenre] = useState(null);
     const [selectedFilmYear, setSelectedFilmYear] = useState(null);
     const [selectedBookYear, setSelectedBookYear] = useState(null);
+    const [authorBook, setAuthorBook] = useState('');
+    const [authorFilm, setAuthorFilm] = useState('');
 
     const handleYearClick = (year, type) => {
         if (type === 'book') {
@@ -38,6 +40,13 @@ const SearchPageContainer = () => {
         } else if (type === 'film') {
             setSelectedFilmGenre((prevGenre) => (prevGenre === genre ? null : genre));
         }
+    };
+
+    const handleAuthorBookChange = (event) => {
+        setAuthorBook(event.target.value);
+    };
+    const handleAuthorFilmChange = (event) => {
+        setAuthorFilm(event.target.value);
     };
 
     const filmYearsButtons = [];
@@ -82,6 +91,10 @@ const SearchPageContainer = () => {
                 handleYearClick={handleYearClick}
                 filmYearsButtons={filmYearsButtons}
                 bookYearsButtons={bookYearsButtons}
+                authorBook={authorBook}
+                authorFilm={authorFilm}
+                handleAuthorBookChange={handleAuthorBookChange}
+                handleAuthorFilmChange={handleAuthorFilmChange}
             />
         </>
     );
