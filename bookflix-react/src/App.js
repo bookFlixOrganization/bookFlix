@@ -21,6 +21,7 @@ import FeedBackContainer from './components/FeedBack/FeedBackContainer.jsx';
 import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx';
 import PersonBooksContainer from './components/AllBooks/PersonBooksContainer.jsx';
 import AccountContainer from './components/Account/AccountContainer.jsx';
+import EditPreferencesContainer from './components/EditPreferences/EditPreferencesContainer.jsx';
 import './App.css';
 import axios from 'axios';
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path="search" element={<SearchPageContainer />} />
                 <Route path="feedback" element={<FeedBackContainer />} />
                 <Route path="account" element={<AccountContainer />} />
+                <Route path="edit-preferences" element={<EditPreferencesContainer />} />
             </Routes>
         </div>
     );

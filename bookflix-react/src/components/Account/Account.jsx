@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Account.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Account = (props) => {
     const {
@@ -11,6 +12,7 @@ const Account = (props) => {
         showPassword,
         handleSubmit,
     } = props;
+    const navigate = useNavigate();
 
     return (
         <div className={styles.account_container}>
@@ -27,7 +29,11 @@ const Account = (props) => {
                         value={password}
                         onChange={handleEditAccPassword}
                     />
-                    <button type="button" onClick={toggleShowPassword}>
+                    <button
+                        className={styles.show_password}
+                        type="button"
+                        onClick={toggleShowPassword}
+                    >
                         {showPassword ? 'Скрыть' : 'Показать'}
                     </button>
                 </div>
@@ -36,6 +42,12 @@ const Account = (props) => {
                     Сохранить изменения
                 </button>
             </form>
+            <button
+                className={styles.account_edit_prefer}
+                onClick={() => navigate('/edit-preferences')}
+            >
+                Редактировать предпочтения
+            </button>
         </div>
     );
 };
