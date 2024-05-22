@@ -41,7 +41,7 @@ const YourBooks = (props) => {
                     className={styles.swiper}
                 >
                     <div className={styles.swiper_wrapper}>
-                        {personBooksArray &&
+                        {personBooksArray.length > 0 &&
                             personBooksArray.slice(0, 8).map((book, index) => (
                                 <SwiperSlide
                                     key={`person_book_${index}`}

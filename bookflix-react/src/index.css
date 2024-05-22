@@ -45,6 +45,7 @@ body {
 
 .swiper-slide {
     transition: 0.6s !important;
+    width: 244px !important;
 }
 
 .swiper-slide:hover {

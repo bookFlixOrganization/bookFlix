@@ -42,30 +42,34 @@ const PopularFilms = (props) => {
                     className={styles.swiper}
                 >
                     <div className={styles.swiper_wrapper}>
-                        {popularFilmsArray.slice(0, 10).map((film, index) => (
-                            <SwiperSlide
-                                key={`popular_film_${index}`}
-                                className={styles.swiper_slide}
-                            >
-                                <div className={styles.container}>
-                                    <NavLink to={`/film-page/${film[0]}`} className={styles.movie}>
-                                        <div className={styles.movie__cover_inner}>
-                                            <img
-                                                src={film[1]['poster_path:']}
-                                                alt={film[1]['title:']}
-                                                className={styles.movie__cover}
-                                            />
-                                            <div className={styles.movie__cover_darkened}></div>
-                                        </div>
-                                        <div className={styles.movie__info}>
-                                            <div className={styles.movie__title}>
-                                                {film[1]['title:']}
+                        {popularFilmsArray.length > 0 &&
+                            popularFilmsArray.slice(0, 10).map((film, index) => (
+                                <SwiperSlide
+                                    key={`popular_film_${index}`}
+                                    className={styles.swiper_slide}
+                                >
+                                    <div className={styles.container}>
+                                        <NavLink
+                                            to={`/film-page/${film[0]}`}
+                                            className={styles.movie}
+                                        >
+                                            <div className={styles.movie__cover_inner}>
+                                                <img
+                                                    src={film[1]['poster_path:']}
+                                                    alt={film[1]['title:']}
+                                                    className={styles.movie__cover}
+                                                />
+                                                <div className={styles.movie__cover_darkened}></div>
                                             </div>
-                                        </div>
-                                    </NavLink>
-                                </div>
-                            </SwiperSlide>
-                        ))}
+                                            <div className={styles.movie__info}>
+                                                <div className={styles.movie__title}>
+                                                    {film[1]['title:']}
+                                                </div>
+                                            </div>
+                                        </NavLink>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
                         <SwiperSlide
                             className={styles.movie_show_all}
                             onClick={() => navigate('/all-films')}

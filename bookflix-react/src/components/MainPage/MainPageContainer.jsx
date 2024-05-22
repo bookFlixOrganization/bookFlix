@@ -80,7 +80,6 @@ const MainPageContainer = () => {
                 }
             }
         };
-
         fetchPopularBooks();
         if (!popularFilms) {
             fetchPopularFilms();
