@@ -58,7 +58,7 @@ const SessionChecker = () => {
         if (!isPreferences && isAuth) {
             navigate('/preferences');
         }
-    }, [isPreferences, isAuth, navigate, dispatch]);
+    }, []);
 
     return null;
 };
