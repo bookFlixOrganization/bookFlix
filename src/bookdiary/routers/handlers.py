@@ -2,7 +2,7 @@ import uuid
 
 from typing import List
 
-from src.bookdiary.models.models import Publics, Subs
+from src.bookdiary.models.models import Publics, Subs, Likes
 from src.bookdiary.routers.search_handlers import prepare_article_data, search_books
 from src.bookdiary.schemas.exceptions import (
     ConflictException,
@@ -193,9 +193,18 @@ async def get_article_by_article_id(
     stmt3 = select(User.username).where(User.id == result["user_id"])
     user_name = (await session.execute(stmt3)).scalar_one_or_none()
 
+    stmt4 = select(Likes).where(Likes.article_id == article_id, Likes.user_id == user.id)
+    like = (await session.execute(stmt4)).scalar_one_or_none()
+
+    stmt5 = select(Likes).where(Likes.article_id == article_id)
+    likes = (await session.execute(stmt5)).scalars().all()
+
     return {
         "is_sub": int(sub is not None)
         + 2 * (user.id == result["user_id"]),
+        "is_liked": int(like is not None)
+        + 2 * (user.id == result["user_id"]),
+        "likes": len(likes),
         "user_name": user_name,
     } | result
 
@@ -245,6 +254,10 @@ async def get_all_user_article(
     )
     user_name = (await session.execute(stmt3)).scalar_one_or_none()
 
+    filter_cond = Likes.article_id.in_([elem.article_id for elem in result])
+    stmt4 = select(Likes).where(filter_cond)
+    likes = (await session.execute(stmt4)).scalars().all()
+
     return {
         "author_info": {
             "is_sub": int(sub is not None) + 2 * (user.id == user_id),
@@ -252,7 +265,7 @@ async def get_all_user_article(
             "articles_count": len(result),
         },
         "articles": [
-            dict(result[i]) | {"articles_count": len(result)}
+            dict(result[i]) | {"articles_count": len(result)} | {"likes": len([1 for i in likes if i.article_id == result[i].article_id])}
             for i in range(len(result))
         ],
     }
@@ -303,8 +316,12 @@ async def search_articles_by_book_name(
     result3 = (await session.execute(stmt3)).mappings().fetchall()
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 
+    filter_cond = Likes.article_id.in_([elem.id for elem in result])
+    stmt4 = select(Likes).where(filter_cond)
+    likes = (await session.execute(stmt4)).scalars().all()
+
     return [
-        result[i].__dict__ | {"articles_count": articles_count[i]} | {"user_name": usernames[result[i].user_id]}
+        result[i].__dict__ | {"articles_count": articles_count[i]} | {"user_name": usernames[result[i].user_id]} | {"likes": sum([1 for j in likes if j.article_id == result[i].id])}
         for i in range(len(result))
     ]
 
@@ -327,7 +344,11 @@ async def get_popular_articles(session: AsyncSession() = Depends(get_async_sessi
     result3 = (await session.execute(stmt3)).mappings().fetchall()
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 
+    filter_cond = Likes.article_id.in_([elem.id for elem in result])
+    stmt4 = select(Likes).where(filter_cond)
+    likes = (await session.execute(stmt4)).scalars().all()
+
     return [
-        result[i].__dict__ | {"articles_count": articles_count[i]} | {"user_name": usernames[result[i].user_id]}
+        result[i].__dict__ | {"articles_count": articles_count[i]} | {"user_name": usernames[result[i].user_id]} | {"likes": sum([1 for j in likes if j.article_id == result[i].id])}
         for i in range(len(result))
     ]
