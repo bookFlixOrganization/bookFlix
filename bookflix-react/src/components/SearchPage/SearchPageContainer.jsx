@@ -170,7 +170,6 @@ const SearchPageContainer = () => {
         setAppliedFiltres(false);
     };
 
-    console.log(foundedBooks, foundedFilms);
     const isActiveFiltres = () => {
         return selectedFilmYears.length > 0 || selectedBookYears.length > 0 || authorBook !== '';
     };

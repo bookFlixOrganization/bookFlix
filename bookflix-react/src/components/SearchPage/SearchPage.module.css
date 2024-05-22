@@ -128,7 +128,7 @@
 .movies {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 50px;
 }
 
