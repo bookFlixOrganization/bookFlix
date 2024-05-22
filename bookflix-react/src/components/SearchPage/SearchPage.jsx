@@ -77,6 +77,13 @@ const SearchPage = (props) => {
                 <button id="safe" className={`${styles.choice_button} ${styles.apply_filtres}`}>
                     Применить фильтры
                 </button>
+                <button
+                    id="clear"
+                    className={`${styles.choice_button} ${styles.apply_filtres}`}
+                    onClick={props.handleClearFiltres}
+                >
+                    Очистить фильтры
+                </button>
             </div>
 
             {props.isFilmVisibility && (
@@ -88,7 +95,7 @@ const SearchPage = (props) => {
                                 <button
                                     key={index}
                                     type="button"
-                                    className={`${styles.input_1} ${props.selectedFilmGenre === genreItem.genre ? styles.active : ''}`}
+                                    className={`${styles.input_1} ${props.selectedFilmGenres.includes(genreItem.genre) ? styles.active : ''}`}
                                     onClick={() => props.handleGenreClick(genreItem.genre, 'film')}
                                 >
                                     <p className={styles.text_on_button}>{genreItem.name}</p>
@@ -124,7 +131,7 @@ const SearchPage = (props) => {
                                 <button
                                     key={index}
                                     type="button"
-                                    className={`${styles.input_1} ${props.selectedBookGenre === genreItem.genre ? styles.active : ''}`}
+                                    className={`${styles.input_1} ${props.selectedBookGenres.includes(genreItem.genre) ? styles.active : ''}`}
                                     onClick={() => props.handleGenreClick(genreItem.genre, 'book')}
                                 >
                                     <p className={styles.text_on_button}>{genreItem.name}</p>

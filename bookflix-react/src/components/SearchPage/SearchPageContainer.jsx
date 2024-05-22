@@ -19,26 +19,50 @@ const SearchPageContainer = () => {
         setIsBookVisibility(!isBookVisibility);
     };
 
-    const [selectedBookGenre, setSelectedBookGenre] = useState(null);
-    const [selectedFilmGenre, setSelectedFilmGenre] = useState(null);
-    const [selectedFilmYear, setSelectedFilmYear] = useState(null);
-    const [selectedBookYear, setSelectedBookYear] = useState(null);
+    const [selectedBookGenres, setSelectedBookGenres] = useState([]);
+    const [selectedFilmGenres, setSelectedFilmGenres] = useState([]);
+    const [selectedFilmYears, setSelectedFilmYears] = useState([]);
+    const [selectedBookYears, setSelectedBookYears] = useState([]);
     const [authorBook, setAuthorBook] = useState('');
     const [authorFilm, setAuthorFilm] = useState('');
 
     const handleYearClick = (year, type) => {
         if (type === 'book') {
-            setSelectedBookYear((prevYear) => (prevYear === year ? null : year));
+            setSelectedBookYears((prevYears) => {
+                if (prevYears.includes(year)) {
+                    return prevYears.filter((y) => y !== year);
+                } else {
+                    return [...prevYears, year];
+                }
+            });
         } else if (type === 'film') {
-            setSelectedFilmYear((prevYear) => (prevYear === year ? null : year));
+            setSelectedFilmYears((prevYears) => {
+                if (prevYears.includes(year)) {
+                    return prevYears.filter((y) => y !== year);
+                } else {
+                    return [...prevYears, year];
+                }
+            });
         }
     };
 
     const handleGenreClick = (genre, type) => {
         if (type === 'book') {
-            setSelectedBookGenre((prevGenre) => (prevGenre === genre ? null : genre));
+            setSelectedBookGenres((prevGenres) => {
+                if (prevGenres.includes(genre)) {
+                    return prevGenres.filter((g) => g !== genre);
+                } else {
+                    return [...prevGenres, genre];
+                }
+            });
         } else if (type === 'film') {
-            setSelectedFilmGenre((prevGenre) => (prevGenre === genre ? null : genre));
+            setSelectedFilmGenres((prevGenres) => {
+                if (prevGenres.includes(genre)) {
+                    return prevGenres.filter((g) => g !== genre);
+                } else {
+                    return [...prevGenres, genre];
+                }
+            });
         }
     };
 
@@ -49,13 +73,24 @@ const SearchPageContainer = () => {
         setAuthorFilm(event.target.value);
     };
 
+    const handleClearFiltres = () => {
+        setSelectedBookGenres([]);
+        setSelectedFilmGenres([]);
+        setSelectedBookYears([]);
+        setSelectedFilmYears([]);
+        setAuthorBook('');
+        setAuthorFilm('');
+        setIsFilmVisibility(false);
+        setIsBookVisibility(false);
+    };
+
     const filmYearsButtons = [];
     for (let year = 1940; year <= 2030; year += 10) {
         filmYearsButtons.push(
             <button
                 key={year}
                 type="button"
-                className={`${styles.input_1} ${selectedFilmYear === year ? styles.active : ''}`}
+                className={`${styles.input_1} ${selectedFilmYears.includes(year) ? styles.active : ''}`}
                 onClick={() => handleYearClick(year, 'film')}
             >
                 <p className={styles.text_on_button}>{`${year}-${year + 9}`}</p>
@@ -68,7 +103,7 @@ const SearchPageContainer = () => {
             <button
                 key={year}
                 type="button"
-                className={`${styles.input_1} ${selectedBookYear === year ? styles.active : ''}`}
+                className={`${styles.input_1} ${selectedBookYears.includes(year) ? styles.active : ''}`}
                 onClick={() => handleYearClick(year, 'book')}
             >
                 <p className={styles.text_on_button}>{`${year}-${year + 9}`}</p>
@@ -79,10 +114,10 @@ const SearchPageContainer = () => {
         <>
             <SessionChecker />
             <SearchPage
-                selectedBookGenre={selectedBookGenre}
-                selectedFilmGenre={selectedFilmGenre}
-                selectedFilmYear={selectedFilmYear}
-                selectedBookYear={selectedBookYear}
+                selectedBookGenres={selectedBookGenres}
+                selectedFilmGenres={selectedFilmGenres}
+                selectedFilmYears={selectedFilmYears}
+                selectedBookYears={selectedBookYears}
                 isBookVisibility={isBookVisibility}
                 isFilmVisibility={isFilmVisibility}
                 toggleFilmsVisibility={toggleFilmVisibility}
@@ -95,6 +130,7 @@ const SearchPageContainer = () => {
                 authorFilm={authorFilm}
                 handleAuthorBookChange={handleAuthorBookChange}
                 handleAuthorFilmChange={handleAuthorFilmChange}
+                handleClearFiltres={handleClearFiltres}
             />
         </>
     );
