@@ -16,7 +16,6 @@ const PersonBooksContainer = () => {
                 // dispatch(setFavourites(responseFavourite.data));
                 // if (responseFavourite.data.liked_books.length > 0) {
                 const responseRecommendation = await axios.get(`${server}/recommendation_book`);
-                console.log(responseRecommendation);
                 dispatch(setPersonBooks(responseRecommendation.data));
             } catch (error) {
                 console.error('Error fetching popular films: ', error);

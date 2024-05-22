@@ -25,7 +25,6 @@ const mainPageReducer = (state = initialState, action) => {
                 popular_films: action.payload.result,
             };
         case SET_PERSON_BOOKS:
-            console.log(action);
             return {
                 ...state,
                 person_books: action.payload,

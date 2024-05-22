@@ -8,7 +8,6 @@ const PersonBooks = (props) => {
     let booksArray;
     if (books) {
         booksArray = Object.entries(books);
-        console.log(booksArray);
     }
     return (
         <div className={styles.films_container}>

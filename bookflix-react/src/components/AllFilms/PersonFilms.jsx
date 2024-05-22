@@ -8,8 +8,6 @@ const PersonFilms = (props) => {
     let filmsArray;
     if (films) {
         filmsArray = Object.entries(films);
-        console.log(filmsArray);
-        console.log(filmsArray[0]);
     }
     return (
         <div className={styles.films_container}>

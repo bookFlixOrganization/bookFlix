@@ -51,7 +51,6 @@ const AccountContainer = () => {
         const fetchUserData = async () => {
             try {
                 const response = await axios.get(`${server}/users/me`);
-                console.log(response);
                 if (response.status === 200) {
                     dispatch(setAccId(response.data.id));
                     dispatch(setAccEmail(response.data.email));
