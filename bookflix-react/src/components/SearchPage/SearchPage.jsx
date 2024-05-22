@@ -2,6 +2,28 @@ import React from 'react';
 import styles from './SearchPage.module.css';
 
 const SearchPage = (props) => {
+    const filmGenres = [
+        { genre: 'Horror', name: 'Хоррор' },
+        { genre: 'Drama', name: 'Драма' },
+        { genre: 'Mystery', name: 'Мистика' },
+        { genre: 'Sci-fi', name: 'Научно-фантастический' },
+        { genre: 'Romance', name: 'Романтический' },
+        { genre: 'Film-noir', name: 'Нуар' },
+        { genre: 'Fantasy', name: 'Фентези' },
+        { genre: 'Biography', name: 'Биография' },
+        { genre: 'Documentary', name: 'Документальный' },
+        { genre: 'Music', name: 'Мюзикл' },
+        { genre: 'Thriller', name: 'Триллер' },
+        { genre: 'Crime', name: 'Криминальный' },
+        { genre: 'Action', name: 'Экшн' },
+        { genre: 'War', name: 'Военный' },
+        { genre: 'Adventure', name: 'Приключения' },
+        { genre: 'Comedy', name: 'Комедия' },
+        { genre: 'Western', name: 'Вестерн' },
+        { genre: 'History', name: 'Исторический' },
+        { genre: 'Family', name: 'Семейный' },
+    ];
+
     return (
         <div className={styles.search_container}>
             <div className={styles.search_form}>
@@ -41,92 +63,22 @@ const SearchPage = (props) => {
                     <div className={styles.filters}>
                         <p className={styles.section_title}>Жанр</p>
                         <div className={styles.filters_1}>
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Хоррор</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Драма</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Мистика</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Научно-фантастический</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Романтический</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Нуар</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Фентези</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Биография</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Документальный</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Мюзикл</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Триллер</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Криминальный</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Экшн</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Военный</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Приключения</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Комедия</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Вестерн</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Исторический</p>
-                            </button>
-
-                            <button type="button" className={styles.input_1} id="#">
-                                <p className={styles.text_on_button}>Семейный</p>
-                            </button>
+                            {filmGenres.map((genreItem, index) => (
+                                <button
+                                    key={index}
+                                    type="button"
+                                    className={`${styles.input_1} ${props.selectedFilmGenre === genreItem.genre ? styles.active : ''}`}
+                                    onClick={() => props.handleGenreClick(genreItem.genre, 'film')}
+                                >
+                                    <p className={styles.text_on_button}>{genreItem.name}</p>
+                                </button>
+                            ))}
                         </div>
                     </div>
 
                     <div className={styles.filters}>
                         <p className={styles.section_title}>Год выпуска</p>
                         <div className={styles.filters_1}>{props.yearsButtons}</div>
-                    </div>
-
-                    <div className={styles.filters}>
-                        <p className={styles.section_title}>Рейтинг</p>
-                        <div className={styles.filters_1}>{props.rathingButtons}</div>
                     </div>
 
                     <div className={styles.apply}>

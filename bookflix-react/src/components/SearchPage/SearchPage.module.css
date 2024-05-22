@@ -1,5 +1,6 @@
 .search_container {
     max-width: 1220px;
+    min-height: 100vh;
     margin: 0 auto;
     margin-top: 100px;
 }
@@ -21,6 +22,7 @@
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
     width: 1000px;
+    height: 50px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -30,6 +32,7 @@
     border-radius: 20px;
     cursor: pointer;
     background-color: #222222;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Кнопки при выборе фильма или книги */
@@ -202,4 +205,13 @@
     font-weight: 800;
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
+}
+
+.active {
+    background-color: #e54d4d;
+    color: #ffffff;
+}
+
+.active:hover {
+    background-color: #e43131;
 }
