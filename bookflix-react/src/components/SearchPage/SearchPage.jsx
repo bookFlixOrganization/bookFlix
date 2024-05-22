@@ -23,7 +23,21 @@ const SearchPage = (props) => {
         { genre: 'History', name: 'Исторический' },
         { genre: 'Family', name: 'Семейный' },
     ];
-
+    const bookGenres = [
+        { genre: 'Fantastic', name: 'Фантастика' },
+        { genre: 'Detective', name: 'Детектив' },
+        { genre: 'Business literature', name: 'Бизнес-литература' },
+        { genre: "Children's literature", name: 'Детская литература' },
+        { genre: 'Novel', name: 'Роман' },
+        { genre: 'Horror', name: 'Ужасы' },
+        { genre: 'Science fiction', name: 'Научная фантастика' },
+        { genre: 'Psychology', name: 'Психология' },
+        { genre: 'Computer literature', name: 'Компьютерная литература' },
+        { genre: 'Classic literature', name: 'Классическая литература' },
+        { genre: 'Adventure', name: 'Приключения' },
+        { genre: 'Study literature', name: 'Учебная литература' },
+        { genre: 'Fantasy', name: 'Фэнтези' },
+    ];
     return (
         <div className={styles.search_container}>
             <div className={styles.search_form}>
@@ -48,12 +62,16 @@ const SearchPage = (props) => {
             <div className={styles.choice}>
                 <button
                     id="films"
-                    className={styles.choice_button}
+                    className={`${styles.choice_button} ${props.isFilmVisibility ? styles.chosen : ''}`}
                     onClick={props.toggleFilmsVisibility}
                 >
                     Фильмы
                 </button>
-                <button id="books" className={styles.choice_button}>
+                <button
+                    id="books"
+                    className={`${styles.choice_button} ${props.isBookVisibility ? styles.chosen : ''}`}
+                    onClick={props.toggleBookVisibility}
+                >
                     Книги
                 </button>
             </div>
@@ -78,7 +96,38 @@ const SearchPage = (props) => {
 
                     <div className={styles.filters}>
                         <p className={styles.section_title}>Год выпуска</p>
-                        <div className={styles.filters_1}>{props.yearsButtons}</div>
+                        <div className={styles.filters_1}>{props.filmYearsButtons}</div>
+                    </div>
+
+                    <div className={styles.apply}>
+                        <button id="safe" className={styles.choice_button}>
+                            Применить фильтры
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {props.isBookVisibility && (
+                <div className={styles.all_filters} id="hiddenDiv">
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Жанр</p>
+                        <div className={styles.filters_1}>
+                            {bookGenres.map((genreItem, index) => (
+                                <button
+                                    key={index}
+                                    type="button"
+                                    className={`${styles.input_1} ${props.selectedBookGenre === genreItem.genre ? styles.active : ''}`}
+                                    onClick={() => props.handleGenreClick(genreItem.genre, 'book')}
+                                >
+                                    <p className={styles.text_on_button}>{genreItem.name}</p>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className={styles.filters}>
+                        <p className={styles.section_title}>Год выпуска</p>
+                        <div className={styles.filters_1}>{props.bookYearsButtons}</div>
                     </div>
 
                     <div className={styles.apply}>

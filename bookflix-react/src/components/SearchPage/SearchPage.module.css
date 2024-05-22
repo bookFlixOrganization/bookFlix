@@ -208,10 +208,14 @@
 }
 
 .active {
-    background-color: #e54d4d;
+    background-color: #e43131;
     color: #ffffff;
 }
 
 .active:hover {
-    background-color: #e43131;
+    background-color: #e54d4d;
+}
+
+.chosen {
+    background-color: #ff2929;
 }
