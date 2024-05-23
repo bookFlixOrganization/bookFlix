@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './FilmPage.module.css';
-import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import someone from './images/photo.jpg';
-import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 
@@ -99,14 +97,6 @@ const FilmPage = (props) => {
 
                         <h2 className={styles.all_rathing}>Рейтинг</h2>
                         <div className={styles.all_media_rathing}>
-                            <div id="open-modal-btn" className={styles.our_rathing}>
-                                <div className={styles.our_own_rathing}>
-                                    {filmState.rating_bookflix}
-                                </div>
-                                <div className={styles.user_mark}>
-                                    Оценка пользователей BookFlix
-                                </div>
-                            </div>
                             <div className={styles.not_our_rathing}>
                                 <div className={styles.imdb_rathing}>
                                     {filmState.rating_imdb
@@ -141,66 +131,14 @@ const FilmPage = (props) => {
                                     </div>
                                 ))}
                         </div>
-
-                        <h2 id="prokrutka" className={styles.prokrutka}>
-                            Отзывы зрителей
-                        </h2>
-                        <div className={styles.container_2}>
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3 className={styles.feedback_author}>
-                                                Ivan_Borisov123
-                                            </h3>
-                                        </div>
-                                        <div className={styles.rat}>8.9</div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.show_more}>
-                            <button id="show_more" className={styles.show_more}>
-                                Читать ещё
-                            </button>
-                        </div>
                     </div>
 
                     <div>
-                        <span className={styles.rathing_main}>
-                            {filmState.rating_bookflix.toFixed(1)}
-                        </span>
                         <span className={styles.rathing_counts}>296 824 оценок</span>
                         <a href="#prokrutka" className={styles.rathing_details}>
                             459 отзывов
                         </a>
-                        <div className={styles.mb_40}>
-                            <button
-                                onClick={props.openModal}
-                                className={styles.btn}
-                                id="leave_a_review"
-                            >
-                                Оставить отзыв
-                            </button>
-                        </div>
                     </div>
-                    <FeedBackContainer
-                        isModalOpen={props.isModalOpen}
-                        isFeedbackSubmitted={props.isFeedbackSubmitted}
-                        openModal={props.openModal}
-                        closeModal={props.closeModal}
-                        submitFeedback={props.submitFeedback}
-                    />
                 </div>
             </div>
         </div>

@@ -16,12 +16,11 @@ import {
     setGenre,
     setDirector,
     setBudget,
-    setRatingBookflix,
     setRatingImdb,
     setVideoUrl,
     setRuntimes,
     setAge,
-    setActors,
+    // setActors,
     clearContent,
     setLiked,
     setDisliked,
@@ -30,35 +29,11 @@ const FilmPageContainer = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const [isFavourite, setIsFavourite] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
-    const [imdbActors, setImdbActors] = useState([]);
+    // const [imdbActors, setImdbActors] = useState([]);
     const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
 
     const toggleFavourite = () => {
         setIsFavourite((prevState) => !prevState);
-    };
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const submitFeedback = () => {
-        closeModal();
-        setIsFeedbackSubmitted(true);
-        setTimeout(() => {
-            setIsFeedbackSubmitted(false);
-        }, 5000);
-    };
-
-    const handleEscKey = (event) => {
-        if (event.key === 'Escape') {
-            closeModal();
-        }
     };
 
     useEffect(() => {
@@ -82,6 +57,7 @@ const FilmPageContainer = () => {
                     const isDisliked = favourites.data['disliked_films'].some(
                         (film) => film[1] === imdbId,
                     );
+                    console.log(filmResponse.data);
                     dispatch(setDisliked(isDisliked));
                     dispatch(setId(imdbId));
                     dispatch(setName(filmResponse.data.result['original title']));
@@ -94,7 +70,7 @@ const FilmPageContainer = () => {
                     dispatch(setGenre(filmResponse.data.result.genres));
                     dispatch(setDirector(filmResponse.data.result.director[0].name));
                     dispatch(setBudget(filmResponse.data.result['box office'].Budget));
-                    setImdbActors(filmResponse.data.result.cast.slice(0, 3));
+                    // setImdbActors(filmResponse.data.result.cast.slice(0, 3));
                     const russianAgeCertificate = filmResponse.data.result.certificates.find(
                         (cert) => cert.startsWith('Russia:'),
                     );
@@ -102,7 +78,6 @@ const FilmPageContainer = () => {
                         const rating = russianAgeCertificate.split(':')[1];
                         dispatch(setAge(rating));
                     }
-                    dispatch(setRatingBookflix(0));
                     dispatch(setRatingImdb(filmResponse.data.result.rating));
                     dispatch(setVideoUrl(filmResponse.data.result.videos[0]));
                     dispatch(setRuntimes(filmResponse.data.result.runtimes[0]));
@@ -111,39 +86,34 @@ const FilmPageContainer = () => {
                 }
             };
             fetchFilmData();
-
-            window.addEventListener('keydown', handleEscKey);
-            return () => {
-                window.removeEventListener('keydown', handleEscKey);
-            };
         }
     }, [id, isCheckingAuth]);
 
-    useEffect(() => {
-        const fetchActors = async () => {
-            try {
-                const actorPromises = imdbActors.map((actor) =>
-                    axios.get(`${server}/search/person?query=${encodeURIComponent(actor.name)}`),
-                );
-                const responses = await Promise.all(actorPromises);
-                const actorsWithData = responses.map((response) => {
-                    const firstResult = response.data.result[0];
-                    return {
-                        name: firstResult.name,
-                        canonicalName: firstResult['canonical name'],
-                        fullSizeHeadshot: firstResult['full-size headshot'] || firstResult.headshot,
-                    };
-                });
-                dispatch(setActors(actorsWithData));
-            } catch (error) {
-                console.error('Ошибка при выполнении запроса:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchActors = async () => {
+    //         try {
+    //             const actorPromises = imdbActors.map((actor) =>
+    //                 axios.get(`${server}/search/person?query=${encodeURIComponent(actor.name)}`),
+    //             );
+    //             const responses = await Promise.all(actorPromises);
+    //             const actorsWithData = responses.map((response) => {
+    //                 const firstResult = response.data.result[0];
+    //                 return {
+    //                     name: firstResult.name,
+    //                     canonicalName: firstResult['canonical name'],
+    //                     fullSizeHeadshot: firstResult['full-size headshot'] || firstResult.headshot,
+    //                 };
+    //             });
+    //             dispatch(setActors(actorsWithData));
+    //         } catch (error) {
+    //             console.error('Ошибка при выполнении запроса:', error);
+    //         }
+    //     };
 
-        if (imdbActors && imdbActors.length > 0) {
-            fetchActors();
-        }
-    }, [imdbActors]);
+    //     if (imdbActors && imdbActors.length > 0) {
+    //         fetchActors();
+    //     }
+    // }, [imdbActors]);
 
     useEffect(() => {
         dispatch(clearContent());
@@ -226,11 +196,6 @@ const FilmPageContainer = () => {
         <Filmpage
             isFavourite={isFavourite}
             toggleFavourite={toggleFavourite}
-            isModalOpen={isModalOpen}
-            isFeedbackSubmitted={isFeedbackSubmitted}
-            openModal={openModal}
-            closeModal={closeModal}
-            submitFeedback={submitFeedback}
             filmState={filmState}
             handleLikeClick={handleLikeClick}
             handleDislikeClick={handleDislikeClick}

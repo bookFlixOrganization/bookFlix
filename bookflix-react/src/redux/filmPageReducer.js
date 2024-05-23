@@ -9,7 +9,6 @@ const SET_COUNTRIES = 'SET_COUNTRIES';
 const SET_GENRE = 'SET_GENRE';
 const SET_DIRECTOR = 'SET_DIRECTOR';
 const SET_BUDGET = 'SET_BUDGET';
-const SET_RATING_BOOKFLIX = 'SET_RATING';
 const SET_RATING_IMDB = 'SET_RATING_IMDB';
 const SET_VIDEO_URL = 'SET_VIDEO_URL';
 const SET_RUNTIMES = 'SET_RUNTIMES';
@@ -33,7 +32,6 @@ const initialState = {
     duration: '',
     budget: '',
     age: '',
-    rating_bookflix: 0.0,
     rating_imdb: 0.0,
     video_url: '',
     runtimes: '',
@@ -99,11 +97,6 @@ const filmPageReducer = (state = initialState, action) => {
                 ...state,
                 budget: action.payload,
             };
-        case SET_RATING_BOOKFLIX:
-            return {
-                ...state,
-                rating_bookflix: action.payload,
-            };
         case SET_RATING_IMDB:
             return {
                 ...state,
@@ -163,7 +156,6 @@ export const setCountries = (countries) => ({ type: SET_COUNTRIES, payload: coun
 export const setGenre = (genre) => ({ type: SET_GENRE, payload: genre });
 export const setDirector = (director) => ({ type: SET_DIRECTOR, payload: director });
 export const setBudget = (budget) => ({ type: SET_BUDGET, payload: budget });
-export const setRatingBookflix = (rating) => ({ type: SET_RATING_BOOKFLIX, payload: rating });
 export const setRatingImdb = (rating) => ({ type: SET_RATING_IMDB, payload: rating });
 export const setVideoUrl = (videoUrl) => ({ type: SET_VIDEO_URL, payload: videoUrl });
 export const setRuntimes = (runtimes) => ({ type: SET_RUNTIMES, payload: runtimes });
