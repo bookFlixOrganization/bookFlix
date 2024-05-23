@@ -22,10 +22,15 @@ const SessionChecker = () => {
     const navigate = useNavigate();
     const isPreferences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
+
     useEffect(() => {
+        const source = axios.CancelToken.source();
+
         const fetchUserData = async () => {
             try {
-                const userResponse = await axios.get(`${server}/users/me`);
+                const userResponse = await axios.get(`${server}/users/me`, {
+                    cancelToken: source.token,
+                });
                 const userData = userResponse.data;
                 dispatch(setId(userData.id));
                 dispatch(setEmail(userData.email));
@@ -43,9 +48,11 @@ const SessionChecker = () => {
                     navigate('/preferences');
                 }
             } catch (error) {
-                console.error('Ошибка при получении данных пользователя:', error);
-                dispatch(logout());
-                navigate('/');
+                if (!axios.isCancel(error)) {
+                    console.error('Ошибка при получении данных пользователя:', error);
+                    dispatch(logout());
+                    navigate('/');
+                }
             }
         };
 
@@ -60,6 +67,10 @@ const SessionChecker = () => {
             dispatch(logout());
             navigate('/auth');
         }
+
+        return () => {
+            source.cancel('Операция была отменена');
+        };
     }, []);
 
     return null;
