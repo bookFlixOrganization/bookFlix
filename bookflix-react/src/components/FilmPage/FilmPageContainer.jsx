@@ -102,32 +102,6 @@ const FilmPageContainer = () => {
         };
     }, [id, isCheckingAuth]);
 
-    // useEffect(() => {
-    //     const fetchActors = async () => {
-    //         try {
-    //             const actorPromises = imdbActors.map((actor) =>
-    //                 axios.get(`${server}/search/person?query=${encodeURIComponent(actor.name)}`),
-    //             );
-    //             const responses = await Promise.all(actorPromises);
-    //             const actorsWithData = responses.map((response) => {
-    //                 const firstResult = response.data.result[0];
-    //                 return {
-    //                     name: firstResult.name,
-    //                     canonicalName: firstResult['canonical name'],
-    //                     fullSizeHeadshot: firstResult['full-size headshot'] || firstResult.headshot,
-    //                 };
-    //             });
-    //             dispatch(setActors(actorsWithData));
-    //         } catch (error) {
-    //             console.error('Ошибка при выполнении запроса:', error);
-    //         }
-    //     };
-
-    //     if (imdbActors && imdbActors.length > 0) {
-    //         fetchActors();
-    //     }
-    // }, [imdbActors]);
-
     useEffect(() => {
         dispatch(clearContent());
     }, []);

@@ -5,7 +5,6 @@ import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 
 const FilmPage = (props) => {
     const { filmState } = props;
-    // console.log(filmState);
     const formatRuntime = (runtimeInMinutes) => {
         const hours = Math.floor(runtimeInMinutes / 60);
         const minutes = runtimeInMinutes % 60;
