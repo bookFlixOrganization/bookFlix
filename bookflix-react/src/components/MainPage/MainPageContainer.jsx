@@ -18,7 +18,6 @@ const MainPageContainer = () => {
     const personBooks = useSelector((state) => state.mainPageReducer.person_books);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
     const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
-    console.log(isCheckingAuth);
     useEffect(() => {
         let cancelTokenSource;
         if (!isCheckingAuth) {
