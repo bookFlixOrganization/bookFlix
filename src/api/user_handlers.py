@@ -1,6 +1,6 @@
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi_users import FastAPIUsers
@@ -60,9 +60,12 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
                                                                            "liked_books": [],
                                                                            "disliked_films": [],
                                                                            "disliked_books": [],
-                                                                           "favorite_genre_books": preferences.book_genre,
+                                                                           "favorite_genre_books":
+                                                                               preferences.book_genre,
                                                                            "favorite_genre_films":
-                                                                               preferences.film_genre})
+                                                                               preferences.film_genre,
+                                                                           "history_books": [],
+                                                                           "history_movies": []})
     user.is_preferences = True
     await session.execute(statement)
     await session.commit()
@@ -83,3 +86,22 @@ async def favourites(user: User = Depends(current_user),
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except SQLAlchemyError as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) from e
+
+
+@user_router.post("/preferences_edit", tags=["preferences"])
+async def preferences_after_register(preferences: Preferences, user: User = Depends(current_user),
+                                     session: AsyncSession = Depends(get_async_session)):
+    try:
+        statement = select(UserView.__table__).where(UserView.id == user.id)
+        result = await session.execute(statement)
+        user_preferences = result.first()
+        preferences_json = user_preferences.preferences
+        preferences_json["favorite_genre_books"] = preferences.book_genre
+        preferences_json["favorite_genre_films"] = preferences.film_genre
+        stmt = update(UserView.__table__).where(UserView.id == user.id).values(preferences=preferences_json)
+        await session.execute(stmt)
+        await session.commit()
+    except AttributeError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
+    except SQLAlchemyError as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
