@@ -29,7 +29,7 @@ const AllFilms = (props) => {
                             filmsArray.map((film, index) => (
                                 <a
                                     key={index}
-                                    href={`/film-page/${film[0]}`}
+                                    href={`/film-page/${film[0]}/tmdb`}
                                     className={styles.movie}
                                 >
                                     <div className={styles.movie__cover_inner}>

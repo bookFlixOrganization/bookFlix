@@ -146,7 +146,7 @@ const SearchPage = (props) => {
                         {props.foundedFilms.result.map((item, index) => (
                             <NavLink
                                 key={index}
-                                to={`/film-page/${item.movieID}`}
+                                to={`/film-page/${item.movieID}/imdb`}
                                 className={styles.movie}
                             >
                                 <div className={styles.movie__cover_inner}>
