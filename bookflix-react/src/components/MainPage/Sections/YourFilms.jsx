@@ -24,9 +24,9 @@ const YourFilms = (props) => {
                             <p className={styles.section_title}>
                                 Фильмы и сериалы персонально для вас
                             </p>
-                            <a href="/all-films" className={styles.button_all}>
+                            <NavLink to={'/person-films'} className={styles.button_all}>
                                 Всё
-                            </a>
+                            </NavLink>
                         </div>
                         <p className={styles.section_subtitle}>
                             Индивидуальные рекомендации на основе ваших просмотров и оценок

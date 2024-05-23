@@ -21,9 +21,9 @@ const YourBooks = (props) => {
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
                             <p className={styles.section_title}>Книги персонально для вас</p>
-                            <a href="/all-books" className={styles.button_all}>
+                            <NavLink to={'/person-books'} className={styles.button_all}>
                                 Всё
-                            </a>
+                            </NavLink>
                         </div>
                         <p className={styles.section_subtitle}>
                             Индивидуальные рекомендации на основе ваших просмотров и оценок
