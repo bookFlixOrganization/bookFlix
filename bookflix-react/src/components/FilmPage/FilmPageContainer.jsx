@@ -24,6 +24,7 @@ import {
     clearContent,
     setLiked,
     setDisliked,
+    setActors,
 } from '../../redux/filmPageReducer.js';
 const FilmPageContainer = () => {
     const { id } = useParams();
@@ -57,6 +58,7 @@ const FilmPageContainer = () => {
                     const isDisliked = favourites.data['disliked_films'].some(
                         (film) => film[1] === imdbId,
                     );
+                    console.log(filmResponse.data.result);
                     dispatch(setDisliked(isDisliked));
                     dispatch(setId(imdbId));
                     dispatch(setName(filmResponse.data.result['original title']));
@@ -69,6 +71,7 @@ const FilmPageContainer = () => {
                     dispatch(setGenre(filmResponse.data.result.genres));
                     dispatch(setDirector(filmResponse.data.result.director[0].name));
                     dispatch(setBudget(filmResponse.data.result['box office'].Budget));
+                    dispatch(setActors(filmResponse.data.result.cast.slice(0, 20)));
                     // setImdbActors(filmResponse.data.result.cast.slice(0, 3));
                     const russianAgeCertificate = filmResponse.data.result.certificates.find(
                         (cert) => cert.startsWith('Russia:'),

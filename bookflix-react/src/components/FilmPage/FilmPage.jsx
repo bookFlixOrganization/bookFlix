@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './FilmPage.module.css';
-import someone from './images/photo.jpg';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 
@@ -107,27 +106,12 @@ const FilmPage = (props) => {
                             </div>
                         </div>
 
-                        <h2 className={styles.top_cast}>Топ актёры</h2>
+                        <h2 className={styles.top_cast}>Актёры</h2>
                         <div className={styles.actors}>
                             {filmState.actors &&
                                 filmState.actors.map((actor, index) => (
                                     <div key={index} className={styles.actor}>
-                                        {actor.fullSizeHeadshot && (
-                                            <img
-                                                src={actor.fullSizeHeadshot}
-                                                alt={actor.name}
-                                                className={styles.photo}
-                                            />
-                                        )}
-                                        {!actor.fullSizeHeadshot && (
-                                            <img
-                                                src={someone}
-                                                alt={actor.name}
-                                                className={styles.photo}
-                                            />
-                                        )}
                                         <div className={styles.name}>{actor.name}</div>
-                                        <div className={styles.nickname}>{actor.canonicalName}</div>
                                     </div>
                                 ))}
                         </div>
