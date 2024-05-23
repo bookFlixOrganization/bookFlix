@@ -22,6 +22,7 @@ import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx
 import PersonBooksContainer from './components/AllBooks/PersonBooksContainer.jsx';
 import AccountContainer from './components/Account/AccountContainer.jsx';
 import EditPreferencesContainer from './components/EditPreferences/EditPreferencesContainer.jsx';
+import SessionChecker from './components/SessionChecker.jsx';
 import './App.css';
 import axios from 'axios';
 
@@ -31,6 +32,7 @@ function App() {
 
     return (
         <div className="App">
+            {location.pathname !== '/auth' && <SessionChecker />}
             {location.pathname !== '/auth' && location.pathname !== '/preferences' && (
                 <HeaderContainer />
             )}

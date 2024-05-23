@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPopularFilms } from '../../redux/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
-import SessionChecker from '../SessionChecker.jsx';
 
 const AllFilmsContainer = () => {
     const dispatch = useDispatch();
@@ -21,12 +20,7 @@ const AllFilmsContainer = () => {
         fetchPopularFilms();
     }, [dispatch]);
     const films = useSelector((state) => state.mainPageReducer.popular_films);
-    return (
-        <>
-            <SessionChecker />
-            <AllFilms films={films} />;
-        </>
-    );
+    return <AllFilms films={films} />;
 };
 
 export default AllFilmsContainer;

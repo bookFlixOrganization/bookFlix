@@ -3,7 +3,6 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccEmail, setAccPassword, setAccId } from '../../redux/accountReducer.js';
 import Account from './Account.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
 
@@ -64,18 +63,15 @@ const AccountContainer = () => {
     }, [dispatch]);
 
     return (
-        <>
-            <SessionChecker />
-            <Account
-                email={email}
-                password={password}
-                handleEditAccEmail={handleEditAccEmail}
-                handleEditAccPassword={handleEditAccPassword}
-                toggleShowPassword={toggleShowPassword}
-                showPassword={showPassword}
-                handleSubmit={handleSubmit}
-            />
-        </>
+        <Account
+            email={email}
+            password={password}
+            handleEditAccEmail={handleEditAccEmail}
+            handleEditAccPassword={handleEditAccPassword}
+            toggleShowPassword={toggleShowPassword}
+            showPassword={showPassword}
+            handleSubmit={handleSubmit}
+        />
     );
 };
 

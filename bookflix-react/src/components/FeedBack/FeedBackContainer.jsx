@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMark, setText } from '../../redux/feedbackReducer.js';
 
 import FeedBack from './FeedBack.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 
 const FeedBackContainer = (props) => {
     const dispatch = useDispatch();
@@ -20,20 +19,17 @@ const FeedBackContainer = (props) => {
     };
 
     return (
-        <>
-            <SessionChecker />
-            <FeedBack
-                mark={mark}
-                text={text}
-                handleTextChange={handleTextChange}
-                handleMarkClick={handleMarkClick}
-                isModalOpen={props.isModalOpen}
-                isFeedbackSubmitted={props.isFeedbackSubmitted}
-                openModal={props.openModal}
-                closeModal={props.closeModal}
-                submitFeedback={props.submitFeedback}
-            />
-        </>
+        <FeedBack
+            mark={mark}
+            text={text}
+            handleTextChange={handleTextChange}
+            handleMarkClick={handleMarkClick}
+            isModalOpen={props.isModalOpen}
+            isFeedbackSubmitted={props.isFeedbackSubmitted}
+            openModal={props.openModal}
+            closeModal={props.closeModal}
+            submitFeedback={props.submitFeedback}
+        />
     );
 };
 

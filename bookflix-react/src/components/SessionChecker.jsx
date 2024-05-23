@@ -61,7 +61,7 @@ const SessionChecker = () => {
             dispatch(logout());
             navigate('/');
         }
-    }, [isAuth, isPreferences, navigate, dispatch]);
+    }, []);
 
     return null;
 };

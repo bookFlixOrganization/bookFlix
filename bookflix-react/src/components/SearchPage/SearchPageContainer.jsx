@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import SearchPage from './SearchPage.jsx';
 import styles from './SearchPage.module.css';
-import SessionChecker from '../SessionChecker.jsx';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
 
@@ -176,7 +175,6 @@ const SearchPageContainer = () => {
     const isFiltres = isActiveFiltres();
     return (
         <>
-            <SessionChecker />
             <SearchPage
                 appliedFiltres={appliedFiltres}
                 isFiltres={isFiltres}

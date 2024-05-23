@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BookPage from './BookPage.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     setBookId,
@@ -188,23 +187,20 @@ const BookPageContainer = () => {
         }
     };
     return (
-        <>
-            <SessionChecker />
-            <BookPage
-                isModalOpen={isModalOpen}
-                isFeedbackSubmitted={isFeedbackSubmitted}
-                openModal={openModal}
-                closeModal={closeModal}
-                submitFeedback={submitFeedback}
-                bookState={bookState}
-                handleShortClick={handleShortClick}
-                shortContent={shortContent}
-                handleLikeClick={handleLikeClick}
-                handleDislikeClick={handleDislikeClick}
-                isLiked={isLiked}
-                isDisliked={isDisliked}
-            />
-        </>
+        <BookPage
+            isModalOpen={isModalOpen}
+            isFeedbackSubmitted={isFeedbackSubmitted}
+            openModal={openModal}
+            closeModal={closeModal}
+            submitFeedback={submitFeedback}
+            bookState={bookState}
+            handleShortClick={handleShortClick}
+            shortContent={shortContent}
+            handleLikeClick={handleLikeClick}
+            handleDislikeClick={handleDislikeClick}
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+        />
     );
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setArticleName, setBookName, setText } from '../../redux/articleReducer.js';
 import NewArticle from './NewArticle.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 
 const NewArticleContainer = () => {
     const dispatch = useDispatch();
@@ -24,17 +23,14 @@ const NewArticleContainer = () => {
     };
 
     return (
-        <>
-            <SessionChecker />
-            <NewArticle
-                articleName={articleName}
-                bookName={bookName}
-                text={text}
-                handleEditArticleName={handleEditArticleName}
-                handleEditBookName={handleEditBookName}
-                handleEditText={handleEditText}
-            />
-        </>
+        <NewArticle
+            articleName={articleName}
+            bookName={bookName}
+            text={text}
+            handleEditArticleName={handleEditArticleName}
+            handleEditBookName={handleEditBookName}
+            handleEditText={handleEditText}
+        />
     );
 };
 

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import Filmpage from './FilmPage.jsx';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
-import SessionChecker from '../SessionChecker.jsx';
 import {
     setId,
     setName,
@@ -218,23 +217,20 @@ const FilmPageContainer = () => {
     };
 
     return (
-        <>
-            <SessionChecker />
-            <Filmpage
-                isFavourite={isFavourite}
-                toggleFavourite={toggleFavourite}
-                isModalOpen={isModalOpen}
-                isFeedbackSubmitted={isFeedbackSubmitted}
-                openModal={openModal}
-                closeModal={closeModal}
-                submitFeedback={submitFeedback}
-                filmState={filmState}
-                handleLikeClick={handleLikeClick}
-                handleDislikeClick={handleDislikeClick}
-                isLiked={isLiked}
-                isDisliked={isDisliked}
-            />
-        </>
+        <Filmpage
+            isFavourite={isFavourite}
+            toggleFavourite={toggleFavourite}
+            isModalOpen={isModalOpen}
+            isFeedbackSubmitted={isFeedbackSubmitted}
+            openModal={openModal}
+            closeModal={closeModal}
+            submitFeedback={submitFeedback}
+            filmState={filmState}
+            handleLikeClick={handleLikeClick}
+            handleDislikeClick={handleDislikeClick}
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+        />
     );
 };
 

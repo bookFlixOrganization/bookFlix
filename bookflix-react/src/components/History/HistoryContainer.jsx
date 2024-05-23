@@ -1,14 +1,8 @@
 import React from 'react';
 import History from './History.jsx';
-import SessionChecker from '../SessionChecker.jsx';
 
 const HistoryContainer = () => {
-    return (
-        <>
-            <SessionChecker />
-            <History />;
-        </>
-    );
+    return <History />;
 };
 
 export default HistoryContainer;

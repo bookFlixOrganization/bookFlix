@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPersonFilms } from '../../redux/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
-import SessionChecker from '../SessionChecker.jsx';
 
 const PersonFilmsContainer = () => {
     const dispatch = useDispatch();
@@ -28,12 +27,7 @@ const PersonFilmsContainer = () => {
             fetchPopularFilms();
         }
     }, [dispatch, films]);
-    return (
-        <>
-            <SessionChecker />
-            <PersonFilms films={films} />
-        </>
-    );
+    return <PersonFilms films={films} />;
 };
 
 export default PersonFilmsContainer;

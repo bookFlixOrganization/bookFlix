@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ArticlePage from './ArticlePage.jsx';
 import { setLiked } from '../../redux/articlePageReducer.js';
-import SessionChecker from '../SessionChecker.jsx';
 
 const ArticlePageContainer = () => {
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -20,15 +19,12 @@ const ArticlePageContainer = () => {
     };
 
     return (
-        <>
-            <SessionChecker />
-            <ArticlePage
-                isSubscribed={isSubscribed}
-                handleSubsClick={handleSubsClick}
-                isLiked={isLiked}
-                handleLikeClick={handleLikeClick}
-            />
-        </>
+        <ArticlePage
+            isSubscribed={isSubscribed}
+            handleSubsClick={handleSubsClick}
+            isLiked={isLiked}
+            handleLikeClick={handleLikeClick}
+        />
     );
 };
 

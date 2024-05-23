@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPersonBooks } from '../../redux/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
-import SessionChecker from '../SessionChecker.jsx';
 
 const PersonBooksContainer = () => {
     const dispatch = useDispatch();
@@ -26,12 +25,7 @@ const PersonBooksContainer = () => {
             fetchPopularBooks();
         }
     }, [dispatch, books]);
-    return (
-        <>
-            <SessionChecker />
-            <PersonBooks books={books} />
-        </>
-    );
+    return <PersonBooks books={books} />;
 };
 
 export default PersonBooksContainer;

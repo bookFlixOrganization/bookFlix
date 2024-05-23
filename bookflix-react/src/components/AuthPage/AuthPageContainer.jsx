@@ -25,7 +25,6 @@ import {
 import { server } from '../../serverconf.js';
 import axios from 'axios';
 import qs from 'qs';
-import SessionChecker from '../SessionChecker.jsx';
 
 const AuthPageContainer = () => {
     const navigate = useNavigate();
@@ -163,25 +162,22 @@ const AuthPageContainer = () => {
         }
     }, [isPrefences, isAuth]);
     return (
-        <>
-            <SessionChecker />
-            <AuthPage
-                isActive={isActive}
-                handleRegistrationClick={handleRegistrationClick}
-                inUsername={inUsername}
-                inPassword={inPassword}
-                upUsername={upUsername}
-                upEmail={upEmail}
-                upPassword={upPassword}
-                handleInUsernameChange={handleInUsernameChange}
-                handleInPasswordChange={handleInPasswordChange}
-                handleUpUsernameChange={handleUpUsernameChange}
-                handleUpEmailChange={handleUpEmailChange}
-                handleUpPasswordChange={handleUpPasswordChange}
-                handleLoginSubmit={handleLoginSubmit}
-                handleRegistrationSubmit={handleRegistrationSubmit}
-            />
-        </>
+        <AuthPage
+            isActive={isActive}
+            handleRegistrationClick={handleRegistrationClick}
+            inUsername={inUsername}
+            inPassword={inPassword}
+            upUsername={upUsername}
+            upEmail={upEmail}
+            upPassword={upPassword}
+            handleInUsernameChange={handleInUsernameChange}
+            handleInPasswordChange={handleInPasswordChange}
+            handleUpUsernameChange={handleUpUsernameChange}
+            handleUpEmailChange={handleUpEmailChange}
+            handleUpPasswordChange={handleUpPasswordChange}
+            handleLoginSubmit={handleLoginSubmit}
+            handleRegistrationSubmit={handleRegistrationSubmit}
+        />
     );
 };
 
