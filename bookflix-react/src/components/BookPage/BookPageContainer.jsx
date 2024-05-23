@@ -28,6 +28,8 @@ const BookPageContainer = () => {
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
+    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -70,44 +72,46 @@ const BookPageContainer = () => {
     }, []);
 
     useEffect(() => {
-        const fetchBookData = async () => {
-            try {
-                const bookResponse = await axios.get(`${server}/book/${paramsId}`);
-                const bookResponseData = bookResponse.data;
+        if (!isCheckingAuth) {
+            const fetchBookData = async () => {
+                try {
+                    const bookResponse = await axios.get(`${server}/book/${paramsId}`);
+                    const bookResponseData = bookResponse.data;
 
-                const favourites = await axios.get(`${server}/favourite`);
+                    const favourites = await axios.get(`${server}/favourite`);
 
-                // Проверка, есть ли книга в лайкнутых
-                const isLiked = favourites.data['liked_books'].some(
-                    (book) => book[1] === bookResponseData.id,
-                );
-                dispatch(setLiked(isLiked));
+                    // Проверка, есть ли книга в лайкнутых
+                    const isLiked = favourites.data['liked_books'].some(
+                        (book) => book[1] === bookResponseData.id,
+                    );
+                    dispatch(setLiked(isLiked));
 
-                // Проверка, есть ли книга в дизлайкнутых
-                const isDisliked = favourites.data['disliked_books'].some(
-                    (book) => book[1] === bookResponseData.id,
-                );
-                dispatch(setDisliked(isDisliked));
+                    // Проверка, есть ли книга в дизлайкнутых
+                    const isDisliked = favourites.data['disliked_books'].some(
+                        (book) => book[1] === bookResponseData.id,
+                    );
+                    dispatch(setDisliked(isDisliked));
 
-                dispatch(setName(bookResponseData.volumeInfo.title));
-                dispatch(setAuthor(bookResponseData.volumeInfo.authors));
-                dispatch(setDate(bookResponseData.volumeInfo.publishedDate));
-                dispatch(setDescription(bookResponseData.volumeInfo.description));
-                dispatch(setGenre(bookResponseData.volumeInfo.categories));
-                dispatch(setBookId(paramsId));
-                dispatch(setNumberOfPages(bookResponseData.volumeInfo.pageCount));
-                dispatch(setLanguage(bookResponseData.volumeInfo.language));
-                dispatch(setRatingBookflix(0));
-                dispatch(setRatingGoogle(0));
-                dispatch(setCoverUrl(bookResponseData.volumeInfo.imageLinks.thumbnail));
-                dispatch(setBuyUrl(bookResponseData.accessInfo.webReaderLink));
-            } catch (error) {
-                console.error('Ошибка при получении данных книги:', error);
-            }
-        };
+                    dispatch(setName(bookResponseData.volumeInfo.title));
+                    dispatch(setAuthor(bookResponseData.volumeInfo.authors));
+                    dispatch(setDate(bookResponseData.volumeInfo.publishedDate));
+                    dispatch(setDescription(bookResponseData.volumeInfo.description));
+                    dispatch(setGenre(bookResponseData.volumeInfo.categories));
+                    dispatch(setBookId(paramsId));
+                    dispatch(setNumberOfPages(bookResponseData.volumeInfo.pageCount));
+                    dispatch(setLanguage(bookResponseData.volumeInfo.language));
+                    dispatch(setRatingBookflix(0));
+                    dispatch(setRatingGoogle(0));
+                    dispatch(setCoverUrl(bookResponseData.volumeInfo.imageLinks.thumbnail));
+                    dispatch(setBuyUrl(bookResponseData.accessInfo.webReaderLink));
+                } catch (error) {
+                    console.error('Ошибка при получении данных книги:', error);
+                }
+            };
 
-        fetchBookData();
-    }, [paramsId]);
+            fetchBookData();
+        }
+    }, [paramsId, isCheckingAuth]);
 
     useEffect(() => {
         dispatch(clearContent());
@@ -117,6 +121,7 @@ const BookPageContainer = () => {
     const shortContent = useSelector((state) => state.bookPageReducer.shortContent);
     const isLiked = useSelector((state) => state.bookPageReducer.isLiked);
     const isDisliked = useSelector((state) => state.bookPageReducer.isDisliked);
+
     const handleLikeClick = async () => {
         try {
             if (isDisliked) {

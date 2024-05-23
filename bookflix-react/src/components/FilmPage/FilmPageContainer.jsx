@@ -33,6 +33,8 @@ const FilmPageContainer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
     const [imdbActors, setImdbActors] = useState([]);
+    const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
+
     const toggleFavourite = () => {
         setIsFavourite((prevState) => !prevState);
     };
@@ -60,58 +62,62 @@ const FilmPageContainer = () => {
     };
 
     useEffect(() => {
-        const fetchFilmData = async () => {
-            try {
-                const tmdbToImdbResponse = await axios.get(
-                    `${server}/film/tmdb_to_imdb?movie_id=${id}`,
-                );
-                const imdbId = tmdbToImdbResponse.data;
-                const filmResponse = await axios.get(`${server}/film/${imdbId}`);
-                const favourites = await axios.get(`${server}/favourite`);
+        if (!isCheckingAuth) {
+            const fetchFilmData = async () => {
+                try {
+                    const tmdbToImdbResponse = await axios.get(
+                        `${server}/film/tmdb_to_imdb?movie_id=${id}`,
+                    );
+                    const imdbId = tmdbToImdbResponse.data;
+                    const filmResponse = await axios.get(`${server}/film/${imdbId}`);
+                    const favourites = await axios.get(`${server}/favourite`);
 
-                // Проверка, есть ли книга в избранных
-                const isLiked = favourites.data['liked_films'].some((film) => film[1] === imdbId);
-                dispatch(setLiked(isLiked));
+                    // Проверка, есть ли книга в избранных
+                    const isLiked = favourites.data['liked_films'].some(
+                        (film) => film[1] === imdbId,
+                    );
+                    dispatch(setLiked(isLiked));
 
-                // Проверка, есть ли книга в нежелательных
-                const isDisliked = favourites.data['disliked_films'].some(
-                    (film) => film[1] === imdbId,
-                );
-                dispatch(setDisliked(isDisliked));
-                dispatch(setId(imdbId));
-                dispatch(setName(filmResponse.data.result['original title']));
-                dispatch(setOriginalName(filmResponse.data.result['localized title']));
-                dispatch(setCoverUrl(filmResponse.data.result['full-size cover url']));
-                dispatch(setDescription(filmResponse.data.result['plot outline']));
-                dispatch(setTracks(filmResponse.data.result.languages));
-                dispatch(setDate(filmResponse.data.result['original air date']));
-                dispatch(setCountries(filmResponse.data.result.countries));
-                dispatch(setGenre(filmResponse.data.result.genres));
-                dispatch(setDirector(filmResponse.data.result.director[0].name));
-                dispatch(setBudget(filmResponse.data.result['box office'].Budget));
-                setImdbActors(filmResponse.data.result.cast.slice(0, 3));
-                const russianAgeCertificate = filmResponse.data.result.certificates.find((cert) =>
-                    cert.startsWith('Russia:'),
-                );
-                if (russianAgeCertificate) {
-                    const rating = russianAgeCertificate.split(':')[1];
-                    dispatch(setAge(rating));
+                    // Проверка, есть ли книга в нежелательных
+                    const isDisliked = favourites.data['disliked_films'].some(
+                        (film) => film[1] === imdbId,
+                    );
+                    dispatch(setDisliked(isDisliked));
+                    dispatch(setId(imdbId));
+                    dispatch(setName(filmResponse.data.result['original title']));
+                    dispatch(setOriginalName(filmResponse.data.result['localized title']));
+                    dispatch(setCoverUrl(filmResponse.data.result['full-size cover url']));
+                    dispatch(setDescription(filmResponse.data.result['plot outline']));
+                    dispatch(setTracks(filmResponse.data.result.languages));
+                    dispatch(setDate(filmResponse.data.result['original air date']));
+                    dispatch(setCountries(filmResponse.data.result.countries));
+                    dispatch(setGenre(filmResponse.data.result.genres));
+                    dispatch(setDirector(filmResponse.data.result.director[0].name));
+                    dispatch(setBudget(filmResponse.data.result['box office'].Budget));
+                    setImdbActors(filmResponse.data.result.cast.slice(0, 3));
+                    const russianAgeCertificate = filmResponse.data.result.certificates.find(
+                        (cert) => cert.startsWith('Russia:'),
+                    );
+                    if (russianAgeCertificate) {
+                        const rating = russianAgeCertificate.split(':')[1];
+                        dispatch(setAge(rating));
+                    }
+                    dispatch(setRatingBookflix(0));
+                    dispatch(setRatingImdb(filmResponse.data.result.rating));
+                    dispatch(setVideoUrl(filmResponse.data.result.videos[0]));
+                    dispatch(setRuntimes(filmResponse.data.result.runtimes[0]));
+                } catch (error) {
+                    console.error('Ошибка при получении данных фильма:', error);
                 }
-                dispatch(setRatingBookflix(0));
-                dispatch(setRatingImdb(filmResponse.data.result.rating));
-                dispatch(setVideoUrl(filmResponse.data.result.videos[0]));
-                dispatch(setRuntimes(filmResponse.data.result.runtimes[0]));
-            } catch (error) {
-                console.error('Ошибка при получении данных фильма:', error);
-            }
-        };
-        fetchFilmData();
+            };
+            fetchFilmData();
 
-        window.addEventListener('keydown', handleEscKey);
-        return () => {
-            window.removeEventListener('keydown', handleEscKey);
-        };
-    }, [id]);
+            window.addEventListener('keydown', handleEscKey);
+            return () => {
+                window.removeEventListener('keydown', handleEscKey);
+            };
+        }
+    }, [id, isCheckingAuth]);
 
     useEffect(() => {
         const fetchActors = async () => {
