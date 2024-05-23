@@ -16,7 +16,7 @@ const historyReducer = (state = initialState, action) => {
         case SET_HISTORY_FILMS:
             return {
                 ...state,
-                history_films: action.payload.result,
+                history_films: action.payload,
             };
         default:
             return state;

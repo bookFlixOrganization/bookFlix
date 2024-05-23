@@ -21,7 +21,6 @@ const HistoryContainer = () => {
                         cancelToken: cancelTokenSource.token,
                     });
                     const historyBooksResult = response.data;
-                    console.log(historyBooksResult);
                     dispatch(setHistoryBooks(historyBooksResult));
                 } catch (error) {
                     if (!axios.isCancel(error)) {
@@ -36,7 +35,6 @@ const HistoryContainer = () => {
                     const response = await axios.get(`${server}/favourite/history_movies`, {
                         cancelToken: cancelTokenSource.token,
                     });
-                    console.log(response.data);
                     dispatch(setHistoryFilms(response.data));
                 } catch (error) {
                     if (!axios.isCancel(error)) {
