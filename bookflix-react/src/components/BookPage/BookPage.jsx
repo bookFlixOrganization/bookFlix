@@ -3,7 +3,6 @@ import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 import { ReactComponent as DislikeIcon } from './images/dislike.svg';
-import FeedBackContainer from '../FeedBack/FeedBackContainer.jsx';
 
 const BookPage = (props) => {
     const { bookState } = props;
@@ -79,23 +78,6 @@ const BookPage = (props) => {
                             </li>
                         </ul>
 
-                        <h2 className={styles.all_rathing}>Рейтинг</h2>
-                        <div className={styles.all_media_rathing}>
-                            <div id="open-modal-btn" className={styles.our_rathing}>
-                                <div className={styles.our_own_rathing}>
-                                    {' '}
-                                    {bookState.rating_bookflix.toFixed(1)}
-                                </div>
-                                <div className={styles.user_mark}>
-                                    Оценка пользователей BookFlix
-                                </div>
-                            </div>
-                            {/* <div className={styles.not_our_rathing}>
-                                <div className={styles.imdb_rathing}>9.3</div>
-                                <div className={styles.user_mark}>Google</div>
-                            </div> */}
-                        </div>
-
                         <h2 id="prokrutka" className={styles.prokrutka}>
                             Отзывы зрителей
                         </h2>
@@ -109,7 +91,6 @@ const BookPage = (props) => {
                                                 Ivan_Borisov123
                                             </h3>
                                         </div>
-                                        <div className={styles.rat}>8.9</div>
                                     </div>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
@@ -131,30 +112,16 @@ const BookPage = (props) => {
                     </div>
 
                     <div>
-                        <span className={styles.rathing_main}>
-                            {bookState.rating_bookflix.toFixed(1)}
-                        </span>
                         <span className={styles.rathing_counts}>296 824 оценок</span>
                         <a href="#prokrutka" className={styles.rathing_details}>
                             459 отзывов
                         </a>
                         <div className={styles.mb_40}>
-                            <button
-                                onClick={props.openModal}
-                                className={styles.btn}
-                                id="leave_a_review"
-                            >
+                            <button className={styles.btn} id="leave_a_review">
                                 Оставить отзыв
                             </button>
                         </div>
                     </div>
-                    <FeedBackContainer
-                        isModalOpen={props.isModalOpen}
-                        isFeedbackSubmitted={props.isFeedbackSubmitted}
-                        openModal={props.openModal}
-                        closeModal={props.closeModal}
-                        submitFeedback={props.submitFeedback}
-                    />
                 </div>
             </div>
         </div>

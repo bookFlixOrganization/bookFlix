@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import BookPage from './BookPage.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,8 +10,6 @@ import {
     setGenre,
     setNumberOfPages,
     setLanguage,
-    setRatingBookflix,
-    setRatingGoogle,
     setCoverUrl,
     setBuyUrl,
     setShortContent,
@@ -26,31 +24,7 @@ import { useParams } from 'react-router-dom';
 const BookPageContainer = () => {
     const paramsId = useParams('id').id;
     const dispatch = useDispatch();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
     const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const submitFeedback = () => {
-        closeModal();
-        setIsFeedbackSubmitted(true);
-        setTimeout(() => {
-            setIsFeedbackSubmitted(false);
-        }, 5000);
-    };
-
-    const handleEscKey = (event) => {
-        if (event.key === 'Escape') {
-            closeModal();
-        }
-    };
 
     const handleShortClick = async () => {
         try {
@@ -63,13 +37,6 @@ const BookPageContainer = () => {
             console.error('Ошибка при получении сокращенного контента:', error);
         }
     };
-
-    useEffect(() => {
-        window.addEventListener('keydown', handleEscKey);
-        return () => {
-            window.removeEventListener('keydown', handleEscKey);
-        };
-    }, []);
 
     useEffect(() => {
         if (!isCheckingAuth) {
@@ -100,8 +67,6 @@ const BookPageContainer = () => {
                     dispatch(setBookId(paramsId));
                     dispatch(setNumberOfPages(bookResponseData.volumeInfo.pageCount));
                     dispatch(setLanguage(bookResponseData.volumeInfo.language));
-                    dispatch(setRatingBookflix(0));
-                    dispatch(setRatingGoogle(0));
                     dispatch(setCoverUrl(bookResponseData.volumeInfo.imageLinks.thumbnail));
                     dispatch(setBuyUrl(bookResponseData.accessInfo.webReaderLink));
                 } catch (error) {
@@ -193,11 +158,6 @@ const BookPageContainer = () => {
     };
     return (
         <BookPage
-            isModalOpen={isModalOpen}
-            isFeedbackSubmitted={isFeedbackSubmitted}
-            openModal={openModal}
-            closeModal={closeModal}
-            submitFeedback={submitFeedback}
             bookState={bookState}
             handleShortClick={handleShortClick}
             shortContent={shortContent}

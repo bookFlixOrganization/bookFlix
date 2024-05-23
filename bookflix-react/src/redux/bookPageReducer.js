@@ -6,8 +6,6 @@ const SET_DATE = 'SET_DATE';
 const SET_GENRE = 'SET_GENRE';
 const SET_NUMBER_PAGES = 'SET_NUMBER_PAGES';
 const SET_LANGUAGE = 'SET_LANGUAGE';
-const SET_RATING_BOOKFLIX = 'SET_RATING';
-const SET_RATING_GOOGLE = 'SET_RATING_GOOGLE';
 const SET_COVER_URL = 'SET_COVER_URL';
 const SET_BUY_URL = 'SET_BUY_URL';
 const SET_SHORT_CONTENT = 'SET_SHORT_CONTENT';
@@ -24,8 +22,6 @@ const initialState = {
     genre: '',
     numberOfPages: '',
     language: '',
-    rating_bookflix: 0.0,
-    rating_google: 0.0,
     cover_url: '',
     buy_url: '',
     shortContent: '',
@@ -75,16 +71,6 @@ const bookPageReducer = (state = initialState, action) => {
                 ...state,
                 language: action.payload,
             };
-        case SET_RATING_BOOKFLIX:
-            return {
-                ...state,
-                rating_bookflix: action.payload,
-            };
-        case SET_RATING_GOOGLE:
-            return {
-                ...state,
-                rating_google: action.payload,
-            };
         case SET_COVER_URL:
             return {
                 ...state,
@@ -128,8 +114,6 @@ export const setNumberOfPages = (numberOfPages) => ({
     payload: numberOfPages,
 });
 export const setLanguage = (language) => ({ type: SET_LANGUAGE, payload: language });
-export const setRatingBookflix = (rating) => ({ type: SET_RATING_BOOKFLIX, payload: rating });
-export const setRatingGoogle = (rating) => ({ type: SET_RATING_GOOGLE, payload: rating });
 export const setCoverUrl = (coverUrl) => ({ type: SET_COVER_URL, payload: coverUrl });
 export const setBuyUrl = (buyUrl) => ({ type: SET_BUY_URL, payload: buyUrl });
 export const setShortContent = (text) => ({ type: SET_SHORT_CONTENT, payload: text });
