@@ -18,80 +18,61 @@ const MainPageContainer = () => {
     const personBooks = useSelector((state) => state.mainPageReducer.person_books);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
     const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
+
     useEffect(() => {
-        let cancelTokenSource;
-        if (!isCheckingAuth) {
-            const fetchPopularBooks = async () => {
-                cancelTokenSource = axios.CancelToken.source();
-                try {
-                    const response = await axios.get(`${server}/list/most_popular_books`, {
-                        cancelToken: cancelTokenSource.token,
-                    });
-                    const popularBooks = response.data.result;
-                    const bookPromises = popularBooks.map(async (book) => {
-                        const bookResponse = await axios.get(
-                            `${server}/search/book?query=${book.title}`,
-                            { cancelToken: cancelTokenSource.token },
-                        );
-                        return bookResponse.data.items[0];
-                    });
-                    const bookDataArray = await Promise.all(bookPromises);
-                    dispatch(setPopularBooks(bookDataArray));
-                } catch (error) {
-                    if (!axios.isCancel(error)) {
-                        console.error('Error fetching popular books: ', error);
-                    }
-                }
-            };
+        const cancelTokenSource = axios.CancelToken.source();
+        const fetchData = async () => {
+            try {
+                const popularBooksResponse = await axios.get(`${server}/list/most_popular_books`, {
+                    cancelToken: cancelTokenSource.token,
+                });
+                const popularBooksData = popularBooksResponse.data.result;
+                const bookPromises = popularBooksData.map(async (book) => {
+                    const bookResponse = await axios.get(
+                        `${server}/search/book?query=${book.title}`,
+                        { cancelToken: cancelTokenSource.token },
+                    );
+                    return bookResponse.data.items[0];
+                });
+                const bookDataArray = await Promise.all(bookPromises);
+                dispatch(setPopularBooks(bookDataArray));
 
-            const fetchPopularFilms = async () => {
-                cancelTokenSource = axios.CancelToken.source();
-                try {
-                    const response = await axios.get(`${server}/list/top_rated_movies`, {
-                        cancelToken: cancelTokenSource.token,
-                    });
-                    dispatch(setPopularFilms(response.data));
-                } catch (error) {
-                    if (!axios.isCancel(error)) {
-                        console.error('Error fetching popular films: ', error);
-                    }
+                if (!popularFilms) {
+                    const popularFilmsResponse = await axios.get(
+                        `${server}/list/top_rated_movies`,
+                        {
+                            cancelToken: cancelTokenSource.token,
+                        },
+                    );
+                    dispatch(setPopularFilms(popularFilmsResponse.data));
                 }
-            };
 
-            const fetchPerson = async () => {
                 if (isAuth) {
-                    cancelTokenSource = axios.CancelToken.source();
-                    try {
-                        const responseBooks = await axios.get(`${server}/recommendation_book`, {
-                            cancelToken: cancelTokenSource.token,
-                        });
-                        dispatch(setPersonBooks(responseBooks.data));
+                    const personBooksResponse = await axios.get(`${server}/recommendation_book`, {
+                        cancelToken: cancelTokenSource.token,
+                    });
+                    dispatch(setPersonBooks(personBooksResponse.data));
 
-                        const responseFilms = await axios.get(`${server}/recommendation_movie`, {
-                            cancelToken: cancelTokenSource.token,
-                        });
-                        dispatch(setPersonFilms(responseFilms.data));
-                    } catch (error) {
-                        if (!axios.isCancel(error)) {
-                            console.error('Error fetching person', error);
-                        }
-                    }
+                    const personFilmsResponse = await axios.get(`${server}/recommendation_movie`, {
+                        cancelToken: cancelTokenSource.token,
+                    });
+                    dispatch(setPersonFilms(personFilmsResponse.data));
                 }
-            };
-
-            fetchPopularBooks();
-            if (!popularFilms) {
-                fetchPopularFilms();
+            } catch (error) {
+                if (!axios.isCancel(error)) {
+                    console.error('Error fetching data: ', error);
+                }
             }
-            fetchPerson();
+        };
 
-            return () => {
-                if (cancelTokenSource) {
-                    cancelTokenSource.cancel('Component unmounted');
-                }
-            };
+        if (!isCheckingAuth) {
+            fetchData();
         }
-    }, [dispatch, isAuth, isCheckingAuth]);
+
+        return () => {
+            cancelTokenSource.cancel('Component unmounted');
+        };
+    }, [dispatch, isAuth, isCheckingAuth, popularFilms]);
 
     return (
         <MainPage
