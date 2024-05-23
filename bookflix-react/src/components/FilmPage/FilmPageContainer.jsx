@@ -57,7 +57,6 @@ const FilmPageContainer = () => {
                     const isDisliked = favourites.data['disliked_films'].some(
                         (film) => film[1] === imdbId,
                     );
-                    console.log(filmResponse.data);
                     dispatch(setDisliked(isDisliked));
                     dispatch(setId(imdbId));
                     dispatch(setName(filmResponse.data.result['original title']));
