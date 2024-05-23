@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import EditPreferences from './EditPreferences.jsx';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setPreferences } from '../../redux/sessionReducer.js';
 import axios from 'axios';
 import { server } from '../../serverconf.js';
 
 const EditPreferencesContainer = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [bookGenres, setBookGenres] = useState([]);
@@ -43,13 +40,12 @@ const EditPreferencesContainer = () => {
             return;
         }
         try {
-            const response = await axios.post(`${server}/preferences_after_register`, {
+            const response = await axios.post(`${server}/preferences_edit`, {
                 book_genre: bookGenres,
                 film_genre: filmGenres,
             });
             if (response.status === 200) {
-                dispatch(setPreferences(true));
-                navigate('/');
+                navigate('/account');
             }
         } catch (error) {
             if (error.response) {
