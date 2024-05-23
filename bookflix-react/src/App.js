@@ -49,7 +49,7 @@ function App() {
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
                 <Route path="book-page/:id" element={<BookPageContainer />} />
-                <Route path="film-page/:id" element={<FilmPageContainer />} />
+                <Route path="film-page/:id/:imdb" element={<FilmPageContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />

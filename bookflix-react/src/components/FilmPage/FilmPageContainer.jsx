@@ -27,7 +27,7 @@ import {
     setActors,
 } from '../../redux/filmPageReducer.js';
 const FilmPageContainer = () => {
-    const { id } = useParams();
+    const { id, imdb } = useParams();
     const dispatch = useDispatch();
     const [isFavourite, setIsFavourite] = useState(false);
     // const [imdbActors, setImdbActors] = useState([]);
@@ -39,12 +39,17 @@ const FilmPageContainer = () => {
     useEffect(() => {
         const fetchFilmData = async () => {
             try {
-                const tmdbToImdbResponse = await axios.get(
-                    `${server}/film/tmdb_to_imdb?movie_id=${id}`,
-                    { cancelToken: source.token },
-                );
-                const imdbId = tmdbToImdbResponse.data;
+                let imdbId = id;
+                if (imdb === 'tmdb') {
+                    // Если imdb не передан, сначала получаем imdbId и затем запрос к filmResponse
+                    const tmdbToImdbResponse = await axios.get(
+                        `${server}/film/tmdb_to_imdb?movie_id=${id}`,
+                        { cancelToken: source.token },
+                    );
+                    imdbId = tmdbToImdbResponse.data;
+                }
                 const filmResponse = await axios.get(`${server}/film/${imdbId}`);
+                console.log(filmResponse);
                 if (filmResponse && filmResponse.data) {
                     const favourites = await axios.get(`${server}/favourite`);
                     // Проверка, есть ли книга в избранных
@@ -60,12 +65,7 @@ const FilmPageContainer = () => {
                     );
                     dispatch(setDisliked(isDisliked));
                     dispatch(setId(imdbId));
-                    dispatch(
-                        setName(
-                            filmResponse.data.result['original title'] ||
-                                filmResponse.data.result.title,
-                        ),
-                    );
+                    dispatch(setName(filmResponse.data.result.title));
                     dispatch(setOriginalName(filmResponse.data.result['localized title']));
                     dispatch(setCoverUrl(filmResponse.data.result['full-size cover url']));
                     dispatch(setDescription(filmResponse.data.result['plot outline']));
@@ -99,7 +99,7 @@ const FilmPageContainer = () => {
         return () => {
             source.cancel('Операция была отменена');
         };
-    }, [id, isCheckingAuth]);
+    }, [id, imdb, isCheckingAuth, dispatch, source]);
 
     useEffect(() => {
         dispatch(clearContent());

@@ -51,7 +51,7 @@ const PopularFilms = (props) => {
                                 >
                                     <div className={styles.container}>
                                         <NavLink
-                                            to={`/film-page/${film[0]}`}
+                                            to={`/film-page/${film[0]}/tmdb`}
                                             className={styles.movie}
                                         >
                                             <div className={styles.movie__cover_inner}>
