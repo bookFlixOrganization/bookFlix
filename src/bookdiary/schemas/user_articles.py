@@ -57,6 +57,7 @@ class Article_Page_resp(Article_Page_info):
     user_id: UUID
     user_name: str
     is_sub: int
+    is_liked: int
 
 
 class Author_Page(Article_Page_info, Article_id):
@@ -67,11 +68,13 @@ class Author_Page_2(User_id, Book_info, Article_id, Publication_date):
     user_name: str
     book_authors: List[str]
     articles_count: int
+    likes: int
 
 
 class Author_Page_resp(BaseModel):
     author_info: AuthorInfo
     articles: List[Author_Page]
+    likes: int
 
 
 class My_articles_resp(Edit_Article_get):
