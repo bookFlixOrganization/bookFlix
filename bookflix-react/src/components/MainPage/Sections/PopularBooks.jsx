@@ -1,14 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react'; // eslint-disable-line
-import { Navigation } from 'swiper/modules'; // eslint-disable-line
-import 'swiper/css'; // eslint-disable-line
+import { NavLink, useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react'; //eslint-disable-line
+import { Navigation } from 'swiper/modules'; //eslint-disable-line
+import 'swiper/css'; //eslint-disable-line
 import 'swiper/css/navigation'; //eslint-disable-line
 import styles from './Section.module.css';
+import somebook from './images/somebook.jpg';
 
-const PopularBooks = (props) => {
+const PopularBooks = ({ popularBooks }) => {
     const navigate = useNavigate();
+
     return (
         <>
             <section className={styles.now_watching_text_1}>
@@ -36,8 +37,8 @@ const PopularBooks = (props) => {
                     className={styles.swiper}
                 >
                     <div className={styles.swiper_wrapper}>
-                        {props.popularBooks &&
-                            props.popularBooks.map((book, index) => (
+                        {popularBooks &&
+                            popularBooks.map((book, index) => (
                                 <SwiperSlide
                                     key={`popular_book_${index}`}
                                     className={styles.swiper_slide}
@@ -48,20 +49,30 @@ const PopularBooks = (props) => {
                                             className={styles.movie}
                                         >
                                             <div className={styles.movie__cover_inner}>
-                                                <img
-                                                    src={book.volumeInfo.imageLinks.thumbnail}
-                                                    alt={book.volumeInfo.title}
-                                                    className={styles.movie__cover}
-                                                />
+                                                {book.volumeInfo.imageLinks &&
+                                                book.volumeInfo.imageLinks.thumbnail ? (
+                                                    <img
+                                                        src={book.volumeInfo.imageLinks.thumbnail}
+                                                        alt={book.volumeInfo.title}
+                                                        className={styles.movie__cover}
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src={somebook}
+                                                        alt={book.volumeInfo.title || 'Book cover'}
+                                                        className={styles.movie__cover}
+                                                    />
+                                                )}
                                                 <div className={styles.movie__cover_darkened}></div>
                                             </div>
                                             <div className={styles.movie__info}>
                                                 <div className={styles.movie__title}>
-                                                    {book.volumeInfo.title}
+                                                    {book.volumeInfo.title || 'Unknown Title'}
                                                 </div>
                                                 <div className={styles.movie__category}>
-                                                    {book.volumeInfo.authors &&
-                                                        book.volumeInfo.authors[0]}
+                                                    {(book.volumeInfo.authors &&
+                                                        book.volumeInfo.authors[0]) ||
+                                                        'Unknown Author'}
                                                 </div>
                                             </div>
                                         </NavLink>

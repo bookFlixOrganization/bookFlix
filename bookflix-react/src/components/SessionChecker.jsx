@@ -13,7 +13,7 @@ import {
     setVerified,
     setUsername,
     setIsCheckingAuth,
-    logout, // Импортируем экшен для выхода из системы
+    logout,
 } from '../redux/sessionReducer.js';
 import { server } from '../serverconf.js';
 
@@ -22,43 +22,46 @@ const SessionChecker = () => {
     const navigate = useNavigate();
     const isPreferences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
+
     useEffect(() => {
         const fetchUserData = async () => {
-            const cookies = document.cookie.split('; ');
-            const authCookie = cookies.find((cookie) => cookie.startsWith('auth='));
-            const token = authCookie ? authCookie.split('=')[1] : null;
+            try {
+                const userResponse = await axios.get(`${server}/users/me`);
+                const userData = userResponse.data;
+                dispatch(setId(userData.id));
+                dispatch(setEmail(userData.email));
+                dispatch(setActive(userData.is_active));
+                dispatch(setSuperuser(userData.is_superuser));
+                dispatch(setVerified(userData.is_verified));
+                dispatch(setUsername(userData.username));
+                dispatch(setRoleId(userData.role_id));
+                dispatch(setPreferences(userData.is_preferences));
+                dispatch(setIsAuth(true));
+                dispatch(setIsCheckingAuth(false));
 
-            if (token) {
-                try {
-                    const userResponse = await axios.get(`${server}/users/me`);
-                    const userData = userResponse.data;
-                    dispatch(setId(userData.id));
-                    dispatch(setEmail(userData.email));
-                    dispatch(setActive(userData.is_active));
-                    dispatch(setSuperuser(userData.is_superuser));
-                    dispatch(setVerified(userData.is_verified));
-                    dispatch(setUsername(userData.username));
-                    dispatch(setRoleId(userData.role_id));
-                    dispatch(setPreferences(userData.is_preferences));
-                    dispatch(setIsAuth(true));
-                    dispatch(setIsCheckingAuth(false));
-                } catch (error) {
-                    if (error.response && error.response.status === 401) {
-                        dispatch(logout());
-                        navigate('/');
-                    } else {
-                        console.error('Ошибка при получении данных пользователя:', error);
-                    }
+                // Перенаправление на страницу предпочтений пользователя
+                if (!isPreferences && isAuth) {
+                    navigate('/preferences');
                 }
+            } catch (error) {
+                console.error('Ошибка при получении данных пользователя:', error);
+                dispatch(logout());
+                navigate('/');
             }
         };
 
-        fetchUserData();
+        // Проверяем, есть ли действительный токен в куки
+        const cookies = document.cookie.split('; ');
+        const authCookie = cookies.find((cookie) => cookie.startsWith('auth='));
+        const token = authCookie ? authCookie.split('=')[1] : null;
 
-        if (!isPreferences && isAuth) {
-            navigate('/preferences');
+        if (token) {
+            fetchUserData();
+        } else {
+            dispatch(logout());
+            navigate('/');
         }
-    }, []);
+    }, [isAuth, isPreferences, navigate, dispatch]);
 
     return null;
 };
