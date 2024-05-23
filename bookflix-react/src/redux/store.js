@@ -9,6 +9,7 @@ import articlePageReducer from './articlePageReducer';
 import sessionReducer from './sessionReducer';
 import mainPageReducer from './mainPageReducer';
 import accountReducer from './accountReducer';
+import historyReducer from './historyReducer';
 
 const store = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
         sessionReducer: sessionReducer,
         mainPageReducer: mainPageReducer,
         accountReducer: accountReducer,
+        historyReducer: historyReducer,
     },
 });
 
