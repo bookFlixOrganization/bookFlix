@@ -32,25 +32,25 @@ const FilmPageContainer = () => {
     const [isFavourite, setIsFavourite] = useState(false);
     // const [imdbActors, setImdbActors] = useState([]);
     const isCheckingAuth = useSelector((state) => state.sessionReducer.is_checking_auth);
-
     const toggleFavourite = () => {
         setIsFavourite((prevState) => !prevState);
     };
-
+    const source = axios.CancelToken.source();
     useEffect(() => {
-        if (!isCheckingAuth) {
-            const fetchFilmData = async () => {
-                try {
-                    const tmdbToImdbResponse = await axios.get(
-                        `${server}/film/tmdb_to_imdb?movie_id=${id}`,
-                    );
-                    const imdbId = tmdbToImdbResponse.data;
-                    const filmResponse = await axios.get(`${server}/film/${imdbId}`);
+        const fetchFilmData = async () => {
+            try {
+                const tmdbToImdbResponse = await axios.get(
+                    `${server}/film/tmdb_to_imdb?movie_id=${id}`,
+                    { cancelToken: source.token },
+                );
+                const imdbId = tmdbToImdbResponse.data;
+                const filmResponse = await axios.get(`${server}/film/${imdbId}`);
+                if (filmResponse && filmResponse.data) {
                     const favourites = await axios.get(`${server}/favourite`);
-
                     // Проверка, есть ли книга в избранных
                     const isLiked = favourites.data['liked_films'].some(
                         (film) => film[1] === imdbId,
+                        { cancelToken: source.token },
                     );
                     dispatch(setLiked(isLiked));
 
@@ -58,9 +58,15 @@ const FilmPageContainer = () => {
                     const isDisliked = favourites.data['disliked_films'].some(
                         (film) => film[1] === imdbId,
                     );
+                    console.log(filmResponse.data.result);
                     dispatch(setDisliked(isDisliked));
                     dispatch(setId(imdbId));
-                    dispatch(setName(filmResponse.data.result['original title']));
+                    dispatch(
+                        setName(
+                            filmResponse.data.result['original title'] ||
+                                filmResponse.data.result.title,
+                        ),
+                    );
                     dispatch(setOriginalName(filmResponse.data.result['localized title']));
                     dispatch(setCoverUrl(filmResponse.data.result['full-size cover url']));
                     dispatch(setDescription(filmResponse.data.result['plot outline']));
@@ -71,7 +77,6 @@ const FilmPageContainer = () => {
                     dispatch(setDirector(filmResponse.data.result.director[0].name));
                     dispatch(setBudget(filmResponse.data.result['box office'].Budget));
                     dispatch(setActors(filmResponse.data.result.cast.slice(0, 20)));
-                    // setImdbActors(filmResponse.data.result.cast.slice(0, 3));
                     const russianAgeCertificate = filmResponse.data.result.certificates.find(
                         (cert) => cert.startsWith('Russia:'),
                     );
@@ -82,12 +87,19 @@ const FilmPageContainer = () => {
                     dispatch(setRatingImdb(filmResponse.data.result.rating));
                     dispatch(setVideoUrl(filmResponse.data.result.videos[0]));
                     dispatch(setRuntimes(filmResponse.data.result.runtimes[0]));
-                } catch (error) {
+                }
+            } catch (error) {
+                if (!axios.isCancel(error)) {
                     console.error('Ошибка при получении данных фильма:', error);
                 }
-            };
+            }
+        };
+        if (!isCheckingAuth) {
             fetchFilmData();
         }
+        return () => {
+            source.cancel('Операция была отменена');
+        };
     }, [id, isCheckingAuth]);
 
     // useEffect(() => {
