@@ -22,7 +22,6 @@ const SessionChecker = () => {
     const navigate = useNavigate();
     const isPreferences = useSelector((state) => state.sessionReducer.is_preferences);
     const isAuth = useSelector((state) => state.sessionReducer.is_auth);
-
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -59,7 +58,7 @@ const SessionChecker = () => {
             fetchUserData();
         } else {
             dispatch(logout());
-            navigate('/');
+            navigate('/auth');
         }
     }, []);
 
