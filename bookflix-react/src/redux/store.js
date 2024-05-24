@@ -10,6 +10,7 @@ import sessionReducer from './sessionReducer';
 import mainPageReducer from './mainPageReducer';
 import accountReducer from './accountReducer';
 import historyReducer from './historyReducer';
+import favouritesReducer from './favouritesReducer';
 
 const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
         mainPageReducer: mainPageReducer,
         accountReducer: accountReducer,
         historyReducer: historyReducer,
+        favouritesReducer: favouritesReducer,
     },
 });
 
