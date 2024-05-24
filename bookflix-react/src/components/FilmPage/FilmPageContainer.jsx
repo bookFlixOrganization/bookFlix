@@ -98,7 +98,7 @@ const FilmPageContainer = () => {
         return () => {
             source.cancel('Операция была отменена');
         };
-    }, [id, imdb, isCheckingAuth, dispatch, source]);
+    }, [imdb, isCheckingAuth]);
 
     useEffect(() => {
         dispatch(clearContent());
