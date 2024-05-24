@@ -17,7 +17,6 @@ import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContain
 import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
 import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
-import FeedBackContainer from './components/FeedBack/FeedBackContainer.jsx';
 import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx';
 import PersonBooksContainer from './components/AllBooks/PersonBooksContainer.jsx';
 import AccountContainer from './components/Account/AccountContainer.jsx';
@@ -39,26 +38,28 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainPageContainer />} />
                 <Route path="auth" element={<AuthPageContainer />} />
+                <Route path="account" element={<AccountContainer />} />
+                <Route path="preferences" element={<PreferencesContainer />} />
+                <Route path="edit-preferences" element={<EditPreferencesContainer />} />
+
                 <Route path="all-films" element={<AllFilmsContainer />} />
-                <Route path="person-films" element={<PersonFilmsContainer />} />
                 <Route path="all-books" element={<AllBooksContainer />} />
+                <Route path="person-films" element={<PersonFilmsContainer />} />
                 <Route path="person-books" element={<PersonBooksContainer />} />
-                <Route path="author" element={<AuthorContainer />} />
-                <Route path="new-article" element={<NewArticleContainer />} />
-                <Route path="edit-article" element={<EditArticleContainer />} />
+                <Route path="film-page/:id/:imdb" element={<FilmPageContainer />} />
+                <Route path="book-page/:id" element={<BookPageContainer />} />
+
+                <Route path="search" element={<SearchPageContainer />} />
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
-                <Route path="book-page/:id" element={<BookPageContainer />} />
-                <Route path="film-page/:id/:imdb" element={<FilmPageContainer />} />
+
+                <Route path="new-article" element={<NewArticleContainer />} />
+                <Route path="article-page" element={<ArticlePageContainer />} />
+                <Route path="edit-article" element={<EditArticleContainer />} />
+                <Route path="author" element={<AuthorContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />
-                <Route path="article-page" element={<ArticlePageContainer />} />
-                <Route path="preferences" element={<PreferencesContainer />} />
-                <Route path="search" element={<SearchPageContainer />} />
-                <Route path="feedback" element={<FeedBackContainer />} />
-                <Route path="account" element={<AccountContainer />} />
-                <Route path="edit-preferences" element={<EditPreferencesContainer />} />
             </Routes>
         </div>
     );
