@@ -1,24 +1,31 @@
+"""
+Модуль содержит обработчики маршрутов для работы с подписками в приложении BookDiary.
+"""
+
 import uuid
 
 from typing import List
-
-from src.bookdiary.models.models import Publics, Subs
-from src.bookdiary.schemas.exceptions import ConflictException, LenghtException, NotFoundException
-from src.bookdiary.schemas.user_subs import UserSubs_operation
 
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
 
 from fastapi_users import FastAPIUsers
-from src.models.users import User
-from src.models.dals import get_user_manager
-from src.api.auth import auth_backend
-
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.auth import auth_backend
+from src.bookdiary.models.models import Publics, Subs
+from src.bookdiary.schemas.exceptions import (
+    ConflictException,
+    LenghtException,
+    NotFoundException,
+)
+from src.bookdiary.schemas.user_subs import UserSubs_operation
 from src.config.db.session import get_async_session
+from src.models.dals import get_user_manager
+from src.models.users import User
+
 
 router = APIRouter(tags=["Subs"])
 
@@ -30,14 +37,13 @@ fastapi_users = FastAPIUsers[User, uuid.UUID](
 current_user = fastapi_users.current_user()
 
 
-def get_current_user_id(user_id: int):
-    return user_id
-
-
 async def get_all_subs_id(
     user: User = Depends(current_user),
     session: AsyncSession() = Depends(get_async_session),
 ):
+    """
+    Функция, которая получает все подписки по id
+    """
 
     stmt = select(Subs).where(Subs.user_id == user.id)
     result = await session.execute(stmt)
@@ -50,6 +56,9 @@ async def user_subscribe(
     user: User = Depends(current_user),
     session: AsyncSession() = Depends(get_async_session),
 ):
+    """
+    Эндпоинт, который отвечает за создание подписки
+    """
     if user.id == sub_id:
         raise LenghtException(detail="Can't subscribe to yourself")
 
@@ -69,6 +78,9 @@ async def user_unsubscribe(
     user: User = Depends(current_user),
     session: AsyncSession() = Depends(get_async_session),
 ):
+    """
+    Эндпоинт, который отвечает за отписку
+    """
     if user.id == sub_id:
         raise LenghtException(detail="Can't unsubscribe from yourself")
 
@@ -86,16 +98,16 @@ async def all_user_subscribes(
     user: User = Depends(current_user),
     session: AsyncSession() = Depends(get_async_session),
 ):
-
+    """
+    Эндпоинт, который отвечает за получение всех подписок данного юзера
+    """
     stmt = select(Subs).where(Subs.user_id == user.id)
     result = (await session.execute(stmt)).scalars().all()
     if len(result) == 0:
         raise NotFoundException(detail="Nothing found in subs")
     stmt2 = select(Publics.user_id)
     result2 = (await session.execute(stmt2)).fetchall()
-    articles_count = [
-        result2.count((result[i].user_id,)) for i in range(len(result))
-    ]
+    articles_count = [result2.count((result[i].user_id,)) for i in range(len(result))]
 
     filter_cond2 = User.id.in_({i.sub_id for i in result})
     stmt3 = select(User.id, User.username).where(filter_cond2)
@@ -104,6 +116,7 @@ async def all_user_subscribes(
     usernames = {result3[i].id: result3[i].username for i in range(len(result3))}
 
     return [
-        result[i].__dict__ | {"articles_count": articles_count[i], "sub_name": usernames[result[i].sub_id]}
+        result[i].__dict__
+        | {"articles_count": articles_count[i], "sub_name": usernames[result[i].sub_id]}
         for i in range(len(result))
     ]
