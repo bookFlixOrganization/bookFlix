@@ -94,13 +94,18 @@ const SearchPageContainer = () => {
     const [originalFoundedFilms, setOriginalFoundedFilms] = useState([]);
     const [originalFoundedBooks, setOriginalFoundedBooks] = useState([]);
 
+    const source = axios.CancelToken.source();
     const handleSearch = async () => {
         setFoundedBooks([]);
         setFoundedFilms([]);
         try {
             const [booksResponse, filmsResponse] = await Promise.allSettled([
-                axios.get(`${server}/search/book?query=${userQuery}`),
-                axios.get(`${server}/search/movie?query=${userQuery}`),
+                axios.get(`${server}/search/book?query=${userQuery}`, {
+                    cancelToken: source.token,
+                }),
+                axios.get(`${server}/search/movie?query=${userQuery}`, {
+                    cancelToken: source.token,
+                }),
             ]);
 
             if (booksResponse.status === 'fulfilled') {
@@ -117,7 +122,9 @@ const SearchPageContainer = () => {
                 console.error('Ошибка при загрузке фильмов:', filmsResponse.reason);
             }
         } catch (error) {
-            console.error('Произошла ошибка при выполнении запросов:', error);
+            if (!axios.isCancel(error)) {
+                console.error('Произошла ошибка при выполнении запросов:', error);
+            }
         }
     };
 

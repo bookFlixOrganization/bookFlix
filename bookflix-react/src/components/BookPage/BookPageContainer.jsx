@@ -39,13 +39,21 @@ const BookPageContainer = () => {
     };
 
     useEffect(() => {
+        let cancelTokenSource;
+
         if (!isCheckingAuth) {
+            cancelTokenSource = axios.CancelToken.source();
+
             const fetchBookData = async () => {
                 try {
-                    const bookResponse = await axios.get(`${server}/book/${paramsId}`);
+                    const bookResponse = await axios.get(`${server}/book/${paramsId}`, {
+                        cancelToken: cancelTokenSource.token,
+                    });
                     const bookResponseData = bookResponse.data;
 
-                    const favourites = await axios.get(`${server}/favourite`);
+                    const favourites = await axios.get(`${server}/favourite`, {
+                        cancelToken: cancelTokenSource.token,
+                    });
 
                     // Проверка, есть ли книга в лайкнутых
                     const isLiked = favourites.data['liked_books'].some(
@@ -70,12 +78,20 @@ const BookPageContainer = () => {
                     dispatch(setCoverUrl(bookResponseData.volumeInfo.imageLinks.thumbnail));
                     dispatch(setBuyUrl(bookResponseData.accessInfo.webReaderLink));
                 } catch (error) {
-                    console.error('Ошибка при получении данных книги:', error);
+                    if (!axios.isCancel(error)) {
+                        console.error('Ошибка при получении данных книги:', error);
+                    }
                 }
             };
 
             fetchBookData();
         }
+
+        return () => {
+            if (cancelTokenSource) {
+                cancelTokenSource.cancel('Операция была отменена');
+            }
+        };
     }, [paramsId, isCheckingAuth]);
 
     useEffect(() => {
