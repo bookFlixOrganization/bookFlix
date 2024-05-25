@@ -8,7 +8,11 @@ const NewArticle = (props) => {
                 <div className={styles.container}>
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
-                            <p className={styles.section_title}>Напишите новую статью</p>
+                            <p className={styles.section_title}>
+                                {props.bookId !== 'new'
+                                    ? `Напишите новую статью о книге "${props.bookName}"`
+                                    : 'Напишите новую статью'}
+                            </p>{' '}
                         </div>
                         <p className={styles.section_subtitle}>
                             Расскажите, что больше всего понравилось, а чего не хватило
@@ -33,20 +37,23 @@ const NewArticle = (props) => {
                             placeholder="Название статьи"
                             value={props.articleName || ''}
                         />
-
-                        <label className={styles.label} htmlFor="book_name">
-                            Название книги
-                        </label>
-                        <input
-                            className={styles.inp}
-                            onChange={props.handleEditBookName}
-                            type="text"
-                            id="book_name"
-                            name="book_name"
-                            maxLength="100"
-                            placeholder="Название книги"
-                            value={props.bookName || ''}
-                        />
+                        {props.bookId === 'new' && (
+                            <>
+                                <label className={styles.label} htmlFor="book_name">
+                                    Название книги
+                                </label>
+                                <input
+                                    className={styles.inp}
+                                    onChange={props.handleEditBookName}
+                                    type="text"
+                                    id="book_name"
+                                    name="book_name"
+                                    maxLength="100"
+                                    placeholder="Название книги"
+                                    value={props.handleBookName || ''}
+                                />
+                            </>
+                        )}
 
                         <label htmlFor="article_text" className={styles.label}>
                             Ваша статья
@@ -61,10 +68,23 @@ const NewArticle = (props) => {
                             placeholder="Текст"
                             value={props.text || ''}
                         ></textarea>
-
-                        <button id="safe" className={styles.estimate}>
-                            Опубликовать
-                        </button>
+                        {props.bookId !== 'new' ? (
+                            <button
+                                id="safe"
+                                className={styles.estimate}
+                                onClick={props.submitArticleWithId}
+                            >
+                                Опубликовать
+                            </button>
+                        ) : (
+                            <button
+                                id="safe2"
+                                className={styles.estimate}
+                                onClick={props.submitArticle}
+                            >
+                                Опубликовать
+                            </button>
+                        )}
                     </form>
                 </div>
             </section>
