@@ -116,13 +116,6 @@ const FilmPage = (props) => {
                                 ))}
                         </div>
                     </div>
-
-                    <div>
-                        <span className={styles.rathing_counts}>296 824 оценок</span>
-                        <a href="#prokrutka" className={styles.rathing_details}>
-                            459 отзывов
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './BookPage.module.css';
-import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 import { ReactComponent as DislikeIcon } from './images/dislike.svg';
 import { useNavigate } from 'react-router-dom';
@@ -79,45 +78,9 @@ const BookPage = (props) => {
                                 {bookState.language}
                             </li>
                         </ul>
-
-                        <h2 id="prokrutka" className={styles.prokrutka}>
-                            Отзывы зрителей
-                        </h2>
-                        <div className={styles.container_2}>
-                            <div className={styles.block}>
-                                <div className={styles.content}>
-                                    <div className={styles.small_box}>
-                                        <div className={styles.small_box_1}>
-                                            <QuotesIcon />
-                                            <h3 className={styles.feedback_author}>
-                                                Ivan_Borisov123
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                                        quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl ut aliquip ex ea c
-                                    </p>
-                                    <div className={styles.data}>29 августа 2021 в 17:04</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={styles.show_more}>
-                            <button id="show_more" className={styles.show_more}>
-                                Читать ещё
-                            </button>
-                        </div>
                     </div>
 
                     <div>
-                        <span className={styles.rathing_counts}>296 824 оценок</span>
-                        <a href="#prokrutka" className={styles.rathing_details}>
-                            459 отзывов
-                        </a>
                         <div className={styles.mb_40}>
                             <button
                                 className={styles.btn}
