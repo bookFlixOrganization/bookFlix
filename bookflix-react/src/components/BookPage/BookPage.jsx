@@ -3,10 +3,12 @@ import styles from './BookPage.module.css';
 import { ReactComponent as QuotesIcon } from './images/quotes.svg';
 import { ReactComponent as LikeIcon } from './images/like.svg';
 import { ReactComponent as DislikeIcon } from './images/dislike.svg';
+import { useNavigate } from 'react-router-dom';
 
 const BookPage = (props) => {
     const { bookState } = props;
     const { shortContent } = props;
+    const navigate = useNavigate();
     return (
         <div className={styles.bookpage_container}>
             <div className={styles.container_1}>
@@ -117,7 +119,11 @@ const BookPage = (props) => {
                             459 отзывов
                         </a>
                         <div className={styles.mb_40}>
-                            <button className={styles.btn} id="leave_a_review">
+                            <button
+                                className={styles.btn}
+                                id="leave_a_review"
+                                onClick={() => navigate(`/new-article/${bookState.bookId}`)}
+                            >
                                 Оставить отзыв
                             </button>
                         </div>

@@ -53,7 +53,7 @@ function App() {
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
 
-                <Route path="new-article" element={<NewArticleContainer />} />
+                <Route path="new-article/:bookId" element={<NewArticleContainer />} />
                 <Route path="article-page" element={<ArticlePageContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="author" element={<AuthorContainer />} />
