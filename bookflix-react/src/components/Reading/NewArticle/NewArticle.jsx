@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './NewArticle.module.css';
+import { NavLink } from 'react-router-dom';
 
 const NewArticle = (props) => {
     return (
@@ -9,10 +10,20 @@ const NewArticle = (props) => {
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
                             <p className={styles.section_title}>
-                                {props.bookId !== 'new'
-                                    ? `Напишите новую статью о книге "${props.bookName}"`
-                                    : 'Напишите новую статью'}
-                            </p>{' '}
+                                {props.bookId !== 'new' ? (
+                                    <>
+                                        Напишите новую статью о книге{' '}
+                                        <NavLink
+                                            className={styles.bookLink}
+                                            to={`/book-page/${props.bookId}`}
+                                        >
+                                            {props.bookName}
+                                        </NavLink>
+                                    </>
+                                ) : (
+                                    'Напишите новую статью'
+                                )}
+                            </p>
                         </div>
                         <p className={styles.section_subtitle}>
                             Расскажите, что больше всего понравилось, а чего не хватило

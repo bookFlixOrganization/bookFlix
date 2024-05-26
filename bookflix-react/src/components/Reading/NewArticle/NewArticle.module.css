@@ -134,3 +134,12 @@
     max-width: 1220px;
     margin: 0 auto;
 }
+
+.bookLink {
+    color: #e54d4d;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bookLink:hover {
+    color: #e43131;
+}
