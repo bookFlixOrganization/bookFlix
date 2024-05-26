@@ -65,7 +65,7 @@ function App() {
                 {/* Reading */}
                 <Route path="reading-diary" element={<MyArticlesContainer />} />
                 <Route path="new-article/:bookId" element={<NewArticleContainer />} />
-                <Route path="article-page" element={<ArticlePageContainer />} />
+                <Route path="article-page/:articleId" element={<ArticlePageContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="author" element={<AuthorContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
