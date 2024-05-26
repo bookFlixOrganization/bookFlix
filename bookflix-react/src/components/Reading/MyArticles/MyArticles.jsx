@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './MyArticles.module.css';
 import { ReactComponent as CardIcon } from './images/card.svg';
+import { NavLink } from 'react-router-dom';
 
 const ReadingDiary = (props) => {
     return (
@@ -39,9 +40,12 @@ const ReadingDiary = (props) => {
                                                 {article.text}
                                             </div>
                                             <div className={styles.low}>
-                                                <a href="/" className={styles.btn}>
+                                                <NavLink
+                                                    to={`/article-page/${article.id}`}
+                                                    className={styles.btn}
+                                                >
                                                     Читать статью полностью
-                                                </a>
+                                                </NavLink>
                                             </div>
                                         </div>
                                     </div>
