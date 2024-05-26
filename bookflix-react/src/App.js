@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
+// Main
 import MainPageContainer from './components/Main/MainPage/MainPageContainer.jsx';
 import AllBooksContainer from './components/Main/AllBooks/AllBooksContainer.jsx';
 import AllFilmsContainer from './components/Main/AllFilms/AllFilmsContainer.jsx';
@@ -7,14 +8,15 @@ import BookPageContainer from './components/Main/BookPage/BookPageContainer.jsx'
 import FilmPageContainer from './components/Main/FilmPage/FilmPageContainer.jsx';
 import PersonFilmsContainer from './components/Main/AllFilms/PersonFilmsContainer.jsx';
 import PersonBooksContainer from './components/Main/AllBooks/PersonBooksContainer.jsx';
-
+// Me
 import AuthPageContainer from './components/Me/AuthPage/AuthPageContainer.jsx';
 import FavouritesContainer from './components/Me/Favourites/FavouritesContainer.jsx';
 import HistoryContainer from './components/Me/History/HistoryContainer.jsx';
 import PreferencesContainer from './components/Me/Preferences/PreferencesContainer.jsx';
 import EditPreferencesContainer from './components/Me/EditPreferences/EditPreferencesContainer.jsx';
 import AccountContainer from './components/Me/Account/AccountContainer.jsx';
-
+// Reading
+import ReadingHeaderContainer from './components/Reading/ReadingHeader/ReadingHeaderContainer.jsx';
 import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
 import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
 import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
@@ -22,8 +24,8 @@ import SubscribesContainer from './components/Reading/Subscribes/SubscribesConta
 import ReadingDiaryContainer from './components/Reading/ReadingDiary/ReadingDiaryContainer.jsx';
 import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
 import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
+// Other
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
-
 import SessionChecker from './components/SessionChecker.jsx';
 import './App.css';
 import axios from 'axios';
@@ -38,6 +40,10 @@ function App() {
             {location.pathname !== '/auth' && location.pathname !== '/preferences' && (
                 <HeaderContainer />
             )}
+            {location.pathname === '/author' ||
+                location.pathname === '/articles' ||
+                location.pathname === '/subscribes' ||
+                (location.pathname === '/reading-diary' && <ReadingHeaderContainer />)}
             <Routes>
                 {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />

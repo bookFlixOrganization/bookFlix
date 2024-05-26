@@ -1,0 +1,44 @@
+.reading_diary_container {
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.now_watching_text {
+    padding-top: 150px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.section_header_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: first baseline;
+    line-height: 60px;
+}
+
+.section_title {
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+}
+
+.button_all {
+    color: #e54d4d;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.05s;
+    margin-right: 20px;
+}
+
+.button_all:hover {
+    color: #e43131;
+    transform: scale(1.03);
+}
+
+.section_subtitle {
+    color: #9f9f9f;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
