@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ReadingDiary.module.css';
+import styles from './MyArticles.module.css';
 import { ReactComponent as CardIcon } from './images/card.svg';
 
 const ReadingDiary = () => {

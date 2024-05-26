@@ -21,7 +21,7 @@ import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
 import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
 import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
 import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
-import ReadingDiaryContainer from './components/Reading/ReadingDiary/ReadingDiaryContainer.jsx';
+import MyArticlesContainer from './components/Reading/MyArticles/MyArticlesContainer.jsx';
 import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
 import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
 // Other
@@ -69,7 +69,7 @@ function App() {
                 <Route path="author" element={<AuthorContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
-                <Route path="reading-diary" element={<ReadingDiaryContainer />} />
+                <Route path="reading-diary" element={<MyArticlesContainer />} />
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>
