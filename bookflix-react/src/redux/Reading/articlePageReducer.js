@@ -7,6 +7,7 @@ const SET_LIKED = 'SET_LIKED';
 const SET_COUNT_LIKES = 'SET_COUNT_LIKES';
 const SET_ARTICLE_TEXT = 'SET_ARTICLE_TEXT';
 const SET_ARTICLE_AUTHOR_ID = 'SET_ARTICLE_AUTHOR_ID';
+const SET_IS_SUB = 'SET_IS_SUB';
 
 const initialState = {
     articleName: '',
@@ -18,6 +19,7 @@ const initialState = {
     liked: -2,
     countLikes: 0,
     articleText: '',
+    isSub: -2,
 };
 
 const ArticlePageReducer = (state = initialState, action) => {
@@ -67,6 +69,11 @@ const ArticlePageReducer = (state = initialState, action) => {
                 ...state,
                 articleAuthorId: action.payload,
             };
+        case SET_IS_SUB:
+            return {
+                ...state,
+                isSub: action.payload,
+            };
         default:
             return state;
     }
@@ -84,5 +91,6 @@ export const setLiked = (liked) => ({ type: SET_LIKED, payload: liked });
 export const setCountLikes = (likes) => ({ type: SET_COUNT_LIKES, payload: likes });
 export const setArticleText = (text) => ({ type: SET_ARTICLE_TEXT, payload: text });
 export const setAuthorId = (id) => ({ type: SET_ARTICLE_AUTHOR_ID, payload: id });
+export const setIsSub = (sub) => ({ type: SET_IS_SUB, payload: sub });
 
 export default ArticlePageReducer;

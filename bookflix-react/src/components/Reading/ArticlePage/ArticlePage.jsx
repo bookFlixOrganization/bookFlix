@@ -31,11 +31,11 @@ const ArticlePage = (props) => {
                     {props.myId !== props.articleState.articleAuthorId && (
                         <div className={styles.block}>
                             <button
-                                className={`${styles.subs_btn} ${props.isSubscribed ? styles.subscribed : ''}`}
+                                className={`${styles.subs_btn} ${articleState.isSub === 0 ? styles.subscribed : ''}`}
                                 onClick={props.handleSubsClick}
                             >
-                                {!props.isSubscribed && 'Подписаться на автора'}
-                                {props.isSubscribed && 'Вы подписаны'}
+                                {articleState.isSub === 1 && 'Подписаться на автора'}
+                                {articleState.isSub === 0 && 'Вы подписаны'}
                             </button>
                         </div>
                     )}

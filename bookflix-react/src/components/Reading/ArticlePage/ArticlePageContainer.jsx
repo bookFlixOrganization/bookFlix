@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ArticlePage from './ArticlePage.jsx';
@@ -12,6 +12,7 @@ import {
     setCountLikes,
     setArticleText,
     setAuthorId,
+    setIsSub,
 } from '../../../redux/Reading/articlePageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
@@ -19,11 +20,24 @@ import { server } from '../../../serverconf.js';
 const ArticlePageContainer = () => {
     const { articleId } = useParams();
     const dispatch = useDispatch();
-    const [isSubscribed, setIsSubscribed] = useState(false);
     const isLiked = useSelector((state) => state.articlePageReducer.liked);
+    const isSub = useSelector((state) => state.articlePageReducer.isSub);
+    const articleAuthorId = useSelector((state) => state.articlePageReducer.articleAuthorId);
     const myId = useSelector((state) => state.sessionReducer.id);
-    const handleSubsClick = () => {
-        setIsSubscribed(!isSubscribed);
+    const handleSubsClick = async () => {
+        try {
+            if (isSub === 0) {
+                await axios.post(`${server}/bookdiary/subs/${articleAuthorId}`);
+                const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
+                dispatch(setIsSub(response.data.is_sub));
+            } else if (isLiked === 1) {
+                await axios.delete(`${server}/bookdiary/subs/${articleAuthorId}`);
+                const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
+                dispatch(setIsSub(response.data.is_sub));
+            }
+        } catch (error) {
+            console.error('Error liking article: ', error);
+        }
     };
 
     const handleLikeClick = async () => {
@@ -63,6 +77,7 @@ const ArticlePageContainer = () => {
                 dispatch(setCountLikes(responseData.likes));
                 dispatch(setArticleText(responseData.text));
                 dispatch(setAuthorId(responseData.user_id));
+                dispatch(setIsSub(response.data.is_sub));
             } catch (error) {
                 if (!axios.isCancel(error)) {
                     console.error('Error fetching my articles: ', error);
@@ -80,7 +95,6 @@ const ArticlePageContainer = () => {
     const articleState = useSelector((state) => state.articlePageReducer);
     return (
         <ArticlePage
-            isSubscribed={isSubscribed}
             handleSubsClick={handleSubsClick}
             isLiked={isLiked}
             handleLikeClick={handleLikeClick}
