@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './ReadingDiary.module.css';
 import { ReactComponent as CardIcon } from './images/card.svg';
 
-const Subscribes = () => {
+const ReadingDiary = () => {
     return (
         <div className={styles.reading_diary_container}>
+            <h3 className={styles.section_subtitle}>Мои статьи</h3>
             <section className={styles.now_watching_section}>
                 <div className={styles.container}>
                     <div className={styles.container_2}>
@@ -62,4 +63,4 @@ const Subscribes = () => {
     );
 };
 
-export default Subscribes;
+export default ReadingDiary;

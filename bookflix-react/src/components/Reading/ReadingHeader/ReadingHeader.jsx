@@ -25,7 +25,6 @@ const ReadingHeader = () => {
                                 Найти статью
                             </a>
                         </div>
-                        <p className={styles.section_subtitle}>Мои статьи</p>
                     </div>
                 </div>
             </section>
