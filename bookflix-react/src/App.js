@@ -1,26 +1,29 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import MainPageContainer from './components/MainPage/MainPageContainer.jsx';
 import HeaderContainer from './components/Header/HeaderContainer.jsx';
-import AuthPageContainer from './components/AuthPage/AuthPageContainer.jsx';
-import AllFilmsContainer from './components/AllFilms/AllFilmsContainer.jsx';
-import AllBooksContainer from './components/AllBooks/AllBooksContainer.jsx';
-import AuthorContainer from './components/Author/AuthorContainer.jsx';
-import NewArticleContainer from './components/NewArticle/NewArticleContainer.jsx';
-import EditArticleContainer from './components/EditArticle/EditArticleContainer.jsx';
-import FavouritesContainer from './components/Favourites/FavouritesContainer.jsx';
-import HistoryContainer from './components/History/HistoryContainer.jsx';
-import BookPageContainer from './components/BookPage/BookPageContainer.jsx';
-import FilmPageContainer from './components/FilmPage/FilmPageContainer.jsx';
-import ArticlesContainer from './components/Articles/ArticlesContainer.jsx';
-import SubscribesContainer from './components/Subscribes/SubscribesContainer.jsx';
-import ReadingDiaryContainer from './components/ReadingDiary/ReadingDiaryContainer.jsx';
-import ArticlePageContainer from './components/ArticlePage/ArticlePageContainer.jsx';
-import PreferencesContainer from './components/Preferences/PreferencesContainer.jsx';
+import MainPageContainer from './components/Main/MainPage/MainPageContainer.jsx';
+import AllBooksContainer from './components/Main/AllBooks/AllBooksContainer.jsx';
+import AllFilmsContainer from './components/Main/AllFilms/AllFilmsContainer.jsx';
+import BookPageContainer from './components/Main/BookPage/BookPageContainer.jsx';
+import FilmPageContainer from './components/Main/FilmPage/FilmPageContainer.jsx';
+import PersonFilmsContainer from './components/Main/AllFilms/PersonFilmsContainer.jsx';
+import PersonBooksContainer from './components/Main/AllBooks/PersonBooksContainer.jsx';
+
+import AuthPageContainer from './components/Me/AuthPage/AuthPageContainer.jsx';
+import FavouritesContainer from './components/Me/Favourites/FavouritesContainer.jsx';
+import HistoryContainer from './components/Me/History/HistoryContainer.jsx';
+import PreferencesContainer from './components/Me/Preferences/PreferencesContainer.jsx';
+import EditPreferencesContainer from './components/Me/EditPreferences/EditPreferencesContainer.jsx';
+import AccountContainer from './components/Me/Account/AccountContainer.jsx';
+
+import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
+import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
+import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
+import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
+import ReadingDiaryContainer from './components/Reading/ReadingDiary/ReadingDiaryContainer.jsx';
+import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
+import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
-import PersonFilmsContainer from './components/AllFilms/PersonFilmsContainer.jsx';
-import PersonBooksContainer from './components/AllBooks/PersonBooksContainer.jsx';
-import AccountContainer from './components/Account/AccountContainer.jsx';
-import EditPreferencesContainer from './components/EditPreferences/EditPreferencesContainer.jsx';
+
 import SessionChecker from './components/SessionChecker.jsx';
 import './App.css';
 import axios from 'axios';
@@ -36,12 +39,8 @@ function App() {
                 <HeaderContainer />
             )}
             <Routes>
+                {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />
-                <Route path="auth" element={<AuthPageContainer />} />
-                <Route path="account" element={<AccountContainer />} />
-                <Route path="preferences" element={<PreferencesContainer />} />
-                <Route path="edit-preferences" element={<EditPreferencesContainer />} />
-
                 <Route path="all-films" element={<AllFilmsContainer />} />
                 <Route path="all-books" element={<AllBooksContainer />} />
                 <Route path="person-films" element={<PersonFilmsContainer />} />
@@ -49,10 +48,15 @@ function App() {
                 <Route path="film-page/:id/:imdb" element={<FilmPageContainer />} />
                 <Route path="book-page/:id" element={<BookPageContainer />} />
 
-                <Route path="search" element={<SearchPageContainer />} />
+                {/* Me */}
+                <Route path="auth" element={<AuthPageContainer />} />
+                <Route path="account" element={<AccountContainer />} />
+                <Route path="preferences" element={<PreferencesContainer />} />
+                <Route path="edit-preferences" element={<EditPreferencesContainer />} />
                 <Route path="favourites" element={<FavouritesContainer />} />
                 <Route path="history" element={<HistoryContainer />} />
 
+                {/* Reading */}
                 <Route path="new-article/:bookId" element={<NewArticleContainer />} />
                 <Route path="article-page" element={<ArticlePageContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
@@ -60,6 +64,8 @@ function App() {
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="reading-diary" element={<ReadingDiaryContainer />} />
+
+                <Route path="search" element={<SearchPageContainer />} />
             </Routes>
         </div>
     );
