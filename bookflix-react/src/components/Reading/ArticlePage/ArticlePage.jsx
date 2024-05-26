@@ -43,7 +43,7 @@ const ArticlePage = (props) => {
                     <p className={styles.article_text}>{articleState.articleText}</p>
                     <div className={styles.like_container}>
                         <LikeIcon
-                            className={`${styles.LikeIcon} ${props.isLiked ? styles.liked : ''}`}
+                            className={`${styles.LikeIcon} ${props.isLiked === 1 ? styles.liked : ''}`}
                             onClick={props.handleLikeClick}
                         />
                         <div className={styles.likes_amount}>{articleState.countLikes}</div>
