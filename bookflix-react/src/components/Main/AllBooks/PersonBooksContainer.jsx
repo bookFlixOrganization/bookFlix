@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PersonBooks from './PersonBooks.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPersonBooks } from '../../../redux/mainPageReducer.js';
+import { setPersonBooks } from '../../../redux/Main/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './ReadingDiary.module.css';
 import { ReactComponent as CardIcon } from './images/card.svg';
-import { ReactComponent as LikeIcon } from './images/like.svg';
 
 const Subscribes = () => {
     return (
@@ -74,10 +73,6 @@ const Subscribes = () => {
                                     <a href="/" className={styles.btn}>
                                         Читать статью полностью
                                     </a>
-                                    <div className={styles.like_button}>
-                                        <LikeIcon className={styles.LikeIcon} />
-                                        <div className={styles.likes_amount}>15</div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

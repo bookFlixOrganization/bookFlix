@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AllFilms from './AllFilms.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPopularFilms } from '../../../redux/mainPageReducer.js';
+import { setPopularFilms } from '../../../redux/Main/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 

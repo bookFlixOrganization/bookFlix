@@ -16,7 +16,7 @@ import {
     clearContent,
     setLiked,
     setDisliked,
-} from '../../../redux/bookPageReducer.js';
+} from '../../../redux/Main/bookPageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 import { useParams } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import History from './History.jsx';
-import { setHistoryBooks, setHistoryFilms } from '../../../redux/historyReducer.js';
+import { setHistoryBooks, setHistoryFilms } from '../../../redux/Me/historyReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 

@@ -6,7 +6,7 @@ import {
     setPopularFilms,
     setPersonBooks,
     setPersonFilms,
-} from '../../../redux/mainPageReducer.js';
+} from '../../../redux/Main/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 

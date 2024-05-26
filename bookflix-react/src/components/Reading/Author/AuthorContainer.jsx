@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSubscribed } from '../../../redux/authorReducer.js';
+import { setSubscribed } from '../../../redux/Reading/authorReducer.js';
 import Author from './Author.jsx';
 
 const AuthorContainer = () => {

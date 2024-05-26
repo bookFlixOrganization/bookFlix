@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ArticlePage from './ArticlePage.jsx';
-import { setLiked } from '../../../redux/articlePageReducer.js';
+import { setLiked } from '../../../redux/Reading/articlePageReducer.js';
 
 const ArticlePageContainer = () => {
     const [isSubscribed, setIsSubscribed] = useState(false);

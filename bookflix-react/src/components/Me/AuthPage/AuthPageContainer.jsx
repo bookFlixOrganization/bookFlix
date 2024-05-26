@@ -9,7 +9,7 @@ import {
     setUpEmail,
     setUpPassword,
     clearForm,
-} from '../../../redux/authReducer.js';
+} from '../../../redux/Me/authReducer.js';
 import {
     setId,
     setEmail,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFavouritesBooks, setFavouritesFilms } from '../../../redux/favouritesReducer.js';
+import { setFavouritesBooks, setFavouritesFilms } from '../../../redux/Me/favouritesReducer.js';
 import Favourites from './Favourites.jsx';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';

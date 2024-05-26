@@ -25,7 +25,7 @@ import {
     setLiked,
     setDisliked,
     setActors,
-} from '../../../redux/filmPageReducer.js';
+} from '../../../redux/Main/filmPageReducer.js';
 const FilmPageContainer = () => {
     const { id, imdb } = useParams();
     const dispatch = useDispatch();

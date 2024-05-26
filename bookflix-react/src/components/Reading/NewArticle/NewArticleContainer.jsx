@@ -7,7 +7,7 @@ import {
     setArticleName,
     setHandleBookName,
     clearNewArticle,
-} from '../../../redux/newArticleReducer.js';
+} from '../../../redux/Reading/newArticleReducer.js';
 import NewArticle from './NewArticle.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setArticleName, setBookName, setText } from '../../../redux/articleReducer.js';
+import { setArticleName, setBookName, setText } from '../../../redux/Reading/articleReducer.js';
 import EditArticle from './EditArticle.jsx';
 
 const EditArticleContainer = () => {

@@ -1,31 +1,38 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './authReducer';
-import authorReducer from './authorReducer';
-import articleReducer from './articleReducer';
-import bookPageReducer from './bookPageReducer';
-import filmPageReducer from './filmPageReducer';
-import articlePageReducer from './articlePageReducer';
+// Main
+import bookPageReducer from './Main/bookPageReducer';
+import filmPageReducer from './Main/filmPageReducer';
+import mainPageReducer from './Main/mainPageReducer';
+// Me
+import authReducer from './Me/authReducer';
+import accountReducer from './Me/accountReducer';
+import favouritesReducer from './Me/favouritesReducer';
+import historyReducer from './Me/historyReducer';
+// Reading
+import authorReducer from './Reading/authorReducer';
+import articleReducer from './Reading/articleReducer';
+import articlePageReducer from './Reading/articlePageReducer';
+import newArticleReducer from './Reading/newArticleReducer';
 import sessionReducer from './sessionReducer';
-import mainPageReducer from './mainPageReducer';
-import accountReducer from './accountReducer';
-import historyReducer from './historyReducer';
-import favouritesReducer from './favouritesReducer';
-import newArticleReducer from './newArticleReducer';
 
 const store = configureStore({
     reducer: {
-        authReducer: authReducer,
-        authorReducer: authorReducer,
-        articleReducer: articleReducer,
-        bookPageReducer: bookPageReducer,
-        filmPageReducer: filmPageReducer,
-        articlePageReducer: articlePageReducer,
-        sessionReducer: sessionReducer,
+        // Main
         mainPageReducer: mainPageReducer,
+        filmPageReducer: filmPageReducer,
+        bookPageReducer: bookPageReducer,
+        // Me
+        authReducer: authReducer,
         accountReducer: accountReducer,
-        historyReducer: historyReducer,
         favouritesReducer: favouritesReducer,
+        historyReducer: historyReducer,
+        // Reading
+        articleReducer: articleReducer,
+        articlePageReducer: articlePageReducer,
+        authorReducer: authorReducer,
         newArticleReducer: newArticleReducer,
+        // Other
+        sessionReducer: sessionReducer,
     },
 });
 

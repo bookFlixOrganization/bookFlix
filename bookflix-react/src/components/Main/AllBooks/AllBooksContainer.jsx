@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AllBooks from './AllBooks.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPopularBooks } from '../../../redux/mainPageReducer.js';
+import { setPopularBooks } from '../../../redux/Main/mainPageReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 
