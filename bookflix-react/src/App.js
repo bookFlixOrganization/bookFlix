@@ -63,13 +63,13 @@ function App() {
                 <Route path="history" element={<HistoryContainer />} />
 
                 {/* Reading */}
+                <Route path="reading-diary" element={<MyArticlesContainer />} />
                 <Route path="new-article/:bookId" element={<NewArticleContainer />} />
                 <Route path="article-page" element={<ArticlePageContainer />} />
                 <Route path="edit-article" element={<EditArticleContainer />} />
                 <Route path="author" element={<AuthorContainer />} />
                 <Route path="articles" element={<ArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
-                <Route path="reading-diary" element={<MyArticlesContainer />} />
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>
