@@ -22,13 +22,26 @@ const ArticlePageContainer = () => {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const isLiked = useSelector((state) => state.articlePageReducer.liked);
     const myId = useSelector((state) => state.sessionReducer.id);
-
     const handleSubsClick = () => {
         setIsSubscribed(!isSubscribed);
     };
 
-    const handleLikeClick = () => {
-        dispatch(setLiked(!isLiked));
+    const handleLikeClick = async () => {
+        try {
+            if (isLiked === 0) {
+                await axios.post(`${server}/bookdiary/likes/${articleId}`);
+                const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
+                dispatch(setCountLikes(response.data.likes));
+                dispatch(setLiked(response.data.is_liked));
+            } else if (isLiked === 1) {
+                await axios.delete(`${server}/bookdiary/likes/${articleId}`);
+                const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
+                dispatch(setCountLikes(response.data.likes));
+                dispatch(setLiked(response.data.is_liked));
+            }
+        } catch (error) {
+            console.error('Error liking article: ', error);
+        }
     };
 
     useEffect(() => {
@@ -62,7 +75,7 @@ const ArticlePageContainer = () => {
             isCancelled = true;
             source.cancel('Операция была отменена');
         };
-    }, [dispatch]);
+    }, [articleId, dispatch]);
 
     const articleState = useSelector((state) => state.articlePageReducer);
     return (

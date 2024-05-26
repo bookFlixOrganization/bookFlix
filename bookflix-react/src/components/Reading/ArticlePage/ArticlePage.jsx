@@ -4,6 +4,7 @@ import { ReactComponent as LikeIcon } from './images/like.svg';
 
 const ArticlePage = (props) => {
     const { articleState } = props;
+    console.log(articleState);
     return (
         <div className={styles.articlepage_container}>
             <section className={styles.now_watching_text}>

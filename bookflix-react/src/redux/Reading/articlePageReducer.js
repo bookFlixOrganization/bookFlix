@@ -15,7 +15,7 @@ const initialState = {
     bookAuthor: '',
     bookName: '',
     date: '',
-    liked: false,
+    liked: -2,
     countLikes: 0,
     articleText: '',
 };
