@@ -1,6 +1,7 @@
 .articlepage_container {
     max-width: 1220px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .now_watching_text {
@@ -51,7 +52,7 @@
 }
 
 .article_text {
-    margin-top: 40px;
+    margin-top: 10px;
     color: #ffffff;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
