@@ -51,7 +51,7 @@ const SessionChecker = () => {
                 if (!axios.isCancel(error)) {
                     console.error('Ошибка при получении данных пользователя:', error);
                     dispatch(logout());
-                    navigate('/');
+                    navigate('/auth');
                 }
             }
         };
