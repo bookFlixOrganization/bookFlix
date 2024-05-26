@@ -9,6 +9,7 @@ import accountReducer from './Me/accountReducer';
 import favouritesReducer from './Me/favouritesReducer';
 import historyReducer from './Me/historyReducer';
 // Reading
+import myArticlesReducer from './Reading/myArticlesReducer';
 import authorReducer from './Reading/authorReducer';
 import articleReducer from './Reading/articleReducer';
 import articlePageReducer from './Reading/articlePageReducer';
@@ -27,6 +28,7 @@ const store = configureStore({
         favouritesReducer: favouritesReducer,
         historyReducer: historyReducer,
         // Reading
+        myArticlesReducer: myArticlesReducer,
         articleReducer: articleReducer,
         articlePageReducer: articlePageReducer,
         authorReducer: authorReducer,
