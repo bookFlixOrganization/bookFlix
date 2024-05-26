@@ -48,7 +48,7 @@ const ReadingDiary = (props) => {
                                 ))}
                     </div>
                 </div>
-                {props.articlesToShow < props.myArticles.length && (
+                {props.myArticles && props.articlesToShow < props.myArticles.length && (
                     <div className={styles.show_more}>
                         <button
                             id="show_more"
