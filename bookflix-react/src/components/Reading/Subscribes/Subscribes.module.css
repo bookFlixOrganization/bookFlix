@@ -240,6 +240,7 @@ h4.theme {
     background: none;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 .tool:hover {

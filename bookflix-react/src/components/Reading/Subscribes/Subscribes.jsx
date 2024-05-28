@@ -26,7 +26,10 @@ const Subscribes = (props) => {
                                         </div>
                                     </div>
                                     <div className={styles.tools}>
-                                        <button className={styles.tool} onClick={props.unSubs}>
+                                        <button
+                                            className={styles.tool}
+                                            onClick={() => props.handleUnSubClick(author.sub_id)}
+                                        >
                                             <TrashIcon className={styles.article_trash_icon} />
                                         </button>
                                     </div>

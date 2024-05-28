@@ -14,7 +14,14 @@ const SubscribesContainer = () => {
     const handleShowMore = () => {
         setAuthorsToShow((prevState) => prevState + 4); // Прибавляем 4 статьи при нажатии на "Показать еще ещё"
     };
-
+    const handleUnSubClick = async (authorId) => {
+        try {
+            await axios.delete(`${server}/bookdiary/subs/${authorId}`);
+            dispatch(setMySubs(null));
+        } catch (error) {
+            console.error('Error unsubscribe: ', error);
+        }
+    };
     useEffect(() => {
         const source = axios.CancelToken.source();
         let isCancelled = false;
@@ -37,7 +44,7 @@ const SubscribesContainer = () => {
             isCancelled = true;
             source.cancel('Операция была отменена');
         };
-    }, [dispatch]);
+    }, [dispatch, handleUnSubClick]);
 
     useEffect(() => {
         dispatch(setMySubs(null));
@@ -48,6 +55,7 @@ const SubscribesContainer = () => {
             mySubs={mySubscribes}
             authorsToShow={authorsToShow}
             handleShowMore={handleShowMore}
+            handleUnSubClick={handleUnSubClick}
         />
     );
 };
