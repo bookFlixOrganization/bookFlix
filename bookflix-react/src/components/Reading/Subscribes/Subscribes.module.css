@@ -1,6 +1,7 @@
 .articles_container {
     max-width: 1220px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .now_watching_text {
@@ -236,10 +237,18 @@ h4.theme {
 
 .tool {
     color: #e54d4d;
+    background: none;
+    outline: none;
+    border: none;
 }
 
 .tool:hover {
     color: #e43131;
+}
+
+.tool:hover svg {
+    width: 25px;
+    height: 25px;
 }
 
 .left_block {

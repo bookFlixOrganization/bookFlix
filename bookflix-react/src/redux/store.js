@@ -11,9 +11,11 @@ import historyReducer from './Me/historyReducer';
 // Reading
 import myArticlesReducer from './Reading/myArticlesReducer';
 import authorReducer from './Reading/authorReducer';
-import articleReducer from './Reading/articleReducer';
+// import articleReducer from './Reading/articleReducer';
 import articlePageReducer from './Reading/articlePageReducer';
 import newArticleReducer from './Reading/newArticleReducer';
+import subscribesReducer from './Reading/subscribesReducer';
+// other
 import sessionReducer from './sessionReducer';
 
 const store = configureStore({
@@ -29,10 +31,11 @@ const store = configureStore({
         historyReducer: historyReducer,
         // Reading
         myArticlesReducer: myArticlesReducer,
-        articleReducer: articleReducer,
         articlePageReducer: articlePageReducer,
         authorReducer: authorReducer,
         newArticleReducer: newArticleReducer,
+        subscribesReducer: subscribesReducer,
+        // articleReducer: articleReducer,
         // Other
         sessionReducer: sessionReducer,
     },
