@@ -89,7 +89,7 @@ const NewArticleContainer = () => {
             );
             if (response) {
                 alert('Статья успешно отправлена');
-                navigate(`/account`);
+                navigate(`/reading-diary`);
             }
         } catch (error) {
             console.log('Ошибка отправки статьи', error);
