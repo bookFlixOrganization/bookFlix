@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setArticleName, setBookName, setText } from '../../../redux/Reading/articleReducer.js';
+import { setArticleName, setBookName, setText } from '../../../redux/Reading/editArticleReducer.js';
 import EditArticle from './EditArticle.jsx';
 
 const EditArticleContainer = () => {
     const dispatch = useDispatch();
 
-    const articleName = useSelector((state) => state.articleReducer.articleName);
-    const bookName = useSelector((state) => state.articleReducer.bookName);
-    const text = useSelector((state) => state.articleReducer.text);
+    const articleName = useSelector((state) => state.editArticleReducer.articleName);
+    const bookName = useSelector((state) => state.editArticleReducer.bookName);
+    const text = useSelector((state) => state.editArticleReducer.text);
 
     const handleEditArticleName = (event) => {
         dispatch(setArticleName(event.target.value));

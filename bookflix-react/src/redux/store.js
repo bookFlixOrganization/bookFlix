@@ -11,7 +11,7 @@ import historyReducer from './Me/historyReducer';
 // Reading
 import myArticlesReducer from './Reading/myArticlesReducer';
 import authorReducer from './Reading/authorReducer';
-// import articleReducer from './Reading/articleReducer';
+import editArticleReducer from './Reading/editArticleReducer';
 import articlePageReducer from './Reading/articlePageReducer';
 import newArticleReducer from './Reading/newArticleReducer';
 import subscribesReducer from './Reading/subscribesReducer';
@@ -35,7 +35,7 @@ const store = configureStore({
         authorReducer: authorReducer,
         newArticleReducer: newArticleReducer,
         subscribesReducer: subscribesReducer,
-        // articleReducer: articleReducer,
+        editArticleReducer: editArticleReducer,
         // Other
         sessionReducer: sessionReducer,
     },
