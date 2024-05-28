@@ -8,11 +8,8 @@ const EditArticle = (props) => {
                 <div className={styles.container}>
                     <div className={styles.section_header}>
                         <div className={styles.section_header_1}>
-                            <p className={styles.section_title}>Напишите новую статью</p>
+                            <p className={styles.section_title}>Редактирование статьи</p>
                         </div>
-                        <p className={styles.section_subtitle}>
-                            Расскажите, что больше всего понравилось, а чего не хватило
-                        </p>
                     </div>
                 </div>
             </section>
@@ -62,7 +59,7 @@ const EditArticle = (props) => {
                             value={props.text || ''}
                         ></textarea>
 
-                        <button id="safe" className={styles.estimate}>
+                        <button id="safe" className={styles.estimate} onClick={props.handleSubmit}>
                             Опубликовать
                         </button>
                     </form>

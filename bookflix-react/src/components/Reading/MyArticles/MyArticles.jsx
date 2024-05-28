@@ -38,7 +38,10 @@ const Articles = (props) => {
                                             {article.text}
                                         </p>
                                         <div className={styles.tools}>
-                                            <NavLink to="/" className={styles.tool}>
+                                            <NavLink
+                                                to={`/edit-article/${article.id}`}
+                                                className={styles.tool}
+                                            >
                                                 <EditIcon className={styles.article_edit_icon} />
                                             </NavLink>
 

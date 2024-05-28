@@ -22,8 +22,8 @@ import NewArticleContainer from './components/Reading/NewArticle/NewArticleConta
 import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
 import PopularArticlesContainer from './components/Reading/PopularArticles/PopularArticlesContainer.jsx';
 import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
+import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
 // import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
-// import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
 // import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
 // Other
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
@@ -68,8 +68,8 @@ function App() {
                 <Route path="article-page/:articleId" element={<ArticlePageContainer />} />
                 <Route path="popular-articles" element={<PopularArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
+                <Route path="edit-article/:articleId" element={<EditArticleContainer />} />
 
-                {/* <Route path="edit-article" element={<EditArticleContainer />} /> */}
                 {/* <Route path="reading-diary" element={<ArticlesContainer />} /> */}
                 {/* <Route path="author" element={<AuthorContainer />} /> */}
 
