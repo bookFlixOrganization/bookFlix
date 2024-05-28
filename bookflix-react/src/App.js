@@ -17,13 +17,14 @@ import EditPreferencesContainer from './components/Me/EditPreferences/EditPrefer
 import AccountContainer from './components/Me/Account/AccountContainer.jsx';
 // Reading
 import ReadingHeaderContainer from './components/Reading/ReadingHeader/ReadingHeaderContainer.jsx';
-import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
-import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
-import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
-import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
 import MyArticlesContainer from './components/Reading/MyArticles/MyArticlesContainer.jsx';
+import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
 import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
-import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
+import PopularArticlesContainer from './components/Reading/PopularArticles/PopularArticlesContainer.jsx';
+// import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
+// import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
+// import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
+// import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
 // Other
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
 import SessionChecker from './components/SessionChecker.jsx';
@@ -40,10 +41,8 @@ function App() {
             {location.pathname !== '/auth' && location.pathname !== '/preferences' && (
                 <HeaderContainer />
             )}
-            {location.pathname === '/author' ||
-                location.pathname === '/articles' ||
-                location.pathname === '/subscribes' ||
-                (location.pathname === '/reading-diary' && <ReadingHeaderContainer />)}
+            {(location.pathname === '/reading-diary' ||
+                location.pathname === '/popular-articles') && <ReadingHeaderContainer />}
             <Routes>
                 {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />
@@ -66,10 +65,12 @@ function App() {
                 <Route path="reading-diary" element={<MyArticlesContainer />} />
                 <Route path="new-article/:bookId" element={<NewArticleContainer />} />
                 <Route path="article-page/:articleId" element={<ArticlePageContainer />} />
-                <Route path="edit-article" element={<EditArticleContainer />} />
-                <Route path="author" element={<AuthorContainer />} />
-                <Route path="articles" element={<ArticlesContainer />} />
-                <Route path="subscribes" element={<SubscribesContainer />} />
+                <Route path="popular-articles" element={<PopularArticlesContainer />} />
+
+                {/* <Route path="edit-article" element={<EditArticleContainer />} /> */}
+                {/* <Route path="reading-diary" element={<ArticlesContainer />} /> */}
+                {/* <Route path="author" element={<AuthorContainer />} /> */}
+                {/* <Route path="subscribes" element={<SubscribesContainer />} /> */}
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>

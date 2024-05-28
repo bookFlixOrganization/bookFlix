@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Articles from './MyArticles.jsx';
+import MyArticles from './PopularArticles.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMyArticles } from '../../../redux/Reading/myArticlesReducer.js';
 import axios from 'axios';
 import { server } from '../../../serverconf.js';
 
-const ArticlesContainer = () => {
+const MyArticlesContainer = () => {
     const dispatch = useDispatch();
     const myArticles = useSelector((state) => state.myArticlesReducer.myArticles);
 
@@ -39,7 +39,7 @@ const ArticlesContainer = () => {
         };
     }, [dispatch]);
     return (
-        <Articles
+        <MyArticles
             myArticles={myArticles}
             articlesToShow={articlesToShow}
             handleShowMore={handleShowMore}
@@ -47,4 +47,4 @@ const ArticlesContainer = () => {
     );
 };
 
-export default ArticlesContainer;
+export default MyArticlesContainer;
