@@ -38,6 +38,11 @@ const ArticlesContainer = () => {
             source.cancel('Операция была отменена');
         };
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(setMyArticles(null));
+    });
+
     return (
         <Articles
             myArticles={myArticles}
