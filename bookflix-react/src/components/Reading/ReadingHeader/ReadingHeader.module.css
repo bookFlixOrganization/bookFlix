@@ -36,3 +36,10 @@
     color: #e43131;
     transform: scale(1.03);
 }
+
+.active_link {
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+}
