@@ -220,4 +220,9 @@
 .low {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.likes_amount {
+    color: #ffffff;
 }

@@ -20,7 +20,7 @@ const MyArticlesContainer = () => {
         let isCancelled = false;
         const fetchBookName = async () => {
             try {
-                const response = await axios.get(`${server}/bookdiary/articles/users/my`, {
+                const response = await axios.get(`${server}/bookdiary`, {
                     cancelToken: source.token,
                 });
                 if (isCancelled) return;

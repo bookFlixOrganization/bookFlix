@@ -46,6 +46,9 @@ const ReadingDiary = (props) => {
                                                 >
                                                     Читать статью полностью
                                                 </NavLink>
+                                                <div className={styles.likes_amount}>
+                                                    Лайков: {article.likes}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
