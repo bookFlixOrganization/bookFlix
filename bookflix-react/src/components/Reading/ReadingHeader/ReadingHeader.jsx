@@ -34,9 +34,9 @@ const ReadingHeader = () => {
                                 Популярные статьи
                             </NavLink>
                             <NavLink
-                                to={'/my-subs'}
+                                to={'/subscribes'}
                                 className={
-                                    activeLink === 'my-subs'
+                                    activeLink === 'subscribes'
                                         ? styles.active_link
                                         : styles.button_all
                                 }
@@ -44,7 +44,7 @@ const ReadingHeader = () => {
                                 Мои подписки
                             </NavLink>
                             <NavLink
-                                to={'/new-article'}
+                                to={'/new-article/new'}
                                 className={
                                     activeLink === 'new-article'
                                         ? styles.active_link

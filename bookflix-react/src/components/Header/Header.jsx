@@ -44,7 +44,7 @@ const Header = ({ session, handleLogout }) => {
                                         <NavLink to="/history">История</NavLink>
                                     </li>
                                     <li className={styles.points}>
-                                        <NavLink to="/my-subs">Мои подписки</NavLink>
+                                        <NavLink to="/subscribes">Мои подписки</NavLink>
                                     </li>
                                     <li className={styles.points}>
                                         <NavLink to="/reading-diary">Дневник чтения</NavLink>

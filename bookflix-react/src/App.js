@@ -21,9 +21,9 @@ import MyArticlesContainer from './components/Reading/MyArticles/MyArticlesConta
 import NewArticleContainer from './components/Reading/NewArticle/NewArticleContainer.jsx';
 import ArticlePageContainer from './components/Reading/ArticlePage/ArticlePageContainer.jsx';
 import PopularArticlesContainer from './components/Reading/PopularArticles/PopularArticlesContainer.jsx';
+import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
 // import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
 // import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
-// import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
 // import ArticlesContainer from './components/Reading/Articles/ArticlesContainer.jsx';
 // Other
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
@@ -42,7 +42,8 @@ function App() {
                 <HeaderContainer />
             )}
             {(location.pathname === '/reading-diary' ||
-                location.pathname === '/popular-articles') && <ReadingHeaderContainer />}
+                location.pathname === '/popular-articles' ||
+                location.pathname === '/subscribes') && <ReadingHeaderContainer />}
             <Routes>
                 {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />
@@ -66,11 +67,11 @@ function App() {
                 <Route path="new-article/:bookId" element={<NewArticleContainer />} />
                 <Route path="article-page/:articleId" element={<ArticlePageContainer />} />
                 <Route path="popular-articles" element={<PopularArticlesContainer />} />
+                <Route path="subscribes" element={<SubscribesContainer />} />
 
                 {/* <Route path="edit-article" element={<EditArticleContainer />} /> */}
                 {/* <Route path="reading-diary" element={<ArticlesContainer />} /> */}
                 {/* <Route path="author" element={<AuthorContainer />} /> */}
-                {/* <Route path="subscribes" element={<SubscribesContainer />} /> */}
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>
