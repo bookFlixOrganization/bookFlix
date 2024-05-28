@@ -15,7 +15,7 @@ const HeaderContainer = () => {
         try {
             await axios.post(`${server}/auth/jwt/logout`);
             dispatch(logout());
-            navigate('/');
+            navigate('/auth');
         } catch (error) {
             console.error('Ошибка при попытке выйти:', error);
         }
