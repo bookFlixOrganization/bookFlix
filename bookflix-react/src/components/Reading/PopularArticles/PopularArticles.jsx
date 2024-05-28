@@ -3,7 +3,7 @@ import styles from './PopularArticles.module.css';
 import { ReactComponent as CardIcon } from './images/card.svg';
 import { NavLink } from 'react-router-dom';
 
-const ReadingDiary = (props) => {
+const PopularArticles = (props) => {
     return (
         <div className={styles.reading_diary_container}>
             <h3 className={styles.section_subtitle}>Популярные статьи</h3>
@@ -21,7 +21,7 @@ const ReadingDiary = (props) => {
                                                     <CardIcon />
                                                     <div className={styles.small_box_2}>
                                                         <h3 className={styles.article_author}>
-                                                            Вы
+                                                            {article.user_name}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -71,4 +71,4 @@ const ReadingDiary = (props) => {
     );
 };
 
-export default ReadingDiary;
+export default PopularArticles;
