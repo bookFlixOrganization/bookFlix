@@ -41,7 +41,7 @@ const ArticlesContainer = () => {
 
     useEffect(() => {
         dispatch(setMyArticles(null));
-    });
+    }, []);
 
     return (
         <Articles
