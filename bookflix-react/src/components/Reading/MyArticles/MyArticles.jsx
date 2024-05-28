@@ -15,7 +15,7 @@ const Articles = (props) => {
                             props.myArticles
                                 .slice(0, props.articlesToShow)
                                 .map((article, index) => (
-                                    <button key={`my_article_${index}`} className={styles.movie}>
+                                    <div key={`my_article_${index}`} className={styles.movie}>
                                         <div className={styles.left_block}>
                                             <h4 className={styles.theme}>
                                                 <NavLink
@@ -45,15 +45,20 @@ const Articles = (props) => {
                                                 <EditIcon className={styles.article_edit_icon} />
                                             </NavLink>
 
-                                            <NavLink to="/" className={styles.tool}>
+                                            <button
+                                                onClick={() =>
+                                                    props.handleDeleteArticle(article.id)
+                                                }
+                                                className={styles.tool}
+                                            >
                                                 <TrashIcon className={styles.article_trash_icon} />
-                                            </NavLink>
+                                            </button>
 
                                             <div className={styles.subtitle}>
                                                 {article.publication_date}
                                             </div>
                                         </div>
-                                    </button>
+                                    </div>
                                 ))}
                     </div>
                     {props.myArticles && props.articlesToShow < props.myArticles.length && (

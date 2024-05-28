@@ -15,6 +15,15 @@ const ArticlesContainer = () => {
         setArticlesToShow((prevState) => prevState + 4); // Прибавляем 4 статьи при нажатии на "Читать ещё"
     };
 
+    const handleDeleteArticle = async (articleId) => {
+        try {
+            await axios.delete(`${server}/bookdiary/articles/my/${articleId}`);
+            dispatch(setMyArticles(null));
+        } catch (error) {
+            console.error('Error deleting: ', error);
+        }
+    };
+
     useEffect(() => {
         const source = axios.CancelToken.source();
         let isCancelled = false;
@@ -48,6 +57,7 @@ const ArticlesContainer = () => {
             myArticles={myArticles}
             articlesToShow={articlesToShow}
             handleShowMore={handleShowMore}
+            handleDeleteArticle={handleDeleteArticle}
         />
     );
 };
