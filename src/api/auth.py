@@ -7,6 +7,23 @@ cookie_transport = CookieTransport(cookie_name="auth", cookie_max_age=3600, cook
 
 
 def get_jwt_strategy() -> JWTStrategy:
+    """
+    Эта функция возвращает экземпляр JWTStrategy для аутентификации.
+
+    Parameters:
+    None
+
+    Returns:
+    JWTStrategy:Экземпляр JWTStrategy с предоставленным параметром SECRET и временем жизни в секундах.
+
+    Raises:
+    None
+
+    Note:
+    JWTStrategy используется для аутентификации на основе JWT (JSON Web Tokens).
+    SECRET используется для подписи и проверки токенов JWT.
+    Параметр lifetime_seconds указывает продолжительность действия токена JWT.
+    """
     return JWTStrategy(secret=settings.SECRET, lifetime_seconds=14400)
 
 

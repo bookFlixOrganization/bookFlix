@@ -14,29 +14,105 @@ service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
 
 
 @search_router.get("/movie", tags=["api_film"])
-async def search_movie_imdb(query: str):
+def search_movie_imdb(query: str) -> dict:
+    """
+    Эта функция ищет фильмы в базе данных IMDb, используя предоставленный запрос.
+
+    Parameters:
+    query (str): Строка поискового запроса.
+
+    Returns:
+    dict: Словарь, содержащий статус операции и результаты поиска.
+          Если операция прошла успешно, словарь будет иметь следующую структуру:
+          {
+              "status": "ok",
+              "result": [
+                  {
+                      "data": movie_data,
+                      "movieID": movie_id
+                  },
+                 ...
+              ]
+          }
+          Если в ходе операции произойдет ошибка, словарь будет иметь следующую структуру:
+          {
+              "status": "error",
+              "message": error_message
+          }
+    """
     try:
         movies = ia.search_movie(query)
         for i in range(len(movies)):
             movies[i]['movieID'] = movies[i].movieID
         return {"status": "ok", "result": movies}
     except IMDbError as e:
-        return {"status": "error", "message": e}
+        return {"status": "error", "message": str(e)}
 
 
 @search_router.get("/person", tags=["api_film"])
-async def search_person(query: str):
+def search_person(query: str):
+    """
+    Эта функция ищет людей в базе данных IMDb, используя предоставленный запрос.
+
+    Parameters:
+    query (str): Строка поискового запроса.
+
+    Returns:
+    dict: Словарь, содержащий статус операции и результаты поиска.
+          Если операция прошла успешно, словарь будет иметь следующую структуру:
+          {
+              "status": "ok",
+              "result": [
+                  {
+                      "data": person_data,
+                      "personID": person_id
+                  },
+                ...
+              ]
+          }
+          Если в ходе операции произойдет ошибка, словарь будет иметь следующую структуру:
+          {
+              "status": "error",
+              "message": error_message
+          }
+    """
     try:
         peoples = ia.search_person(query)
         for i in range(len(peoples)):
             peoples[i]['personID'] = peoples[i].personID
         return {"status": "ok", "result": peoples}
     except IMDbError as e:
-        return {"status": "error", "message": e}
+        return {"status": "error", "message": str(e)}
 
 
 @search_router.get("/book", tags=["api_book"])
-async def search_book(query: str):
+def search_book(query: str):
+    """
+    Эта функция ищет книги в API Google Books, используя предоставленный запрос.
+
+    Parameters:
+    query (str): Строка поискового запроса.
+
+    Returns:
+    dict: Словарь, содержащий статус операции и результаты поиска.
+          Если операция прошла успешно, словарь будет иметь следующую структуру:
+          {
+              "items": [
+                  {
+                      "volumeInfo": book_info,
+                      "id": book_id
+                  },
+                 ...
+              ],
+              "kind": "books#volumes",
+              "totalItems": total_items
+          }
+          Если во время операции произойдет ошибка, будет выдано исключение следующего формата:
+          'Error response status code : {status_code}, reason : {error_details}'
+
+    Raises:
+    HttpError: Если во время HTTP-запроса к API Google Books возникает ошибка.
+    """
     try:
         request = service.volumes().list(q=query, maxResults=15, printType="BOOKS", projection="LITE")
         response = request.execute()

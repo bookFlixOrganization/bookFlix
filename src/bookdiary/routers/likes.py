@@ -13,7 +13,7 @@ from fastapi import status
 
 from fastapi_users import FastAPIUsers
 from src.models.users import User
-from src.models.dals import get_user_manager
+from src.api.user_create_logic import get_user_manager
 from src.api.auth import auth_backend
 
 from sqlalchemy import delete, select, update

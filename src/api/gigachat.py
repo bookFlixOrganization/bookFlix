@@ -15,7 +15,19 @@ chat = GigaChat(credentials=settings.GIGACHAT_API_KEY, verify_ssl_certs=False)
 
 
 @gigachat_router.get("/short_content")
-async def gigachat_short_content(query: str):
+def gigachat_short_content(query: str):
+    """
+    Эта функция взаимодействует с моделью GigaChat для создания короткого контента на основе заданного запроса.
+
+    Parameters:
+    query (str): Входной запрос, для которого необходимо создать краткий контент.
+
+    Returns:
+    List[HumanMessage]: Список, содержащий сгенерированный краткий контент в виде объекта HumanMessage.
+
+    Raises:
+    Exception: Если во время взаимодействия с моделью GigaChat возникает какая-либо ошибка.
+    """
     try:
         text = prompt_for_short_content.format(titles=query)
         return chat([HumanMessage(content=text)])

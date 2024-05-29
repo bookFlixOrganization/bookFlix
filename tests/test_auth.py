@@ -1,4 +1,3 @@
-from httpx import AsyncClient
 from sqlalchemy import insert, select
 from conftest import client, async_session_maker
 from src.models.users import Role
@@ -23,7 +22,8 @@ def test_register():
         "is_superuser": True,
         "is_verified": True,
         "username": "string",
-        "role_id": 1
+        "role_id": 1,
+        "is_preferences": False
     })
     assert response.status_code == 201
 
@@ -35,21 +35,34 @@ def test_get_verify_token():
     assert response.status_code == 202
 
 
-async def test_jwt_login(ac: AsyncClient):
-    form_data = {
-        "username": "string@mail.com",
-        "password": "string123"
-    }
-    response1 = await ac.post("/auth/jwt/login", data=form_data)
-    assert response1.status_code == 204
-    # response2 = await ac.get("/users/me")
-    # ans = {
-    #     "email": "string@mail.com",
-    #     "password": "string123",
-    #     "is_active": True,
-    #     "is_superuser": True,
-    #     "is_verified": True,
-    #     "username": "string",
-    #     "role_id": 1
-    # }
-    # assert response2 == 200
+# @pytest.fixture
+# async def authenticated_client(ac: AsyncClient):
+#     form_data = {
+#         "username": "string@mail.com",
+#         "password": "string123"
+#     }
+#     response = await ac.post("/auth/jwt/login", data=form_data)
+#     assert response.status_code == 204
+#
+#     # Установка куки для клиента
+#     print(response.headers)
+#     ac.headers = response.headers
+#     ac.cookies = response.cookies
+#
+#     return ac
+#
+#
+# async def test_user_info(authenticated_client: AsyncClient):
+#     response = await authenticated_client.get("/users/me", cookies=authenticated_client.cookies)
+#     print(authenticated_client.cookies)
+#     assert response.status_code == 200
+#     # Проверка ответа
+#     ans = {
+#         "email": "string@mail.com",
+#         "is_active": True,
+#         "is_superuser": True,
+#         "is_verified": True,
+#         "username": "string",
+#         "role_id": 1
+#     }
+#     assert response.json() == ans
