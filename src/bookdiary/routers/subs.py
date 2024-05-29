@@ -105,10 +105,12 @@ async def all_user_subscribes(
     result = (await session.execute(stmt)).scalars().all()
     if len(result) == 0:
         raise NotFoundException(detail="Nothing found in subs")
-    stmt2 = select(Publics.user_id)
+    
+    filter_cond = Publics.user_id.in_([elem.sub_id for elem in result])
+    stmt2 = select(Publics.user_id).where(filter_cond)
     result2 = (await session.execute(stmt2)).fetchall()
-    articles_count = [result2.count((result[i].user_id,)) for i in range(len(result))]
-
+    articles_count = {result[i].sub_id: result2.count((result[i].sub_id,)) for i in range(len(result))}
+    print(articles_count)
     filter_cond2 = User.id.in_({i.sub_id for i in result})
     stmt3 = select(User.id, User.username).where(filter_cond2)
     result3 = (await session.execute(stmt3)).mappings().fetchall()
@@ -117,6 +119,6 @@ async def all_user_subscribes(
 
     return [
         result[i].__dict__
-        | {"articles_count": articles_count[i], "sub_name": usernames[result[i].sub_id]}
+        | {"articles_count": articles_count[result[i].sub_id], "sub_name": usernames[result[i].sub_id]}
         for i in range(len(result))
     ]

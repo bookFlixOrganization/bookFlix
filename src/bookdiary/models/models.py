@@ -9,10 +9,10 @@ from sqlalchemy import Column, Integer, JSON, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
-Base = declarative_base()
+BookDiary_Base = declarative_base()
 
 
-class Publics(Base):
+class Publics(BookDiary_Base):
     """
     Класс для представления общественных записей пользователей.
     """
@@ -34,7 +34,7 @@ class Publics(Base):
     likes = Column(Integer(), default=0)
 
 
-class Likes(Base):
+class Likes(BookDiary_Base):
     """
     Класс для представления лайков пользователей.
     """
@@ -44,7 +44,7 @@ class Likes(Base):
     article_id = Column(UUID(as_uuid=True), nullable=False, primary_key=True)
 
 
-class Subs(Base):
+class Subs(BookDiary_Base):
     """
     Класс для представления подписок пользователей.
     """
