@@ -234,10 +234,10 @@ async def added_books(user: User = Depends(current_user),
         statement = select(UserView.__table__).where(UserView.id == user.id)
         result = await session.execute(statement)
         user_view = result.first()
-        added_books = user_view.preferences['liked_books']
+        added_list = user_view.preferences['liked_books']
         added_books_list = {}
 
-        for book in added_books:
+        for book in added_list:
             added_books_list[book[1]] = service.volumes().get(volumeId=book[1]).execute()
 
         return added_books_list
@@ -289,8 +289,8 @@ async def recommendation_book(user: User = Depends(current_user),
 
 
 @user_router.get("/favourite/history_book", tags=["Preferences"])
-async def added_books(user: User = Depends(current_user),
-                      session: AsyncSession = Depends(get_async_session)):
+async def added_history_books(user: User = Depends(current_user),
+                              session: AsyncSession = Depends(get_async_session)):
     """
     Эта функция извлекает историю книг, добавленных пользователем.
 
@@ -309,10 +309,10 @@ async def added_books(user: User = Depends(current_user),
         statement = select(UserView.__table__).where(UserView.id == user.id)
         result = await session.execute(statement)
         user_view = result.first()
-        added_books = user_view.preferences['history_books']
+        added_list = user_view.preferences['history_books']
         added_books_list = {}
 
-        for book in added_books:
+        for book in added_list:
             added_books_list[book[1]] = service.volumes().get(volumeId=book[1]).execute()
 
         return added_books_list

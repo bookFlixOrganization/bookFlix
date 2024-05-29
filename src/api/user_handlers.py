@@ -118,8 +118,8 @@ async def favourites(user: User = Depends(current_user),
 
 
 @user_router.post("/preferences_edit", tags=["Preferences"])
-async def preferences_after_register(preferences: Preferences, user: User = Depends(current_user),
-                                     session: AsyncSession = Depends(get_async_session)):
+async def preferences_edit(preferences: Preferences, user: User = Depends(current_user),
+                           session: AsyncSession = Depends(get_async_session)):
     """
     Эта функция используется для редактирования предпочтений пользователя в базе данных.
 
@@ -152,4 +152,4 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
     except AttributeError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     except SQLAlchemyError as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) from e

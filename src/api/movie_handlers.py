@@ -82,8 +82,8 @@ async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User
     history.append([liked_movie_title, liked_movie_id])
     needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
-                .values({"preferences": needed_user_data})
-                .where(UserView.__table__.c.id == user.id))
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
     await session.execute(statement)
     await session.commit()
 
@@ -116,8 +116,8 @@ async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, u
     history.append([disliked_movie_title, disliked_movie_id])
     needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
-                .values({"preferences": needed_user_data})
-                .where(UserView.__table__.c.id == user.id))
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
     await session.execute(statement)
     await session.commit()
 
@@ -150,8 +150,8 @@ async def delete_liked_film(liked_movie_title: str, liked_movie_id: str, user: U
     history.append([liked_movie_title, liked_movie_id])
     needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
-                .values({"preferences": needed_user_data})
-                .where(UserView.__table__.c.id == user.id))
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
     await session.execute(statement)
     await session.commit()
 
@@ -184,8 +184,8 @@ async def delete_disliked_film(disliked_movie_title: str, disliked_movie_id: str
     history.append([disliked_movie_title, disliked_movie_id])
     needed_user_data["history_movies"] = history
     statement = (update(UserView.__table__)
-                .values({"preferences": needed_user_data})
-                .where(UserView.__table__.c.id == user.id))
+                 .values({"preferences": needed_user_data})
+                 .where(UserView.__table__.c.id == user.id))
     await session.execute(statement)
     await session.commit()
 
