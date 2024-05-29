@@ -30,7 +30,7 @@ movie = Movie()
 ia = Cinemagoer()
 
 
-@movie_router.get("/tmdb_to_imdb", tags=["api_film"])
+@movie_router.get("/tmdb_to_imdb", tags=["Movie"])
 def get_imdb_details(movie_id: int):
     """
     Эта функция извлекает идентификатор фильма IMDb из базы данных TMDb.
@@ -54,7 +54,7 @@ def get_imdb_details(movie_id: int):
         return {"status": "error", "message": str(e)}
 
 
-@movie_router.post("/{movie_id}/add_liked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/add_liked_films", tags=["Movie"])
 async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User = Depends(current_user),
                          session: AsyncSession = Depends(get_async_session)):
     """
@@ -88,7 +88,7 @@ async def add_liked_film(liked_movie_title: str, liked_movie_id: str, user: User
     await session.commit()
 
 
-@movie_router.post("/{movie_id}/add_disliked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/add_disliked_films", tags=["Movie"])
 async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     """
@@ -122,7 +122,7 @@ async def add_disliked_film(disliked_movie_title: str, disliked_movie_id: str, u
     await session.commit()
 
 
-@movie_router.post("/{movie_id}/delete_liked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/delete_liked_films", tags=["Movie"])
 async def delete_liked_film(liked_movie_title: str, liked_movie_id: str, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     """
@@ -156,7 +156,7 @@ async def delete_liked_film(liked_movie_title: str, liked_movie_id: str, user: U
     await session.commit()
 
 
-@movie_router.post("/{movie_id}/delete_disliked_films", tags=["likes"])
+@movie_router.post("/{movie_id}/delete_disliked_films", tags=["Movie"])
 async def delete_disliked_film(disliked_movie_title: str, disliked_movie_id: str, user: User = Depends(current_user),
                                session: AsyncSession = Depends(get_async_session)):
     """
@@ -190,7 +190,7 @@ async def delete_disliked_film(disliked_movie_title: str, disliked_movie_id: str
     await session.commit()
 
 
-@movie_router.get("/{movie_id}/similar_films", tags=["api_film"])
+@movie_router.get("/{movie_id}/similar_films", tags=["Movie"])
 def get_similar(movie_id: int):
     """
     Эта функция извлекает похожие фильмы из API TMDb на основе заданного идентификатора фильма.
@@ -216,7 +216,7 @@ def get_similar(movie_id: int):
         return {"status": "error", "message": e}
 
 
-@movie_router.get("/{movie_id}", tags=["api_film"])
+@movie_router.get("/{movie_id}", tags=["Movie"])
 def get_movie(movie_id: str) -> dict:
     """
     Эта функция извлекает фильм из базы данных IMDb, используя предоставленный movie_id.
@@ -239,7 +239,7 @@ def get_movie(movie_id: str) -> dict:
         return {"status": "error", "message": str(e)}
 
 
-@movie_router.get("/person/{person_id}", tags=["api_film"])
+@movie_router.get("/person/{person_id}", tags=["Movie"])
 def get_person(person_id: str) -> dict:
     """
     Эта функция извлекает человека из базы данных IMDb, используя предоставленный person_id.
@@ -262,7 +262,7 @@ def get_person(person_id: str) -> dict:
         return {"status": "error", "message": str(e)}
 
 
-@user_router.get("/favourite/added_movie", tags=["preferences"])
+@user_router.get("/favourite/added_movie", tags=["Preferences"])
 async def added_movie(user: User = Depends(current_user),
                       session: AsyncSession = Depends(get_async_session)):
     """
@@ -331,7 +331,7 @@ async def recommendation_movie(user: User = Depends(current_user),
         raise f'Error response, message: {e}'
 
 
-@user_router.get("/favourite/history_movies", tags=["preferences"])
+@user_router.get("/favourite/history_movies", tags=["Preferences"])
 async def history_movie(user: User = Depends(current_user),
                         session: AsyncSession = Depends(get_async_session)):
     """

@@ -13,7 +13,7 @@ from src.bookdiary.routers.subs import router as subs_router
 
 app = create_app()
 app.include_router(user_router)
-app.include_router(gigachat_router, tags=["gigachat"])
+app.include_router(gigachat_router, tags=["Gigachat"])
 app.include_router(movie_router)
 app.include_router(book_router)
 app.include_router(list_router)

@@ -13,7 +13,7 @@ ia = Cinemagoer()
 service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
 
 
-@search_router.get("/movie", tags=["api_film"])
+@search_router.get("/movie", tags=["Search"])
 def search_movie_imdb(query: str) -> dict:
     """
     Эта функция ищет фильмы в базе данных IMDb, используя предоставленный запрос.
@@ -49,7 +49,7 @@ def search_movie_imdb(query: str) -> dict:
         return {"status": "error", "message": str(e)}
 
 
-@search_router.get("/person", tags=["api_film"])
+@search_router.get("/person", tags=["Search"])
 def search_person(query: str):
     """
     Эта функция ищет людей в базе данных IMDb, используя предоставленный запрос.
@@ -85,7 +85,7 @@ def search_person(query: str):
         return {"status": "error", "message": str(e)}
 
 
-@search_router.get("/book", tags=["api_book"])
+@search_router.get("/book", tags=["Search"])
 def search_book(query: str):
     """
     Эта функция ищет книги в API Google Books, используя предоставленный запрос.

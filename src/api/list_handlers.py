@@ -23,7 +23,7 @@ tags_metadata = [
 ]
 
 
-@list_router.get("/top_rated_movies", tags=["api_film"])
+@list_router.get("/top_rated_movies", tags=["List"])
 def get_top_rated():
     """
     Извлекает фильмы с самым высоким рейтингом из базы данных фильмов (TMDb).
@@ -65,7 +65,7 @@ def get_top_rated():
 
 
 @list_router.get("/sorted_films",
-                 tags=["sort_by"],
+                 tags=["List"],
                  description="Available values: id, title, popularity, release_date, vote_average, vote_count")
 def sort_by(sort_criterion: str):
     """
@@ -108,7 +108,7 @@ def sort_by(sort_criterion: str):
         return {"status": "error", "message": str(e)}
 
 
-@list_router.get("/most_popular_books", tags=["api_book"])
+@list_router.get("/most_popular_books", tags=["List"])
 def get_nyt_bestsellers():
     """
     Собирает самые популярные книги из списка бестселлеров New York Times.

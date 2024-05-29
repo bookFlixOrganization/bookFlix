@@ -29,7 +29,7 @@ current_user = fastapi_users.current_user()
 service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
 
 
-@book_router.post("/{book_id}/add_liked_books", tags=["likes"])
+@book_router.post("/{book_id}/add_liked_books", tags=["Book"])
 async def add_liked_book(liked_book_title: str, liked_book_id: str, user: User = Depends(current_user),
                          session: AsyncSession = Depends(get_async_session)):
     """
@@ -63,7 +63,7 @@ async def add_liked_book(liked_book_title: str, liked_book_id: str, user: User =
     await session.commit()
 
 
-@book_router.post("/{book_id}/add_disliked_books", tags=["likes"])
+@book_router.post("/{book_id}/add_disliked_books", tags=["Book"])
 async def add_disliked_book(disliked_book_title: str, disliked_book_id: str, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     """
@@ -97,7 +97,7 @@ async def add_disliked_book(disliked_book_title: str, disliked_book_id: str, use
     await session.commit()
 
 
-@book_router.post("/{book_id}/delete_liked_books", tags=["likes"])
+@book_router.post("/{book_id}/delete_liked_books", tags=["Book"])
 async def delete_liked_book(liked_book_title: str, liked_book_id: str, user: User = Depends(current_user),
                             session: AsyncSession = Depends(get_async_session)):
     """
@@ -131,7 +131,7 @@ async def delete_liked_book(liked_book_title: str, liked_book_id: str, user: Use
     await session.commit()
 
 
-@book_router.post("/{book_id}/delete_disliked_books", tags=["likes"])
+@book_router.post("/{book_id}/delete_disliked_books", tags=["Book"])
 async def delete_disliked_book(disliked_book_title: str, disliked_book_id: str, user: User = Depends(current_user),
                                session: AsyncSession = Depends(get_async_session)):
     """
@@ -165,7 +165,7 @@ async def delete_disliked_book(disliked_book_title: str, disliked_book_id: str, 
     await session.commit()
 
 
-@book_router.get("/{book_id}", tags=["api_book"])
+@book_router.get("/{book_id}", tags=["Book"])
 def get_book(book_id: str):
     """
     Эта функция получает информацию о книге с помощью API Google Книг.
@@ -187,7 +187,7 @@ def get_book(book_id: str):
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@book_router.get("/books_from_author", tags=["api_book"])
+@book_router.get("/books_from_author", tags=["Book"])
 def get_author_info(author_name):
     """
     Эта функция получает информацию о книге из API Google Книг на основе имени автора.
@@ -213,7 +213,7 @@ def get_author_info(author_name):
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/favourite/added_book", tags=["preferences"])
+@user_router.get("/favourite/added_book", tags=["Preferences"])
 async def added_books(user: User = Depends(current_user),
                       session: AsyncSession = Depends(get_async_session)):
     """
@@ -288,7 +288,7 @@ async def recommendation_book(user: User = Depends(current_user),
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@user_router.get("/favourite/history_book", tags=["preferences"])
+@user_router.get("/favourite/history_book", tags=["Preferences"])
 async def added_books(user: User = Depends(current_user),
                       session: AsyncSession = Depends(get_async_session)):
     """

@@ -29,31 +29,31 @@ fastapi_users = FastAPIUsers[User, uuid.UUID](
 user_router.include_router(
     fastapi_users.get_auth_router(auth_backend),
     prefix="/auth/jwt",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
 user_router.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
 user_router.include_router(
     fastapi_users.get_verify_router(UserRead),
     prefix="/auth",
-    tags=["auth"],
+    tags=["Auth"],
 )
 
 user_router.include_router(
     fastapi_users.get_users_router(UserRead, UserUpdate),
     prefix="/users",
-    tags=["users"],
+    tags=["Users"],
 )
 
 current_user = fastapi_users.current_user()
 
 
-@user_router.post("/preferences_after_register", tags=["preferences"])
+@user_router.post("/preferences_after_register", tags=["Preferences"])
 async def preferences_after_register(preferences: Preferences, user: User = Depends(current_user),
                                      session: AsyncSession = Depends(get_async_session)):
     """
@@ -89,7 +89,7 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
     await session.commit()
 
 
-@user_router.get("/favourite", tags=["preferences"])
+@user_router.get("/favourite", tags=["Preferences"])
 async def favourites(user: User = Depends(current_user),
                      session: AsyncSession = Depends(get_async_session)):
     """
@@ -117,7 +117,7 @@ async def favourites(user: User = Depends(current_user),
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)) from e
 
 
-@user_router.post("/preferences_edit", tags=["preferences"])
+@user_router.post("/preferences_edit", tags=["Preferences"])
 async def preferences_after_register(preferences: Preferences, user: User = Depends(current_user),
                                      session: AsyncSession = Depends(get_async_session)):
     """
