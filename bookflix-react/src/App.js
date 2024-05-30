@@ -42,7 +42,8 @@ function App() {
             )}
             {(location.pathname === '/reading-diary' ||
                 location.pathname === '/popular-articles' ||
-                location.pathname === '/subscribes') && <ReadingHeaderContainer />}
+                location.pathname === '/subscribes' ||
+                location.pathname.startsWith('/author')) && <ReadingHeaderContainer />}
             <Routes>
                 {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />
@@ -68,7 +69,7 @@ function App() {
                 <Route path="popular-articles" element={<PopularArticlesContainer />} />
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="edit-article/:articleId" element={<EditArticleContainer />} />
-                <Route path="author" element={<AuthorContainer />} />
+                <Route path="author/:authorId" element={<AuthorContainer />} />
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>
