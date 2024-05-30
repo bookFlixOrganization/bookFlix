@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Subscribes.module.css';
 import { ReactComponent as TrashIcon } from './images/trash.svg';
 import { ReactComponent as ProfileIcon } from './images/profile.svg';
+import { NavLink } from 'react-router-dom';
 
 const Subscribes = (props) => {
     return (
@@ -11,29 +12,35 @@ const Subscribes = (props) => {
                     <div className={styles.movies}>
                         {props.mySubs &&
                             props.mySubs.slice(0, props.authorsToShow).map((author, index) => (
-                                <div key={`subscr_${index}`} className={styles.movie}>
-                                    <div className={styles.left_block}>
-                                        <ProfileIcon className={styles.subscribes_profile_icon} />
-                                    </div>
-                                    <div className={styles.subscribes_item}>
-                                        <div
-                                            className={`${styles.center_block} ${styles.subscribes_desc}`}
-                                        >
-                                            {author.sub_name}
+                                <NavLink key={`subscr_${index}`} to={`/author/${author.sub_id}`}>
+                                    <div className={styles.movie}>
+                                        <div className={styles.left_block}>
+                                            <ProfileIcon
+                                                className={styles.subscribes_profile_icon}
+                                            />
                                         </div>
-                                        <div className={styles.subscribes_subtitle}>
-                                            {author.articles_count} статей
+                                        <div className={styles.subscribes_item}>
+                                            <div
+                                                className={`${styles.center_block} ${styles.subscribes_desc}`}
+                                            >
+                                                {author.sub_name}
+                                            </div>
+                                            <div className={styles.subscribes_subtitle}>
+                                                {author.articles_count} статей
+                                            </div>
+                                        </div>
+                                        <div className={styles.tools}>
+                                            <button
+                                                className={styles.tool}
+                                                onClick={() =>
+                                                    props.handleUnSubClick(author.sub_id)
+                                                }
+                                            >
+                                                <TrashIcon className={styles.article_trash_icon} />
+                                            </button>
                                         </div>
                                     </div>
-                                    <div className={styles.tools}>
-                                        <button
-                                            className={styles.tool}
-                                            onClick={() => props.handleUnSubClick(author.sub_id)}
-                                        >
-                                            <TrashIcon className={styles.article_trash_icon} />
-                                        </button>
-                                    </div>
-                                </div>
+                                </NavLink>
                             ))}
                     </div>
                     {props.myArticles && props.articlesToShow < props.mySubs.length && (
@@ -43,7 +50,7 @@ const Subscribes = (props) => {
                                 className={styles.show_more}
                                 onClick={props.handleShowMore}
                             >
-                                Читать ещё
+                                Показать ещё
                             </button>
                         </div>
                     )}
