@@ -30,7 +30,7 @@ const ArticlePageContainer = () => {
                 await axios.post(`${server}/bookdiary/subs/${articleAuthorId}`);
                 const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
                 dispatch(setIsSub(response.data.is_sub));
-            } else if (isLiked === 1) {
+            } else if (isSub === 1) {
                 await axios.delete(`${server}/bookdiary/subs/${articleAuthorId}`);
                 const response = await axios.get(`${server}/bookdiary/articles/${articleId}`);
                 dispatch(setIsSub(response.data.is_sub));
