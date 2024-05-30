@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ArticlePage.module.css';
 import { ReactComponent as LikeIcon } from './images/like.svg';
+import { NavLink } from 'react-router-dom';
 
 const ArticlePage = (props) => {
     const { articleState } = props;
@@ -11,9 +12,12 @@ const ArticlePage = (props) => {
                     <div className={styles.theme}>{articleState.articleName}</div>
                     <div className={styles.author}>
                         <div className={styles.name}>Автор статьи:</div>
-                        <a href="/" className={styles.name_2}>
+                        <NavLink
+                            to={`/author/${articleState.articleAuthorId}`}
+                            className={styles.name_2}
+                        >
                             {articleState.articleAuthor}
-                        </a>
+                        </NavLink>
                     </div>
                     <div className={styles.author}>
                         <div className={styles.name}>Автор книги:</div>
