@@ -1,11 +1,11 @@
 const SET_NAME = 'SET_AUTHOR_NAME';
 const SET_SUBSCRIBED = 'SET_SUBSCRIBED';
-const SET_NUMBER = 'SET_NUMBER';
+const SET_AUTHOR_ARTICLES = 'SET_AUTHOR_ARTICLES';
 
 const initialState = {
     name: '',
-    isSubscribed: false,
-    numberOfArticles: 0,
+    isSubscribed: -1,
+    authorArticles: null,
 };
 
 const authorReducer = (state = initialState, action) => {
@@ -20,10 +20,10 @@ const authorReducer = (state = initialState, action) => {
                 ...state,
                 isSubscribed: action.payload,
             };
-        case SET_NUMBER:
+        case SET_AUTHOR_ARTICLES:
             return {
                 ...state,
-                numberOfArticles: action.payload,
+                authorArticles: action.payload,
             };
         default:
             return state;
@@ -32,6 +32,6 @@ const authorReducer = (state = initialState, action) => {
 
 export const setName = (name) => ({ type: SET_NAME, payload: name });
 export const setSubscribed = (isSubscribed) => ({ type: SET_SUBSCRIBED, payload: isSubscribed });
-export const setNumber = (number) => ({ type: SET_NUMBER, payload: number });
+export const setAuthorArticles = (articles) => ({ type: SET_AUTHOR_ARTICLES, payload: articles });
 
 export default authorReducer;

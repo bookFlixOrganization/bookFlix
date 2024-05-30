@@ -1,6 +1,7 @@
 .author_container {
     max-width: 1220px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .now_watching_text {
@@ -55,31 +56,25 @@
 .container_2 .block {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 580px;
     height: 550px;
     background-color: rgb(43, 43, 43);
     border-radius: 20px;
     box-shadow: 0 0 20px rgb(24, 24, 24);
     margin-bottom: 30px;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container_2 .block .content {
     padding: 30px;
     text-align: left;
-}
-
-.container_2 .block .content p {
-    font-size: 16px;
-    color: #ffffff;
-    padding: 20px 0;
-    line-height: 1.5;
+    width: 100%;
 }
 
 .data {
     font-size: 16px;
-    font-family: 'Times New Roman';
+    font-family: 'Poppins', sans-serif;
     text-align: right;
     color: #ffffff;
     opacity: 0.4;
@@ -257,9 +252,41 @@ p {
     margin-top: 10px;
 }
 
-.article_author_name {
+.article_author {
     color: #ffffff;
     font-size: 20px;
-    font-family: 'Times New Roman';
+    font-family: 'Poppins', sans-serif;
     padding-bottom: 2px;
+}
+
+.article_desc {
+    height: 310px;
+    color: #ffffff;
+    padding: 20px 0;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.card_icon {
+    fill: rgb(229, 77, 77);
+    margin-right: 10px;
+}
+
+.article_name {
+    color: #ffffff;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.low {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes_amount {
+    font-size: 16px;
 }
