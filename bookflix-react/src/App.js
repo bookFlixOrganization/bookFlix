@@ -24,6 +24,7 @@ import PopularArticlesContainer from './components/Reading/PopularArticles/Popul
 import SubscribesContainer from './components/Reading/Subscribes/SubscribesContainer.jsx';
 import EditArticleContainer from './components/Reading/EditArticle/EditArticleContainer.jsx';
 import AuthorContainer from './components/Reading/Author/AuthorContainer.jsx';
+import SearchArticleContainer from './components/Reading/SearchArticle/SearchArticleContainer.jsx';
 // Other
 import SearchPageContainer from './components/SearchPage/SearchPageContainer.jsx';
 import SessionChecker from './components/SessionChecker.jsx';
@@ -43,7 +44,8 @@ function App() {
             {(location.pathname === '/reading-diary' ||
                 location.pathname === '/popular-articles' ||
                 location.pathname === '/subscribes' ||
-                location.pathname.startsWith('/author')) && <ReadingHeaderContainer />}
+                location.pathname.startsWith('/author') ||
+                location.pathname === '/search-article') && <ReadingHeaderContainer />}
             <Routes>
                 {/* Main */}
                 <Route path="/" element={<MainPageContainer />} />
@@ -70,6 +72,7 @@ function App() {
                 <Route path="subscribes" element={<SubscribesContainer />} />
                 <Route path="edit-article/:articleId" element={<EditArticleContainer />} />
                 <Route path="author/:authorId" element={<AuthorContainer />} />
+                <Route path="search-article" element={<SearchArticleContainer />} />
 
                 <Route path="search" element={<SearchPageContainer />} />
             </Routes>
