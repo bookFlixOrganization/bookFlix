@@ -35,8 +35,8 @@ const FilmPageContainer = () => {
     const toggleFavourite = () => {
         setIsFavourite((prevState) => !prevState);
     };
-    const source = axios.CancelToken.source();
     useEffect(() => {
+        const source = axios.CancelToken.source();
         const fetchFilmData = async () => {
             try {
                 let imdbId = id;
