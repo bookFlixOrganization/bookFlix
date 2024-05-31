@@ -14,7 +14,7 @@ service = build('books', 'v1', developerKey=settings.GOOGLE_API_KEY)
 
 
 @search_router.get("/movie", tags=["Search"])
-def search_movie_imdb(query: str) -> dict:
+def search_movie_imdb(query: str):
     """
     Эта функция ищет фильмы в базе данных IMDb, используя предоставленный запрос.
 

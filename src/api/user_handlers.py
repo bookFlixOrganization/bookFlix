@@ -14,13 +14,6 @@ from src.schemas.user import Preferences
 
 user_router = APIRouter()
 
-tags_metadata = [
-    {
-        "name": "sort_by",
-        "description": "Returns a list of movies that best match a given criterion."
-    },
-]
-
 fastapi_users = FastAPIUsers[User, uuid.UUID](
     get_user_manager,
     [auth_backend],

@@ -64,9 +64,7 @@ def get_top_rated():
         return {"status": "error", "message": str(e)}
 
 
-@list_router.get("/sorted_films",
-                 tags=["List"],
-                 description="Available values: id, title, popularity, release_date, vote_average, vote_count")
+@list_router.get("/sorted_films", tags=["List"])
 def sort_by(sort_criterion: str):
     """
     Извлекает список фильмов, отсортированных по указанному критерию, из базы данных TMDb.
@@ -96,7 +94,7 @@ def sort_by(sort_criterion: str):
           }
     """
     sorted_list = discover.discover_movies({
-        'ort_by': f"{sort_criterion}.desc"
+        'sort_by': f"{sort_criterion}.desc"
     })
     movie_list = {}
     try:

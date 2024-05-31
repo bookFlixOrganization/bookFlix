@@ -217,7 +217,7 @@ def get_similar(movie_id: int):
 
 
 @movie_router.get("/{movie_id}", tags=["Movie"])
-def get_movie(movie_id: str) -> dict:
+def get_movie(movie_id: str):
     """
     Эта функция извлекает фильм из базы данных IMDb, используя предоставленный movie_id.
 
@@ -240,7 +240,7 @@ def get_movie(movie_id: str) -> dict:
 
 
 @movie_router.get("/person/{person_id}", tags=["Movie"])
-def get_person(person_id: str) -> dict:
+def get_person(person_id: str):
     """
     Эта функция извлекает человека из базы данных IMDb, используя предоставленный person_id.
 
