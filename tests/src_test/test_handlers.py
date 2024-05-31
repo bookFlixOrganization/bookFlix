@@ -1,4 +1,4 @@
-from conftest import client
+from tests.conftest import client
 
 
 def test_read_main():

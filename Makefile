@@ -53,4 +53,7 @@ app:
 pytest:
 	pytest -vv -s tests/
 
+pytest-cov:
+	pytest --cov=src -vv tests/
+
 .PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app pytest

@@ -54,7 +54,7 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
 
     Parameters:
     preferences (Preferences): Объект, содержащий любимые пользователем жанры книг и фильмов.
-    user (User): Пользовательский объект, для которого сохраняются настройки. Это получено от пользователей FastAPI.
+    user (User): Пользовательский объект, для которого сохраняются настройки.
     session (AsyncSession): Объект SQLAlchemy AsyncSession для операций с базой данных.
 
     Returns:
@@ -86,14 +86,14 @@ async def preferences_after_register(preferences: Preferences, user: User = Depe
 async def favourites(user: User = Depends(current_user),
                      session: AsyncSession = Depends(get_async_session)):
     """
-    Эта функция извлекает любимые жанры пользователя из базы данных.
+    Эта функция извлекает предпочтения пользователя из базы данных.
 
     Parameters:
-    user (User): Пользовательский объект, для которого извлекаются любимые жанры. Это получено от пользователей FastAPI.
+    user (User): Пользовательский объект, для которого извлекаются предпочтения.
     session (AsyncSession): Объект SQLAlchemy AsyncSession для операций с базой данных.
 
     Returns:
-    dict: Словарь, содержащий любимые пользователем жанры книг и фильмов.
+    dict: Словарь, содержащий предпочтения пользователя.
 
     Raises:
     HTTPException: Если объект пользователя не найден в базе данных, возникает ошибка 404 Not Found.
@@ -118,7 +118,7 @@ async def preferences_edit(preferences: Preferences, user: User = Depends(curren
 
     Parameters:
     preferences (Preferences): Объект, содержащий любимые жанры книг и фильмов пользователя.
-    user (User): Объект пользователя, для которого редактируются настройки. Это получено от пользователей FastAPI.
+    user (User): Объект пользователя, для которого редактируются настройки.
     session (AsyncSession): Объект SQLAlchemy AsyncSession для операций с базой данных.
 
     Returns:
