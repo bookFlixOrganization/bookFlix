@@ -38,6 +38,7 @@ const PopularBooks = ({ popularBooks }) => {
                 >
                     <div className={styles.swiper_wrapper}>
                         {popularBooks &&
+                            popularBooks.length > 0 &&
                             popularBooks.map((book, index) => (
                                 <SwiperSlide
                                     key={`popular_book_${index}`}

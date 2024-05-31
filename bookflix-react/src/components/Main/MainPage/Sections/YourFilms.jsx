@@ -45,6 +45,7 @@ const YourFilms = (props) => {
                 >
                     <div className={styles.swiper_wrapper}>
                         {personFilmsArray &&
+                            personFilmsArray.length > 0 &&
                             personFilmsArray.slice(0, 10).map((film, index) => {
                                 if (film[0]) {
                                     return (
