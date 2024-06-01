@@ -31,6 +31,6 @@ pytest:
 	pytest -vv -s tests/
 
 pytest-cov:
-	pytest --cov=src -vv tests/src_test
+	pytest --cov=src -vv tests/
 
-.PHONY: all all-linters mypy flake8 pylint clean sort-toml autoflake app-start app-drop app-logs db-up db-down all-down app pytest
+.PHONY: all-linters mypy flake8 pylint toml-sort autoflake app pytest pytest-cov
