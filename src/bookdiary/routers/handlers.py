@@ -18,6 +18,7 @@ from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.auth import auth_backend
+from src.api.user_create_logic import get_user_manager
 from src.bookdiary.mailer import email_prepare_data_send
 from src.bookdiary.models.models import Publics, Subs, Likes
 from src.bookdiary.routers.search_handlers import prepare_article_data, search_books
@@ -39,7 +40,6 @@ from src.bookdiary.schemas.user_articles import (
 )
 from src.config.db.session import get_async_session
 from src.config.project_config import settings
-from src.models.dals import get_user_manager
 from src.models.users import User
 
 

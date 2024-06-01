@@ -15,6 +15,7 @@ from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.auth import auth_backend
+from src.api.user_create_logic import get_user_manager
 from src.bookdiary.models.models import Publics, Subs
 from src.bookdiary.schemas.exceptions import (
     ConflictException,
@@ -23,7 +24,6 @@ from src.bookdiary.schemas.exceptions import (
 )
 from src.bookdiary.schemas.user_subs import UserSubs_operation
 from src.config.db.session import get_async_session
-from src.models.dals import get_user_manager
 from src.models.users import User
 
 
