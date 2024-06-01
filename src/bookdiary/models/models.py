@@ -6,6 +6,7 @@
 """
 
 from sqlalchemy import Column, Integer, JSON, String, Text
+from sqlalchemy import text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
@@ -21,7 +22,7 @@ class Publics(BookDiary_Base):
     id = Column(
         UUID(as_uuid=True),
         primary_key=True,
-        server_default="uuid_generate_v4()",
+        server_default=text("uuid_generate_v4()"),
     )
     user_id = Column(UUID(as_uuid=True), nullable=False)
     book_id = Column(String(), nullable=False)
