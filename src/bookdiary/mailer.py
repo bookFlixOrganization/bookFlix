@@ -1,3 +1,10 @@
+# pylint: disable=W0718
+
+
+"""
+Модуль для отправки email о создании пользователем новой статьи для его подписчиков
+"""
+
 from email.mime.text import MIMEText
 
 from ssl import create_default_context
@@ -12,12 +19,19 @@ from src.config.project_config import settings
 
 
 class MailBody(BaseModel):
+    """
+    Схема отправки email
+    """
+
     to: List[str]
     subject: str
     body: str
 
 
 async def email_prepare_data_send(user_name: str, to):
+    """
+    Подготовка данных для отправки
+    """
     if len(to) != 0:
         data = {
             "to": to,
@@ -29,6 +43,9 @@ async def email_prepare_data_send(user_name: str, to):
 
 
 async def email_send(data: dict):
+    """
+    Отправка писем
+    """
     msg = MailBody(**data)
     message = MIMEText(msg.body, "html")
     message["From"] = settings.MAIL_USERNAME
