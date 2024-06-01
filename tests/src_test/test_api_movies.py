@@ -32,6 +32,3 @@ def test_get_person():
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert len(response.json()["result"]) != 0
-
-
-
