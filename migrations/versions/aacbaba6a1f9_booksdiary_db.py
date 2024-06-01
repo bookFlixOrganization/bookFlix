@@ -1,4 +1,4 @@
-# pylint: disable=no-member, invalid-name
+# pylint: disable=no-member
 from typing import Sequence, Union
 
 from alembic import op
