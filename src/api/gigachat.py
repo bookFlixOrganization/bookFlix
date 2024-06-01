@@ -14,7 +14,7 @@ prompt_for_short_content = load_prompt('src/api/short_content.yaml')
 chat = GigaChat(credentials=settings.GIGACHAT_API_KEY, verify_ssl_certs=False)
 
 
-@gigachat_router.get("/short_content")
+@gigachat_router.get("/short_content", tags=["Gigachat"])
 def gigachat_short_content(query: str):
     """
     Эта функция взаимодействует с моделью GigaChat для создания короткого контента на основе заданного запроса.

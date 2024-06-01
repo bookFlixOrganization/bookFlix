@@ -249,7 +249,7 @@ async def added_books(user: User = Depends(current_user),
         raise f'Error response status code : {e.status_code}, reason : {e.error_details}'
 
 
-@gigachat_router.get("/recommendation_book")
+@gigachat_router.get("/recommendation_book", tags=["Gigachat"])
 async def recommendation_book(user: User = Depends(current_user),
                               session: AsyncSession = Depends(get_async_session)):
     """

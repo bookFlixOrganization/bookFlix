@@ -294,7 +294,7 @@ async def added_movie(user: User = Depends(current_user),
         raise f'Error response, message: {e}'
 
 
-@gigachat_router.get("/recommendation_movie")
+@gigachat_router.get("/recommendation_movie", tags=["Gigachat"])
 async def recommendation_movie(user: User = Depends(current_user),
                                session: AsyncSession = Depends(get_async_session)):
     """
