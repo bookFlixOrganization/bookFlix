@@ -24,4 +24,4 @@ app.include_router(subs_router)
 
 
 if __name__ == '__main__':
-    uvicorn.run("main:app", host="localhost", port=8000, workers=4)
+    uvicorn.run("main:app", host="localhost", port=8000, workers=10)
