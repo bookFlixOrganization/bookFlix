@@ -1,0 +1,126 @@
+.articlepage_container {
+    max-width: 1220px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.now_watching_text {
+    padding-top: 150px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.theme {
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+}
+
+.author {
+    display: flex;
+    justify-content: flex-start;
+    align-items: first baseline;
+    line-height: 30px;
+}
+
+.name {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+    font-weight: 600;
+}
+
+.name_1 {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.name_2 {
+    color: #e54d4d;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.name_2:hover {
+    transform: scale(1.04);
+}
+
+.article_text {
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Кнопка 'подписаться' */
+.block {
+    width: 250px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(0%);
+    transition: 1s;
+    font-size: 30px;
+}
+
+.like_container {
+    display: flex;
+    align-items: center;
+}
+
+.likes_amount {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #888;
+    font-weight: 900;
+    margin-left: 10px;
+    width: 40px;
+}
+
+.LikeIcon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.LikeIcon path {
+    fill: #888888;
+}
+
+.LikeIcon:hover path {
+    fill: #f44336;
+}
+
+.subs_btn {
+    width: 250px;
+    height: 48px;
+    border-radius: 100px;
+    background-color: #e54d4d;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.subs_btn:hover {
+    background-color: #e43232;
+}
+
+.subscribed,
+.subscribed:hover {
+    background: #ffffff;
+    color: #e54d4d;
+}
+
+.liked path {
+    fill: #f44336;
+}
