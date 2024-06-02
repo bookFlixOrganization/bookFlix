@@ -249,7 +249,7 @@ async def edit_article_by_article_id(
         Publics.book_name == result["book_name"],
         Publics.user_id == user.id,
     )
-    if len((await session.execute(stmt)).mappings().fetchall()) > 0:
+    if len((await session.execute(stmt)).mappings().fetchall()) > 1:
         raise ConflictException(detail="This article is already exist")
     result["article_name"] = data.article_name
     stmt_update = update(Publics).where(Publics.id == data.id).values(**result)
