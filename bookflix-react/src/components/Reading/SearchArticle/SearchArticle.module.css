@@ -1,0 +1,266 @@
+.search_container {
+    max-width: 1220px;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+/* Строка поиска */
+.search_form {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.search_form_text {
+    outline: none;
+    margin: 10px;
+    border: none;
+    border-radius: 40px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    width: 1000px;
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search_form_button {
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #222222;
+    font-family: 'Poppins', sans-serif;
+}
+
+.now_watching_text {
+    padding-top: 150px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.now_watching_text_1 {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.section_header_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: first baseline;
+    line-height: 60px;
+}
+
+.section_title {
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+}
+
+.section_subtitle {
+    color: #9f9f9f;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+
+.button_all {
+    color: #e54d4d;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.05s;
+    margin-right: 20px;
+}
+
+.button_all:hover {
+    color: #e43131;
+    transform: scale(1.03);
+}
+
+.container_2 {
+    position: relative;
+    max-width: 1220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container_2 .block {
+    position: relative;
+    display: flex;
+    width: 580px;
+    height: 550px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgb(24, 24, 24);
+    margin-bottom: 30px;
+}
+
+.container_2 .block .content {
+    padding: 30px;
+    text-align: left;
+    width: 100%;
+}
+
+.article_desc {
+    height: 310px;
+    color: #ffffff;
+    padding: 20px 0;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 20px;
+}
+
+.data {
+    text-align: right;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.small_box_1 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.small_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.article_author {
+    color: #ffffff;
+    font-size: 20px;
+    padding-bottom: 2px;
+}
+
+.article_name {
+    color: #ffffff;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.subtitle {
+    margin-top: 8px;
+    color: #ffffff;
+    opacity: 0.4;
+    font-size: 14px;
+}
+
+.article_desc {
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.amount {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    line-height: 1.2;
+    transition: all 0.2s;
+    width: 70px;
+    display: flex;
+    text-align: left;
+}
+
+.amount:hover {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.btn {
+    background-color: #e54d4d;
+    margin-right: 10px;
+    color: #ffffff;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    text-decoration: none;
+    text-align: center;
+    /* transition: all 200ms ease-in-out; */
+}
+
+.btn:hover {
+    /* transform: scale(1.05); */
+    background-color: #e43131;
+}
+
+.show_more {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show_more button {
+    border: none;
+    background-color: rgb(43, 43, 43);
+    color: rgb(255, 255, 255, 0.4);
+    width: 100px;
+    height: 30px;
+    font-family: 'Arial';
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.show_more button:hover {
+    background-color: rgb(122, 122, 122);
+    color: #ffffff;
+}
+
+.like_button {
+    display: flex;
+    align-items: center;
+}
+
+.like_button .likes_amount {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #888;
+    font-weight: 900;
+    margin-left: 6px;
+}
+
+.LikeIcon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.LikeIcon path {
+    fill: #888888;
+}
+
+.LikeIcon:hover path {
+    fill: #f44336;
+}
+
+.low {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes_amount {
+    color: #ffffff;
+}
+
+.not_found {
+    color: #ffffff;
+    font-size: 30px;
+    margin-left: 15px;
+}

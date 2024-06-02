@@ -1,0 +1,145 @@
+.now_watching_text {
+    padding-top: 150px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.now_watching_text_1 {
+    padding-top: 100px;
+    padding-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.section_header_1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: first baseline;
+    line-height: 60px;
+}
+
+.section_title {
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Poppins', sans-serif;
+    padding-right: 15px;
+}
+
+.section_subtitle {
+    color: #9f9f9f;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button_all {
+    color: #e54d4d;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.05s;
+}
+
+.button_all:hover {
+    color: #e43131;
+    transform: scale(1.03);
+}
+
+.new_article_textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+    height: 500px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255, 0.1);
+    border: none;
+    margin-bottom: 10px;
+    outline: none;
+    resize: vertical;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.label {
+    margin-bottom: 10px;
+    margin-left: 4px;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+    font-weight: 700;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.value {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 5px;
+    text-align: start;
+    color: #ffffff;
+    opacity: 0.4;
+}
+
+.inp {
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255, 0.1);
+    height: 32px;
+    padding: 8px;
+    border: none;
+    margin-bottom: 16px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.subtitle-1 {
+    margin-bottom: 50px;
+    opacity: 0.4;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.modal_box {
+    color: #ffffff;
+    text-align: left;
+    width: 1000px;
+    min-height: 500px;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.estimate {
+    border: none;
+    background-color: #e54d4d;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.estimate:hover {
+    background-color: #e43131;
+}
+
+.new_article_container {
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+.bookLink {
+    color: #e54d4d;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bookLink:hover {
+    color: #e43131;
+}
