@@ -85,7 +85,7 @@ const History = (props) => {
                     <div className={styles.container}>
                         <div className={styles.section_header}>
                             <div className={styles.section_header_1}>
-                                <p className={styles.section_title}>Добавленные книги</p>
+                                <p className={styles.section_title}>Прочитанные книги</p>
                             </div>
                             <p className={styles.section_subtitle}></p>
                         </div>
